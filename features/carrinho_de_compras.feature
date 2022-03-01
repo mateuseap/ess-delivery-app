@@ -29,4 +29,3 @@ AND existem itens “lasanha” and “rocambole”
 WHEN eu clico no botão “fazer pedido” 
 THEN sou redirecionado para a página “fazer pedido”
 
-Novo cenário...
