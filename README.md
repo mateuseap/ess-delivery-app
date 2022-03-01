@@ -2,40 +2,31 @@
 
 ### Dependências
 
-- Angular
-- Node 
-- npm
+- React v17.0.2
+- Node v16.13.1
+- npm v8.3.0
 
 ### Instalando dependências 
 ```
 sudo apt install npm
-sudo npm install -g @angular/cli
-```
-
-### Modificando a versão do Node
-```
-sudo npm install -g n
-n 14.15
 ```
 
 ### Iniciando o projeto
 ```
-cd web-app
-sudo npm install
+cd client
+npm install
 cd ..
 cd server
-sudo npm install
+npm install
 ```
 ### Rodando o projeto
 Iniciar o servidor
 ```
 cd server
-npm start
+nodemon
 ```
 Iniciando o frontend
 ```
-cd web-app
-sudo npm install 
-cd src
-ng serve
+cd client
+npm start
 ```
