@@ -23,4 +23,9 @@ Scenario: Cliente vai pagar pelo seu pedido
 	When: Vejo que o valor total está correto e seleciono a opção de pagamento
 	And: Pago o valor final
 	Then: Recebo uma confirmação e sou direcionado para a próxima etapa
+	
+Scenario: Cliente finalizou o pagamento
+	Given: Estou na página após o pagamento
+	And: Recebi uma mensagem de confirmação do aplicatio
+	Then: Posso sair do aplicativo e esperar a entrega do pedido
 
