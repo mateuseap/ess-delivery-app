@@ -8,9 +8,9 @@ Scenario: O cliente vai escolher os produtos que deseja
 Scenario: Escolha do endereço
 	Given: Estou na página “Escolha o local de entrega” 
 	When: Eu clico na opção de permitir o aplicativo acessar minha localização
-		Then: O mapa é atulizado para a minha localização
-		And: Confirmo a localização
-		Then: Sou direcionado para a próxima etapa do pedido
+	Then: O mapa é atulizado para a minha localização
+	And: Confirmo a localização
+	Then: Sou direcionado para a próxima etapa do pedido
 
 Scenario: Revisão do pedido
 	Given: Estou na página “Revisar pedido” 
@@ -28,7 +28,4 @@ Scenario: Cliente finalizou o pagamento
 	Given: Estou na página após o pagamento
 	And: Recebi uma mensagem de confirmação do aplicatio
 	Then: Posso sair do aplicativo e esperar a entrega do pedido
-
-Scenario: Novo cenário de testes
-	Ajuste do cenário
 
