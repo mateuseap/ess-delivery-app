@@ -13,12 +13,12 @@ Scenario: Escolha do endereço
 		Then: Sou direcionado para a próxima etapa do pedido
 
 Scenario: Revisão do pedido
-	Given: Estou na página “Revisar pedido” 
+	Given: Estou na página “Revisar pedidos” 
 	When: Olho os itens do carrinho e confirmo que estão certos
 	And: Confirmo que a localização está correta e clico na opção de confirmar o pedido
 	Then: Sou direcionado para a próxima etapa do pedido
 
-Scenario: Cliente vai pagar pelo seu pedidos
+Scenario: Cliente vai pagar pelo seu pedido
 	Given: Estou na página “Pagamento”
 	When: Vejo que o valor total está correto e seleciono a opção de pagamento
 	And: Pago o valor final
