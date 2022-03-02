@@ -14,7 +14,7 @@ Scenario: Escolha do endereço
 
 Scenario: Revisão do pedido
 	Given: Estou na página “Revisar pedido” 
-	When: Olho itens do carrinho e confirmo que estão certos
+	When: Olho os itens do carrinho e confirmo que estão certos
 	And: Confirmo que a localização está correta e clico na opção de confirmar o pedido
 	Then: Sou direcionado para a próxima etapa do pedido
 
