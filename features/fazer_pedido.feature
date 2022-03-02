@@ -30,4 +30,5 @@ Scenario: Cliente finalizou o pagamento
 	Then: Posso sair do aplicativo e esperar a entrega do pedido
 
 Scenario: Novo cenário de testes
+	Ajuste do cenário
 
