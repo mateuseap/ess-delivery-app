@@ -29,3 +29,5 @@ Scenario: Cliente finalizou o pagamento
 	And: Recebi uma mensagem de confirmação do aplicatio
 	Then: Posso sair do aplicativo e esperar a entrega do pedido
 
+Scenario: Novo cenário de testes
+
