@@ -1,6 +1,7 @@
 Feature: Avaliar Pedidos
     As a Cliente que possui uma conta no aplicativo
     I want to Avaliar Pedidos
+    so that Eu posso descrever como foram as minhas experiências com os pedidos
 
 Scenario: Avaliando um pedido qualquer sem texto de feedback
     Given Estou logado como usuário com login “guimorone” e senha “12345”
