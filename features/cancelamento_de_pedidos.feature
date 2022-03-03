@@ -28,8 +28,8 @@ Scenario: Cancelamento pelo cliente depois do início de preparo e além do limi
 	Then o pedido é cancelado e "R$30,00" são estornados para minha conta
 
 Scenario: Cancelamento pelo restaurante antes do pedido ser passado ao entregador
-    Given que estou logado como "Restaurante" com login "casaregional" e senha "1234"
-    And recebi um pedido do Cliente "John Doe" de valor "R$30,00"
-    And o pedido foi confirmado, mas ainda não foi passado ao entregador
-    When eu tento cancelar o pedido
-    Then o pedido é cancelado e "R$30,00" são estornados para a conta do cliente "John Doe"
+	Given que estou logado como "Restaurante" com login "casaregional" e senha "1234"
+	And recebi um pedido do Cliente "John Doe" de valor "R$30,00"
+	And o pedido foi confirmado, mas ainda não foi passado ao entregador
+	When eu tento cancelar o pedido
+	Then o pedido é cancelado e "R$30,00" são estornados para a conta do cliente "John Doe"
