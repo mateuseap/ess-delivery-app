@@ -18,7 +18,7 @@ Scenario: Avaliando um pedido qualquer com texto de feedback
         And eu estou na página de histórico de pedidos
         And vou avaliar um pedido
     When eu clico em avaliar um pedido
-        And adiciono estrelas com base na minha satisfação
+        And avalio o pedido com 5 estrelas
         And escrevo a frase “gostei bastante do pedido” na caixa de texto de feedback
         And clico em enviar avaliação
     Then Eu vejo uma mensagem de sucesso na tela
@@ -28,7 +28,7 @@ Scenario: Avaliando múltiplos pedidos feitos em um mesmo restaurante sem texto 
 	    And eu estou na página de histórico de pedidos
 	    And vou avaliar um pedido de um restaurante que eu já avaliei outro pedido
 	When eu clico em avaliar um pedido de um restaurante que eu já conheço
-        And adiciono estrelas com base na minha satisfação
+        And avalio o pedido com 3 estrelas
         And deixo a caixa de texto de feedback em branco
         And clico em enviar avaliação
 	Then Eu vejo uma mensagem de sucesso na tela
@@ -38,7 +38,7 @@ Scenario: Avaliando múltiplos pedidos feitos em um mesmo restaurante com texto 
         And eu estou na página de histórico de pedidos
         And vou avaliar um pedido de um restaurante que eu já avaliei outro pedido
 	When eu clico em avaliar um pedido de um restaurante que eu já conheço
-        And adiciono estrelas com base na minha satisfação
+        And avalio o pedido com 5 estrelas
         And escrevo a frase “Gostei bastante do pedido!” na caixa de texto de feedback
         And clico em enviar avaliação
 	Then Eu vejo uma mensagem de sucesso na tela
