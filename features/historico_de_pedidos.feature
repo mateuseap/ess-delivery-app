@@ -40,3 +40,9 @@ Scenario: visualizing orders history page with days filter
     When I access the order history page
     And I select “15 days” in days filter
     Then I see all the orders I made in the past 15 days (with pagination)
+
+Scenario: new scenario
+    Given one new scenario
+    When I create a new scenario
+    And fix a new scenario
+    Then a new scenario is created
