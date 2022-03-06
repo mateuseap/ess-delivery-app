@@ -15,3 +15,11 @@ Scenario: calcular tempo de entrega de pedido ainda não confirmado
 	When eu seleciono “calcular tempo de entrega” referente ao único pedido em andamento ainda não confirmado
 	Then eu ainda estou na tela de detalhes do pedido ainda não confirmado
 	And uma mensagem aparece na tela indicando que pedido ainda não foi confirmado
+
+Scenario: calcular tempo de entrega de pedido para Neymar ainda não confirmado
+	Given eu estou logado como "Neymar Jr." com senha “1010”
+	And escolhi o endereço “CT PSG” como o de entrega
+	And estou na tela de pedidos em andamento
+	When eu seleciono “calcular tempo de entrega” referente ao único pedido em andamento ainda não confirmado
+	Then eu ainda estou na tela de detalhes do pedido ainda não confirmado
+	And uma mensagem aparece na tela indicando que pedido ainda não foi confirmado
