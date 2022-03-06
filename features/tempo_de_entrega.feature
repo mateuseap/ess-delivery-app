@@ -15,3 +15,4 @@ Scenario: calcular tempo de entrega de pedido ainda não confirmado
 	When eu seleciono “calcular tempo de entrega” referente ao único pedido em andamento ainda não confirmado
 	Then eu ainda estou na tela de detalhes do pedido ainda não confirmado
 	And uma mensagem aparece na tela indicando que pedido ainda não foi confirmado
+	And o tempo de entrega não é calculado
