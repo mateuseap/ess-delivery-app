@@ -33,4 +33,4 @@ Scenario: doens't have a history orders when days filter applied
     And I haven’t made orders during the last 7 days
     When I access the order history page
     And I select “7 days” in days filter
-    Then I see a page telling that there’s not any to be shown
+    Then I see a page telling that there’s not any order to be shown
