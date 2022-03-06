@@ -34,3 +34,4 @@ Scenario: calcular tempo de entrega de pedido em preparo para Kobe Bryant
 	And consigo visualizar o mapa da rota (restaurante/destino)
 	And vejo em tempo real onde está meu pedido
 	And consigo visualizar a previsão de entrega do pedido
+	And alteracao significativa
