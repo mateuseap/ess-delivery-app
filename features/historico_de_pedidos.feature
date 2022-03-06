@@ -27,3 +27,10 @@ Scenario: visualizing a specific order in orders history page
     Then I see all the orders I made in the current month (with pagination)
     When I click on the order with ID 10
     Then I see details about this order, like price and payment method
+
+Scenario: doens't have a history orders when days filter applied
+    Given I’m logged as a User with login “glx” and password “32525672”
+    And I haven’t made orders during the last 7 days
+    When I access the order history page
+    And I select “7 days” in days filter
+    Then I see a page telling that there’s not orders to be shown
