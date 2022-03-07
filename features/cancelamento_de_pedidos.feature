@@ -35,3 +35,4 @@ Scenario: Cancelamento pelo restaurante antes do pedido ser passado ao entregado
 	Then o pedido é cancelado e "R$30,00" são estornados para a conta do cliente "John Doe"
 
 Scenario: Teste main
+Scenario: Teste branch desenvolvimento
