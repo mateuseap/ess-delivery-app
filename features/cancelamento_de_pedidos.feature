@@ -1,6 +1,6 @@
 Feature: Cancelamento de Pedido
 	As a Cliente logado no aplicativo
-	I want to cancelar um pedido  
+	I want to tentar cancelar um pedido  
 
 Scenario: Cancelamento pelo cliente antes do início de preparo
 	Given que estou logado como "Cliente" com login "johndoe" e senha "1234"
