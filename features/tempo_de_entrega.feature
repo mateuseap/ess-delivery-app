@@ -17,3 +17,4 @@ Scenario: calcular tempo de entrega de pedido ainda não confirmado
 	And uma mensagem aparece na tela indicando que pedido ainda não foi confirmado
 	And o tempo de entrega não é calculado
 	And commit 1
+	And commit 2
