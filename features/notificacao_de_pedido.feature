@@ -1,6 +1,6 @@
 Scenario: Confirmou pedido
 	Given cliente “Rafael123” faz um pedido de "Hambúrguer Vegano”
-	And estou logado como restaurante "HamburguerCia” com senha “123”
+  And estou logado como restaurante "HamburguerCia” com senha “123”
 	And recebo o pedido do cliente “Rafael123”
 	When altero o status do pedido para “Pedido confirmado”
 	Then recebi confirmação de envio da notificação ao cliente
