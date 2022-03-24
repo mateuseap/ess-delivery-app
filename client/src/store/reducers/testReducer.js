@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+  outroCampo: '',
   name: '',
   sla: [
     {
@@ -18,7 +19,7 @@ export default function testReducer(state = INITIAL_STATE, action) {
   if (action.type === 'TOGGLE_TEST_STATE') {
     return {
       ...state,
-      sla: action.payload
+      sla: action.sla
     };
   }
 
