@@ -12,7 +12,7 @@ export default function OtherRoute() {
 
   return (
     <OtherStyle>
-      Essa é outra pagina :)
+      {`Essa é outra pagina :)`}
       <ul>
         <li>
           <Button
