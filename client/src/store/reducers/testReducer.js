@@ -4,6 +4,10 @@ const INITIAL_STATE = {
     {
       id: 1,
       teste: 'teste'
+    },
+    {
+      id: 2,
+      teste: 'teste2'
     }
   ]
 };

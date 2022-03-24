@@ -11,19 +11,19 @@ import { Button } from 'react-bootstrap';
 const TestReducer = ({ infos, toggleTestState }) => (
   <div>
     <h1>Oi</h1>
-    {infos.forEach((element) => {
-      <div>
-        <h2>{element.id}</h2>
+    {infos.map((element) => (
+      <div key={element.id}>
         <Button variant='secondary' className='m-1'>
-          {element.test}
+          {element.teste}
         </Button>
-      </div>;
-    })}
+      </div>
+    ))}
+    <h2>Tchau</h2>
   </div>
 );
 
 const mapStateToProps = (state) => ({
-  infos: state.testReducer.sla,
+  infos: state.testReducer.sla
 });
 
 const mapDispatchToProps = (dispatch) =>
