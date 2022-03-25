@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledApp = styled.div`
-  text-align: center;
-  background-color: #FDF1D6;
-`
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fdf1d6;
+`;

@@ -15,22 +15,17 @@ export default function Home() {
       Escolha uma das páginas para explorar
       <ul>
         <li>
+          <Button variant='outline-primary' id='/home' onClick={handleRouting}>
+            Home
+          </Button>
+        </li>
+        <li>
           <Button
             variant='outline-primary'
             id='/test_reducer'
             onClick={handleRouting}
           >
             TestReducer
-          </Button>
-        </li>
-        <li>
-          <Button variant='outline-primary' id='/other' onClick={handleRouting}>
-            Other
-          </Button>
-        </li>
-        <li>
-          <Button variant='outline-primary' id='/home' onClick={handleRouting}>
-            Home
           </Button>
         </li>
       </ul>
