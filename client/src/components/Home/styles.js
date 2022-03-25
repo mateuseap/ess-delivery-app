@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HomeStyle = styled.div`
   width:30%
@@ -8,4 +8,4 @@ export const HomeStyle = styled.div`
   li{
     padding:5px;
   }
-`
+`;

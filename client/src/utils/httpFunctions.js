@@ -1,30 +1,30 @@
 export const jsonAcceptHeaders = {
-  Accept: 'application/json;',
+  Accept: "application/json;",
 };
 
 const jsonPostHeaders = {
-  'Content-Type': 'application/json; charset=utf-8',
+  "Content-Type": "application/json; charset=utf-8",
 };
 
 const jsonPostFormHeaders = {
-  'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;',
+  "Content-Type": "application/x-www-form-urlencoded;charset=utf-8;",
 };
 
 const textPlainFormHeaders = {
-  'Content-Type': 'text/plain',
+  "Content-Type": "text/plain",
 };
 
 const addHeaders = (opts, headers) => {
   if (headers !== undefined)
-    opts['headers'] = { ...opts['headers'], ...headers };
+    opts["headers"] = { ...opts["headers"], ...headers };
   return opts;
 };
 
 export function doPost(url, body, headers) {
   let opts = addHeaders(
     {
-      method: 'POST',
-      credentials: 'same-origin',
+      method: "POST",
+      credentials: "same-origin",
       body: JSON.stringify(body),
     },
     { ...headers, ...jsonPostHeaders }
@@ -34,14 +34,14 @@ export function doPost(url, body, headers) {
 export function doFormPost(url, params, headers) {
   const searchParams = Object.keys(params)
     .map((key) => {
-      return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+      return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
     })
-    .join('&');
+    .join("&");
 
   let opts = addHeaders(
     {
-      method: 'POST',
-      credentials: 'same-origin',
+      method: "POST",
+      credentials: "same-origin",
       body: decodeURIComponent(searchParams),
     },
     { ...headers, ...jsonPostFormHeaders }
@@ -52,8 +52,8 @@ export function doFormPost(url, params, headers) {
 export function doPostFile(url, body, headers) {
   let opts = addHeaders(
     {
-      method: 'POST',
-      credentials: 'same-origin',
+      method: "POST",
+      credentials: "same-origin",
       body: body,
     },
     { ...headers }
@@ -67,8 +67,8 @@ export function doPut(url, body, headers, isPayloadTextPlain) {
     : { ...jsonPostFormHeaders };
   let opts = addHeaders(
     {
-      method: 'PUT',
-      credentials: 'same-origin',
+      method: "PUT",
+      credentials: "same-origin",
       body: isPayloadTextPlain ? body : JSON.stringify(body),
     },
     { ...headers, ...extraHeaders }
@@ -79,8 +79,8 @@ export function doPut(url, body, headers, isPayloadTextPlain) {
 export function doDelete(url, body, headers) {
   let opts = addHeaders(
     {
-      method: 'DELETE',
-      credentials: 'same-origin',
+      method: "DELETE",
+      credentials: "same-origin",
       body: JSON.stringify(body),
     },
     { ...headers, ...jsonPostHeaders }
@@ -91,8 +91,8 @@ export function doDelete(url, body, headers) {
 export function doGet(url, headers) {
   let opts = addHeaders(
     {
-      method: 'GET',
-      credentials: 'same-origin',
+      method: "GET",
+      credentials: "same-origin",
     },
     headers
   );
