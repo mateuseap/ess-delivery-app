@@ -28,3 +28,4 @@ AND eu estou logado como cliente “enriqson”
 AND existem itens “lasanha” and “rocambole”
 WHEN eu clico no botão “fazer pedido” 
 THEN sou redirecionado para a página “fazer pedido”
+
