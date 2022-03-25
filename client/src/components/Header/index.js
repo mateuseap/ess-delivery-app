@@ -1,15 +1,15 @@
-import React from 'react';
-import { HeaderStyle, Title, Buttons } from './styles';
-import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
+import React from "react";
+import { HeaderStyle, Title, Buttons } from "./styles";
+import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 import {
   getHistorySvg,
   getUserSvg,
   getCartSvg,
-} from '../../assets/headerAssets';
+} from "../../assets/headerAssets";
 
 function getUser() {
-  return { name: 'Felipe Gonçalves' };
+  return { name: "Felipe Gonçalves" };
 }
 
 export default function Header() {
@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <HeaderStyle>
       {loading ? (
-        ''
+        ""
       ) : (
         <>
           <Title>{user.name}</Title>

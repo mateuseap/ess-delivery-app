@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyledApp } from "./App.style"
-import { BrowserRouter} from "react-router-dom";
+import { StyledApp } from "./App.style";
+import { BrowserRouter } from "react-router-dom";
 import RouteOptions from "../routes";
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <StyledApp>
         <BrowserRouter>
-          <RouteOptions/>
+          <RouteOptions />
         </BrowserRouter>
       </StyledApp>
     );
