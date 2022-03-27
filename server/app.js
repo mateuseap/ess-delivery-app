@@ -1,33 +1,19 @@
 const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+import { getCart, postCart } from "./resources/cart";
+import { getTest, postTest } from "./resources/test";
+
+require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
 
-app.get("/test", async (req, res) => {
-  try{
-    res.status(200).send("heyyy")
-  }
-  catch(err){
-    console.error(err)
-    res.status(400).send({})
-  }
-  
-})
+app.get("/cart", getCart);
+app.post("/cart", postCart);
 
-app.post("/test", async (req, res) => {
-  try {
-    const data = req.body
-    console.log(data)
-    res.status(200).send(JSON.stringify({res:"Got it"}));
-  } catch (err) {
-    console.error(err)
-    res.status(400).send({})
-  }
-})
+app.get("/test", getTest);
+app.post("/test", postTest);
 
-app.listen(1337, _ => {
+app.listen(1337, (_) => {
   console.log("Server running on port 1337");
 });
-
