@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { getCart, postCart } = require("./resources/cart");
 const { getTest, postTest } = require("./resources/test");
+const { getUser } = require("./resources/user");
+
 const cors = require("cors");
 
 require("dotenv").config();
@@ -15,6 +17,8 @@ app.post("/cart", postCart);
 
 app.get("/test", getTest);
 app.post("/test", postTest);
+
+app.get("/user", getUser);
 
 app.listen(1337, (_) => {
   console.log("Server running on port 1337");
