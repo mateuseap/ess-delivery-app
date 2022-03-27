@@ -1,48 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
 import { HeaderStyle, Title, Buttons } from "./styles";
-import { useNavigate } from "react-router";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { Creators as UserCreators } from "../../store/ducks/user";
+
+import ReactLoading from "react-loading";
+
 import {
   getHistorySvg,
   getUserSvg,
   getCartSvg,
 } from "../../assets/headerAssets";
 
-function getUser() {
-  return { name: "Felipe Gonçalves" };
-}
-
-export default function Header() {
-  const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setUser(getUser);
-  }, []);
-
-  useEffect(() => {
-    setLoading(false);
-  }, [user]);
-  const navigate = useNavigate();
-
-  function handleRouting(route) {
-    navigate(route.target.id);
+class Header extends Component {
+  componentDidMount() {
+    this.props.getUser();
   }
-
-  return (
-    <HeaderStyle>
-      {loading ? (
-        ""
-      ) : (
-        <>
-          <Title>{user.name}</Title>
-          <Buttons>
-            {getHistorySvg()}
-            {getCartSvg()}
-            {getUserSvg()}
-          </Buttons>
-        </>
-      )}
-    </HeaderStyle>
-  );
+  render() {
+    const { user } = this.props;
+    return (
+      <HeaderStyle>
+        <Title>
+          {user.loading ? <ReactLoading type={"spin"} /> : user.data.name}
+        </Title>
+        <Buttons>
+          <Link to="/history">{getHistorySvg()}</Link>
+          <Link to="/cart">{getCartSvg()}</Link>
+          <Link to="/home">{getUserSvg()}</Link>
+        </Buttons>
+      </HeaderStyle>
+    );
+  }
 }
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps, { ...UserCreators })(Header);

@@ -6,7 +6,7 @@ export default function* getUser(userToken) {
   try {
     yield put(Creators.userRequest());
 
-    let response = yield call(api.get, "/test");
+    let response = yield call(api.get, "/user");
 
     if (response.data) {
       yield put(Creators.userSuccess(response.data));
