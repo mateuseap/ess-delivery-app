@@ -1,4 +1,4 @@
-export const postTest = async (req, res) => {
+exports.postTest = async (req, res) => {
   try {
     const data = req.body;
     console.log(data);
@@ -9,7 +9,7 @@ export const postTest = async (req, res) => {
   }
 };
 
-export const getTest = async (req, res) => {
+exports.getTest = async (req, res) => {
   try {
     res.status(200).send("heyyy");
   } catch (err) {

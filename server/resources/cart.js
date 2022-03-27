@@ -1,3 +1,3 @@
-export const getCart = async (req, res) => {};
+exports.getCart = async (req, res) => {};
 
-export const postCart = async (req, res) => {};
+exports.postCart = async (req, res) => {};

@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-import { getCart, postCart } from "./resources/cart";
-import { getTest, postTest } from "./resources/test";
+const { getCart, postCart } = require("./resources/cart");
+const { getTest, postTest } = require("./resources/test");
 
 require("dotenv").config();
 
