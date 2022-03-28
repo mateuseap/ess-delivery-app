@@ -1,22 +1,24 @@
 const fs = require("fs");
 
 export default class ManipulateDatabase {
-  constructor(dbName, mode = "write", content = "") {
+  constructor(dbName, mode = "append", content = "") {
+    this.dbName = dbName + ".json"
+    this.content = JSON.stringify(content);
     switch (mode) {
       case "write":
-        fs.writeFile(dbName, content, (err) => {
+        fs.writeFile(this.dbName, this.content, (err) => {
           if (err) throw err;
         });
         break;
       case "append":
-        fs.appendFile(dbName, content, (err) => {
+        fs.appendFile(this.dbName, this.content, (err) => {
           if (err) throw err;
         });
         break;
       case "read":
-        fs.readFile(dbName, content, (err, data) => {
+        fs.readFile(this.dbName, "utf-8", (err, data) => {
           if (err) throw err;
-          this.response = data;
+          this.response = JSON.parse(data);
         });
         break;
       default:

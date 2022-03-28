@@ -1,8 +1,15 @@
 {
-    "id": 0,
-    "name": "Felipe Gonçalves",
-    "photo": "https://pbs.twimg.com/profile_images/1415107009670746118/bo9LixXV_400x400.jpg",
-    "adresses": [
-        "Avenida Jornalista Aníbal Fernandes, 500"
+    "users": [
+        {
+            "id": 0,
+            "name": "Felipe Gonçalves",
+            "photo": "https://pbs.twimg.com/profile_images/1415107009670746118/bo9LixXV_400x400.jpg",
+            "adresses": [
+                "Avenida Jornalista Aníbal Fernandes, 500"
+            ],
+            "contacts": [
+                {}
+            ]
+        }
     ]
 }

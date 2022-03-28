@@ -1,0 +1,22 @@
+{
+    "restaurants": [
+        {
+            "id": 0,
+            "name": "Almir quentinhas",
+            "photo": "https://pbs.twimg.com/profile_images/1415107009670746118/bo9LixXV_400x400.jpg",
+            "adresses": [
+                "Avenida Domingos Ferreira, 1230"
+            ],
+            "menu": [
+                {
+                    "name": "Ogrão burguer",
+                    "price": 14.50,
+                    "description": "Descrição"
+                }
+            ],
+            "contacts": [
+                {}
+            ]
+        }
+    ]
+}
