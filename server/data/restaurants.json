@@ -16,6 +16,14 @@
             ],
             "contacts": [
                 {}
+            ],
+            "average_stars_rate": 4.6,
+            "rates": [
+                {
+                    "user_id": 0,
+                    "stars": 4.6,
+                    "feedback_text": ""
+                }
             ]
         }
     ]

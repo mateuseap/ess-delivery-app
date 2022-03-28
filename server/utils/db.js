@@ -1,8 +1,8 @@
 const fs = require("fs");
 
-export default class ManipulateDatabase {
+exports.ManipulateDatabase = class {
   constructor(dbName, mode = "append", content = "") {
-    this.dbName = dbName + ".json"
+    this.dbName = dbName + ".json";
     this.content = JSON.stringify(content);
     switch (mode) {
       case "write":
@@ -29,4 +29,4 @@ export default class ManipulateDatabase {
   getFileContent() {
     return this.response;
   }
-}
+};

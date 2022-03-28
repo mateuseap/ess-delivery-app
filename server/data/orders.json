@@ -7,7 +7,18 @@
             "total_price": 25.50,
             "description": "",
             "from": "",
-            "to": ""
+            "to": "",
+            "forma_pagamento": {},
+            "status": {
+                "preparado": false,
+                "finalizado": false,
+                "saiu_para_entrega": false,
+                "entregue": false
+            },
+            "rate": {
+                "stars": 3,
+                "feedback_text": ""
+            }
         }
     ]
 }
