@@ -29,6 +29,7 @@ exports.ManipulateDatabase = class {
 
   #write(obj = this.content) {
     // sobrescreve tudo
+    // aqui seria pra remover conteúdo ou atualizar
     fs.writeFileSync(this.tableName, obj, (err) => {
       if (err) throw err;
     });
@@ -36,7 +37,9 @@ exports.ManipulateDatabase = class {
 
   #append() {
     this.read();
-    this.response.push(this.content);
+    const key = Object.keys(this.response);
+    // tem que puxar pra dentro do array, e não pro objeto
+    this.response[key[0]].push(this.content);
     this.write(this.response);
   }
 
