@@ -1,5 +1,6 @@
 const fs = require("fs");
 const jsonQuery = require("json-query");
+const { type } = require("os");
 // atenção ao nodemon => se rodar o nodemon fora da pasta SERVER
 // esse path abaixo está errado (a raíz é da onde o nodemon foi inicializado)
 const path = "./data/";
@@ -8,27 +9,31 @@ exports.ManipulateDatabase = class {
   // private
   #tableName;
   #document;
-  #key;
+  #filePath;
 
   constructor(tableName) {
-    this.#tableName = path + tableName + ".json";
+    this.#tableName = tableName;
+    this.#filePath = path + this.#tableName + ".json";
     this.read();
   }
 
-  read() {
+  read(match = null) {
     this.#document = JSON.parse(
-      fs.readFileSync(this.#tableName, "utf8", (err) => {
+      fs.readFileSync(this.#filePath, "utf8", (err) => {
         if (err) throw err;
       })
     );
-    this.#key = Object.keys(this.#document)[0];
+
+    if (match) {
+      return this.query(match);
+    }
   }
 
-  write(obj) {
+  write(data) {
     // sobrescreve tudo
     // aqui seria pra remover conteúdo ou atualizar
-    // IMPORTANTE => obj é do tipo this.#document (não é só o array)
-    fs.writeFileSync(this.#tableName, JSON.stringify(obj), (err) => {
+    // IMPORTANTE => "data" é do tipo "this.#document" (não é só o array)
+    fs.writeFileSync(this.#filePath, JSON.stringify(data), (err) => {
       if (err) throw err;
     });
     this.read();
@@ -37,38 +42,80 @@ exports.ManipulateDatabase = class {
   // como é arquivo JSON, temos que fazer o append dessa forma
   append(content) {
     // tem que puxar pra dentro do array, e não pro objeto
-    this.#document[this.#key].push(content);
-    this.updateChanges();
+    this.#document[this.#tableName].push(content);
+    this.saveChanges();
   }
 
-  // match com esses valores
   // se deleteCount == 0 => ele só vai ter replace (que na verdade eh um insert)
   // se replaceItems for vazio => só vai ter delete
   deleteOrReplace(startIndex, deleteCount = 0, ...replaceItems) {
     if (deleteCount || replaceItems.length) {
-      this.#document[this.#key].splice(startIndex, deleteCount, replaceItems);
-      this.updateChanges();
+      this.#document[this.#tableName].splice(
+        startIndex,
+        deleteCount,
+        replaceItems
+      );
+      this.saveChanges();
     }
   }
 
-  query(match) {
-    // Comandos para fazer a query podem ser vistos abaixo:
-    // não precisa adicionar o nome do array (a concatenação com o this.#key já faz isso)
-    // https://www.npmjs.com/package/json-query
-    return jsonQuery(this.#key + match, { data: this.#document }).value;
-  }
-
-  updateChanges() {
+  saveChanges() {
     this.write(this.#document);
   }
 
   getArray() {
-    return this.#document[this.#key];
+    return this.#document[this.#tableName];
+  }
+
+  query(match) {
+    // docs: https://www.npmjs.com/package/json-query
+    /* 
+      Formato da query (objeto):
+      {
+        -> inner queries:
+        matchIds: [
+          obj.id1, obj.id2 ...
+          -> obj é o nome do objeto
+        ]
+        = igual
+        & and
+        | or
+        -> e o resto fica igual
+        booleans: [
+          {
+            findOne: true or false,
+            expr: "expr1"
+          },
+          {
+            findOne: true or false,
+            expr: "expr2"
+          }
+        ]
+      }
+    */
+    let qStr = "";
+    if (match.matchIds != undefined) {
+      match.matchIds.forEach((element) => {
+        qStr += `[{${element}}]`;
+      });
+    }
+    if (match.booleans != undefined) {
+      match.booleans.forEach((element) => {
+        if (element.findOne) {
+          qStr += "[" + element.expr + "]";
+        } else {
+          qStr += "[*" + element.expr + "]";
+        }
+      });
+    }
+    return jsonQuery(this.#tableName + qStr, {
+      data: this.#document,
+    }).value;
   }
 
   // dev tools
   printArrayCollection() {
-    this.#document[this.#key].forEach((element) => {
+    this.#document[this.#tableName].forEach((element) => {
       if (Array.isArray(element) && element.length) {
         element.forEach((e) => {
           // para não ter quebra de linha
