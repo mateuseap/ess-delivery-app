@@ -1,6 +1,5 @@
 const fs = require("fs");
 const jsonQuery = require("json-query");
-const { type } = require("os");
 // atenção ao nodemon => se rodar o nodemon fora da pasta SERVER
 // esse path abaixo está errado (a raíz é da onde o nodemon foi inicializado)
 const path = "./data/";
