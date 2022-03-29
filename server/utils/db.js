@@ -55,7 +55,6 @@ exports.ManipulateDatabase = class {
 
   updateChanges() {
     this.write(this.document);
-    this.read();
   }
 
   getArray() {
