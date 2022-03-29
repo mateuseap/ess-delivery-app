@@ -8,7 +8,6 @@ exports.ManipulateDatabase = class {
   constructor(tableName) {
     this.tableName = path + tableName + ".json";
     this.read();
-    
   }
 
   read() {
@@ -18,7 +17,6 @@ exports.ManipulateDatabase = class {
       })
     );
     this.key = Object.keys(this.document)[0];
-    this.array = this.document[this.key];
   }
 
   write(obj) {
@@ -28,27 +26,23 @@ exports.ManipulateDatabase = class {
     fs.writeFileSync(this.tableName, JSON.stringify(obj), (err) => {
       if (err) throw err;
     });
+    this.read();
   }
 
   // como é arquivo JSON, temos que fazer o append dessa forma
   append(content) {
     // tem que puxar pra dentro do array, e não pro objeto
-    this.array.push(content);
-    this.write(this.document);
+    this.document[this.key].push(content);
+    this.updateChanges();
   }
 
   // match com esses valores
-  // se deleteCount = 0 => ele só vai ter replace
-  // se replaceItems = [] => só vai ter delete
-  deleteOrReplace(startIndex, deleteCount = 0, replaceItems = []) {
-    // delete
-    if (deleteCount) this.array.splice(startIndex, deleteCount);
-    if (replaceItems.length) {
-      countIndex = startIndex;
-      replaceItems.forEach((element) => {
-        this.array.splice(countIndex, 0, element);
-        countIndex += 1;
-      });
+  // se deleteCount == 0 => ele só vai ter replace (que na verdade eh um insert)
+  // se replaceItems for vazio => só vai ter delete
+  deleteOrReplace(startIndex, deleteCount = 0, ...replaceItems) {
+    if (deleteCount || replaceItems.length) {
+      this.document[this.key].splice(startIndex, deleteCount, replaceItems);
+      this.updateChanges();
     }
   }
 
@@ -59,14 +53,18 @@ exports.ManipulateDatabase = class {
     return jsonQuery(this.key + match, { data: this.document }).value;
   }
 
-  getFileContent(withKey = true) {
-    if (withKey) return this.document[this.key];
-    return this.document;
+  updateChanges() {
+    this.write(this.document);
+    this.read();
+  }
+
+  getArray() {
+    return this.document[this.key];
   }
 
   // dev tools
   printArrayCollection() {
-    this.array.forEach((element) => {
+    this.document[this.key].forEach((element) => {
       if (Array.isArray(element) && element.length) {
         element.forEach((e) => {
           // para não ter quebra de linha
