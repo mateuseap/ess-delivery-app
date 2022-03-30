@@ -6,12 +6,15 @@ exports.getRestaurant = async (req, res) => {
     res.status(200).send(
       JSON.stringify(
         aux.read({
-          booleans: [
-            {
-              findOne: false,
-              expr: "name=Almir quentinhas",
-            },
-          ],
+          deep: {
+            deepSearch: true,
+            booleans: [
+              {
+                findOne: false,
+                expr: "name=Almir quentinhas",
+              },
+            ],
+          },
         })
       )
     );

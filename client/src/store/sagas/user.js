@@ -10,7 +10,8 @@ export default function* getUser(userToken) {
     let response = yield call(api.get, "/user");
 
     if (response.data) {
-      yield put(Creators.userSuccess(response.data));
+      // como so iremos trabalhar com um usuario:
+      yield put(Creators.userSuccess(response.data[0]));
     }
   } catch (err) {
     yield put(Creators.userError({ err }));

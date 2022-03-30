@@ -27,3 +27,20 @@ export const Buttons = styled.div`
     padding-right: 12px;
   }
 `;
+
+export const UserBg = styled.div`
+  display: flex;
+  width: 135px;
+  height: 135px;
+  background: #fffbfb;
+  border-radius: 100px;
+  align-items: center;
+  padding: 0;
+`;
+
+export const UserPhoto = styled.div`
+  content: url(${(props) => props.photoUrl});
+  margin: auto;
+  width: 130px;
+  border-radius: 50%;
+`;
