@@ -40,12 +40,21 @@ npm start
 
 ## Como estruturar a query no back
 
+#### Inner Queries
+
 ```
 {
     inner: {
         nameObjToQuery: "name",
         matchId: "nameObjToMatch.id"
     }
+}
+```
+
+#### Deep Queries
+
+```
+{
     booleans: [
         {
         findOne: true or false,
@@ -58,14 +67,6 @@ npm start
     ]
 }
 ```
-
-### Inner Queries
-
-inner
-
-### Deep Queries
-
-booleans
 
 #### Com algumas variações
 
