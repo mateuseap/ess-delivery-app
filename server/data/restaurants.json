@@ -1,0 +1,56 @@
+{
+    "restaurants": [
+        {
+            "id": 0,
+            "name": "Almir quentinhas",
+            "photo": "https://cdn.folhape.com.br/img/pc/1100/1/dn_arquivo/2021/05/materia.jpg",
+            "adresses": [
+                "Avenida Domingos Ferreira, 1230"
+            ],
+            "menu": [
+                {
+                    "name": "Quentinha",
+                    "price": 13.00,
+                    "description": "Descrição"
+                }
+            ],
+            "contacts": [
+                {}
+            ],
+            "average_stars_rate": 4.6,
+            "rates": [
+                {
+                    "user_id": 0,
+                    "stars": 4.6,
+                    "feedback_text": ""
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "name": "Mongas",
+            "photo": "https://cdn.folhape.com.br/img/pc/1100/1/dn_arquivo/2021/05/materia.jpg",
+            "adresses": [
+                "Rua do Futuro, 551"
+            ],
+            "menu": [
+                {
+                    "name": "Comida",
+                    "price": 14.50,
+                    "description": "Descrição"
+                }
+            ],
+            "contacts": [
+                {}
+            ],
+            "average_stars_rate": 3.7,
+            "rates": [
+                {
+                    "user_id": 0,
+                    "stars": 3.7,
+                    "feedback_text": ""
+                }
+            ]
+        }
+    ]
+}

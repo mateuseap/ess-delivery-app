@@ -28,12 +28,12 @@ export const getCartSvg = () => (
   </svg>
 );
 
-export const getUserSvg = () => (
+export const getUserSvg = (imageSrc) => (
   <svg
     height="110"
     viewBox="-30 0 167 133"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
+    xmlns={imageSrc}
   >
     <ellipse
       cx="68.4209"

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HeaderStyle, Title, Buttons } from "./styles";
+import { HeaderStyle, Title, Buttons, UserPhoto, UserBg } from "./styles";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -7,11 +7,7 @@ import { Creators as UserCreators } from "../../store/ducks/user";
 
 import ReactLoading from "react-loading";
 
-import {
-  getHistorySvg,
-  getUserSvg,
-  getCartSvg,
-} from "../../assets/headerAssets";
+import { getHistorySvg, getCartSvg } from "../../assets/headerAssets";
 
 class Header extends Component {
   componentDidMount() {
@@ -27,7 +23,11 @@ class Header extends Component {
         <Buttons>
           <Link to="/history">{getHistorySvg()}</Link>
           <Link to="/cart">{getCartSvg()}</Link>
-          <Link to="/home">{getUserSvg()}</Link>
+          <Link to="/home">
+            <UserBg>
+              <UserPhoto photoUrl={user.data.photo} />
+            </UserBg>
+          </Link>
         </Buttons>
       </HeaderStyle>
     );
