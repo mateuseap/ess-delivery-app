@@ -75,8 +75,9 @@ exports.ManipulateDatabase = class {
       return jsonQuery(name + qStr, {
         data: this.#document,
       }).value;
-    } else if (match.booleans != undefined) {
-      match.booleans.forEach((element) => {
+    } else if (match.deep != undefined) {
+      if (match.deep.deepSearch) qStr = "[**]";
+      match.deep.booleans.forEach((element) => {
         if (element.findOne) {
           qStr += "[" + element.expr + "]";
         } else {

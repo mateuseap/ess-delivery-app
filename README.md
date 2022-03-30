@@ -55,16 +55,19 @@ npm start
 
 ```
 {
-    booleans: [
-        {
-        findOne: true or false,
-        expr: "expr1"
-        },
-        {
-        findOne: true or false,
-        expr: "expr2"
-        }
-    ]
+    deep: {
+        deepSearch: true or false, // [**]
+        booleans: [
+            {
+                findOne: true or false,
+                expr: "expr1"
+            },
+            {
+                findOne: true or false,
+                expr: "expr2"
+            }
+        ]
+    }
 }
 ```
 
