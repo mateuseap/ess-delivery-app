@@ -56,7 +56,6 @@ npm start
         expr: "expr2"
         }
     ]
-    }
 }
 ```
 
