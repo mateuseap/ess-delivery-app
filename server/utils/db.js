@@ -67,38 +67,15 @@ exports.ManipulateDatabase = class {
   }
 
   query(match) {
-    // docs: https://www.npmjs.com/package/json-query
-    /* 
-      Formato da query (objeto):
-      {
-        -> inner queries:
-        matchIds: [
-          obj.id1, obj.id2 ...
-          -> obj é o nome do objeto
-        ]
-        = igual
-        & and
-        | or
-        -> e o resto fica igual
-        booleans: [
-          {
-            findOne: true or false,
-            expr: "expr1"
-          },
-          {
-            findOne: true or false,
-            expr: "expr2"
-          }
-        ]
-      }
-    */
     let qStr = "";
-    if (match.matchIds != undefined) {
-      match.matchIds.forEach((element) => {
-        qStr += `[{${element}}]`;
-      });
-    }
-    if (match.booleans != undefined) {
+
+    if (match.inner != undefined) {
+      const name = match.nameObjToQuery;
+      qStr = `[{${match.inner.matchId}}]`;
+      return jsonQuery(name + qStr, {
+        data: this.#document,
+      }).value;
+    } else if (match.booleans != undefined) {
       match.booleans.forEach((element) => {
         if (element.findOne) {
           qStr += "[" + element.expr + "]";
@@ -106,10 +83,10 @@ exports.ManipulateDatabase = class {
           qStr += "[*" + element.expr + "]";
         }
       });
+      return jsonQuery(this.#tableName + qStr, {
+        data: this.#document,
+      }).value;
     }
-    return jsonQuery(this.#tableName + qStr, {
-      data: this.#document,
-    }).value;
   }
 
   // dev tools
