@@ -42,21 +42,22 @@ npm start
 
 ```
 {
-        inner: {
-            nameObjToQuery: "name",
-            matchId: "nameObjToMatch.id"
+    inner: {
+        nameObjToQuery: "name",
+        matchId: "nameObjToMatch.id"
+    }
+    booleans: [
+        {
+        findOne: true or false,
+        expr: "expr1"
+        },
+        {
+        findOne: true or false,
+        expr: "expr2"
         }
-        booleans: [
-          {
-            findOne: true or false,
-            expr: "expr1"
-          },
-          {
-            findOne: true or false,
-            expr: "expr2"
-          }
-        ]
-      }
+    ]
+    }
+}
 ```
 
 ### Inner Queries
