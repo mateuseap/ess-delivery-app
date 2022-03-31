@@ -46,9 +46,11 @@ npm start
 
 #### React: https://pt-br.reactjs.org/docs/getting-started.html
 
+#### React bootstrap: https://react-bootstrap.github.io/
+
 #### Redux duck: https://blog.rocketseat.com.br/estrutura-redux-escalavel-com-ducks/
 
-#### Redux saga: https://redux-saga.js.org/docs/api
+#### Redux saga: https://redux-saga.js.org/docs/api <br> https://blog.logrocket.com/understanding-redux-saga-action-creators-sagas/
 
 ## Back (server)
 
