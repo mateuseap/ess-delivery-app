@@ -38,7 +38,21 @@ cd client
 npm start
 ```
 
-## Como estruturar a query no back
+## Front (client)
+
+### Documentação:
+
+#### Javascript: https://www.w3schools.com/jsref/default.asp
+
+#### React: https://pt-br.reactjs.org/docs/getting-started.html
+
+#### Redux duck: https://blog.rocketseat.com.br/estrutura-redux-escalavel-com-ducks/
+
+#### Redux saga: https://redux-saga.js.org/docs/api
+
+## Back (server)
+
+### Como estruturar uma query
 
 #### Inner Queries
 
@@ -73,6 +87,14 @@ npm start
 
 #### Com algumas variações
 
-= equivale IGUAL, & equivale AND, | equivale OR. O resto fica igual
+##### = -> IGUAL
 
-#### docs: https://www.npmjs.com/package/json-query
+##### & -> AND
+
+##### | -> OR
+
+##### O resto se mantém da forma tradicional
+
+### Documentação:
+
+#### Json Query: https://www.npmjs.com/package/json-query
