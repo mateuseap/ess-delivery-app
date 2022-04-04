@@ -12,10 +12,6 @@ import { connect } from "react-redux";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getRestaurants();
   }
@@ -35,7 +31,7 @@ class Home extends Component {
               }}
               className="m-1"
             >
-              Saboreie as deliciosas comidas de nossos restaurantes parceiros!
+              Saboreie as deliciosas comidas dos nossos restaurantes parceiros!
             </h1>
             {this.props.restaurants.data.map((restaurant) => (
               <Col>
@@ -45,7 +41,7 @@ class Home extends Component {
                     borderRadius: "50px",
                     alignItems: "center",
                     width: "370px",
-                    background: "#F5F5F5",
+                    background: "rgba(245, 245, 245, 0.8)",
                   }}
                   className="m-2"
                 >
@@ -59,7 +55,12 @@ class Home extends Component {
                       borderRadius: "50px",
                     }}
                   />
-                  <Card.Body style={{ textAlign: "center" }}>
+                  <Card.Body
+                    style={{
+                      textAlign: "center",
+                      
+                    }}
+                  >
                     <Card.Title style={{ color: "#E83A14" }}>
                       {restaurant.name}
                     </Card.Title>
@@ -77,7 +78,7 @@ class Home extends Component {
                     </Card.Text>
                   </Card.Body>
                   {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
-                  <Link to={`/fazer_pedido/${restaurant.id}`}>
+                  <Link to={`/fazer_pedido?restaurant_id=${restaurant.id}`}>
                     <Button variant="success" className="m-2">
                       PEÇA JÁ!
                     </Button>
