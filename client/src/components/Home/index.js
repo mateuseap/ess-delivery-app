@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { HomeStyle } from "./styles";
 
 import Container from "react-bootstrap/Container";
@@ -13,42 +13,39 @@ import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      numberOfRestaurants: 0,
-    };
+    this.state = {};
   }
 
   componentDidMount() {
     this.props.getRestaurants();
-    this.state.numberOfRestaurants = this.props.restaurants.data.length;
   }
 
   render() {
     return (
       <HomeStyle>
         <Container>
-          <Row
-            style={{
-              width: "60%",
-            }}
-          >
+          <Row>
             <h1
               style={{
-                "text-align": "center",
+                textAlign: "center",
+                fontWeight: 500,
+                fontSize: "3rem",
+                lineHeight: "94px",
                 color: "#630606",
               }}
               className="m-1"
             >
-              Lista de Restaurantes
+              Saboreie os destaques de nossos restaurantes parceiros!
             </h1>
             {this.props.restaurants.data.map((restaurant) => (
               <Col>
                 <Card
                   key={restaurant.id}
                   style={{
-                    "border-radius": "50px",
-                    "align-items": "center",
-                    width: "300px",
+                    borderRadius: "50px",
+                    alignItems: "center",
+                    width: "370px",
+                    background: "#F5F5F5",
                   }}
                   className="m-2"
                 >
@@ -59,10 +56,10 @@ class Home extends Component {
                         .photo
                     }
                     style={{
-                      "border-radius": "50px",
+                      borderRadius: "50px",
                     }}
                   />
-                  <Card.Body style={{ "text-align": "center" }}>
+                  <Card.Body style={{ textAlign: "center" }}>
                     <Card.Title style={{ color: "#E83A14" }}>
                       {restaurant.name}
                     </Card.Title>
