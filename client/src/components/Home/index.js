@@ -14,7 +14,6 @@ import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   componentDidMount() {
@@ -78,7 +77,7 @@ class Home extends Component {
                     </Card.Text>
                   </Card.Body>
                   {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
-                  <Link to="/fazer_pedido">
+                  <Link to={`/fazer_pedido/${restaurant.id}`}>
                     <Button variant="success" className="m-2">
                       PEÇA JÁ!
                     </Button>
