@@ -1,23 +1,9 @@
 const { ManipulateDatabase } = require("../utils/db");
 
-exports.getRestaurant = async (req, res) => {
+exports.getRestaurants = async (req, res) => {
   try {
-    const aux = new ManipulateDatabase("restaurants");
-    res.status(200).send(
-      JSON.stringify(
-        aux.read({
-          deep: {
-            deepSearch: true,
-            booleans: [
-              {
-                findOne: false,
-                expr: "name=Almir quentinhas",
-              },
-            ],
-          },
-        })
-      )
-    );
+    const restaurants = new ManipulateDatabase("restaurants");
+    res.status(200).send(JSON.stringify(restaurants.getArray()));
   } catch (err) {
     res.status(400).send(err);
   }
