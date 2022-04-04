@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HomeStyle } from "./styles";
+import { Link } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -29,13 +30,13 @@ class Home extends Component {
               style={{
                 textAlign: "center",
                 fontWeight: 500,
-                fontSize: "3rem",
+                fontSize: "2.5rem",
                 lineHeight: "94px",
                 color: "#630606",
               }}
               className="m-1"
             >
-              Saboreie os destaques de nossos restaurantes parceiros!
+              Saboreie as deliciosas comidas de nossos restaurantes parceiros!
             </h1>
             {this.props.restaurants.data.map((restaurant) => (
               <Col>
@@ -76,9 +77,12 @@ class Home extends Component {
                       }
                     </Card.Text>
                   </Card.Body>
-                  <Button variant="success" className="m-2">
-                    PEÇA JÁ!
-                  </Button>
+                  {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
+                  <Link to="/fazer_pedido">
+                    <Button variant="success" className="m-2">
+                      PEÇA JÁ!
+                    </Button>
+                  </Link>
                 </Card>
               </Col>
             ))}

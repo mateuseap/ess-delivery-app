@@ -22,9 +22,10 @@ export default class Footer extends Component {
           }}
         >
           {this.group.map((p) => (
-            <p>{p}</p>
+            <p style={{ textTransform: "uppercase" }}>{p}</p>
           ))}
         </div>
+        <p>ESS 2021.2 - Engenharia da Computação (E6)</p>
       </FooterStyle>
     );
   }
