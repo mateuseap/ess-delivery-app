@@ -27,6 +27,8 @@ class Home extends Component {
           src={element.photo}
           style={{
             borderRadius: "50px",
+            width: "350px",
+            height: "263px",
           }}
         />
         <Card.Body

@@ -8,7 +8,7 @@
                 "Avenida Domingos Ferreira, 1230"
             ],
             "menu": {
-                "destaqueIndex": 2,
+                "destaqueIndex": 0,
                 "options": [
                     {
                         "name": "Frango a parmegiana",
@@ -68,7 +68,7 @@
                 "Avenida Domingos Ferreira, 1230"
             ],
             "menu": {
-                "destaqueIndex": 2,
+                "destaqueIndex": 1,
                 "options": [
                     {
                         "name": "Frango a parmegiana",
@@ -188,7 +188,7 @@
                 "Avenida Domingos Ferreira, 1230"
             ],
             "menu": {
-                "destaqueIndex": 2,
+                "destaqueIndex": 3,
                 "options": [
                     {
                         "name": "Frango a parmegiana",
@@ -248,7 +248,7 @@
                 "Avenida Domingos Ferreira, 1230"
             ],
             "menu": {
-                "destaqueIndex": 2,
+                "destaqueIndex": 4,
                 "options": [
                     {
                         "name": "Frango a parmegiana",
@@ -308,7 +308,7 @@
                 "Avenida Domingos Ferreira, 1230"
             ],
             "menu": {
-                "destaqueIndex": 2,
+                "destaqueIndex": 5,
                 "options": [
                     {
                         "name": "Frango a parmegiana",
