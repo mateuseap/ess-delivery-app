@@ -1,5 +1,3 @@
-import react from "react";
-
 export const getHistorySvg = () => (
   <svg
     height="50"

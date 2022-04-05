@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HeaderStyle, Title, Buttons, UserPhoto, UserBg } from "./styles";
+import * as Styles from "./styles";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -7,10 +7,7 @@ import { Creators as UserCreators } from "../../store/ducks/user";
 
 import ReactLoading from "react-loading";
 
-import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { getHistorySvg, getCartSvg } from "../../assets/headerAssets";
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
@@ -24,40 +21,36 @@ class Header extends Component {
     return (
       <Container>
         <Row>
-          <HeaderStyle>
+          <Styles.HeaderStyle>
             <Col>
-              <Title>
+              <Styles.Title>
                 {user.loading ? <ReactLoading type={"spin"} /> : user.data.name}
-              </Title>
+              </Styles.Title>
             </Col>
             <Col>
-              {user.data.adresses ? (
+              {user.data.addresses ? (
                 <FloatingLabel
                   controlId="floatingAddressLabelSelect"
                   label="Escolha seu endereço"
                 >
-                  <Form.Select style={{ color: "#890F0D" }}>
-                    {user.data.adresses.map((end, index) => (
-                      <option value={index}>{end}</option>
-                    ))}
-                  </Form.Select>
+                  <Styles.FormStyled addresses={user.data.addresses} />
                 </FloatingLabel>
               ) : (
                 <p>Nenhum endereço</p>
               )}
             </Col>
             <Col>
-              <Buttons>
+              <Styles.Buttons>
                 <Link to="/history">{getHistorySvg()}</Link>
                 <Link to="/cart">{getCartSvg()}</Link>
                 <Link to="/home">
-                  <UserBg>
-                    <UserPhoto photoUrl={user.data.photo} />
-                  </UserBg>
+                  <Styles.UserBg>
+                    <Styles.UserPhoto photoUrl={user.data.photo} />
+                  </Styles.UserBg>
                 </Link>
-              </Buttons>
+              </Styles.Buttons>
             </Col>
-          </HeaderStyle>
+          </Styles.HeaderStyle>
         </Row>
       </Container>
     );

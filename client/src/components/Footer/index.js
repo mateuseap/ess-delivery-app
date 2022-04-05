@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { FooterStyle } from "./styles";
 
 export default class Footer extends Component {
-  render() {
+  constructor(props) {
+    super(props);
     this.group = [
       "Enrique Laborão",
       "Guilherme Morone",
@@ -12,6 +13,8 @@ export default class Footer extends Component {
       "Raul Coelho",
       "Williams Santiago",
     ];
+  }
+  render() {
     return (
       <FooterStyle className="pt-5">
         <h4>Desenvolvido por:</h4>
