@@ -4,7 +4,10 @@ import { Card, Button } from "react-bootstrap";
 
 export const HomeStyle = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const TextStyle = (props) => (
@@ -27,10 +30,12 @@ export const CardStyle = (props) => (
     style={{
       borderRadius: "50px",
       alignItems: "center",
-      width: "370px",
+      width: "350px",
       background: "rgba(245, 245, 245, 0.8)",
+      listStyle: "none",
+      flexBasis: "auto",
     }}
-    className="m-2"
+    className="m-4"
   >
     <Card.Img
       variant="top"

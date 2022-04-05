@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Form } from "react-bootstrap";
 
 export const HeaderStyle = styled.div`
   margin-top: 1%;
@@ -45,11 +44,3 @@ export const UserPhoto = styled.div`
   width: 130px;
   border-radius: 50%;
 `;
-
-export const FormStyled = (props) => (
-  <Form.Select style={{ color: "#890F0D" }}>
-    {props.addresses.map((end, index) => (
-      <option value={index}>{end}</option>
-    ))}
-  </Form.Select>
-);
