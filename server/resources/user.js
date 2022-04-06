@@ -5,6 +5,6 @@ exports.getUser = async (req, res) => {
     const table = new ManipulateDatabase("users");
     res.status(200).send(JSON.stringify(table.getArray()));
   } catch (err) {
-    res.status(400).send(err);
+    res.status(500).send(err);
   }
 };
