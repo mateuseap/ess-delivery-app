@@ -4,7 +4,7 @@ const { getCart, postCart } = require("./resources/cart");
 const { getTest, postTest } = require("./resources/test");
 const { getUser } = require("./resources/user");
 const { getRestaurants } = require("./resources/restaurant");
-const { getMapRoute, getOrders } = require("./resources/orders");
+const { getOrders } = require("./resources/orders");
 
 const cors = require("cors");
 
@@ -23,8 +23,6 @@ app.post("/test", postTest);
 app.get("/user", getUser);
 
 app.get("/restaurants", getRestaurants);
-
-app.get("/mapRoute", getMapRoute);
 
 app.get("/orders", getOrders);
 
