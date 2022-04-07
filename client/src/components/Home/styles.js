@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-export const TextStyle = styled.h1`
+export const HomeStyle = styled.div`
   display: flex;
-  font-family: Helvetica;
+  flex-direction: row;
   justify-content: center;
-  font-weight: 500;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+export const TextStyle = styled.h1`
+  text-align: center;
+  font-family: Helvetica;
   line-height: "94px";
   color: "#630606";
 `;
