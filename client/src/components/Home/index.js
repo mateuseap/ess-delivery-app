@@ -4,6 +4,8 @@ import { TextStyle } from "./styles";
 import { Link } from "react-router-dom";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 
+import FadeIn from "react-fade-in";
+
 import { connect } from "react-redux";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 
@@ -11,49 +13,51 @@ class Home extends Component {
   getCardStyle(element) {
     return (
       <Col>
-        <Card
-          key={element.restId}
-          style={{
-            borderRadius: "50px",
-            alignItems: "center",
-            width: "350px",
-            background: "rgba(245, 245, 245, 0.8)",
-            listStyle: "none",
-            flexBasis: "auto",
-          }}
-          className="m-4"
-        >
-          <Card.Img
-            variant="top"
-            src={element.photo}
+        <FadeIn transitionDuration={800}>
+          <Card
+            key={element.restId}
             style={{
               borderRadius: "50px",
+              alignItems: "center",
               width: "350px",
-              height: "263px",
+              background: "rgba(245, 245, 245, 0.8)",
+              listStyle: "none",
+              flexBasis: "auto",
             }}
-          />
-          <Card.Body
-            style={{
-              textAlign: "center",
-            }}
+            className="m-4"
           >
-            <Card.Title style={{ color: "#E83A14" }}>
-              {element.restName}
-            </Card.Title>
-            <Card.Text style={{ color: "#1B1A17" }}>
-              {element.foodName}
-            </Card.Text>
-            <Card.Text style={{ color: "#05595B" }}>
-              {element.description}
-            </Card.Text>
-          </Card.Body>
-          {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
-          <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
-            <Button variant="success" className="m-2">
-              PEÇA JÁ!
-            </Button>
-          </Link>
-        </Card>
+            <Card.Img
+              variant="top"
+              src={element.photo}
+              style={{
+                borderRadius: "50px",
+                width: "350px",
+                height: "263px",
+              }}
+            />
+            <Card.Body
+              style={{
+                textAlign: "center",
+              }}
+            >
+              <Card.Title style={{ color: "#E83A14" }}>
+                {element.restName}
+              </Card.Title>
+              <Card.Text style={{ color: "#1B1A17" }}>
+                {element.foodName}
+              </Card.Text>
+              <Card.Text style={{ color: "#05595B" }}>
+                {element.description}
+              </Card.Text>
+            </Card.Body>
+            {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
+            <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
+              <Button variant="success" className="m-2">
+                PEÇA JÁ!
+              </Button>
+            </Link>
+          </Card>
+        </FadeIn>
       </Col>
     );
   }
@@ -69,7 +73,9 @@ class Home extends Component {
       <Container>
         <Row className="justify-content-md-center">
           <Col>
-            <TextStyle className="mt-3">{this.h1Text}</TextStyle>
+            <FadeIn transitionDuration={1000}>
+              <TextStyle className="mt-3">{this.h1Text}</TextStyle>
+            </FadeIn>
           </Col>
         </Row>
         <Row className="justify-content-md-center">
