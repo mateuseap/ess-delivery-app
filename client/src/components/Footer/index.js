@@ -14,6 +14,7 @@ export default class Footer extends Component {
       "Williams Santiago",
     ];
   }
+  
   render() {
     return (
       <Styles.Box className="mt-5">

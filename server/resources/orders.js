@@ -28,3 +28,11 @@ exports.getMapRoute = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+exports.getOrders = async (req, res) => {
+  try {
+    res.status(200).send(JSON.stringify(table.getArray()));
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};

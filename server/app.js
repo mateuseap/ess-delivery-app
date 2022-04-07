@@ -4,7 +4,7 @@ const { getCart, postCart } = require("./resources/cart");
 const { getTest, postTest } = require("./resources/test");
 const { getUser } = require("./resources/user");
 const { getRestaurants } = require("./resources/restaurant");
-const { getMapRoute } = require("./resources/map");
+const { getMapRoute, getOrders } = require("./resources/orders");
 
 const cors = require("cors");
 
@@ -25,6 +25,8 @@ app.get("/user", getUser);
 app.get("/restaurants", getRestaurants);
 
 app.get("/mapRoute", getMapRoute);
+
+app.get("/orders", getOrders);
 
 app.listen(1337, (_) => {
   console.log("Server running on port 1337");
