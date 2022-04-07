@@ -6,8 +6,8 @@
             "user_id": 0,
             "total_price": 25.50,
             "description": "",
-            "from": "",
-            "to": "",
+            "from": "Avenida Conselheiro Rosa e Silva, 1086",
+            "to": "Avenida Jornalista Aníbal Fernandes, 500",
             "forma_pagamento": {},
             "status": {
                 "preparado": false,
