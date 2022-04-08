@@ -1,11 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HomeStyle = styled.div`
-  width:30%
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+`;
 
-  li{
-    padding:5px;
-  }
-`
+export const TextStyle = styled.h1`
+  text-align: center;
+  font-family: Helvetica;
+  line-height: "94px";
+  color: "#630606";
+`;

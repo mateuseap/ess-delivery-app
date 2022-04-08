@@ -1,24 +1,15 @@
 const { ManipulateDatabase } = require("../utils/db");
 
-exports.getRestaurant = async (req, res) => {
+const restaurants = new ManipulateDatabase("restaurants");
+const arr = restaurants.getArray();
+const rand = Math.floor(Math.random() * arr.length);
+
+exports.getRestaurants = async (req, res) => {
   try {
-    const aux = new ManipulateDatabase("restaurants");
-    res.status(200).send(
-      JSON.stringify(
-        aux.read({
-          deep: {
-            deepSearch: true,
-            booleans: [
-              {
-                findOne: false,
-                expr: "name=Almir quentinhas",
-              },
-            ],
-          },
-        })
-      )
-    );
+    res
+      .status(200)
+      .send(JSON.stringify(arr.slice(rand, (rand + 3) % arr.length)));
   } catch (err) {
-    res.status(400).send(err);
+    res.status(500).send(err);
   }
 };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HeaderStyle, Title, Buttons, UserPhoto, UserBg } from "./styles";
+import * as Styles from "./styles";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -16,20 +16,20 @@ class Header extends Component {
   render() {
     const { user } = this.props;
     return (
-      <HeaderStyle>
-        <Title>
+      <Styles.HeaderStyle>
+        <Styles.Title>
           {user.loading ? <ReactLoading type={"spin"} /> : user.data.name}
-        </Title>
-        <Buttons>
+        </Styles.Title>
+        <Styles.Buttons>
           <Link to="/history">{getHistorySvg()}</Link>
           <Link to="/cart">{getCartSvg()}</Link>
           <Link to="/home">
-            <UserBg>
-              <UserPhoto photoUrl={user.data.photo} />
-            </UserBg>
+            <Styles.UserBg>
+              <Styles.UserPhoto photoUrl={user.data.photo} />
+            </Styles.UserBg>
           </Link>
-        </Buttons>
-      </HeaderStyle>
+        </Styles.Buttons>
+      </Styles.HeaderStyle>
     );
   }
 }

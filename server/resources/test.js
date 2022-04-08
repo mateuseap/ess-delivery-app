@@ -5,7 +5,7 @@ exports.postTest = async (req, res) => {
     res.status(200).send(JSON.stringify({ res: "Got it" }));
   } catch (err) {
     console.error(err);
-    res.status(400).send({});
+    res.status(500).send({});
   }
 };
 
@@ -14,6 +14,6 @@ exports.getTest = async (req, res) => {
     res.status(200).send("heyyy");
   } catch (err) {
     console.error(err);
-    res.status(400).send({});
+    res.status(500).send({});
   }
 };
