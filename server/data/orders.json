@@ -5,7 +5,7 @@
             "restaurant_id": 0,
             "user_id": 0,
             "total_price": 25.50,
-            "description": "",
+            "description": "description",
             "from": "Avenida Conselheiro Rosa e Silva, 1086",
             "to": "Avenida Jornalista Aníbal Fernandes, 500",
             "forma_pagamento": {},
@@ -16,7 +16,8 @@
                 "entregue": false
             },
             "rate": {
-                "stars": 3,
+                "did": false,
+                "stars": 0,
                 "feedback_text": ""
             }
         },
@@ -25,7 +26,7 @@
             "restaurant_id": 0,
             "user_id": 0,
             "total_price": 25.50,
-            "description": "",
+            "description": "description",
             "from": "Avenida Conselheiro Rosa e Silva, 1086",
             "to": "Avenida Jornalista Aníbal Fernandes, 500",
             "forma_pagamento": {},
@@ -36,8 +37,9 @@
                 "entregue": false
             },
             "rate": {
+                "did": true,
                 "stars": 3,
-                "feedback_text": ""
+                "feedback_text": "Avaliação"
             }
         },
         {
@@ -45,7 +47,7 @@
             "restaurant_id": 0,
             "user_id": 0,
             "total_price": 25.50,
-            "description": "",
+            "description": "description",
             "from": "Avenida Conselheiro Rosa e Silva, 1086",
             "to": "Avenida Jornalista Aníbal Fernandes, 500",
             "forma_pagamento": {},
@@ -56,6 +58,7 @@
                 "entregue": false
             },
             "rate": {
+                "did": true,
                 "stars": 3,
                 "feedback_text": ""
             }

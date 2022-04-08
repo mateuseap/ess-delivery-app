@@ -3,21 +3,22 @@ import styled from "styled-components";
 export const ActionButtonsStyle = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: 2vh;
+  grid-column-gap: 15vw;
 `;
 
 export const RateLabel = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: 1.5vh;
+  grid-column-gap: 5em;
+  min-width: 30vw;
   font-size: 40px;
   line-height: 47px;
-  width: 100%;
 `;
 
 export const MainDiv = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20vw;
 `;
 
 export const TableStyle = styled.div`

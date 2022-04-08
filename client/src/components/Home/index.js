@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { HomeStyle, TextStyle } from "./styles";
 
+import ReactLoading from "react-loading";
+
 import { Link } from "react-router-dom";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 
@@ -70,32 +72,48 @@ class Home extends Component {
   }
 
   render() {
+    const { restaurants } = this.props;
     return (
       <Container>
-        <HomeStyle>
-          <Row>
-            <Col>
-              <FadeIn transitionDuration={1000}>
-                <TextStyle className="mt-3">{this.h1Text}</TextStyle>
-              </FadeIn>
-            </Col>
-          </Row>
-          <Row>
-            {this.props.restaurants.data.map((restaurant) =>
-              this.getCardStyle({
-                restId: restaurant.id,
-                photo:
-                  restaurant.menu.options[restaurant.menu.destaqueIndex].photo,
-                restName: restaurant.name,
-                foodName:
-                  restaurant.menu.options[restaurant.menu.destaqueIndex].name,
-                description:
-                  restaurant.menu.options[restaurant.menu.destaqueIndex]
-                    .description,
-              })
-            )}
-          </Row>
-        </HomeStyle>
+        {restaurants.loading ? (
+          <ReactLoading
+            type={"spin"}
+            style={{
+              position: "absolute",
+              width: "10vw",
+              top: "40%",
+              left: "0",
+              right: "0",
+              margin: "auto",
+            }}
+          />
+        ) : (
+          <HomeStyle>
+            <Row>
+              <Col>
+                <FadeIn transitionDuration={1000}>
+                  <TextStyle className="mt-3">{this.h1Text}</TextStyle>
+                </FadeIn>
+              </Col>
+            </Row>
+            <Row>
+              {this.props.restaurants.data.map((restaurant) =>
+                this.getCardStyle({
+                  restId: restaurant.id,
+                  photo:
+                    restaurant.menu.options[restaurant.menu.destaqueIndex]
+                      .photo,
+                  restName: restaurant.name,
+                  foodName:
+                    restaurant.menu.options[restaurant.menu.destaqueIndex].name,
+                  description:
+                    restaurant.menu.options[restaurant.menu.destaqueIndex]
+                      .description,
+                })
+              )}
+            </Row>
+          </HomeStyle>
+        )}
       </Container>
     );
   }
