@@ -48,7 +48,7 @@ class History extends Component {
                     <td>
                       <Button
                         variant="primary"
-                        onClick={() => this.setState({ orderToRate: 0 })}
+                        onClick={() => this.setState({ orderToRate: element.id })}
                         className="mx-3"
                       >
                         Avaliar Pedido

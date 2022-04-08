@@ -9,7 +9,7 @@ export const ActionButtonsStyle = styled.div`
 export const RateLabel = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: 2vh;
+  grid-column-gap: 1.5vh;
   font-size: 40px;
   line-height: 47px;
   width: 100%;
