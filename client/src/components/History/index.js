@@ -71,7 +71,7 @@ class History extends Component {
             <p>Tente novamente mais tarde.</p>
           </Alert>
         ) : null}
-        <BorderText className="m-3">
+        <BorderText className="mt-3 mb-5">
           <h1>Histórico de pedidos</h1>
         </BorderText>
         {history.loading ? (
@@ -89,7 +89,7 @@ class History extends Component {
         ) : (
           <MainDiv>
             <TableStyle>
-              <Table borderless variant="info">
+              <Table borderless>
                 <tbody>
                   {this.state.data.map((element) => (
                     <tr key={element.id}>

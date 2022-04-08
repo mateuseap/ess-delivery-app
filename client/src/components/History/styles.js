@@ -18,7 +18,7 @@ export const RateLabel = styled.div`
 export const MainDiv = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: 20vw;
+  grid-column-gap: 10vw;
 `;
 
 export const TableStyle = styled.div`

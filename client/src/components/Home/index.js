@@ -12,8 +12,12 @@ import { connect } from "react-redux";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   getCardStyle(element) {
-    const cardWidth = 350;
+    const cardWidth = window.innerWidth < 1430 ? 260 : 350;
     return (
       <Col>
         <FadeIn transitionDuration={800}>
@@ -31,6 +35,7 @@ class Home extends Component {
           >
             <Card.Img
               variant="top"
+              X
               src={element.photo}
               style={{
                 borderRadius: "50px",
@@ -73,6 +78,7 @@ class Home extends Component {
 
   render() {
     const { restaurants } = this.props;
+
     return (
       <Container>
         {restaurants.loading ? (
