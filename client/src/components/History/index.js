@@ -11,7 +11,7 @@ import {
 
 import { connect } from "react-redux";
 import { Creators as HistoryCreator } from "../../store/ducks/history";
-import { Table, Button, Container, Col, Row, Form } from "react-bootstrap";
+import { Table, Button, Form } from "react-bootstrap";
 
 class History extends Component {
   constructor(props) {
