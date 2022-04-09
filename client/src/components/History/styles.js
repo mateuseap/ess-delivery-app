@@ -48,7 +48,7 @@ export const BorderText = styled.div`
   width: 35%;
   color: white;
   line-height: 70px;
-  font-weight: 400px;
+  font-weight: 400;
   text-align: center;
   background: rgba(250, 16, 52, 0.82);
   border-radius: 63px;

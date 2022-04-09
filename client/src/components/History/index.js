@@ -17,6 +17,7 @@ import ReactLoading from "react-loading";
 
 import { connect } from "react-redux";
 import { Creators as HistoryCreator } from "../../store/ducks/history";
+import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 import { Table, Button, Form, Alert } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 
@@ -33,12 +34,14 @@ class History extends Component {
 
   componentDidMount() {
     this.props.getHistory();
+    this.props.getRestaurants(true);
     this.setState({ data: this.props.history.data });
   }
 
   render() {
     const { orderToRate } = this.state;
-    const { history } = this.props;
+    const { history, restaurants } = this.props;
+
     return (
       <PageStyle>
         {this.state.showSuccess ? (
@@ -72,7 +75,7 @@ class History extends Component {
           </Alert>
         ) : null}
         <BorderText className="m-3">
-          <h2>Histórico de Pedidos</h2>
+          <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
         </BorderText>
         {history.loading ? (
           <ReactLoading
@@ -96,6 +99,16 @@ class History extends Component {
                     <td className="p-2">
                       <TableBodyStyle>
                         <p>Pedido {element.id + 1}</p>
+                        {!restaurants.loading ? (
+                          <p>
+                            Restaurante{" "}
+                            {restaurants.data.map((rest) => {
+                              if (rest.id === element.restaurant_id) {
+                                return rest.name;
+                              }
+                            })}
+                          </p>
+                        ) : null}
                         <p>{element.description}</p>
                         <p>Preço total: R{"$" + element.total_price}</p>
                       </TableBodyStyle>
@@ -234,6 +247,15 @@ class History extends Component {
                         try {
                           this.setState({ data: historyData }, () => {
                             this.props.postHistory(this.state.data);
+                            this.props.putRestaurants({
+                              rate: {
+                                stars: this.state.data[orderToRate].rate.stars,
+                                feedback_text:
+                                  this.state.data[orderToRate].rate
+                                    .feedback_text,
+                              },
+                              index: orderToRate,
+                            });
                             this.setState({ showSuccess: true });
                           });
                         } catch (err) {
@@ -262,6 +284,12 @@ class History extends Component {
   }
 }
 
-const mapStateToProps = ({ history }) => ({ history });
+const mapStateToProps = ({ history, restaurants }) => ({
+  history,
+  restaurants,
+});
 
-export default connect(mapStateToProps, { ...HistoryCreator })(History);
+export default connect(mapStateToProps, {
+  ...HistoryCreator,
+  ...RestaurantsCreator,
+})(History);
