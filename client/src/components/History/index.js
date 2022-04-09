@@ -4,7 +4,6 @@ import {
   BorderText,
   PageStyle,
   MainDiv,
-  TableStyle,
   TableBodyStyle,
   ActionButtonsStyle,
   ImageStyle,
@@ -89,53 +88,51 @@ class History extends Component {
           />
         ) : (
           <MainDiv>
-            <TableStyle>
-              <Table borderless>
-                <tbody>
-                  {this.state.data.map((element) => (
-                    <tr key={element.id}>
-                      <ImageStyle photoUrl={element.orderImage}/>
-                      <td className="p-2">
-                        <TableBodyStyle>
-                          <p>Pedido {element.id + 1}</p>
-                          <p>{element.description}</p>
-                          <p>Preço total: R${element.total_price}</p>
-                        </TableBodyStyle>
-                      </td>
-                      <td>
-                        {!element.rate.did ? (
-                          <Button
-                            variant="primary"
-                            disabled={orderToRate >= 0 ? true : false}
-                            onClick={() =>
-                              this.setState({
-                                orderToRate: element.id,
-                              })
-                            }
-                            className="mx-3"
-                          >
-                            Avaliar Pedido
-                          </Button>
-                        ) : (
-                          <Button
-                            variant="danger"
-                            disabled={orderToRate >= 0 ? true : false}
-                            onClick={() =>
-                              this.setState({
-                                orderToRate: element.id,
-                              })
-                            }
-                            className="mx-3"
-                          >
-                            Revisar avaliação
-                          </Button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </TableStyle>
+            <Table borderless>
+              <tbody>
+                {this.state.data.map((element) => (
+                  <tr key={element.id}>
+                    <ImageStyle photoUrl={element.orderImage} />
+                    <td className="p-2">
+                      <TableBodyStyle>
+                        <p>Pedido {element.id + 1}</p>
+                        <p>{element.description}</p>
+                        <p>Preço total: R{"$" + element.total_price}</p>
+                      </TableBodyStyle>
+                    </td>
+                    <td>
+                      {!element.rate.did ? (
+                        <Button
+                          variant="primary"
+                          disabled={orderToRate >= 0 ? true : false}
+                          onClick={() =>
+                            this.setState({
+                              orderToRate: element.id,
+                            })
+                          }
+                          className="mx-3"
+                        >
+                          Avaliar Pedido
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="danger"
+                          disabled={orderToRate >= 0 ? true : false}
+                          onClick={() =>
+                            this.setState({
+                              orderToRate: element.id,
+                            })
+                          }
+                          className="mx-3"
+                        >
+                          Revisar avaliação
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
             {orderToRate > -1 ? (
               <Form className="m-3">
                 <Form.Group controlId="userFeedback">

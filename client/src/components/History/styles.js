@@ -28,11 +28,6 @@ export const MainDiv = styled.div`
   grid-column-gap: 10vw;
 `;
 
-export const TableStyle = styled.div`
-  position: relative;
-  right: 25vw;
-`;
-
 export const TableBodyStyle = styled.div`
   display: flex;
   flex-direction: column;
