@@ -12,10 +12,6 @@ import { connect } from "react-redux";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   getCardStyle(element) {
     const cardWidth = window.innerWidth < 1430 ? 260 : 350;
     return (
