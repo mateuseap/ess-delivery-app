@@ -7,6 +7,7 @@ import {
   TableStyle,
   TableBodyStyle,
   ActionButtonsStyle,
+  ImageStyle,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -71,8 +72,8 @@ class History extends Component {
             <p>Tente novamente mais tarde.</p>
           </Alert>
         ) : null}
-        <BorderText className="mt-3 mb-5">
-          <h1>Histórico de pedidos</h1>
+        <BorderText className="m-3">
+          <h2>Histórico de Pedidos</h2>
         </BorderText>
         {history.loading ? (
           <ReactLoading
@@ -93,10 +94,12 @@ class History extends Component {
                 <tbody>
                   {this.state.data.map((element) => (
                     <tr key={element.id}>
+                      <ImageStyle photoUrl={element.orderImage}/>
                       <td className="p-2">
                         <TableBodyStyle>
                           <p>Pedido {element.id + 1}</p>
-                          <p>Preço total: {element.total_price}</p>
+                          <p>{element.description}</p>
+                          <p>Preço total: R${element.total_price}</p>
                         </TableBodyStyle>
                       </td>
                       <td>
