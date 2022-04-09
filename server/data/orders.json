@@ -4,8 +4,9 @@
       "id": 0,
       "restaurant_id": 0,
       "user_id": 0,
+      "orderImage": "https://t2.rg.ltmcdn.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600.jpg",
       "total_price": 25.5,
-      "description": "description",
+      "description": "Ogro Burguer com Batata Média",
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
       "forma_pagamento": {},
@@ -25,8 +26,9 @@
       "id": 1,
       "restaurant_id": 0,
       "user_id": 0,
-      "total_price": 25.5,
-      "description": "description",
+      "orderImage": "https://t2.rg.ltmcdn.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600.jpg",
+      "total_price": 30,
+      "description": "Pizza de Calabresa",
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
       "forma_pagamento": {},
@@ -37,8 +39,8 @@
         "entregue": false
       },
       "rate": {
-        "did": true,
-        "stars": 3,
+        "did": false,
+        "stars": 0,
         "feedback_text": "Avaliação"
       }
     },
@@ -46,6 +48,7 @@
       "id": 2,
       "restaurant_id": 0,
       "user_id": 0,
+      "orderImage": "https://t2.rg.ltmcdn.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600.jpg",
       "total_price": 25.5,
       "description": "description",
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
@@ -58,8 +61,30 @@
         "entregue": false
       },
       "rate": {
-        "did": true,
-        "stars": 3,
+        "did": false,
+        "stars": 0,
+        "feedback_text": ""
+      }
+    },
+    {
+      "id": 3,
+      "restaurant_id": 0,
+      "user_id": 0,
+      "orderImage": "https://t2.rg.ltmcdn.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600.jpg",
+      "total_price": 25.5,
+      "description": "description",
+      "from": "Avenida Conselheiro Rosa e Silva, 1086",
+      "to": "Avenida Jornalista Aníbal Fernandes, 500",
+      "forma_pagamento": {},
+      "status": {
+        "preparado": false,
+        "finalizado": false,
+        "saiu_para_entrega": false,
+        "entregue": false
+      },
+      "rate": {
+        "did": false,
+        "stars": 0,
         "feedback_text": ""
       }
     }
