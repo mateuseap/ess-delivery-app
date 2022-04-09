@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const ImageStyle = styled.img`
+  width: 150px; 
+  height: 150px;
+  border-radius: 50px;
+  content: url(${(props) => props.photoUrl});
+`;
+
 export const ActionButtonsStyle = styled.div`
   display: grid;
   grid-auto-flow: column;
@@ -22,7 +29,8 @@ export const MainDiv = styled.div`
 `;
 
 export const TableStyle = styled.div`
-  width: 100%;
+  position: relative;
+  right: 25vw;
 `;
 
 export const TableBodyStyle = styled.div`
