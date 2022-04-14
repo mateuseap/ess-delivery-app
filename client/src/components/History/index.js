@@ -45,7 +45,7 @@ class History extends Component {
 
     return (
       <PageStyle>
-        {this.state.showRateFeedback && !restaurants.error ? (
+        {this.state.showRateFeedback && !restaurants.error && !history.error ? (
           <Alert
             variant="success"
             onClose={() =>
@@ -53,13 +53,14 @@ class History extends Component {
                 showRateFeedback: false,
               })
             }
+            className="m-2"
             dismissible
           >
             <Alert.Heading>Avaliação enviada com sucesso.</Alert.Heading>
             <p>Obrigado por avaliar.</p>
           </Alert>
         ) : null}
-        {this.state.showRateFeedback && restaurants.error ? (
+        {this.state.showRateFeedback && (restaurants.error || history.error) ? (
           <Alert
             variant="danger"
             onClose={() =>
@@ -67,6 +68,7 @@ class History extends Component {
                 showRateFeedback: false,
               })
             }
+            className="m-2"
             dismissible
           >
             <Alert.Heading>Erro ao enviar a atualização {" :("}</Alert.Heading>
