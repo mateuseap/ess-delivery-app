@@ -45,33 +45,40 @@ class History extends Component {
 
     return (
       <PageStyle>
-        {this.state.showRateFeedback && !restaurants.error ? (
-          <Alert
-            variant="success"
-            onClose={() =>
-              this.setState({
-                showRateFeedback: false,
-              })
-            }
-            dismissible
-          >
-            <Alert.Heading>Avaliação enviada com sucesso.</Alert.Heading>
-            <p>Obrigado por avaliar.</p>
-          </Alert>
-        ) : null}
-        {this.state.showRateFeedback && restaurants.error ? (
-          <Alert
-            variant="danger"
-            onClose={() =>
-              this.setState({
-                showRateFeedback: false,
-              })
-            }
-            dismissible
-          >
-            <Alert.Heading>Erro ao enviar a atualização {" :("}</Alert.Heading>
-            <p>Tente novamente mais tarde.</p>
-          </Alert>
+        {!restaurants.loading &&
+        !history.loading &&
+        this.state.showRateFeedback ? (
+          !restaurants.error && !history.error ? (
+            <Alert
+              variant="success"
+              onClose={() =>
+                this.setState({
+                  showRateFeedback: false,
+                })
+              }
+              className="m-2"
+              dismissible
+            >
+              <Alert.Heading>Avaliação enviada com sucesso.</Alert.Heading>
+              <p>Obrigado por avaliar.</p>
+            </Alert>
+          ) : (
+            <Alert
+              variant="danger"
+              onClose={() =>
+                this.setState({
+                  showRateFeedback: false,
+                })
+              }
+              className="m-2"
+              dismissible
+            >
+              <Alert.Heading>
+                Erro ao enviar a atualização {" :("}
+              </Alert.Heading>
+              <p>Tente novamente mais tarde.</p>
+            </Alert>
+          )
         ) : null}
         <BorderText className="m-3">
           <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
@@ -149,10 +156,9 @@ class History extends Component {
               </tbody>
             </Table>
             {orderToRate > -1 ? (
-              <Form className="m-3">
+              <Form>
                 <Form.Group controlId="userFeedback">
                   <Form.Label
-                    className="m-3"
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -163,7 +169,7 @@ class History extends Component {
                       <h2>Pedido {this.state.data[orderToRate].id + 1}</h2>
                       <Popup
                         trigger={<Button variant="warning">Detalhes</Button>}
-                        position="right center"
+                        position="left center"
                       >
                         <div>{this.state.data[orderToRate].description}</div>
                       </Popup>
@@ -236,7 +242,7 @@ class History extends Component {
                     </Button>
                     <Button
                       variant="danger"
-                      onClick={(element) => {
+                      onClick={() => {
                         const historyData = [...this.state.data];
                         historyData[orderToRate] = {
                           ...historyData[orderToRate],
