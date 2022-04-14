@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { HomeStyle, TextStyle } from "./styles";
 
+import ReactLoading from "react-loading";
+
 import { Link } from "react-router-dom";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 
@@ -11,7 +13,7 @@ import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 
 class Home extends Component {
   getCardStyle(element) {
-    const cardWidth = 350;
+    const cardWidth = window.innerWidth < 1430 ? 260 : 350;
     return (
       <Col>
         <FadeIn transitionDuration={800}>
@@ -29,6 +31,7 @@ class Home extends Component {
           >
             <Card.Img
               variant="top"
+              X
               src={element.photo}
               style={{
                 borderRadius: "50px",
@@ -70,32 +73,49 @@ class Home extends Component {
   }
 
   render() {
+    const { restaurants } = this.props;
+
     return (
       <Container>
-        <HomeStyle>
-          <Row>
-            <Col>
-              <FadeIn transitionDuration={1000}>
-                <TextStyle className="mt-3">{this.h1Text}</TextStyle>
-              </FadeIn>
-            </Col>
-          </Row>
-          <Row>
-            {this.props.restaurants.data.map((restaurant) =>
-              this.getCardStyle({
-                restId: restaurant.id,
-                photo:
-                  restaurant.menu.options[restaurant.menu.destaqueIndex].photo,
-                restName: restaurant.name,
-                foodName:
-                  restaurant.menu.options[restaurant.menu.destaqueIndex].name,
-                description:
-                  restaurant.menu.options[restaurant.menu.destaqueIndex]
-                    .description,
-              })
-            )}
-          </Row>
-        </HomeStyle>
+        {restaurants.loading ? (
+          <ReactLoading
+            type={"spin"}
+            style={{
+              position: "absolute",
+              width: "10vw",
+              top: "40%",
+              left: "0",
+              right: "0",
+              margin: "auto",
+            }}
+          />
+        ) : (
+          <HomeStyle>
+            <Row>
+              <Col>
+                <FadeIn transitionDuration={1000}>
+                  <TextStyle className="mt-3">{this.h1Text}</TextStyle>
+                </FadeIn>
+              </Col>
+            </Row>
+            <Row>
+              {this.props.restaurants.data.map((restaurant) =>
+                this.getCardStyle({
+                  restId: restaurant.id,
+                  photo:
+                    restaurant.menu.options[restaurant.menu.destaqueIndex]
+                      .photo,
+                  restName: restaurant.name,
+                  foodName:
+                    restaurant.menu.options[restaurant.menu.destaqueIndex].name,
+                  description:
+                    restaurant.menu.options[restaurant.menu.destaqueIndex]
+                      .description,
+                })
+              )}
+            </Row>
+          </HomeStyle>
+        )}
       </Container>
     );
   }
