@@ -21,14 +21,15 @@ import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 import { Table, Button, Form, Alert } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 
+import { formatMoney } from "../../utils/misc";
+
 class History extends Component {
   constructor(props) {
     super(props);
     this.state = {
       orderToRate: -1,
       data: [],
-      showSuccess: false,
-      showFailed: false,
+      showRateFeedback: false,
     };
   }
 
@@ -44,13 +45,12 @@ class History extends Component {
 
     return (
       <PageStyle>
-        {this.state.showSuccess ? (
+        {this.state.showRateFeedback && !restaurants.error ? (
           <Alert
             variant="success"
             onClose={() =>
               this.setState({
-                showFailed: false,
-                showSuccess: false,
+                showRateFeedback: false,
               })
             }
             dismissible
@@ -59,13 +59,12 @@ class History extends Component {
             <p>Obrigado por avaliar.</p>
           </Alert>
         ) : null}
-        {this.state.showFailed ? (
+        {this.state.showRateFeedback && restaurants.error ? (
           <Alert
             variant="danger"
             onClose={() =>
               this.setState({
-                showFailed: false,
-                showSuccess: false,
+                showRateFeedback: false,
               })
             }
             dismissible
@@ -77,7 +76,7 @@ class History extends Component {
         <BorderText className="m-3">
           <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
         </BorderText>
-        {history.loading ? (
+        {history.loading || restaurants.loading ? (
           <ReactLoading
             type={"spin"}
             style={{
@@ -110,7 +109,10 @@ class History extends Component {
                           </p>
                         ) : null}
                         <p>{element.description}</p>
-                        <p>Preço total: R{"$" + element.total_price}</p>
+                        <p>
+                          Preço total: R
+                          {"$ " + formatMoney(element.total_price)}
+                        </p>
                       </TableBodyStyle>
                     </td>
                     <td>
@@ -256,10 +258,10 @@ class History extends Component {
                               },
                               index: orderToRate,
                             });
-                            this.setState({ showSuccess: true });
+                            this.setState({ showRateFeedback: true });
                           });
                         } catch (err) {
-                          this.setState({ showFailed: true });
+                          this.setState({ showRateFeedback: true });
                         }
                       }}
                     >

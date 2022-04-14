@@ -9,7 +9,7 @@ export function* getHistory() {
 
     const response = yield call(api.get, "/orders");
 
-    if (response.data) {
+    if (response.data && response.data.length) {
       yield put(Creators.historySuccess(response.data));
     }
   } catch (err) {
@@ -24,7 +24,7 @@ export function* postHistory(data) {
 
     const response = yield call(api.post, "/orders", data);
 
-    if (response.data) {
+    if (response.data && response.data.length) {
       yield put(Creators.historySuccess(response.data));
     }
     

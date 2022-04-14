@@ -15,10 +15,9 @@ class Home extends Component {
   getCardStyle(element) {
     const cardWidth = window.innerWidth < 1430 ? 260 : 350;
     return (
-      <Col>
+      <Col key={element.restId}>
         <FadeIn transitionDuration={800}>
           <Card
-            key={element.restId}
             style={{
               borderRadius: "50px",
               alignItems: "center",
@@ -30,8 +29,7 @@ class Home extends Component {
             className="m-4"
           >
             <Card.Img
-              variant="top"
-              X
+              variant="top"              
               src={element.photo}
               style={{
                 borderRadius: "50px",
