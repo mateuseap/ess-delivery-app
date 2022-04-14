@@ -45,35 +45,40 @@ class History extends Component {
 
     return (
       <PageStyle>
-        {this.state.showRateFeedback && !restaurants.error && !history.error ? (
-          <Alert
-            variant="success"
-            onClose={() =>
-              this.setState({
-                showRateFeedback: false,
-              })
-            }
-            className="m-2"
-            dismissible
-          >
-            <Alert.Heading>Avaliação enviada com sucesso.</Alert.Heading>
-            <p>Obrigado por avaliar.</p>
-          </Alert>
-        ) : null}
-        {this.state.showRateFeedback && (restaurants.error || history.error) ? (
-          <Alert
-            variant="danger"
-            onClose={() =>
-              this.setState({
-                showRateFeedback: false,
-              })
-            }
-            className="m-2"
-            dismissible
-          >
-            <Alert.Heading>Erro ao enviar a atualização {" :("}</Alert.Heading>
-            <p>Tente novamente mais tarde.</p>
-          </Alert>
+        {!restaurants.loading &&
+        !history.loading &&
+        this.state.showRateFeedback ? (
+          !restaurants.error && !history.error ? (
+            <Alert
+              variant="success"
+              onClose={() =>
+                this.setState({
+                  showRateFeedback: false,
+                })
+              }
+              className="m-2"
+              dismissible
+            >
+              <Alert.Heading>Avaliação enviada com sucesso.</Alert.Heading>
+              <p>Obrigado por avaliar.</p>
+            </Alert>
+          ) : (
+            <Alert
+              variant="danger"
+              onClose={() =>
+                this.setState({
+                  showRateFeedback: false,
+                })
+              }
+              className="m-2"
+              dismissible
+            >
+              <Alert.Heading>
+                Erro ao enviar a atualização {" :("}
+              </Alert.Heading>
+              <p>Tente novamente mais tarde.</p>
+            </Alert>
+          )
         ) : null}
         <BorderText className="m-3">
           <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
@@ -237,7 +242,7 @@ class History extends Component {
                     </Button>
                     <Button
                       variant="danger"
-                      onClick={(element) => {
+                      onClick={() => {
                         const historyData = [...this.state.data];
                         historyData[orderToRate] = {
                           ...historyData[orderToRate],
