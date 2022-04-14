@@ -151,10 +151,9 @@ class History extends Component {
               </tbody>
             </Table>
             {orderToRate > -1 ? (
-              <Form className="m-3">
+              <Form>
                 <Form.Group controlId="userFeedback">
                   <Form.Label
-                    className="m-3"
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -165,7 +164,7 @@ class History extends Component {
                       <h2>Pedido {this.state.data[orderToRate].id + 1}</h2>
                       <Popup
                         trigger={<Button variant="warning">Detalhes</Button>}
-                        position="right center"
+                        position="left center"
                       >
                         <div>{this.state.data[orderToRate].description}</div>
                       </Popup>
