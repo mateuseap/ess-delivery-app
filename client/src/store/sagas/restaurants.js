@@ -9,7 +9,7 @@ export function* getRestaurants(query = false) {
 
     const response = yield call(api.get, "/restaurants", { params: query });
 
-    if (response.data) {
+    if (response.data && response.data.length) {
       yield put(Creators.restaurantsSuccess(response.data));
     }
   } catch (err) {
@@ -24,12 +24,11 @@ export function* putRestaurants(changes) {
 
     const response = yield call(api.put, "/restaurants", changes);
 
-    console.log(response);
-    if (response.data) {
+    if (response.data && response.data.length) {
       yield put(Creators.restaurantsSuccess(response.data));
     }
   } catch (err) {
     yield put(Creators.restaurantsError({ err }));
-    toastr.error("Erro ao buscar restaurantes");
+    toastr.error("Erro ao atualizar o banco de restaurantes");
   }
 }

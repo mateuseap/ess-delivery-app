@@ -5,10 +5,11 @@ const restaurants = new ManipulateDatabase("restaurants");
 exports.getRestaurants = async (req, res) => {
   try {
     const arr = restaurants.getArray();
-    const rand = Math.floor(Math.random() * arr.length);
     if (req.query.query) {
+      // histórico de pedidos
       res.status(200).send(JSON.stringify(arr));
     } else {
+      const rand = Math.floor(Math.random() * (arr.length - 3)) % arr.length;
       res
         .status(200)
         .send(JSON.stringify(arr.slice(rand, (rand + 3) % arr.length)));
