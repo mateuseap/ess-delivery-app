@@ -99,60 +99,62 @@ class History extends Component {
           <MainDiv>
             <Table borderless>
               <tbody>
-                {this.state.data.map((element) => (
-                  <tr key={element.id}>
-                    <ImageStyle photoUrl={element.orderImage} />
-                    <td className="p-2">
-                      <TableBodyStyle>
-                        <p>Pedido {element.id + 1}</p>
-                        {!restaurants.loading ? (
-                          <p>
-                            Restaurante{" "}
-                            {restaurants.data.map((rest) => {
-                              if (rest.id === element.restaurant_id) {
-                                return rest.name;
+                {this.state.data && this.state.data.length
+                  ? this.state.data.map((element) => (
+                      <tr key={element.id}>
+                        <ImageStyle photoUrl={element.orderImage} />
+                        <td className="p-2">
+                          <TableBodyStyle>
+                            <p>Pedido {element.id + 1}</p>
+                            {!restaurants.loading ? (
+                              <p>
+                                Restaurante{" "}
+                                {restaurants.data.map((rest) => {
+                                  if (rest.id === element.restaurant_id) {
+                                    return rest.name;
+                                  }
+                                })}
+                              </p>
+                            ) : null}
+                            <p>{element.description}</p>
+                            <p>
+                              Preço total: R
+                              {"$ " + formatMoney(element.total_price)}
+                            </p>
+                          </TableBodyStyle>
+                        </td>
+                        <td>
+                          {!element.rate.did ? (
+                            <Button
+                              variant="primary"
+                              disabled={orderToRate >= 0 ? true : false}
+                              onClick={() =>
+                                this.setState({
+                                  orderToRate: element.id,
+                                })
                               }
-                            })}
-                          </p>
-                        ) : null}
-                        <p>{element.description}</p>
-                        <p>
-                          Preço total: R
-                          {"$ " + formatMoney(element.total_price)}
-                        </p>
-                      </TableBodyStyle>
-                    </td>
-                    <td>
-                      {!element.rate.did ? (
-                        <Button
-                          variant="primary"
-                          disabled={orderToRate >= 0 ? true : false}
-                          onClick={() =>
-                            this.setState({
-                              orderToRate: element.id,
-                            })
-                          }
-                          className="mx-3"
-                        >
-                          Avaliar Pedido
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="danger"
-                          disabled={orderToRate >= 0 ? true : false}
-                          onClick={() =>
-                            this.setState({
-                              orderToRate: element.id,
-                            })
-                          }
-                          className="mx-3"
-                        >
-                          Revisar avaliação
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                              className="mx-3"
+                            >
+                              Avaliar Pedido
+                            </Button>
+                          ) : (
+                            <Button
+                              variant="danger"
+                              disabled={orderToRate >= 0 ? true : false}
+                              onClick={() =>
+                                this.setState({
+                                  orderToRate: element.id,
+                                })
+                              }
+                              className="mx-3"
+                            >
+                              Revisar avaliação
+                            </Button>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  : this.setState({ data: history.data })}
               </tbody>
             </Table>
             {orderToRate > -1 ? (
