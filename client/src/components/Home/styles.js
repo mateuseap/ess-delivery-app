@@ -1,19 +1,15 @@
 import styled from "styled-components";
 
 export const HomeStyle = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  padding: 0 10% 0 10%;
 `;
 
 export const TextStyle = styled.h1`
   text-align: center;
   font-family: Helvetica;
-  line-height: 94px;
-  padding-top: 0.5rem;
-  color: "#630606";
+  line-height: 3.5rem;
+  padding-top: 0.8rem;
+  color: #91091e;
 `;
 
 export const CardGroup = styled.div`
@@ -26,6 +22,7 @@ export const CardGroup = styled.div`
 export const Card = styled.div`
   background-color: rgba(245, 245, 245, 0.6);
   width: 25%;
+  height: 100%;
   border-radius: 50px;
   align-items: center;
 `;
@@ -52,9 +49,8 @@ export const CardBody = styled.div`
 `;
 
 export const DishImg = styled.div`
-  img {
-    border-radius: 50px;
-    width: 100%;
-    height: 12vw;
-  }
+  content: url(${(props) => props.src});
+  border-radius: 50px;
+  width: 100%;
+  height: 12vw;
 `;

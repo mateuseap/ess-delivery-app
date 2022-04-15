@@ -3,11 +3,12 @@ import { Creators } from "../ducks/restaurants";
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 
-export function* getRestaurants(displayAll = false) {
+export function* getRestaurants({ displayAll }) {
   try {
     yield put(Creators.restaurantsRequest());
-
-    const response = yield call(api.get, "/restaurants", {params: displayAll});
+    const response = yield call(api.get, "/restaurants", {
+      displayAll,
+    });
 
     if (response.data && response.data.length) {
       yield put(Creators.restaurantsSuccess(response.data));

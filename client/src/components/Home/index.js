@@ -14,7 +14,7 @@ import {
 import ReactLoading from "react-loading";
 
 import { Link } from "react-router-dom";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import FadeIn from "react-fade-in";
 
@@ -24,22 +24,16 @@ import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 class Home extends Component {
   getCard(element) {
     return (
-      <Card key={element.restId} style={{ position: "relative" }}>
-        <DishImg>
-          <img variant="top" src={element.dishPhoto} alt={element.dishName} />
-        </DishImg>
+      <Card key={element.restId}>
+        <DishImg src={element.dishPhoto}></DishImg>
 
-        <CardBody className="mb-5">
+        <CardBody>
           <CardTitle>{element.restName}</CardTitle>
           <DishName>{element.dishName}</DishName>
           <DishDescription>{element.dishDescription}</DishDescription>
           {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
           <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
-            <Button
-              variant="success"
-              className="m-2"
-              style={{ position: "absolute", bottom: 0, left: "33.333%" }}
-            >
+            <Button variant="success" className="m-2">
               PEÇA JÁ!
             </Button>
           </Link>
@@ -49,14 +43,15 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    console.log("dale2");
     this.props.getRestaurants();
   }
 
   render() {
     const { restaurants } = this.props;
-
+    console.log(restaurants);
     return (
-      <Container>
+      <HomeStyle>
         {restaurants.loading ? (
           <ReactLoading
             type={"spin"}
@@ -70,18 +65,14 @@ class Home extends Component {
             }}
           />
         ) : (
-          <HomeStyle>
-            <Row>
-              <Col>
-                <FadeIn transitionDuration={1000}>
-                  <TextStyle style={{ color: "#91091e" }}>
-                    Saboreie as deliciosas comidas dos nossos restaurantes
-                    parceiros!
-                  </TextStyle>
-                </FadeIn>
-              </Col>
-            </Row>
+          <div>
             <FadeIn transitionDuration={800}>
+              <TextStyle>
+                Saboreie as deliciosas comidas dos nossos restaurantes
+                parceiros!
+              </TextStyle>
+            </FadeIn>
+            <FadeIn transitionDuration={1000}>
               <CardGroup>
                 {this.props.restaurants.data.map((restaurant) => {
                   const dish =
@@ -96,9 +87,9 @@ class Home extends Component {
                 })}
               </CardGroup>
             </FadeIn>
-          </HomeStyle>
+          </div>
         )}
-      </Container>
+      </HomeStyle>
     );
   }
 }
