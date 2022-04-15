@@ -25,7 +25,7 @@ class Header extends Component {
           <Link to="/cart">{getCartSvg()}</Link>
           <Link to="/home">
             <Styles.UserBg>
-              <Styles.UserPhoto photoUrl={user.data.photo} />
+              <Styles.UserPhoto src={user.data.photo} />
             </Styles.UserBg>
           </Link>
         </Styles.Buttons>

@@ -3,10 +3,12 @@ import { all, takeLatest } from "@redux-saga/core/effects";
 import { Types as UserTypes } from "../ducks/user";
 import { Types as RestaurantsTypes } from "../ducks/restaurants";
 import { Types as HistoryTypes } from "../ducks/history";
+import { Types as CartTypes } from "../ducks/cart";
 
 import getUser from "./user";
 import { getRestaurants, putRestaurants } from "./restaurants";
 import { getHistory, postHistory } from "./history";
+import getCart from "./cart";
 
 export default function* rootSaga() {
   return yield all([
@@ -15,5 +17,6 @@ export default function* rootSaga() {
     takeLatest(RestaurantsTypes.PUT_RESTAURANTS, putRestaurants),
     takeLatest(HistoryTypes.GET_HISTORY, getHistory),
     takeLatest(HistoryTypes.POST_HISTORY, postHistory),
+    takeLatest(CartTypes.GET_CART, getCart),
   ]);
 }

@@ -18,7 +18,6 @@ export const Title = styled.div`
 `;
 export const Buttons = styled.div`
   display: flex;
-  space-between: 8%;
   margin: 0.5% 1% 0.5% auto;
   * {
     margin-top: auto;
@@ -39,7 +38,7 @@ export const UserBg = styled.div`
 `;
 
 export const UserPhoto = styled.div`
-  content: url(${(props) => props.photoUrl});
+  content: url(${(props) => props.src});
   margin: auto;
   width: 110px;
   border-radius: 50%;
