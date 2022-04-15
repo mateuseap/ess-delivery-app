@@ -6,7 +6,7 @@ const restaurants = new ManipulateDatabase("restaurants");
 exports.getRestaurants = async (req, res) => {
   try {
     const arr = restaurants.getArray();
-    if (req.query.query) {
+    if (req.body.displayAll) {
       // histórico de pedidos
       res.status(200).send(JSON.stringify(arr));
     } else {
