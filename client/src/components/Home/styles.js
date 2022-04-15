@@ -24,7 +24,7 @@ export const CardGroup = styled.div`
 `;
 
 export const Card = styled.div`
-  background-color: rgba(245, 245, 245, 0.8);
+  background-color: rgba(245, 245, 245, 0.6);
   width: 25%;
   border-radius: 50px;
   align-items: center;
