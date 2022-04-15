@@ -7,6 +7,7 @@ import {
   TableBodyStyle,
   ActionButtonsStyle,
   ImageStyle,
+  DescriptionStyle,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -30,13 +31,17 @@ class History extends Component {
       orderToRate: -1,
       data: [],
       showRateFeedback: false,
+      changeSelectedTdBg: [],
     };
   }
 
   componentDidMount() {
     this.props.getHistory();
     this.props.getRestaurants(true);
-    this.setState({ data: this.props.history.data });
+    this.setState({
+      data: this.props.history.data,
+      changeSelectedTdBg: new Array(this.props.history.data.length),
+    });
   }
 
   render() {
@@ -99,63 +104,87 @@ class History extends Component {
           <MainDiv>
             <Table borderless>
               <tbody>
-                {this.state.data && this.state.data.length
-                  ? this.state.data.map((element) => (
-                      <tr key={element.id}>
-                        <ImageStyle photoUrl={element.orderImage} />
-                        <td className="p-2">
-                          <TableBodyStyle>
-                            <p>Pedido {element.id + 1}</p>
-                            {!restaurants.loading ? (
-                              <p>
-                                Restaurante{" "}
-                                {restaurants.data.map((rest) => {
-                                  if (rest.id === element.restaurant_id) {
-                                    return rest.name;
-                                  }
-                                  return null;
-                                })}
-                              </p>
-                            ) : null}
-                            <p>{element.description}</p>
-                            <p>
-                              Preço total: R
-                              {"$ " + formatMoney(element.total_price)}
+                {this.state.data && this.state.data.length ? (
+                  this.state.data.map((element, index) => (
+                    <tr
+                      key={element.id}
+                      style={
+                        this.state.changeSelectedTdBg[index]
+                          ? { backgroundColor: "rgba(0, 0, 0, 0.2)" }
+                          : null
+                      }
+                    >
+                      <ImageStyle photoUrl={element.orderImage} />
+                      <td className="p-2">
+                        <TableBodyStyle>
+                          {!restaurants.loading ? (
+                            <p style={{ fontSize: 26 }}>
+                              {restaurants.data.map((rest) => {
+                                if (rest.id === element.restaurant_id) {
+                                  return rest.name;
+                                }
+                              })}
                             </p>
-                          </TableBodyStyle>
-                        </td>
-                        <td>
-                          {!element.rate.did ? (
-                            <Button
-                              variant="primary"
-                              disabled={orderToRate >= 0 ? true : false}
-                              onClick={() =>
-                                this.setState({
-                                  orderToRate: element.id,
-                                })
-                              }
-                              className="mx-3"
-                            >
-                              Avaliar Pedido
-                            </Button>
-                          ) : (
-                            <Button
-                              variant="danger"
-                              disabled={orderToRate >= 0 ? true : false}
-                              onClick={() =>
-                                this.setState({
-                                  orderToRate: element.id,
-                                })
-                              }
-                              className="mx-3"
-                            >
-                              Revisar avaliação
-                            </Button>
-                          )}
-                        </td>
-                      </tr>
-                    ))
-                  : this.setState({ data: history.data })}
+                          ) : null}
+                          <p>{element.description[0].name}</p>
+                          <p style={{ fontWeight: "bold" }}>
+                            R{"$ " + formatMoney(element.total_price)}
+                          </p>
+                        </TableBodyStyle>
+                      </td>
+                      <td>
+                        {!element.rate.did ? (
+                          <Button
+                            variant="primary"
+                            disabled={orderToRate >= 0 ? true : false}
+                            onClick={() =>
+                              this.setState({
+                                orderToRate: element.id,
+                                changeSelectedTdBg: [
+                                  ...this.state.changeSelectedTdBg,
+                                ].map((element, idx) => {
+                                  if (idx === index) return true;
+                                  else return false;
+                                }),
+                              })
+                            }
+                            className="mx-3"
+                          >
+                            Avaliar Pedido
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="danger"
+                            disabled={orderToRate >= 0 ? true : false}
+                            onClick={() =>
+                              this.setState({
+                                orderToRate: element.id,
+                                changeSelectedTdBg: [
+                                  ...this.state.changeSelectedTdBg,
+                                ].map((element, idx) => {
+                                  if (idx === index) return true;
+                                  else return false;
+                                }),
+                              })
+                            }
+                            className="mx-3"
+                          >
+                            Revisar avaliação
+                          </Button>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                ) : history.data && history.data.length ? (
+                  this.setState({
+                    data: this.props.history.data,
+                    changeSelectedTdBg: new Array(
+                      this.props.history.data.length
+                    ),
+                  })
+                ) : (
+                  <p>erro</p>
+                )}
               </tbody>
             </Table>
             {orderToRate > -1 ? (
@@ -169,14 +198,30 @@ class History extends Component {
                     }}
                   >
                     <RateLabel>
-                      <h2>Pedido {this.state.data[orderToRate].id + 1}</h2>
+                      <h2>
+                        {this.state.data[orderToRate].description[0].name}
+                        {console.log(this.state.changeSelectedTdBg)}
+                      </h2>
                       <Popup
                         trigger={<Button variant="warning">Detalhes</Button>}
                         position="left center"
                       >
-                        <div>{this.state.data[orderToRate].description}</div>
+                        <DescriptionStyle>
+                          {this.state.data[orderToRate].description.map(
+                            (element) => (
+                              <>
+                                <h5>{element.name}</h5>
+                                <p>{"R$ " + formatMoney(element.price)}</p>
+                              </>
+                            )
+                          )}
+                        </DescriptionStyle>
                       </Popup>
                     </RateLabel>
+                    <h3 className="mt-4">
+                      {"R$ " +
+                        formatMoney(this.state.data[orderToRate].total_price)}
+                    </h3>
                     <ReactStars
                       count={5}
                       onChange={(newRating) => {
@@ -239,7 +284,14 @@ class History extends Component {
                   <ActionButtonsStyle className="mt-2">
                     <Button
                       variant="secondary"
-                      onClick={() => this.setState({ orderToRate: -1 })}
+                      onClick={() =>
+                        this.setState({
+                          orderToRate: -1,
+                          changeSelectedTdBg: [
+                            ...this.state.changeSelectedTdBg,
+                          ].map((element, idx) => false),
+                        })
+                      }
                     >
                       Cancelar
                     </Button>
@@ -280,7 +332,14 @@ class History extends Component {
                 ) : (
                   <Button
                     variant="outline-primary"
-                    onClick={() => this.setState({ orderToRate: -1 })}
+                    onClick={() =>
+                      this.setState({
+                        orderToRate: -1,
+                        changeSelectedTdBg: [
+                          ...this.state.changeSelectedTdBg,
+                        ].map((element, idx) => false),
+                      })
+                    }
                     className="mt-2"
                   >
                     Voltar
