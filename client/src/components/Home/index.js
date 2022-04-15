@@ -24,18 +24,22 @@ import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 class Home extends Component {
   getCard(element) {
     return (
-      <Card key={element.restId}>
+      <Card key={element.restId} style={{ position: "relative" }}>
         <DishImg>
           <img variant="top" src={element.dishPhoto} alt={element.dishName} />
         </DishImg>
 
-        <CardBody>
+        <CardBody className="mb-5">
           <CardTitle>{element.restName}</CardTitle>
           <DishName>{element.dishName}</DishName>
           <DishDescription>{element.dishDescription}</DishDescription>
           {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
           <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
-            <Button variant="success" className="m-2">
+            <Button
+              variant="success"
+              className="m-2"
+              style={{ position: "absolute", bottom: 0, left: "33.333%" }}
+            >
               PEÇA JÁ!
             </Button>
           </Link>
