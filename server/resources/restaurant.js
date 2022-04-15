@@ -1,4 +1,5 @@
 const { ManipulateDatabase } = require("../utils/db");
+const { getRandomSlice } = require("../utils/misc");
 
 const restaurants = new ManipulateDatabase("restaurants");
 
@@ -9,10 +10,7 @@ exports.getRestaurants = async (req, res) => {
       // histórico de pedidos
       res.status(200).send(JSON.stringify(arr));
     } else {
-      const rand = Math.floor(Math.random() * (arr.length - 3)) % arr.length;
-      res
-        .status(200)
-        .send(JSON.stringify(arr.slice(rand, (rand + 3) % arr.length)));
+      res.status(200).send(JSON.stringify(getRandomSlice(arr, 3)));
     }
   } catch (err) {
     res.status(500).send(err);

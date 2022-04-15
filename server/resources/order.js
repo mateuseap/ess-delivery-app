@@ -1,4 +1,6 @@
 const { ManipulateDatabase } = require("../utils/db");
+const { getRandomSlice } = require("../utils/misc");
+
 const table = new ManipulateDatabase("orders");
 
 exports.getOrders = async (req, res) => {

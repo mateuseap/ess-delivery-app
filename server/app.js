@@ -1,10 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { getCart, postCart } = require("./resources/cart");
-const { getTest, postTest } = require("./resources/test");
 const { getUser } = require("./resources/user");
 const { getRestaurants, putRestaurants } = require("./resources/restaurant");
-const { getOrders, postOrders } = require("./resources/orders");
+const { getOrders, postOrders } = require("./resources/order");
 
 const cors = require("cors");
 
@@ -16,9 +15,6 @@ app.use(cors());
 
 app.get("/cart", getCart);
 app.post("/cart", postCart);
-
-app.get("/test", getTest);
-app.post("/test", postTest);
 
 app.get("/user", getUser);
 
