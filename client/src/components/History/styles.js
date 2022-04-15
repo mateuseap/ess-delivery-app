@@ -1,10 +1,17 @@
 import styled from "styled-components";
 
 export const ImageStyle = styled.img`
-  width: 150px; 
-  height: 150px;
-  border-radius: 50px;
+  width: 234px;
+  height: 170px;
+  border-radius: 65px;
   content: url(${(props) => props.photoUrl});
+`;
+
+export const DescriptionStyle = styled.div`
+  display: grid;
+  width: 200px;
+  grid-auto-flow: row;
+  grid-column-gap: 4vw;
 `;
 
 export const ActionButtonsStyle = styled.div`

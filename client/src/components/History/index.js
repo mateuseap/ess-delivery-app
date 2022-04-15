@@ -7,6 +7,7 @@ import {
   TableBodyStyle,
   ActionButtonsStyle,
   ImageStyle,
+  DescriptionStyle,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -29,14 +30,15 @@ class History extends Component {
     this.state = {
       orderToRate: -1,
       data: [],
+      restData: [],
       showRateFeedback: false,
+      changeSelectedTdBg: [],
     };
   }
 
   componentDidMount() {
     this.props.getHistory();
     this.props.getRestaurants(true);
-    this.setState({ data: this.props.history.data });
   }
 
   render() {
@@ -99,28 +101,31 @@ class History extends Component {
           <MainDiv>
             <Table borderless>
               <tbody>
-                {this.state.data && this.state.data.length
-                  ? this.state.data.map((element) => (
-                      <tr key={element.id}>
+                {this.state.data && this.state.data.length ? (
+                  this.state.restData && this.state.restData.length ? (
+                    this.state.data.map((element, index) => (
+                      <tr
+                        key={element.id}
+                        style={
+                          this.state.changeSelectedTdBg[index]
+                            ? { backgroundColor: "rgba(0, 0, 0, 0.2)" }
+                            : null
+                        }
+                      >
                         <ImageStyle photoUrl={element.orderImage} />
                         <td className="p-2">
                           <TableBodyStyle>
-                            <p>Pedido {element.id + 1}</p>
-                            {!restaurants.loading ? (
-                              <p>
-                                Restaurante{" "}
-                                {restaurants.data.map((rest) => {
-                                  if (rest.id === element.restaurant_id) {
-                                    return rest.name;
-                                  }
-                                  return null;
-                                })}
-                              </p>
-                            ) : null}
-                            <p>{element.description}</p>
-                            <p>
-                              Preço total: R
-                              {"$ " + formatMoney(element.total_price)}
+                            <p style={{ fontSize: 26 }}>
+                              {this.state.restData.map((rest) => {
+                                if (rest.id === element.restaurant_id) {
+                                  return rest.name;
+                                }
+                                return null;
+                              })}
+                            </p>
+                            <p>{element.description[0].name}</p>
+                            <p style={{ fontWeight: "bold" }}>
+                              R{"$ " + formatMoney(element.total_price)}
                             </p>
                           </TableBodyStyle>
                         </td>
@@ -132,6 +137,12 @@ class History extends Component {
                               onClick={() =>
                                 this.setState({
                                   orderToRate: element.id,
+                                  changeSelectedTdBg: [
+                                    ...this.state.changeSelectedTdBg,
+                                  ].map((element, idx) => {
+                                    if (idx === index) return true;
+                                    else return false;
+                                  }),
                                 })
                               }
                               className="mx-3"
@@ -145,6 +156,12 @@ class History extends Component {
                               onClick={() =>
                                 this.setState({
                                   orderToRate: element.id,
+                                  changeSelectedTdBg: [
+                                    ...this.state.changeSelectedTdBg,
+                                  ].map((element, idx) => {
+                                    if (idx === index) return true;
+                                    else return false;
+                                  }),
                                 })
                               }
                               className="mx-3"
@@ -155,11 +172,25 @@ class History extends Component {
                         </td>
                       </tr>
                     ))
-                  : this.setState({ data: history.data })}
+                  ) : restaurants.data && restaurants.data.length ? (
+                    this.setState({
+                      restData: restaurants.data,
+                    })
+                  ) : (
+                    <p>erro</p>
+                  )
+                ) : history.data && history.data.length ? (
+                  this.setState({
+                    data: history.data,
+                    changeSelectedTdBg: new Array(history.data.length),
+                  })
+                ) : (
+                  <p>erro</p>
+                )}
               </tbody>
             </Table>
             {orderToRate > -1 ? (
-              <Form>
+              <Form style={{ maxWidth: 650 }}>
                 <Form.Group controlId="userFeedback">
                   <Form.Label
                     style={{
@@ -169,14 +200,30 @@ class History extends Component {
                     }}
                   >
                     <RateLabel>
-                      <h2>Pedido {this.state.data[orderToRate].id + 1}</h2>
+                      <h2>
+                        {this.state.data[orderToRate].description[0].name}
+                        {console.log(this.state.changeSelectedTdBg)}
+                      </h2>
                       <Popup
                         trigger={<Button variant="warning">Detalhes</Button>}
                         position="left center"
                       >
-                        <div>{this.state.data[orderToRate].description}</div>
+                        <DescriptionStyle>
+                          {this.state.data[orderToRate].description.map(
+                            (element) => (
+                              <>
+                                <h5>{element.name}</h5>
+                                <p>{"R$ " + formatMoney(element.price)}</p>
+                              </>
+                            )
+                          )}
+                        </DescriptionStyle>
                       </Popup>
                     </RateLabel>
+                    <h3 className="mt-4">
+                      {"R$ " +
+                        formatMoney(this.state.data[orderToRate].total_price)}
+                    </h3>
                     <ReactStars
                       count={5}
                       onChange={(newRating) => {
@@ -239,7 +286,14 @@ class History extends Component {
                   <ActionButtonsStyle className="mt-2">
                     <Button
                       variant="secondary"
-                      onClick={() => this.setState({ orderToRate: -1 })}
+                      onClick={() =>
+                        this.setState({
+                          orderToRate: -1,
+                          changeSelectedTdBg: [
+                            ...this.state.changeSelectedTdBg,
+                          ].map((element, idx) => false),
+                        })
+                      }
                     >
                       Cancelar
                     </Button>
@@ -280,7 +334,14 @@ class History extends Component {
                 ) : (
                   <Button
                     variant="outline-primary"
-                    onClick={() => this.setState({ orderToRate: -1 })}
+                    onClick={() =>
+                      this.setState({
+                        orderToRate: -1,
+                        changeSelectedTdBg: [
+                          ...this.state.changeSelectedTdBg,
+                        ].map((element, idx) => false),
+                      })
+                    }
                     className="mt-2"
                   >
                     Voltar
