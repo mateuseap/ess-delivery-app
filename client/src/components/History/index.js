@@ -113,6 +113,7 @@ class History extends Component {
                                   if (rest.id === element.restaurant_id) {
                                     return rest.name;
                                   }
+                                  return null;
                                 })}
                               </p>
                             ) : null}

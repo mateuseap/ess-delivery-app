@@ -30,8 +30,8 @@ export const Buttons = styled.div`
 
 export const UserBg = styled.div`
   display: flex;
-  width: 135px;
-  height: 135px;
+  width: 115px;
+  height: 115px;
   background: #fffbfb;
   border-radius: 100px;
   align-items: center;
@@ -41,6 +41,6 @@ export const UserBg = styled.div`
 export const UserPhoto = styled.div`
   content: url(${(props) => props.photoUrl});
   margin: auto;
-  width: 130px;
+  width: 110px;
   border-radius: 50%;
 `;
