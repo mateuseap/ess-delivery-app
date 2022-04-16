@@ -20,9 +20,9 @@ export const CardGroup = styled.div`
 `;
 
 export const Card = styled.div`
-  background-color: rgba(245, 245, 245, 0.6);
+  background-color: rgba(245, 245, 245, 0.8);
+  position: relative;
   width: 25%;
-  height: 100%;
   border-radius: 50px;
   align-items: center;
 `;
@@ -41,10 +41,11 @@ export const DishName = styled.div`
 
 export const DishDescription = styled.div`
   color: #05595b;
+  text-align: left;
 `;
 
 export const CardBody = styled.div`
-  padding: 1rem 1rem;
+  padding: 1rem;
   text-align: center;
 `;
 
@@ -53,4 +54,10 @@ export const DishImg = styled.div`
   border-radius: 50px;
   width: 100%;
   height: 12vw;
+`;
+
+export const BtnStyle = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: calc(15% + 3vw);
 `;

@@ -9,6 +9,7 @@ import {
   CardBody,
   DishImg,
   Card,
+  BtnStyle,
 } from "./styles";
 
 import ReactLoading from "react-loading";
@@ -27,15 +28,17 @@ class Home extends Component {
       <Card key={element.restId}>
         <DishImg src={element.dishPhoto}></DishImg>
 
-        <CardBody>
+        <CardBody className="mb-5">
           <CardTitle>{element.restName}</CardTitle>
           <DishName>{element.dishName}</DishName>
           <DishDescription>{element.dishDescription}</DishDescription>
           {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
           <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
-            <Button variant="success" className="m-2">
-              PEÇA JÁ!
-            </Button>
+            <BtnStyle>
+              <Button variant="success" className="m-2">
+                PEÇA JÁ!
+              </Button>
+            </BtnStyle>
           </Link>
         </CardBody>
       </Card>
