@@ -21,6 +21,7 @@ import FadeIn from "react-fade-in";
 
 import { connect } from "react-redux";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
+import { getRandomSlice } from "../../utils/misc";
 
 class Home extends Component {
   getCard(element) {
@@ -46,13 +47,13 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log("dale2");
     this.props.getRestaurants();
   }
 
   render() {
     const { restaurants } = this.props;
-    console.log(restaurants);
+    const arrRest = getRandomSlice(restaurants.data, 3);
+
     return (
       <HomeStyle>
         {restaurants.loading ? (
@@ -77,7 +78,7 @@ class Home extends Component {
             </FadeIn>
             <FadeIn transitionDuration={1000}>
               <CardGroup>
-                {this.props.restaurants.data.map((restaurant) => {
+                {arrRest.map((restaurant) => {
                   const dish =
                     restaurant.menu.options[restaurant.menu.destaqueIndex];
                   return this.getCard({

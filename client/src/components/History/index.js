@@ -38,7 +38,7 @@ class History extends Component {
 
   componentDidMount() {
     this.props.getHistory();
-    this.props.getRestaurants(true);
+    this.props.getRestaurants();
   }
 
   render() {
@@ -202,7 +202,6 @@ class History extends Component {
                     <RateLabel>
                       <h2>
                         {this.state.data[orderToRate].description[0].name}
-                        {console.log(this.state.changeSelectedTdBg)}
                       </h2>
                       <Popup
                         trigger={<Button variant="warning">Detalhes</Button>}
