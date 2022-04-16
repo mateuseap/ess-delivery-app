@@ -70,8 +70,9 @@ exports.ManipulateDatabase = class {
     let qStr = "";
 
     if (match.inner != undefined) {
-      const name = match.nameObjToQuery;
-      qStr = `[{${match.inner.matchId}}]`;
+      const name = match.inner.nameObjToQuery;
+      qStr = `[${match.inner.matchId}]`;
+
       return jsonQuery(name + qStr, {
         data: this.#document,
       }).value;
@@ -84,6 +85,7 @@ exports.ManipulateDatabase = class {
           qStr += "[*" + element.expr + "]";
         }
       });
+
       return jsonQuery(this.#tableName + qStr, {
         data: this.#document,
       }).value;

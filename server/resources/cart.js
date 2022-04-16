@@ -1,11 +1,20 @@
 const { ManipulateDatabase } = require("../utils/db");
 const { getRandomSlice } = require("../utils/misc");
 
-const table = new ManipulateDatabase("carts");
-
 exports.getCart = async (req, res) => {
   try {
-    res.status(200).send(JSON.stringify(table.getArray()[0]));
+    decoded_auth = jwt_decode(req.headers.authorization);
+
+    const table = new ManipulateDatabase("carts");
+
+    cart_data = table.query({
+      inner: {
+        nameObjToQuery: "carts",
+        matchId: `user_id=${decoded_auth.userId}`,
+      },
+    });
+
+    res.status(200).send(JSON.stringify(cart_data));
   } catch (err) {
     res.status(500).send(err);
   }
