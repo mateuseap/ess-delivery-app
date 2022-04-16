@@ -41,7 +41,9 @@ export const DishName = styled.div`
 
 export const DishDescription = styled.div`
   color: #05595b;
-  text-align: left;
+  text-align: justify;
+  line-height: 1.35rem;
+  letter-spacing: 1.35px;
 `;
 
 export const CardBody = styled.div`
