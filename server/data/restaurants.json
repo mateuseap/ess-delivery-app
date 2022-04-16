@@ -53,7 +53,7 @@
       ],
       "rates": [
         {
-          "user_id": 0,
+          "user_id": 1,
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -88,7 +88,7 @@
       ],
       "rates": [
         {
-          "user_id": 0,
+          "user_id": 1,
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -123,7 +123,7 @@
       ],
       "rates": [
         {
-          "user_id": 0,
+          "user_id": 1,
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -164,7 +164,7 @@
       ],
       "rates": [
         {
-          "user_id": 0,
+          "user_id": 1,
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -199,7 +199,7 @@
       ],
       "rates": [
         {
-          "user_id": 0,
+          "user_id": 1,
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -234,7 +234,7 @@
       ],
       "rates": [
         {
-          "user_id": 0,
+          "user_id": 1,
           "stars": 4.5,
           "feedback_text": ""
         }

@@ -18,11 +18,11 @@ export function* getHistory() {
   }
 }
 
-export function* postHistory({ data }) {
+export function* postHistory({ data, changes }) {
   try {
     yield put(Creators.historyRequest());
 
-    const response = yield call(api.post, "/orders", { data });
+    const response = yield call(api.post, "/orders", { data, changes });
 
     if (response.data) {
       yield put(Creators.historySuccess(response.data));

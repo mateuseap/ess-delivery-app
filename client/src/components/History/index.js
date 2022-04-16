@@ -310,20 +310,24 @@ class History extends Component {
 
                         try {
                           this.setState({ data: historyData }, () => {
-                            this.props.postHistory(this.state.data);
-                            this.props.putRestaurants({
-                              rate: {
-                                stars: this.state.data[orderToRate].rate.stars,
-                                feedback_text:
-                                  this.state.data[orderToRate].rate
-                                    .feedback_text,
+                            this.props.postHistory({
+                              data: this.state.data,
+                              changes: {
+                                rate: {
+                                  stars:
+                                    this.state.data[orderToRate].rate.stars,
+                                  feedback_text:
+                                    this.state.data[orderToRate].rate
+                                      .feedback_text,
+                                },
+                                index: orderToRate,
                               },
-                              index: orderToRate,
                             });
                             this.setState({ showRateFeedback: true });
                           });
                         } catch (err) {
                           this.setState({ showRateFeedback: true });
+                          console.log(err);
                         }
                       }}
                     >
