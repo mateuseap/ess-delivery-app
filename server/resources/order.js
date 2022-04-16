@@ -12,7 +12,6 @@ exports.getOrders = async (req, res) => {
 
 exports.postOrders = async (req, res) => {
   try {
-    console.log(req.body);
     // Restaurants update
     const restaurants = new ManipulateDatabase("restaurants");
     const changes = req.body.data.changes;
