@@ -3,11 +3,17 @@ import { Creators } from "../ducks/cart";
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 
-export default function* getCart({ userId }) {
+import { AUTH_TOKEN } from "../../constants/constants";
+
+export default function* getCart() {
   try {
     yield put(Creators.cartRequest());
 
-    let response = yield call(api.get, "/cart", { userId });
+    let response = yield call(api.get, "/cart", {
+      headers: {
+        Authorization: AUTH_TOKEN,
+      },
+    });
     if (response.data) {
       // como so iremos trabalhar com um usuario:
       yield put(Creators.cartSuccess(response.data));

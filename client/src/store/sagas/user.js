@@ -3,15 +3,19 @@ import { Creators } from "../ducks/user";
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 
-export default function* getUser(userToken) {
+import { AUTH_TOKEN } from "../../constants/constants";
+
+export default function* getUser() {
   try {
     yield put(Creators.userRequest());
+    let response = yield call(api.get, "/user", {
+      headers: {
+        Authorization: AUTH_TOKEN,
+      },
+    });
 
-    let response = yield call(api.get, "/user");
-
-    if (response.data && response.data.length) {
-      // como so iremos trabalhar com um usuario:
-      yield put(Creators.userSuccess(response.data[0]));
+    if (response.data) {
+      yield put(Creators.userSuccess(response.data));
     }
   } catch (err) {
     yield put(Creators.userError({ err }));
