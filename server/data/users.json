@@ -1,9 +1,6 @@
 {
     "users": [
         {
-<<<<<<< HEAD
-            "name": "Felipe Gonçalves"
-=======
             "id": 1,
             "name": "Felipe Gonçalves",
             "photo": "https://conteudo.imguol.com.br/c/entretenimento/b3/2021/04/20/brtt-1618944423167_v2_750x750.jpg",
@@ -17,7 +14,6 @@
             "formas_pagamentos": [
                 {}
             ]
->>>>>>> fixDesenvolvimento
         }
     ]
 }

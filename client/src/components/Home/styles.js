@@ -1,15 +1,6 @@
 import styled from "styled-components";
 
 export const HomeStyle = styled.div`
-<<<<<<< HEAD
-  width:30%
-  display:flex;
-  flex-direction:column;
-
-  li{
-    padding:5px;
-  }
-=======
   padding: 0 10% 0 10%;
 `;
 
@@ -71,5 +62,4 @@ export const BtnStyle = styled.div`
   position: absolute;
   bottom: 0;
   left: calc(15% + 3vw);
->>>>>>> fixDesenvolvimento
 `;

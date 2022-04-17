@@ -50,29 +50,6 @@ class Home extends Component {
     this.props.getRestaurants();
   }
 
-<<<<<<< HEAD
-  return (
-    <HomeStyle>
-      Escolha uma das páginas para explorar
-      <ul>
-        <li>
-          <Button variant="outline-primary" id="/home" onClick={handleRouting}>
-            Home
-          </Button>
-        </li>
-        <li>
-          <Button
-            variant="outline-primary"
-            id="/test_reducer"
-            onClick={handleRouting}
-          >
-            TestReducer
-          </Button>
-        </li>
-      </ul>
-    </HomeStyle>
-  );
-=======
   render() {
     const { restaurants } = this.props;
     const arrRest = getRandomSlice(restaurants.data, 3);
@@ -119,7 +96,6 @@ class Home extends Component {
       </HomeStyle>
     );
   }
->>>>>>> fixDesenvolvimento
 }
 
 const mapStateToProps = ({ restaurants }) => ({ restaurants });

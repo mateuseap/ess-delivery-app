@@ -11,12 +11,6 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.1",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
-    "redux": "^4.1.2",
-=======
     "react-fade-in": "^2.0.1",
     "react-loading": "^2.0.3",
     "react-rating-stars-component": "^2.2.0",
@@ -29,7 +23,6 @@
     "redux-saga": "^1.1.3",
     "reduxsauce": "^1.2.1",
     "seamless-immutable": "^7.1.4",
->>>>>>> fixDesenvolvimento
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.4"
   },
