@@ -8,6 +8,7 @@ import {
   ActionButtonsStyle,
   ImageStyle,
   DescriptionStyle,
+  DisabledSendButton,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -33,6 +34,7 @@ class History extends Component {
       restData: [],
       showRateFeedback: false,
       changeSelectedTdBg: [],
+      canSendRate: false, // A avaliação com estrelas é obrigatória
     };
   }
 
@@ -143,6 +145,10 @@ class History extends Component {
                                     if (idx === index) return true;
                                     else return false;
                                   }),
+                                  canSendRate:
+                                    this.state.data[element.id].rate.stars !== 0
+                                      ? true
+                                      : false,
                                 })
                               }
                               className="mx-3"
@@ -237,6 +243,7 @@ class History extends Component {
 
                         this.setState({
                           data: historyData,
+                          canSendRate: newRating === 0 ? false : true,
                         });
                       }}
                       isHalf={true}
@@ -282,58 +289,68 @@ class History extends Component {
                   </Form.Text>
                 </Form.Group>
                 {!this.state.data[orderToRate].rate.did ? (
-                  <ActionButtonsStyle className="mt-2">
-                    <Button
-                      variant="secondary"
-                      onClick={() =>
-                        this.setState({
-                          orderToRate: -1,
-                          changeSelectedTdBg: [
-                            ...this.state.changeSelectedTdBg,
-                          ].map((element, idx) => false),
-                        })
-                      }
-                    >
-                      Cancelar
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        const historyData = [...this.state.data];
-                        historyData[orderToRate] = {
-                          ...historyData[orderToRate],
-                          rate: {
-                            ...historyData[orderToRate].rate,
-                            did: true,
-                          },
-                        };
-
-                        try {
-                          this.setState({ data: historyData }, () => {
-                            this.props.postHistory({
-                              data: this.state.data,
-                              changes: {
-                                rate: {
-                                  stars:
-                                    this.state.data[orderToRate].rate.stars,
-                                  feedback_text:
-                                    this.state.data[orderToRate].rate
-                                      .feedback_text,
-                                },
-                                index: orderToRate,
-                              },
-                            });
-                            this.setState({ showRateFeedback: true });
-                          });
-                        } catch (err) {
-                          this.setState({ showRateFeedback: true });
-                          console.log(err);
+                  <>
+                    <ActionButtonsStyle className="mt-2">
+                      <Button
+                        variant="secondary"
+                        onClick={() =>
+                          this.setState({
+                            orderToRate: -1,
+                            changeSelectedTdBg: [
+                              ...this.state.changeSelectedTdBg,
+                            ].map((element, idx) => false),
+                          })
                         }
-                      }}
-                    >
-                      Enviar
-                    </Button>
-                  </ActionButtonsStyle>
+                      >
+                        Cancelar
+                      </Button>
+                      <Button
+                        variant="danger"
+                        disabled={!this.state.canSendRate}
+                        onClick={() => {
+                          const historyData = [...this.state.data];
+                          historyData[orderToRate] = {
+                            ...historyData[orderToRate],
+                            rate: {
+                              ...historyData[orderToRate].rate,
+                              did: true,
+                            },
+                          };
+
+                          try {
+                            this.setState({ data: historyData }, () => {
+                              this.props.postHistory({
+                                data: this.state.data,
+                                changes: {
+                                  rate: {
+                                    stars:
+                                      this.state.data[orderToRate].rate.stars,
+                                    feedback_text:
+                                      this.state.data[orderToRate].rate
+                                        .feedback_text,
+                                  },
+                                  index: orderToRate,
+                                },
+                              });
+                              this.setState({ showRateFeedback: true });
+                            });
+                          } catch (err) {
+                            this.setState({ showRateFeedback: true });
+                            console.log(err);
+                          }
+                        }}
+                      >
+                        Enviar
+                      </Button>
+                    </ActionButtonsStyle>
+                    {!this.state.canSendRate ? (
+                      <DisabledSendButton>
+                        <label>
+                          Avaliação com estrelas é obrigatória para continuar!
+                        </label>
+                      </DisabledSendButton>
+                    ) : null}
+                  </>
                 ) : (
                   <Button
                     variant="outline-primary"

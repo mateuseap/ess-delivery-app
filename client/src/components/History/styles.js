@@ -7,6 +7,12 @@ export const ImageStyle = styled.img`
   content: url(${(props) => props.photoUrl});
 `;
 
+export const DisabledSendButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
 export const DescriptionStyle = styled.div`
   display: grid;
   width: 200px;
