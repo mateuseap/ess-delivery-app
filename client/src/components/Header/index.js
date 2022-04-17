@@ -1,48 +1,39 @@
-import React from "react";
-import { HeaderStyle, Title, Buttons } from "./styles";
-import { useNavigate } from "react-router";
-import { useState, useEffect } from "react";
-import {
-  getHistorySvg,
-  getUserSvg,
-  getCartSvg,
-} from "../../assets/headerAssets";
+import React, { Component } from "react";
+import * as Styles from "./styles";
+import { Link } from "react-router-dom";
 
-function getUser() {
-  return { name: "Felipe Gonçalves" };
-}
+import { connect } from "react-redux";
+import { Creators as UserCreators } from "../../store/ducks/user";
 
-export default function Header() {
-  const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true);
+import ReactLoading from "react-loading";
 
-  useEffect(() => {
-    setUser(getUser);
-  }, []);
+import { getHistorySvg, getCartSvg } from "../../assets/headerAssets";
 
-  useEffect(() => {
-    setLoading(false);
-  }, [user]);
-  const navigate = useNavigate();
-
-  function handleRouting(route) {
-    navigate(route.target.id);
+class Header extends Component {
+  componentDidMount() {
+    this.props.getUser();
   }
-
-  return (
-    <HeaderStyle>
-      {loading ? (
-        ""
-      ) : (
-        <>
-          <Title>{user.name}</Title>
-          <Buttons>
-            {getHistorySvg()}
-            {getCartSvg()}
-            {getUserSvg()}
-          </Buttons>
-        </>
-      )}
-    </HeaderStyle>
-  );
+  render() {
+    const { user } = this.props;
+    return (
+      <Styles.HeaderStyle>
+        <Styles.Title>
+          {user.loading ? <ReactLoading type={"spin"} /> : user.data.name}
+        </Styles.Title>
+        <Styles.Buttons>
+          <Link to="/history">{getHistorySvg()}</Link>
+          <Link to="/cart">{getCartSvg()}</Link>
+          <Link to="/home">
+            <Styles.UserBg>
+              <Styles.UserPhoto src={user.data.photo} />
+            </Styles.UserBg>
+          </Link>
+        </Styles.Buttons>
+      </Styles.HeaderStyle>
+    );
+  }
 }
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps, { ...UserCreators })(Header);

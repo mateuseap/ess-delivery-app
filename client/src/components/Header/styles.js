@@ -18,7 +18,6 @@ export const Title = styled.div`
 `;
 export const Buttons = styled.div`
   display: flex;
-  space-between: 8%;
   margin: 0.5% 1% 0.5% auto;
   * {
     margin-top: auto;
@@ -26,4 +25,21 @@ export const Buttons = styled.div`
     padding-left: 12px;
     padding-right: 12px;
   }
+`;
+
+export const UserBg = styled.div`
+  display: flex;
+  width: 115px;
+  height: 115px;
+  background: #fffbfb;
+  border-radius: 100px;
+  align-items: center;
+  padding: 0;
+`;
+
+export const UserPhoto = styled.div`
+  content: url(${(props) => props.src});
+  margin: auto;
+  width: 110px;
+  border-radius: 50%;
 `;

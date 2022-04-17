@@ -1,15 +1,56 @@
-import React from "react";
-import { HomeStyle } from "./styles";
-import { useNavigate } from "react-router";
+import React, { Component } from "react";
+import {
+  HomeStyle,
+  TextStyle,
+  CardTitle,
+  DishName,
+  DishDescription,
+  CardGroup,
+  CardBody,
+  DishImg,
+  Card,
+  BtnStyle,
+} from "./styles";
+
+import ReactLoading from "react-loading";
+
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-export default function Home() {
-  const navigate = useNavigate();
+import FadeIn from "react-fade-in";
 
-  function handleRouting(route) {
-    navigate(route.target.id);
+import { connect } from "react-redux";
+import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
+import { getRandomSlice } from "../../utils/misc";
+
+class Home extends Component {
+  getCard(element) {
+    return (
+      <Card key={element.restId}>
+        <DishImg src={element.dishPhoto}></DishImg>
+
+        <CardBody className="mb-5">
+          <CardTitle>{element.restName}</CardTitle>
+          <DishName>{element.dishName}</DishName>
+          <DishDescription>{element.dishDescription}</DishDescription>
+          {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
+          <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
+            <BtnStyle>
+              <Button variant="success" className="m-2">
+                PEÇA JÁ!
+              </Button>
+            </BtnStyle>
+          </Link>
+        </CardBody>
+      </Card>
+    );
   }
 
+  componentDidMount() {
+    this.props.getRestaurants();
+  }
+
+<<<<<<< HEAD
   return (
     <HomeStyle>
       Escolha uma das páginas para explorar
@@ -31,4 +72,56 @@ export default function Home() {
       </ul>
     </HomeStyle>
   );
+=======
+  render() {
+    const { restaurants } = this.props;
+    const arrRest = getRandomSlice(restaurants.data, 3);
+
+    return (
+      <HomeStyle>
+        {restaurants.loading ? (
+          <ReactLoading
+            type={"spin"}
+            style={{
+              position: "absolute",
+              width: "10vw",
+              top: "40%",
+              left: "0",
+              right: "0",
+              margin: "auto",
+            }}
+          />
+        ) : (
+          <div>
+            <FadeIn transitionDuration={800}>
+              <TextStyle>
+                Saboreie as deliciosas comidas dos nossos restaurantes
+                parceiros!
+              </TextStyle>
+            </FadeIn>
+            <FadeIn transitionDuration={1000}>
+              <CardGroup>
+                {arrRest.map((restaurant) => {
+                  const dish =
+                    restaurant.menu.options[restaurant.menu.destaqueIndex];
+                  return this.getCard({
+                    restId: restaurant.id,
+                    dishPhoto: dish.photo,
+                    restName: restaurant.name,
+                    dishName: dish.name,
+                    dishDescription: dish.description,
+                  });
+                })}
+              </CardGroup>
+            </FadeIn>
+          </div>
+        )}
+      </HomeStyle>
+    );
+  }
+>>>>>>> fixDesenvolvimento
 }
+
+const mapStateToProps = ({ restaurants }) => ({ restaurants });
+
+export default connect(mapStateToProps, { ...RestaurantsCreator })(Home);
