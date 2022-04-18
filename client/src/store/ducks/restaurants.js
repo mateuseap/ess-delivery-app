@@ -3,7 +3,7 @@ import Immutable from "seamless-immutable";
 
 export const { Types, Creators } = createActions({
   restaurantsRequest: [],
-  getRestaurants: [],
+  getRestaurants: ["displayAll"],
   restaurantsSuccess: ["data"],
   restaurantsError: ["err"],
 });

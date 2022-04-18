@@ -40,7 +40,7 @@ class History extends Component {
 
   componentDidMount() {
     this.props.getHistory();
-    this.props.getRestaurants();
+    this.props.getRestaurants(true);
   }
 
   render() {
