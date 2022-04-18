@@ -9,6 +9,7 @@ import {
   CardBody,
   DishImg,
   Card,
+  BtnStyle,
 } from "./styles";
 
 import ReactLoading from "react-loading";
@@ -20,6 +21,7 @@ import FadeIn from "react-fade-in";
 
 import { connect } from "react-redux";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
+import { getRandomSlice } from "../../utils/misc";
 
 class Home extends Component {
   getCard(element) {
@@ -27,15 +29,17 @@ class Home extends Component {
       <Card key={element.restId}>
         <DishImg src={element.dishPhoto}></DishImg>
 
-        <CardBody>
+        <CardBody className="mb-5">
           <CardTitle>{element.restName}</CardTitle>
           <DishName>{element.dishName}</DishName>
           <DishDescription>{element.dishDescription}</DishDescription>
           {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
           <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
-            <Button variant="success" className="m-2">
-              PEÇA JÁ!
-            </Button>
+            <BtnStyle>
+              <Button variant="success" className="m-2">
+                PEÇA JÁ!
+              </Button>
+            </BtnStyle>
           </Link>
         </CardBody>
       </Card>
@@ -43,13 +47,13 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log("dale2");
     this.props.getRestaurants();
   }
 
   render() {
     const { restaurants } = this.props;
-    console.log(restaurants);
+    const arrRest = getRandomSlice(restaurants.data, 3);
+
     return (
       <HomeStyle>
         {restaurants.loading ? (
@@ -74,7 +78,7 @@ class Home extends Component {
             </FadeIn>
             <FadeIn transitionDuration={1000}>
               <CardGroup>
-                {this.props.restaurants.data.map((restaurant) => {
+                {arrRest.map((restaurant) => {
                   const dish =
                     restaurant.menu.options[restaurant.menu.destaqueIndex];
                   return this.getCard({

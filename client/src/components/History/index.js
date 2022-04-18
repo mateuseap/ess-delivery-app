@@ -38,7 +38,7 @@ class History extends Component {
 
   componentDidMount() {
     this.props.getHistory();
-    this.props.getRestaurants(true);
+    this.props.getRestaurants();
   }
 
   render() {
@@ -202,7 +202,6 @@ class History extends Component {
                     <RateLabel>
                       <h2>
                         {this.state.data[orderToRate].description[0].name}
-                        {console.log(this.state.changeSelectedTdBg)}
                       </h2>
                       <Popup
                         trigger={<Button variant="warning">Detalhes</Button>}
@@ -311,20 +310,24 @@ class History extends Component {
 
                         try {
                           this.setState({ data: historyData }, () => {
-                            this.props.postHistory(this.state.data);
-                            this.props.putRestaurants({
-                              rate: {
-                                stars: this.state.data[orderToRate].rate.stars,
-                                feedback_text:
-                                  this.state.data[orderToRate].rate
-                                    .feedback_text,
+                            this.props.postHistory({
+                              data: this.state.data,
+                              changes: {
+                                rate: {
+                                  stars:
+                                    this.state.data[orderToRate].rate.stars,
+                                  feedback_text:
+                                    this.state.data[orderToRate].rate
+                                      .feedback_text,
+                                },
+                                index: orderToRate,
                               },
-                              index: orderToRate,
                             });
                             this.setState({ showRateFeedback: true });
                           });
                         } catch (err) {
                           this.setState({ showRateFeedback: true });
+                          console.log(err);
                         }
                       }}
                     >

@@ -1,5 +1,4 @@
 const { ManipulateDatabase } = require("../utils/db");
-const { getRandomSlice } = require("../utils/misc");
 
 exports.getCart = async (req, res) => {
   try {
