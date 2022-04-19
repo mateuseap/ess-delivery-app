@@ -4,7 +4,7 @@ Feature: Avaliar Pedidos
     so that Eu posso descrever como foram as minhas experiências com os pedidos
 
 Scenario: Avaliando um pedido qualquer sem texto de feedback
-    Given Estou logado como usuário com login “guimorone” e senha “12345”
+    Given Estou logado como usuário com login "guimorone" e senha "12345"
         And eu estou na página de histórico de pedidos
         And vou avaliar um pedido
     When eu clico em avaliar um pedido
@@ -14,17 +14,17 @@ Scenario: Avaliando um pedido qualquer sem texto de feedback
     Then Eu vejo uma mensagem de sucesso na tela
 
 Scenario: Avaliando um pedido qualquer com texto de feedback
-    Given Estou logado como usuário com login “guimorone” e senha “12345”
+    Given Estou logado como usuário com login "guimorone" e senha "12345"
         And eu estou na página de histórico de pedidos
         And vou avaliar um pedido
     When eu clico em avaliar um pedido
         And avalio o pedido com 5 estrelas
-        And escrevo a frase “gostei bastante do pedido” na caixa de texto de feedback
+        And escrevo a frase "gostei bastante do pedido" na caixa de texto de feedback
         And clico em enviar avaliação
     Then Eu vejo uma mensagem de sucesso na tela
 
 Scenario: Avaliando múltiplos pedidos feitos em um mesmo restaurante sem texto de feedback
-    Given Estou logado como usuário com login “guimorone” e senha “12345”
+    Given Estou logado como usuário com login "guimorone" e senha "12345"
 	    And eu estou na página de histórico de pedidos
 	    And vou avaliar um pedido de um restaurante que eu já avaliei outro pedido
 	When eu clico em avaliar um pedido de um restaurante que eu já conheço
@@ -34,11 +34,11 @@ Scenario: Avaliando múltiplos pedidos feitos em um mesmo restaurante sem texto 
 	Then Eu vejo uma mensagem de sucesso na tela
 
 Scenario: Avaliando múltiplos pedidos feitos em um mesmo restaurante com texto de feedback
-    Given Estou logado como usuário com login “guimorone” e senha “12345”
+    Given Estou logado como usuário com login "guimorone" e senha "12345"
         And eu estou na página de histórico de pedidos
         And vou avaliar um pedido de um restaurante que eu já avaliei outro pedido
 	When eu clico em avaliar um pedido de um restaurante que eu já conheço
         And avalio o pedido com 5 estrelas
-        And escrevo a frase “Gostei bastante do pedido!” na caixa de texto de feedback
+        And escrevo a frase "Gostei bastante do pedido!" na caixa de texto de feedback
         And clico em enviar avaliação
 	Then Eu vejo uma mensagem de sucesso na tela
