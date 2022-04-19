@@ -33,7 +33,7 @@ class Home extends Component {
           <DishName>{element.dishName}</DishName>
           <DishDescription>{element.dishDescription}</DishDescription>
           {/* Quando apertar esse botão, o usuário deve ser redirecionado a tela de fazer pedidos com esse restaurante selecionado */}
-          <Link to={`/fazer_pedido?restaurant_id=${element.restId}`}>
+          <Link to={`/menu/${element.restId}`}>
             <BtnStyle>
               <Button variant="success" className="m-2">
                 PEÇA JÁ!

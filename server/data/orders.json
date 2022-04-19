@@ -47,10 +47,10 @@
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
       "forma_pagamento": {},
       "status": {
-        "preparado": false,
-        "finalizado": false,
-        "saiu_para_entrega": false,
-        "entregue": false
+        "preparado": true,
+        "finalizado": true,
+        "saiu_para_entrega": true,
+        "entregue": true
       },
       "rate": {
         "did": false,
@@ -78,10 +78,10 @@
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
       "forma_pagamento": {},
       "status": {
-        "preparado": false,
-        "finalizado": false,
-        "saiu_para_entrega": false,
-        "entregue": false
+        "preparado": true,
+        "finalizado": true,
+        "saiu_para_entrega": true,
+        "entregue": true
       },
       "rate": {
         "did": false,
@@ -105,10 +105,10 @@
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
       "forma_pagamento": {},
       "status": {
-        "preparado": false,
-        "finalizado": false,
-        "saiu_para_entrega": false,
-        "entregue": false
+        "preparado": true,
+        "finalizado": true,
+        "saiu_para_entrega": true,
+        "entregue": true
       },
       "rate": {
         "did": true,
