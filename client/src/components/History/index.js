@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import {
   RateLabel,
   BorderText,
@@ -40,7 +42,7 @@ class History extends Component {
 
   componentDidMount() {
     this.props.getHistory();
-    this.props.getRestaurants(true);
+    this.props.getRestaurants({ query: "displayAll" });
   }
 
   render() {
@@ -132,7 +134,13 @@ class History extends Component {
                           </TableBodyStyle>
                         </td>
                         <td>
-                          {!element.rate.did ? (
+                          {!element.status.entregue ? (
+                            <Link to={`/detalhes/${element.id}`}>
+                              <Button variant="success" className="mx-3">
+                                Acompanhar pedido
+                              </Button>
+                            </Link>
+                          ) : !element.rate.did ? (
                             <Button
                               variant="primary"
                               disabled={orderToRate >= 0 ? true : false}
