@@ -12,6 +12,10 @@ function dateToString(date) {
   return anoF + "-" + mesF + "-" + diaF;
 }
 
+function dateStrToInt(dateStr) {
+  return new Date(dateStr).getTime();
+}
+
 exports.getOrders = async (req, res) => {
   try {
     const days = JSON.parse(req.query.query).query;
@@ -28,7 +32,7 @@ exports.getOrders = async (req, res) => {
         ],
       },
     });
-
+    resp.sort((a, b) => dateStrToInt(b.date) - dateStrToInt(a.date));
     res.status(200).send(JSON.stringify(resp));
   } catch (err) {
     res.status(500).send(err);
@@ -50,8 +54,12 @@ exports.postOrders = async (req, res) => {
     restaurants.write({ restaurants: arr });
 
     // Orders update
-    table.write({ orders: req.body.data.data });
-    res.status(200).send(JSON.stringify(table.getArray()));
+    table.deleteOrReplace(
+      changes.index,
+      1,
+      req.body.data.data[changes.modifiedIndex]
+    );
+    res.status(200).send(JSON.stringify({ post: true, err: false }));
   } catch (err) {
     res.status(500).send(err);
   }

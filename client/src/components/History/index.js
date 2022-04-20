@@ -197,7 +197,10 @@ class History extends Component {
                                   disabled={orderToRate >= 0 ? true : false}
                                   onClick={() =>
                                     this.setState({
-                                      orderToRate: element.id,
+                                      orderToRate:
+                                        index +
+                                        this.state.currentPage *
+                                          this.elemPerPages,
                                       changeSelectedTdBg: [
                                         ...this.state.changeSelectedTdBg,
                                       ].map((element, idx) => {
@@ -205,8 +208,11 @@ class History extends Component {
                                         else return false;
                                       }),
                                       canSendRate:
-                                        this.state.data[element.id].rate
-                                          .stars !== 0
+                                        this.state.data[
+                                          index +
+                                            this.state.currentPage *
+                                              this.elemPerPages
+                                        ].rate.stars !== 0
                                           ? true
                                           : false,
                                     })
@@ -221,7 +227,10 @@ class History extends Component {
                                   disabled={orderToRate >= 0 ? true : false}
                                   onClick={() =>
                                     this.setState({
-                                      orderToRate: element.id,
+                                      orderToRate:
+                                        index +
+                                        this.state.currentPage *
+                                          this.elemPerPages,
                                       changeSelectedTdBg: [
                                         ...this.state.changeSelectedTdBg,
                                       ].map((element, idx) => {
