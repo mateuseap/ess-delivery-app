@@ -20,7 +20,7 @@ export default function NotFound() {
       <h1 className="font-weight-bold">PAGE NOT FOUND</h1>
       <h2>Parece que não podemos carregar essa página ☹</h2>
       <Link to="/home" className="m-2">
-        <Button>Volte à página inicial</Button>
+        <Button>Voltar à página inicial</Button>
       </Link>
     </div>
   );
