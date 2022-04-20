@@ -26,15 +26,7 @@ import ReactLoading from "react-loading";
 import { connect } from "react-redux";
 import { Creators as HistoryCreator } from "../../store/ducks/history";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
-import {
-  Table,
-  Button,
-  Form,
-  Alert,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Table, Button, Form, Alert } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 
 import { formatMoney } from "../../utils/misc";
