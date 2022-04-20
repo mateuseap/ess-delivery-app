@@ -41,11 +41,12 @@ class History extends Component {
       showRateFeedback: false,
       changeSelectedTdBg: [],
       canSendRate: false, // A avaliação com estrelas é obrigatória
+      daysFilter: 30,
     };
   }
 
   componentDidMount() {
-    this.props.getHistory();
+    this.props.getHistory({ query: this.state.daysFilter });
     this.props.getRestaurants({ query: "displayAll" });
   }
 
@@ -97,7 +98,13 @@ class History extends Component {
           <RectangleFilter>
             Filtro de Dias
             <RectangleDaysFilter>
-              <SelectStyle>
+              <SelectStyle
+                onChange={(elem) =>
+                  this.setState({ daysFilter: elem.target.value }, () =>
+                    this.props.getHistory({ query: this.state.daysFilter })
+                  )
+                }
+              >
                 <option value="30" style={{ color: "black" }}>
                   30 dias
                 </option>
