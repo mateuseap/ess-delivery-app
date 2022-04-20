@@ -6,7 +6,7 @@ function dateToString(date) {
   const data = date,
     dia = data.getDate().toString(),
     diaF = dia.length == 1 ? "0" + dia : dia,
-    mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+    mes = (data.getMonth() + 1).toString(),
     mesF = mes.length == 1 ? "0" + mes : mes,
     anoF = data.getFullYear();
   return anoF + "-" + mesF + "-" + diaF;
@@ -17,7 +17,6 @@ exports.getOrders = async (req, res) => {
     const days = JSON.parse(req.query.query).query;
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
-    console.log(days, dateToString(startDate));
     const resp = table.read({
       deep: {
         deepSearch: true,
