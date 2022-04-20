@@ -5,24 +5,28 @@ const restaurants = new ManipulateDatabase("restaurants");
 
 exports.getRestaurants = async (req, res) => {
   try {
-    const requisition = req.query.query ? JSON.parse(req.query.query) : null;
     const arr = restaurants.getArray();
-    if (requisition.query === "displayAll")
-      res.status(200).send(JSON.stringify(arr));
-    else if (requisition.query >= 0) {
+    let requisition = null;
+    if (req.query.query !== undefined)
+      requisition = JSON.parse(req.query.query);
+
+    if (req.query.id !== undefined) {
+      const restId = JSON.parse(req.query.id);
       const resp = restaurants.read({
         deep: {
           deepSearch: true,
           booleans: [
             {
               findOne: true,
-              expr: `id=${requisition.query}`,
+              expr: `id=${restId}`,
             },
           ],
         },
       });
       res.status(200).send(resp);
-    } else res.status(200).send(JSON.stringify(getRandomSlice(arr, 3)));
+    } else if (requisition.query && requisition.query === "displayAll")
+      res.status(200).send(JSON.stringify(arr));
+    else res.status(200).send(JSON.stringify(getRandomSlice(arr, 3)));
   } catch (err) {
     res.status(500).send(err);
   }

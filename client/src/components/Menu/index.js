@@ -1,22 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+
+import { ItemPhoto, PageStyle } from "./styles";
 
 import ReactLoading from "react-loading";
 
-import { connect } from "react-redux";
-import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
+import ReactStars from "react-rating-stars-component";
 
-function Menu(props) {
+import { Button } from "react-bootstrap";
+
+import { API_URL } from "../../constants/constants";
+
+function getAverage(arr) {
+  let count = 0;
+  arr.forEach((element) => (count += element.stars));
+
+  return count / arr.length;
+}
+
+export default function Menu() {
   const { id } = useParams();
-  const { restaurants } = props;
+  const [restaurant, setRestaurant] = useState(null);
 
-  useEffect(() => {
-    props.getRestaurants({ query: id });
-  }, [id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  async function fetchData() {
+    const response = await fetch(API_URL + `/restaurants?id=${id}`);
+    const jsonResp = await response.json();
+    setRestaurant(jsonResp);
+  }
+
+  async function fetchPostDataCart(obj) {
+    const response = await fetch(API_URL + "/cart", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+    const jsonResp = await response.json();
+  }
+
+  useEffect(() => fetchData(), [id]);
 
   return (
     <>
-      {restaurants.loading ? (
+      {!restaurant ? (
         <ReactLoading
           type={"spin"}
           style={{
@@ -28,18 +57,32 @@ function Menu(props) {
             margin: "auto",
           }}
         />
-      ) : restaurants.data &&
-        restaurants.data.menu &&
-        restaurants.data.menu.options &&
-        restaurants.data.menu.options.length ? (
-        restaurants.data.menu.options.map((element) => (
-          <h1>{element.description}</h1>
-        ))
-      ) : null}
+      ) : (
+        <PageStyle className="m-3">
+          <h1>{restaurant.name}</h1>
+          <ReactStars
+            count={5}
+            isHalf={true}
+            value={getAverage(restaurant.rates)}
+            edit={false}
+            size={50}
+            activeColor="#ffd700"
+          />
+          {restaurant.menu.options.map((element) => (
+            <>
+              <ItemPhoto photo={element.photo} />
+              <p>{element.description}</p>
+              <Button
+                variant="danger"
+                type="button"
+                onClick={(e) => fetchPostDataCart(element)}
+              >
+                Adicionar item ao carrinho
+              </Button>
+            </>
+          ))}
+        </PageStyle>
+      )}
     </>
   );
 }
-
-const mapStateToProps = ({ restaurants }) => ({ restaurants });
-
-export default connect(mapStateToProps, { ...RestaurantsCreator })(Menu);
