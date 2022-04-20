@@ -114,3 +114,18 @@ export const TopDiv = styled.div`
   grid-auto-flow: column;
   grid-column-gap: 10vw;
 `;
+
+export const CircleStyle = styled.div`
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  background: rgba(250, 16, 52, 0.82);
+  border-radius: 63px;
+  box-sizing: border-box;
+  &:hover {
+    border: 1px solid #ffffff;
+  }
+  &:active {
+    background-color: rgba(250, 16, 52, 0.2);
+  }
+`;
