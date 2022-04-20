@@ -8,7 +8,7 @@ import { Types as CartTypes } from "../ducks/cart";
 import getUser from "./user";
 import getRestaurants from "./restaurants";
 import { getHistory, postHistory } from "./history";
-import getCart from "./cart";
+import { getCart, updateCart } from "./cart";
 
 export default function* rootSaga() {
   return yield all([
@@ -17,5 +17,6 @@ export default function* rootSaga() {
     takeLatest(HistoryTypes.GET_HISTORY, getHistory),
     takeLatest(HistoryTypes.POST_HISTORY, postHistory),
     takeLatest(CartTypes.GET_CART, getCart),
+    takeLatest(CartTypes.UPDATE_CART, updateCart),
   ]);
 }

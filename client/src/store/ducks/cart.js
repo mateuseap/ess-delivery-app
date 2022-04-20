@@ -4,6 +4,7 @@ import Immutable from "seamless-immutable";
 export const { Types, Creators } = createActions({
   cartRequest: [],
   getCart: [],
+  updateCart: ["cart"],
   cartSuccess: ["data"],
   cartError: ["err"],
 });
