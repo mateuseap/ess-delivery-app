@@ -11,6 +11,10 @@ import {
   ImageStyle,
   DescriptionStyle,
   DisabledSendButton,
+  RectangleFilter,
+  RectangleDaysFilter,
+  SelectStyle,
+  TopDiv,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -22,7 +26,15 @@ import ReactLoading from "react-loading";
 import { connect } from "react-redux";
 import { Creators as HistoryCreator } from "../../store/ducks/history";
 import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
-import { Table, Button, Form, Alert } from "react-bootstrap";
+import {
+  Table,
+  Button,
+  Form,
+  Alert,
+  Container,
+  Row,
+  Col,
+} from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 
 import { formatMoney } from "../../utils/misc";
@@ -86,9 +98,24 @@ class History extends Component {
             </Alert>
           )
         ) : null}
-        <BorderText className="m-3">
-          <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
-        </BorderText>
+        <TopDiv className="m-3">
+          <BorderText>
+            <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
+          </BorderText>
+          <RectangleFilter>
+            Filtro de Dias
+            <RectangleDaysFilter>
+              <SelectStyle>
+                <option value="30" style={{ color: "black" }}>
+                  30 dias
+                </option>
+                <option value="15" style={{ color: "black" }}>
+                  15 dias
+                </option>
+              </SelectStyle>
+            </RectangleDaysFilter>
+          </RectangleFilter>
+        </TopDiv>
         {history.loading || restaurants.loading ? (
           <ReactLoading
             type={"spin"}

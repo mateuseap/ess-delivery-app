@@ -58,11 +58,59 @@ export const BorderText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
+  width: 30vw;
   color: white;
   line-height: 70px;
   font-weight: 400;
   text-align: center;
   background: rgba(250, 16, 52, 0.82);
   border-radius: 63px;
+`;
+
+export const RectangleFilter = styled.div`
+  width: 230px;
+  height: 60px;
+  display: flex;
+  gap: 10%;
+  padding: 12px;
+
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 38px;
+
+  justify-content: center;
+  align-items: center;
+
+  background: #91091e;
+  border-radius: 100px;
+`;
+
+export const RectangleDaysFilter = styled.div`
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(250, 16, 52, 0.82);
+  border-radius: 63px;
+`;
+
+export const SelectStyle = styled.select`
+  background: transparent;
+  line-height: 1;
+  border: 0;
+  color: white;
+  border-radius: 63px;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  -webkit-appearance: none;
+`;
+
+export const TopDiv = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 10vw;
 `;
