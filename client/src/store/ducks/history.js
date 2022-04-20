@@ -3,7 +3,7 @@ import Immutable from "seamless-immutable";
 
 export const { Types, Creators } = createActions({
   historyRequest: [],
-  getHistory: [],
+  getHistory: ["query"],
   postHistory: ["data"],
   historySuccess: ["data"],
   historyError: ["err"],
