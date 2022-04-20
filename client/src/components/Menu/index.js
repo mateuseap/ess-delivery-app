@@ -8,11 +8,11 @@ import { Creators as RestaurantsCreator } from "../../store/ducks/restaurants";
 
 function Menu(props) {
   const { id } = useParams();
-
-  useEffect(() => props.getRestaurants({ query: id }), []);
-
   const { restaurants } = props;
-  console.log(restaurants);
+
+  useEffect(() => {
+    props.getRestaurants({ query: id });
+  }, [id]);
 
   return (
     <>
@@ -28,11 +28,14 @@ function Menu(props) {
             margin: "auto",
           }}
         />
-      ) : (
+      ) : restaurants.data &&
+        restaurants.data.menu &&
+        restaurants.data.menu.options &&
+        restaurants.data.menu.options.length ? (
         restaurants.data.menu.options.map((element) => (
           <h1>{element.description}</h1>
         ))
-      )}
+      ) : null}
     </>
   );
 }

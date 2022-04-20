@@ -46,7 +46,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.getRestaurants();
+    this.props.getRestaurants({ query: undefined });
   }
 
   render() {

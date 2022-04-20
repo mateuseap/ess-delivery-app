@@ -5,9 +5,10 @@ const restaurants = new ManipulateDatabase("restaurants");
 
 exports.getRestaurants = async (req, res) => {
   try {
-    const requisition = JSON.parse(req.query.query);
+    const requisition = req.query.query ? JSON.parse(req.query.query) : null;
     const arr = restaurants.getArray();
-    if (requisition.query === "displayAll") res.status(200).send(JSON.stringify(arr));
+    if (requisition.query === "displayAll")
+      res.status(200).send(JSON.stringify(arr));
     else if (requisition.query >= 0) {
       const resp = restaurants.read({
         deep: {
