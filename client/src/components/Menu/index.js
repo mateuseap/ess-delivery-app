@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { ItemPhoto, PageStyle } from "./styles";
+import {
+  ItemPhoto,
+  PageStyle,
+  MenuStyle,
+  MenuItemStyle,
+  ItemData,
+  ItemDescriptionStyle,
+} from "./styles";
 
 import ReactLoading from "react-loading";
 
@@ -68,19 +75,26 @@ export default function Menu() {
             size={50}
             activeColor="#ffd700"
           />
-          {restaurant.menu.options.map((element) => (
-            <>
-              <ItemPhoto photo={element.photo} />
-              <p>{element.description}</p>
-              <Button
-                variant="danger"
-                type="button"
-                onClick={(e) => fetchPostDataCart(element)}
-              >
-                Adicionar item ao carrinho
-              </Button>
-            </>
-          ))}
+          <MenuStyle>
+            {restaurant.menu.options.map((element) => (
+              <MenuItemStyle className="mx-5">
+                <ItemPhoto className="m-2" photo={element.photo} />
+                <ItemData className="m-2">
+                  <ItemDescriptionStyle>
+                    {element.description}
+                  </ItemDescriptionStyle>
+                  <Button
+                    style={{ width: "280px" }}
+                    variant="outline-danger"
+                    type="button"
+                    onClick={(e) => fetchPostDataCart(element)}
+                  >
+                    <strong>Adicionar item ao carrinho</strong>
+                  </Button>
+                </ItemData>
+              </MenuItemStyle>
+            ))}
+          </MenuStyle>
         </PageStyle>
       )}
     </>
