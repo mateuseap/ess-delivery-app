@@ -13,6 +13,7 @@ import { getHistorySvg, getCartSvg } from "../../assets/headerAssets";
 class Header extends Component {
   componentDidMount() {
     this.props.getUser();
+    this.props.getCart();
   }
 
   getCartItemCount() {
