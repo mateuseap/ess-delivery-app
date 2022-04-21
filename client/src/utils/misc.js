@@ -30,3 +30,8 @@ export function formatMoney(
     console.log(e);
   }
 }
+
+export const divideArray = (arr, elementsPerIndex = 3) =>
+  new Array(Math.ceil(arr.length / elementsPerIndex))
+    .fill()
+    .map(() => arr.splice(0, elementsPerIndex));

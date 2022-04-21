@@ -4,8 +4,8 @@ import { useParams } from "react-router";
 import {
   ItemPhoto,
   PageStyle,
-  MenuStyle,
-  MenuItemStyle,
+  TableStyle,
+  TableBodyStyle,
   ItemData,
   ItemDescriptionStyle,
 } from "./styles";
@@ -14,7 +14,9 @@ import ReactLoading from "react-loading";
 
 import ReactStars from "react-rating-stars-component";
 
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+
+import { formatMoney } from "../../utils/misc";
 
 import { API_URL } from "../../constants/constants";
 
@@ -75,26 +77,39 @@ export default function Menu() {
             size={50}
             activeColor="#ffd700"
           />
-          <MenuStyle>
-            {restaurant.menu.options.map((element) => (
-              <MenuItemStyle className="mx-5">
-                <ItemPhoto className="m-2" photo={element.photo} />
-                <ItemData className="m-2">
-                  <ItemDescriptionStyle>
-                    {element.description}
-                  </ItemDescriptionStyle>
-                  <Button
-                    style={{ width: "280px" }}
-                    variant="outline-danger"
-                    type="button"
-                    onClick={(e) => fetchPostDataCart(element)}
-                  >
-                    <strong>Adicionar item ao carrinho</strong>
-                  </Button>
-                </ItemData>
-              </MenuItemStyle>
-            ))}
-          </MenuStyle>
+
+          <Table borderless>
+            <tbody>
+              <tr className="mx-5">
+                <TableStyle>
+                  {restaurant.menu.options.map((element) => (
+                    <td>
+                      <TableBodyStyle>
+                        <ItemPhoto className="m-2" photo={element.photo} />
+                        <ItemData className="m-2">
+                          <ItemDescriptionStyle>
+                            <h4>{element.name}</h4>
+                            {element.description}
+                          </ItemDescriptionStyle>
+                          <Button
+                            style={{ width: "280px", paddingBottom: 0 }}
+                            variant="outline-danger"
+                            type="button"
+                            onClick={(e) => fetchPostDataCart(element)}
+                          >
+                            <strong>
+                              Adicionar item ao carrinho
+                              <h4>{" +R$" + formatMoney(element.price)}</h4>
+                            </strong>
+                          </Button>
+                        </ItemData>
+                      </TableBodyStyle>
+                    </td>
+                  ))}
+                </TableStyle>
+              </tr>
+            </tbody>
+          </Table>
         </PageStyle>
       )}
     </>
