@@ -129,3 +129,15 @@ export const CircleStyle = styled.div`
     background-color: rgba(250, 16, 52, 0.2);
   }
 `;
+
+export const NoDataStyle = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 45%;
+  left: 0;
+  right: 0;
+  margin: auto;
+`;

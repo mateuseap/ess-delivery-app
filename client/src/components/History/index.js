@@ -16,6 +16,7 @@ import {
   SelectStyle,
   TopDiv,
   CircleStyle,
+  NoDataStyle,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -136,7 +137,7 @@ class History extends Component {
                 <option value="15" style={{ color: "black" }}>
                   15 dias
                 </option>
-                <option value="7"  style={{ color: "black"}}>
+                <option value="7" style={{ color: "black" }}>
                   7 dias
                 </option>
               </SelectStyle>
@@ -263,7 +264,14 @@ class History extends Component {
                         restData: restaurants.data,
                       })
                     ) : (
-                      <p>erro</p>
+                      // Sem restaurantes no banco
+                      <NoDataStyle>
+                        <h1>Nenhum restaurante encontrado em nosso banco</h1>
+                        <h2>Desculpe o transtorno ☹</h2>
+                        <Link to="/home" className="m-2">
+                          <Button>Voltar à página inicial</Button>
+                        </Link>
+                      </NoDataStyle>
                     )
                   ) : history.data && history.data.length ? (
                     this.setState({
@@ -271,7 +279,14 @@ class History extends Component {
                       changeSelectedTdBg: new Array(history.data.length),
                     })
                   ) : (
-                    <p>erro</p>
+                    // Sem pedidos no banco
+                    <NoDataStyle>
+                      <h1>Não há pedidos registrados em sua conta</h1>
+                      <h2>Volte a página inicial</h2>
+                      <Link to="/home" className="m-2">
+                        <Button>Voltar</Button>
+                      </Link>
+                    </NoDataStyle>
                   )}
                 </tbody>
               </Table>
