@@ -6,11 +6,13 @@ import user from "./user";
 import restaurants from "./restaurants";
 import history from "./history";
 import cart from "./cart";
+import menu from "./menu"
 
 export default combineReducers({
   user,
   restaurants,
   history,
   cart,
-  toastr,
-});
+  menu,
+  toastr
+}); 
