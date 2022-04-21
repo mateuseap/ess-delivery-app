@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { ItemPhoto, PageStyle } from "./styles";
+import {
+  ItemPhoto,
+  PageStyle,
+  TableStyle,
+  TableBodyStyle,
+  ItemData,
+  ItemDescriptionStyle,
+} from "./styles";
 
 import ReactLoading from "react-loading";
 
 import ReactStars from "react-rating-stars-component";
 
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+
+import { formatMoney } from "../../utils/misc";
 
 import { API_URL } from "../../constants/constants";
 
@@ -88,19 +97,39 @@ export default function Menu() {
             size={50}
             activeColor="#ffd700"
           />
-          {restaurant.menu.options.map((element) => (
-            <>
-              <ItemPhoto photo={element.photo} />
-              <p>{element.description}</p>
-              <Button
-                variant="danger"
-                type="button"
-                onClick={(e) => fetchPostDataCart(element)}
-              >
-                Adicionar item ao carrinho
-              </Button>
-            </>
-          ))}
+
+          <Table borderless>
+            <tbody>
+              <tr className="mx-5">
+                <TableStyle>
+                  {restaurant.menu.options.map((element) => (
+                    <td>
+                      <TableBodyStyle>
+                        <ItemPhoto className="m-2" photo={element.photo} />
+                        <ItemData className="m-2">
+                          <ItemDescriptionStyle>
+                            <h4>{element.name}</h4>
+                            {element.description}
+                          </ItemDescriptionStyle>
+                          <Button
+                            style={{ width: "280px", paddingBottom: 0 }}
+                            variant="outline-danger"
+                            type="button"
+                            onClick={(e) => fetchPostDataCart(element)}
+                          >
+                            <strong>
+                              Adicionar item ao carrinho
+                              <h4>{" +R$" + formatMoney(element.price)}</h4>
+                            </strong>
+                          </Button>
+                        </ItemData>
+                      </TableBodyStyle>
+                    </td>
+                  ))}
+                </TableStyle>
+              </tr>
+            </tbody>
+          </Table>
         </PageStyle>
       )}
     </>

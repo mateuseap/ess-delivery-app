@@ -43,3 +43,7 @@ export function withRouter(Component) {
 
   return ComponentWithRouterProp;
 }
+export const divideArray = (arr, elementsPerIndex = 3) =>
+  new Array(Math.ceil(arr.length / elementsPerIndex))
+    .fill()
+    .map(() => arr.splice(0, elementsPerIndex));
