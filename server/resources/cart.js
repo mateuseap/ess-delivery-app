@@ -1,4 +1,5 @@
 const { ManipulateDatabase } = require("../utils/db");
+const jwt_decode = require("jwt-decode");
 
 exports.getCart = async (req, res) => {
   try {
@@ -21,8 +22,13 @@ exports.getCart = async (req, res) => {
 
 exports.postCart = async (req, res) => {
   try {
-    table.write({ orders: req.body.data });
-    res.status(200).send(JSON.stringify(table.getArray()));
+    const decoded_auth = jwt_decode(req.headers.authorization);
+    const table = new ManipulateDatabase("carts");
+    const compareFunction = (item, index) =>
+      item.user_id == decoded_auth.userId;
+    table.replaceOrAppend(compareFunction, req.body.cart);
+
+    res.status(200).send(req.body.cart);
   } catch (err) {
     res.status(500).send(err);
   }

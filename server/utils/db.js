@@ -58,6 +58,19 @@ exports.ManipulateDatabase = class {
     }
   }
 
+  //procura por um objeto no array, caso o encontre o substitui por um novo
+  //caso nao ache o adiciona ao final
+  replaceOrAppend(compareFunction, newItem) {
+    const index = this.#document[this.#tableName].findIndex(compareFunction);
+    if (index != -1) {
+      this.#document[this.#tableName].splice(index, 1, newItem);
+      this.saveChanges();
+      return true;
+    } else {
+      this.append(newItem);
+    }
+  }
+
   saveChanges() {
     this.write(this.#document);
   }
