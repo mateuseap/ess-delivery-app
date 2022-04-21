@@ -44,7 +44,7 @@ exports.postOrders = async (req, res) => {
     table.deleteOrReplace(
       changes.index,
       1,
-      req.body.data.data[changes.modifiedIndex]
+      req.body.data.data
     );
     res.status(200).send(JSON.stringify({ post: true, err: false }));
   } catch (err) {

@@ -141,3 +141,7 @@ export const NoDataStyle = styled.div`
   right: 0;
   margin: auto;
 `;
+
+export const OptionStyle = styled.option`
+  color: black;
+`;
