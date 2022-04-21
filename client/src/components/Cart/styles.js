@@ -21,7 +21,7 @@ export const RestaurantText = styled.div`
   color: #91091e;
 `;
 
-export const HeaderRow = styled.tr`
+export const HeaderRow = styled.div`
   font-size: 2rem;
   font-family: Helvetica;
   text-align: center;
@@ -32,7 +32,7 @@ export const HeaderRow = styled.tr`
   flex-direction: row;
 `;
 
-export const ItemRow = styled.tr`
+export const ItemRow = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 1.5rem;
@@ -44,22 +44,22 @@ export const ItemRow = styled.tr`
   align-items: center;
 `;
 
-export const ItemNameHeader = styled.tr`
+export const ItemNameHeader = styled.div`
   width: 30%;
   margin-left: 7vw;
 `;
-export const ItemName = styled.tr`
+export const ItemName = styled.div`
   width: 30%;
 `;
 
-export const ItemPrice = styled.tr`
+export const ItemPrice = styled.div`
   width: 20%;
 `;
-export const ItemQuantity = styled.tr`
+export const ItemQuantity = styled.div`
   width: 15%;
 `;
 
-export const ItemTotal = styled.tr`
+export const ItemTotal = styled.div`
   margin-left: auto;
   text-align: end;
   width: 15%;
@@ -112,4 +112,16 @@ export const ItemImg = styled.div`
   border-radius: 50px;
   width: 7vw;
   height: 8vh;
+`;
+
+export const RedirectHomeButton = styled.div`
+  margin: 2% auto 0 auto;
+  background-color: #91091e;
+  cursor: pointer;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 12px 5% 12px 5%;
+  color: white;
+  width: fit-content;
 `;

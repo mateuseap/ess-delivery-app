@@ -15,6 +15,7 @@ import {
   RemoveButton,
   AddButton,
   ItemImg,
+  RedirectHomeButton,
 } from "./styles";
 
 import ReactLoading from "react-loading";
@@ -29,9 +30,21 @@ class Cart extends Component {
     this.props.getCart();
   }
 
-  addItem(item) {}
+  addItem(index) {
+    const newCart = JSON.parse(JSON.stringify(this.props.cart.data));
+    newCart.items[index].quantity += 1;
 
-  removeItem(item) {}
+    this.props.updateCart(newCart);
+  }
+
+  removeItem(index) {
+    const newCart = JSON.parse(JSON.stringify(this.props.cart.data));
+    newCart.items[index].quantity -= 1;
+
+    if (newCart.items[index].quantity === 0) newCart.items.splice(index, 1);
+
+    this.props.updateCart(newCart);
+  }
 
   render() {
     const { cart } = this.props;
@@ -52,30 +65,49 @@ class Cart extends Component {
           />
         ) : (
           <>
-            <TextStyle>Seu carrinho de compras</TextStyle>
-            <RestaurantText>Restaurante: {cart.data.rest_name}</RestaurantText>
+            {cart.data ? (
+              <>
+                <TextStyle>Seu carrinho de compras</TextStyle>
+                <RestaurantText>
+                  Restaurante: {cart.data.rest_name}
+                </RestaurantText>
 
-            <HeaderRow>
-              <ItemNameHeader>Item</ItemNameHeader>
-              <ItemQuantity>Qtd</ItemQuantity>
-              <ItemPrice>Preço unitário</ItemPrice>
-              <ItemTotal>Total do item</ItemTotal>
-            </HeaderRow>
+                <HeaderRow>
+                  <ItemNameHeader>Item</ItemNameHeader>
+                  <ItemQuantity>Qtd</ItemQuantity>
+                  <ItemPrice>Preço unitário</ItemPrice>
+                  <ItemTotal>Total do item</ItemTotal>
+                </HeaderRow>
 
-            {cart.data.items?.map((item) => (
-              <ItemRow>
-                <ItemImg src={item.photo}></ItemImg>
-                <ItemName>{item.name}</ItemName>
-                <ItemQuantity>{item.quantity}</ItemQuantity>
-                <ItemPrice>R${item.price}</ItemPrice>
-                <AddButton onclick={this.addItem}>+</AddButton>
-                <RemoveButton onclick={this.removeItem}>-</RemoveButton>
-                <ItemTotal>R${item.quantity * item.price}</ItemTotal>
-              </ItemRow>
-            ))}
+                {cart.data.items?.map((item, index) => (
+                  <ItemRow key={item.name}>
+                    <ItemImg src={item.photo}></ItemImg>
+                    <ItemName>{item.name}</ItemName>
+                    <ItemQuantity>{item.quantity}</ItemQuantity>
+                    <ItemPrice>R${item.price}</ItemPrice>
+                    <AddButton onClick={() => this.addItem(index)}>+</AddButton>
+                    <RemoveButton onClick={() => this.removeItem(index)}>
+                      -
+                    </RemoveButton>
+                    <ItemTotal>R${item.quantity * item.price}</ItemTotal>
+                  </ItemRow>
+                ))}
 
-            <OrderTotalStyle>Total: R${cart.data.total}</OrderTotalStyle>
-            <OrderButton>Fazer Pedido</OrderButton>
+                <OrderTotalStyle>Total: R${cart.data.total}</OrderTotalStyle>
+                <OrderButton>Fazer Pedido</OrderButton>
+              </>
+            ) : (
+              <>
+                <TextStyle>
+                  Seu carrinho está vazio :(
+                  <br />
+                  Adicione itens em um de nossos restaurantes!
+                </TextStyle>
+                <Link to="/home" style={{ textDecoration: "none" }}>
+                  <RedirectHomeButton> Ver restaurantes </RedirectHomeButton>
+                </Link>
+              </>
+            )}
           </>
         )}
       </CartStyle>
