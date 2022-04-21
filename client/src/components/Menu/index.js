@@ -1,5 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Creators as MenuCreators } from "../../store/ducks/menu";
@@ -22,12 +21,11 @@ import { Button, Table } from "react-bootstrap";
 
 import { formatMoney, withRouter } from "../../utils/misc";
 
-import { API_URL } from "../../constants/constants";
-
 class Menu extends Component {
   componentDidMount() {
     this.props.getMenu(this.props.router.params.id);
   }
+  
   handleClick(item) {
     const { menu } = this.props;
     this.props.updateCart(
@@ -37,11 +35,13 @@ class Menu extends Component {
       1
     );
   }
+
   getAverage(arr) {
     const count = arr?.reduce((acc, element) => acc + element.stars, 0);
 
     return count / arr?.length;
   }
+
   render() {
     const { menu } = this.props;
     const restaurant = menu.data;
