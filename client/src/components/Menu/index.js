@@ -1,5 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Creators as MenuCreators } from "../../store/ducks/menu";
@@ -12,22 +11,23 @@ import {
   TableBodyStyle,
   ItemData,
   ItemDescriptionStyle,
+  RatingTextStyles,
 } from "./styles";
 
 import ReactLoading from "react-loading";
 
 import ReactStars from "react-rating-stars-component";
 
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, Alert } from "react-bootstrap";
 
 import { formatMoney, withRouter } from "../../utils/misc";
 
-import { API_URL } from "../../constants/constants";
-
 class Menu extends Component {
+
   componentDidMount() {
     this.props.getMenu(this.props.router.params.id);
   }
+
   handleClick(item) {
     const { menu } = this.props;
     this.props.updateCart(
@@ -37,14 +37,17 @@ class Menu extends Component {
       1
     );
   }
+
   getAverage(arr) {
     const count = arr?.reduce((acc, element) => acc + element.stars, 0);
 
     return count / arr?.length;
   }
+
   render() {
     const { menu } = this.props;
     const restaurant = menu.data;
+
     return (
       <>
         {menu.loading ? (
@@ -62,14 +65,19 @@ class Menu extends Component {
         ) : (
           <PageStyle className="m-3">
             <h1>{restaurant.name}</h1>
-            <ReactStars
-              count={5}
-              isHalf={true}
-              value={this.getAverage(restaurant.rates)}
-              edit={false}
-              size={50}
-              activeColor="#ffd700"
-            />
+            <div className="d-inline-flex justify-content-center align-items-center">
+              <ReactStars
+                count={5}
+                isHalf={true}
+                value={this.getAverage(restaurant.rates)}
+                edit={false}
+                size={50}
+                activeColor="#ffd700"
+              />
+              <RatingTextStyles className="p-3 mt-2">
+                ({this.getAverage(restaurant.rates)})
+              </RatingTextStyles>
+            </div>
 
             <Table borderless>
               <tbody>
@@ -81,14 +89,20 @@ class Menu extends Component {
                           <ItemPhoto className="m-2" photo={element.photo} />
                           <ItemData className="m-2">
                             <ItemDescriptionStyle>
-                              <h4>{element.name}</h4>
+                              <h4 style={{ fontWeight: "600" }}>
+                                {element.name}
+                              </h4>
                               {element.description}
                             </ItemDescriptionStyle>
                             <Button
-                              style={{ width: "280px", paddingBottom: 0 }}
+                              style={{
+                                width: "280px",
+                                paddingBottom: 0,
+                                borderRadius: "65px",
+                              }}
                               variant="outline-danger"
                               type="button"
-                              onClick={(e) => this.handleClick(element)}
+                              onClick={(e) => {this.handleClick(element)}}
                             >
                               <strong>
                                 Adicionar item ao carrinho

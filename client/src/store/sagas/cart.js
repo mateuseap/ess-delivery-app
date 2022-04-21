@@ -27,7 +27,8 @@ export function* updateCart({ rest_id, rest_name, item, amountToChange }) {
     });
     if (response.data) {
       // como so iremos trabalhar com um usuario:
-      yield put(Creators.cartSuccess(response.data));
+      yield put(Creators.cartSuccess(response.data)); 
+      toastr.success("Item adicionado ao carrinho.");
     }
   } catch (err) {
     yield put(Creators.cartError({ err }));
