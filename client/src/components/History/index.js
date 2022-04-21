@@ -128,6 +128,9 @@ class History extends Component {
                 <option value="15" style={{ color: "black" }}>
                   15 dias
                 </option>
+                <option value="7"  style={{ color: "black"}}>
+                  7 dias
+                </option>
               </SelectStyle>
             </RectangleDaysFilter>
           </RectangleFilter>
