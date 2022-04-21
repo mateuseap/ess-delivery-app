@@ -18,11 +18,13 @@ import ReactLoading from "react-loading";
 
 import ReactStars from "react-rating-stars-component";
 
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, Alert } from "react-bootstrap";
 
 import { formatMoney, withRouter } from "../../utils/misc";
 
 class Menu extends Component {
+  state = { showFeedback: false };
+
   componentDidMount() {
     this.props.getMenu(this.props.router.params.id);
   }
@@ -46,6 +48,7 @@ class Menu extends Component {
   render() {
     const { menu } = this.props;
     const restaurant = menu.data;
+
     return (
       <>
         {menu.loading ? (
@@ -62,6 +65,20 @@ class Menu extends Component {
           />
         ) : (
           <PageStyle className="m-3">
+            {this.state.showFeedback ? (
+              <Alert
+                variant="success"
+                onClose={() =>
+                  this.setState({
+                    showFeedback: false,
+                  })
+                }
+                className="m-2"
+                dismissible
+              >
+                <Alert.Heading>Item adicionado ao carrinho.</Alert.Heading> 
+              </Alert>
+            ) : null}
             <h1>{restaurant.name}</h1>
             <div className="d-inline-flex justify-content-center align-items-center">
               <ReactStars
@@ -100,7 +117,10 @@ class Menu extends Component {
                               }}
                               variant="outline-danger"
                               type="button"
-                              onClick={(e) => this.handleClick(element)}
+                              onClick={(e) => {
+                                this.handleClick(element);
+                                this.setState({ showFeedback: !menu.error });
+                              }}
                             >
                               <strong>
                                 Adicionar item ao carrinho
