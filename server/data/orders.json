@@ -98,10 +98,38 @@
       "user_id": 1,
       "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
       "total_price": 11,
-      "date": "2022-04-15", 
+      "date": "2022-04-13", 
       "description": [
         {
           "name": "Panqueca de queijo e presunto",
+          "price": 11
+        }
+      ],
+      "from": "Avenida Conselheiro Rosa e Silva, 1086",
+      "to": "Avenida Jornalista Aníbal Fernandes, 500",
+      "forma_pagamento": {},
+      "status": {
+        "preparado": true,
+        "finalizado": true,
+        "saiu_para_entrega": true,
+        "entregue": true
+      },
+      "rate": {
+        "did": true,
+        "stars": 3.5,
+        "feedback_text": "Descrição"
+      }
+    },
+    {
+      "id": 4,
+      "restaurant_id": 0,
+      "user_id": 1,
+      "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
+      "total_price": 11,
+      "date": "2022-04-15", 
+      "description": [
+        {
+          "name": "Panqueca apenas e somente",
           "price": 11
         }
       ],
