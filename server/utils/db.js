@@ -52,7 +52,7 @@ exports.ManipulateDatabase = class {
       this.#document[this.#tableName].splice(
         startIndex,
         deleteCount,
-        replaceItems
+        ...replaceItems
       );
       this.saveChanges();
     }

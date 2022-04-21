@@ -117,8 +117,16 @@ class History extends Component {
             <RectangleDaysFilter>
               <SelectStyle
                 onChange={(elem) =>
-                  this.setState({ daysFilter: elem.target.value }, () =>
-                    this.props.getHistory({ query: this.state.daysFilter })
+                  this.setState(
+                    {
+                      daysFilter: elem.target.value,
+                      orderToRate: -1,
+                      changeSelectedTdBg: [
+                        ...this.state.changeSelectedTdBg,
+                      ].map((element, idx) => false),
+                    },
+                    () =>
+                      this.props.getHistory({ query: this.state.daysFilter })
                   )
                 }
               >
@@ -197,7 +205,10 @@ class History extends Component {
                                   disabled={orderToRate >= 0 ? true : false}
                                   onClick={() =>
                                     this.setState({
-                                      orderToRate: element.id,
+                                      orderToRate:
+                                        index +
+                                        this.state.currentPage *
+                                          this.elemPerPages,
                                       changeSelectedTdBg: [
                                         ...this.state.changeSelectedTdBg,
                                       ].map((element, idx) => {
@@ -205,8 +216,11 @@ class History extends Component {
                                         else return false;
                                       }),
                                       canSendRate:
-                                        this.state.data[element.id].rate
-                                          .stars !== 0
+                                        this.state.data[
+                                          index +
+                                            this.state.currentPage *
+                                              this.elemPerPages
+                                        ].rate.stars !== 0
                                           ? true
                                           : false,
                                     })
@@ -221,7 +235,10 @@ class History extends Component {
                                   disabled={orderToRate >= 0 ? true : false}
                                   onClick={() =>
                                     this.setState({
-                                      orderToRate: element.id,
+                                      orderToRate:
+                                        index +
+                                        this.state.currentPage *
+                                          this.elemPerPages,
                                       changeSelectedTdBg: [
                                         ...this.state.changeSelectedTdBg,
                                       ].map((element, idx) => {
@@ -436,6 +453,10 @@ class History extends Component {
                   onClick={(e) =>
                     this.setState({
                       currentPage: e.target.childNodes[0].data - 1,
+                      orderToRate: -1,
+                      changeSelectedTdBg: [
+                        ...this.state.changeSelectedTdBg,
+                      ].map((element, idx) => false),
                     })
                   }
                   style={{

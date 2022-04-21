@@ -6,6 +6,7 @@ import Header from "./Header";
 import History from "./History";
 import Cart from "./Cart";
 import Menu from "./Menu";
+import NotFound from "./NotFound";
 
 class RouteOptions extends Component {
   render() {
@@ -18,6 +19,7 @@ class RouteOptions extends Component {
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu/:id" element={<Menu />} />
           <Route path="/" element={<Navigate replace to="/home" />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </>
     );
