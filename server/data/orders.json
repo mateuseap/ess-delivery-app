@@ -11,12 +11,14 @@
         {
           "name": "Cubos de carne ao molho madeira",
           "quantity": 1,
+          "item_id":3,
           "price": 13
         },
         {
           "name": "Coca-cola lata",
           "quantity": 1,
-          "price": 3.5
+          "item_id":7,
+          "price": 5.5
         }
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
@@ -45,6 +47,7 @@
         {
           "name": "Pizza de Calabresa",
           "quantity": 1,
+          "item_id":1,
           "price": 30
         }
       ],
@@ -68,17 +71,19 @@
       "restaurant_id": 2,
       "user_id": 1,
       "orderImage": "https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg",
-      "total_price": 30,
+      "total_price": 31,
       "date": "2022-04-20",
       "description": [
         {
           "name": "Ogro Burguer com Batata Média",
           "quantity": 1,
-          "price": 20
+          "item_id":1,
+          "price": 25.5
         },
         {
           "name": "Coca-cola lata",
           "quantity": 1,
+          "item_id":2,
           "price": 5.5
         }
       ],
@@ -108,6 +113,7 @@
         {
           "name": "Panqueca de queijo e presunto",
           "quantity": 1,
+          "item_id":5,
           "price": 11
         }
       ],
@@ -135,8 +141,9 @@
       "date": "2022-04-15",
       "description": [
         {
-          "name": "Panqueca apenas e somente",
+          "name": "Panqueca de carne",
           "quantity": 1,
+          "item_id":4,
           "price": 11
         }
       ],

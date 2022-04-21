@@ -43,3 +43,13 @@ export const UserPhoto = styled.div`
   width: 110px;
   border-radius: 50%;
 `;
+
+export const CartItemCount = styled.div`
+  position: absolute;
+  right: 2px;
+  top: -15px;
+  color: white;
+  padding: 0 8px;
+  background-color: #da723c;
+  border-radius: 50px;
+`;

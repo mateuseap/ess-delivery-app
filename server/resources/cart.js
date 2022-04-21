@@ -1,4 +1,5 @@
 const { ManipulateDatabase } = require("../utils/db");
+const jwt_decode = require("jwt-decode");
 
 exports.getCart = async (req, res) => {
   try {
@@ -19,54 +20,71 @@ exports.getCart = async (req, res) => {
   }
 };
 
-function update_database(item, table) {
-  let flag1 = 0;
-  table.map((element) => {
-    if (element.rest_id == item.rest_id) {
-      flag1 = 1;
-      element.total += item.item.price;
-      let flag = 0;
-      element.items.map((x) => {
-        if (x.name == item.item.name) {
-          flag = 1;
-          x.quantity += 1;
-        }
-        return x;
-      });
-      if (!flag) {
-        element.items.push(item.item);
-      }
-    }
-    return element;
-  });
-  if (!flag1) {
-    table.push({
-      user_id: 1,
-      rest_id: item.rest_id,
-      rest_name: item.rest_name,
-      total: item.item.price,
-      items: [
-        {
-          name: item.item.name,
-          quantity: 1,
-          price: item.item.price,
-          photo: item.item.photo,
-          description: item.item.description,
-        },
-      ],
-    });
-  }
-  return table;
+function createNewCart(user_id, rest_id, rest_name, item, amountToChange) {
+  return {
+    user_id: user_id,
+    rest_id: rest_id,
+    rest_name: rest_name,
+    total: item.price,
+    items: [{ ...item, quantity: amountToChange }],
+  };
 }
 
 exports.postCart = async (req, res) => {
   try {
-    const table = new ManipulateDatabase("carts");
-    table_data = update_database(req.body, table.getArray());
+    const body = req.body;
 
-    table.write({ carts: table_data });
-    res.status(200).send(JSON.stringify(table.getArray()));
+    const decoded_auth = jwt_decode(req.headers.authorization);
+    const table = new ManipulateDatabase("carts");
+
+    let cart_data = table.query({
+      inner: {
+        nameObjToQuery: "carts",
+        matchId: `user_id=${decoded_auth.userId}`,
+      },
+    });
+
+    //se usuario ja tiver um carrinho, atualiza, caso contrario cria um novo carrinho
+    if (cart_data) {
+      if (cart_data.rest_id !== body.rest_id)
+        throw new Error("Restaurant Id doesn't match cart's current id");
+      //caso o item ja esteja no carrinho, atualiza sua quantidade, caso contrario adiciona o novo item
+      const index = cart_data.items.findIndex(
+        (item) => item.item_id === body.item.item_id
+      );
+
+      if (index != -1) {
+        cart_data.items[index].quantity += body.amountToChange;
+
+        if (cart_data.items[index].quantity <= 0)
+          cart_data.items.splice(index, 1);
+      } else {
+        //previne que se retire um item q nao esta no carrinho
+        if (body.amountToChange < 1)
+          throw new Error("Impossible to remove non-existent item");
+        cart_data.items.push({ ...body.item, quantity: body.amountToChange });
+      }
+    } else {
+      cart_data = createNewCart(
+        decoded_auth.userId,
+        body.rest_id,
+        body.rest_name,
+        body.item,
+        body.amountToChange
+      );
+    }
+
+    cart_data.total = cart_data.items.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+
+    const compareFunction = (item) => item.user_id == decoded_auth.userId;
+    table.replaceOrAppend(compareFunction, cart_data);
+
+    res.status(200).send(cart_data);
   } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 };
