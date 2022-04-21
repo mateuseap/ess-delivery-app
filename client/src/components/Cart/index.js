@@ -20,6 +20,8 @@ import {
 
 import ReactLoading from "react-loading";
 
+import { withRouter } from "../../utils/misc";
+
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -31,19 +33,39 @@ class Cart extends Component {
   }
 
   addItem(index) {
-    const newCart = JSON.parse(JSON.stringify(this.props.cart.data));
-    newCart.items[index].quantity += 1;
+    const { cart } = this.props;
 
-    this.props.updateCart(newCart);
+    let reqBody = {
+      rest_id: cart.data.rest_id,
+      rest_name: cart.data.rest_name,
+      item: cart.data.items[index],
+      amountToChange: 1,
+    };
+
+    this.props.updateCart(
+      cart.data.rest_id,
+      cart.data.rest_name,
+      cart.data.items[index],
+      1
+    );
   }
 
   removeItem(index) {
-    const newCart = JSON.parse(JSON.stringify(this.props.cart.data));
-    newCart.items[index].quantity -= 1;
+    const { cart } = this.props;
 
-    if (newCart.items[index].quantity === 0) newCart.items.splice(index, 1);
+    let reqBody = {
+      rest_id: cart.data.rest_id,
+      rest_name: cart.data.rest_name,
+      item: cart.data.items[index],
+      amountToChange: -1,
+    };
 
-    this.props.updateCart(newCart);
+    this.props.updateCart(
+      cart.data.rest_id,
+      cart.data.rest_name,
+      cart.data.items[index],
+      -1
+    );
   }
 
   render() {
@@ -65,7 +87,7 @@ class Cart extends Component {
           />
         ) : (
           <>
-            {cart.data ? (
+            {cart.data?.items?.length ? (
               <>
                 <TextStyle>Seu carrinho de compras</TextStyle>
                 <RestaurantText>
@@ -80,7 +102,7 @@ class Cart extends Component {
                 </HeaderRow>
 
                 {cart.data.items?.map((item, index) => (
-                  <ItemRow key={item.name}>
+                  <ItemRow key={item.item_id}>
                     <ItemImg src={item.photo}></ItemImg>
                     <ItemName>{item.name}</ItemName>
                     <ItemQuantity>{item.quantity}</ItemQuantity>
@@ -117,4 +139,4 @@ class Cart extends Component {
 
 const mapStateToProps = ({ cart }) => ({ cart });
 
-export default connect(mapStateToProps, { ...CartCreator })(Cart);
+export default withRouter(connect(mapStateToProps, { ...CartCreator })(Cart));
