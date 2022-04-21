@@ -58,10 +58,21 @@ class History extends Component {
   }
 
   cancelRate() {
-    const resp = window.confirm(
-      "Se você cancelar, todo progresso dessa avaliação será perdido"
-    );
-    if (resp)
+    if (this.state.currentFeedbackText || this.state.currentStarsValue) {
+      const resp = window.confirm(
+        "Se você cancelar, todo progresso dessa avaliação será perdido"
+      );
+      if (resp)
+        this.setState({
+          orderToRate: -1,
+          elementToRateId: -1,
+          currentFeedbackText: "",
+          currentStarsValue: 0,
+          changeSelectedTdBg: [...this.state.changeSelectedTdBg].map(
+            (element, idx) => false
+          ),
+        });
+    } else
       this.setState({
         orderToRate: -1,
         elementToRateId: -1,
