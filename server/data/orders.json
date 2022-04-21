@@ -6,14 +6,16 @@
       "user_id": 1,
       "orderImage": "https://www.divenetoalimentos.com.br/images/produtos/picadinho-de-cubos-de-carne-com-molho-congelado.png",
       "total_price": 16.5,
-      "date": "2022-03-04", 
+      "date": "2022-03-04",
       "description": [
         {
           "name": "Cubos de carne ao molho madeira",
+          "quantity": 1,
           "price": 13
         },
         {
           "name": "Coca-cola lata",
+          "quantity": 1,
           "price": 3.5
         }
       ],
@@ -38,10 +40,11 @@
       "user_id": 1,
       "orderImage": "https://t2.rg.ltmcdn.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600.jpg",
       "total_price": 30,
-      "date": "2022-03-22", 
+      "date": "2022-03-22",
       "description": [
         {
           "name": "Pizza de Calabresa",
+          "quantity": 1,
           "price": 30
         }
       ],
@@ -66,14 +69,16 @@
       "user_id": 1,
       "orderImage": "https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg",
       "total_price": 30,
-      "date": "2022-04-20", 
+      "date": "2022-04-20",
       "description": [
         {
           "name": "Ogro Burguer com Batata Média",
+          "quantity": 1,
           "price": 20
         },
         {
           "name": "Coca-cola lata",
+          "quantity": 1,
           "price": 5.5
         }
       ],
@@ -98,10 +103,11 @@
       "user_id": 1,
       "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
       "total_price": 11,
-      "date": "2022-04-13", 
+      "date": "2022-04-13",
       "description": [
         {
           "name": "Panqueca de queijo e presunto",
+          "quantity": 1,
           "price": 11
         }
       ],
@@ -126,10 +132,11 @@
       "user_id": 1,
       "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
       "total_price": 11,
-      "date": "2022-04-15", 
+      "date": "2022-04-15",
       "description": [
         {
           "name": "Panqueca apenas e somente",
+          "quantity": 1,
           "price": 11
         }
       ],

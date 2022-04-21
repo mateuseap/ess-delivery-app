@@ -42,6 +42,8 @@ class History extends Component {
       elementToRateId: -1,
       data: [],
       restData: [],
+      currentStarsValue: 0,
+      currentFeedbackText: "",
       showRateFeedback: false,
       changeSelectedTdBg: [],
       canSendRate: false, // A avaliação com estrelas é obrigatória
@@ -53,6 +55,22 @@ class History extends Component {
   componentDidMount() {
     this.props.getHistory({ query: this.state.daysFilter });
     this.props.getRestaurants({ query: "displayAll" });
+  }
+
+  cancelRate() {
+    const resp = window.confirm(
+      "Se você cancelar, todo progresso dessa avaliação será perdido"
+    );
+    if (resp)
+      this.setState({
+        orderToRate: -1,
+        elementToRateId: -1,
+        currentFeedbackText: "",
+        currentStarsValue: 0,
+        changeSelectedTdBg: [...this.state.changeSelectedTdBg].map(
+          (element, idx) => false
+        ),
+      });
   }
 
   getCicles() {
@@ -68,6 +86,7 @@ class History extends Component {
     const { orderToRate } = this.state;
     const { history, restaurants } = this.props;
     if (history.data.post)
+      // depois de a avaliação ser enviada
       this.props.getHistory({ query: this.state.daysFilter });
     this.elemPerPages = 2;
     this.numberOfCircles = Math.ceil(
@@ -252,7 +271,7 @@ class History extends Component {
                               </td>
                             </tr>
                           );
-                        else return <></>; // O elemento não deve ser mostrado nesta página
+                        else return null; // O elemento não deve ser mostrado nesta página
                       })
                     ) : restaurants.data && restaurants.data.length ? (
                       this.setState({
@@ -322,25 +341,10 @@ class History extends Component {
                       <ReactStars
                         count={5}
                         onChange={(newRating) =>
-                          this.setState(
-                            {
-                              data: [...this.state.data].map(
-                                (element, index) => {
-                                  if (index === orderToRate)
-                                    return {
-                                      ...element,
-                                      rate: {
-                                        ...element.rate,
-                                        stars: newRating,
-                                      },
-                                    };
-                                  else return element;
-                                }
-                              ),
-                              canSendRate: newRating === 0 ? false : true,
-                            },
-                            () => console.log(this.state.data[orderToRate].rate)
-                          )
+                          this.setState({
+                            currentStarsValue: newRating,
+                            canSendRate: newRating === 0 ? false : true,
+                          })
                         }
                         isHalf={true}
                         value={this.state.data[orderToRate].rate.stars}
@@ -366,22 +370,9 @@ class History extends Component {
                           : ""
                       }
                       onChange={(text) =>
-                        this.setState(
-                          {
-                            data: [...this.state.data].map((element, index) => {
-                              if (index === orderToRate)
-                                return {
-                                  ...element,
-                                  rate: {
-                                    ...element.rate,
-                                    feedback_text: text.target.value,
-                                  },
-                                };
-                              else return element;
-                            }),
-                          },
-                          () => console.log(this.state.data[orderToRate].rate)
-                        )
+                        this.setState({
+                          currentFeedbackText: text.target.value,
+                        })
                       }
                       style={{ fontWeight: "600" }}
                     />
@@ -395,15 +386,7 @@ class History extends Component {
                       <ActionButtonsStyle className="mt-2">
                         <Button
                           variant="secondary"
-                          onClick={() =>
-                            this.setState({
-                              orderToRate: -1,
-                              elementToRateId: -1,
-                              changeSelectedTdBg: [
-                                ...this.state.changeSelectedTdBg,
-                              ].map((element, idx) => false),
-                            })
-                          }
+                          onClick={() => this.cancelRate()}
                         >
                           Cancelar
                         </Button>
@@ -415,8 +398,9 @@ class History extends Component {
                             historyData[orderToRate] = {
                               ...historyData[orderToRate],
                               rate: {
-                                ...historyData[orderToRate].rate,
                                 did: true,
+                                stars: this.state.currentStarsValue,
+                                feedback_text: this.state.currentFeedbackText,
                               },
                             };
 
@@ -426,11 +410,9 @@ class History extends Component {
                                   data: this.state.data[orderToRate],
                                   changes: {
                                     rate: {
-                                      stars:
-                                        this.state.data[orderToRate].rate.stars,
+                                      stars: this.state.currentStarsValue,
                                       feedback_text:
-                                        this.state.data[orderToRate].rate
-                                          .feedback_text,
+                                        this.state.currentFeedbackText,
                                     },
                                     index: this.state.elementToRateId,
                                   },
@@ -461,6 +443,8 @@ class History extends Component {
                         this.setState({
                           orderToRate: -1,
                           elementToRateId: -1,
+                          currentFeedbackText: "",
+                          currentStarsValue: 0,
                           changeSelectedTdBg: [
                             ...this.state.changeSelectedTdBg,
                           ].map((element, idx) => false),
