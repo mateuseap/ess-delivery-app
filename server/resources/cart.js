@@ -32,7 +32,7 @@ function createNewCart(user_id, rest_id, rest_name, item, amountToChange) {
 
 exports.postCart = async (req, res) => {
   try {
-    const body = req.body.cart;
+    const body = req.body;
 
     const decoded_auth = jwt_decode(req.headers.authorization);
     const table = new ManipulateDatabase("carts");
