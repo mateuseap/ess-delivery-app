@@ -8,6 +8,7 @@ import {
   TableBodyStyle,
   ItemData,
   ItemDescriptionStyle,
+  RatingTextStyles,
 } from "./styles";
 
 import ReactLoading from "react-loading";
@@ -47,10 +48,8 @@ export default function Menu() {
         name: obj.name,
         quantity: 1,
         price: obj.price,
-        photo:
-          obj.photo,
-        description:
-          obj.description
+        photo: obj.photo,
+        description: obj.description,
       },
     };
   }
@@ -67,7 +66,6 @@ export default function Menu() {
       body: JSON.stringify(createCartObj(obj)),
     });
     const jsonResp = await response.json();
-
   }
 
   useEffect(() => fetchData(), [id]);
@@ -89,14 +87,20 @@ export default function Menu() {
       ) : (
         <PageStyle className="m-3">
           <h1>{restaurant.name}</h1>
-          <ReactStars
-            count={5}
-            isHalf={true}
-            value={getAverage(restaurant.rates)}
-            edit={false}
-            size={50}
-            activeColor="#ffd700"
-          />
+
+          <div className="d-inline-flex align-items-center justify-content-center">
+            <ReactStars
+              count={5}
+              isHalf={true}
+              value={getAverage(restaurant.rates)}
+              edit={false}
+              size={50}
+              activeColor="#ffd700"
+            />
+            <RatingTextStyles className="p-3 mt-2">
+              ({getAverage(restaurant.rates)})
+            </RatingTextStyles>
+          </div>
 
           <Table borderless>
             <tbody>
@@ -108,11 +112,17 @@ export default function Menu() {
                         <ItemPhoto className="m-2" photo={element.photo} />
                         <ItemData className="m-2">
                           <ItemDescriptionStyle>
-                            <h4>{element.name}</h4>
+                            <h4 style={{ fontWeight: "600" }}>
+                              {element.name}
+                            </h4>
                             {element.description}
                           </ItemDescriptionStyle>
                           <Button
-                            style={{ width: "280px", paddingBottom: 0 }}
+                            style={{
+                              width: "280px",
+                              paddingBottom: 0,
+                              borderRadius: "65px",
+                            }}
                             variant="outline-danger"
                             type="button"
                             onClick={(e) => fetchPostDataCart(element)}

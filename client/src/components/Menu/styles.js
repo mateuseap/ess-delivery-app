@@ -16,8 +16,13 @@ export const TableStyle = styled.div`
 `;
 
 export const TableBodyStyle = styled.div`
+  background-color: #ffffff;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 65px;
   display: grid;
   grid-auto-flow: column;
+  height: 25%;
   place-items: center;
 `;
 
@@ -37,6 +42,16 @@ export const ItemData = styled.div`
 
 export const ItemDescriptionStyle = styled.p`
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   max-width: 350px;
+`;
+
+export const RestaurantRating = styled.div`
+  display: flex;
+`;
+
+export const RatingTextStyles = styled.h4`
+  color: #ffd700;
+  font-weight: 600;
+  font-size: 2rem;
 `;
