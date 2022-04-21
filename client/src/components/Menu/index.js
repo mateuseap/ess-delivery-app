@@ -29,16 +29,36 @@ export default function Menu() {
     setRestaurant(jsonResp);
   }
 
+  function createCartObj(obj) {
+    return {
+      user_id: 1,
+      rest_id: id,
+      rest_name: restaurant.name,
+      item: {
+        name: obj.name,
+        quantity: 1,
+        price: obj.price,
+        photo:
+          obj.photo,
+        description:
+          obj.description
+      },
+    };
+  }
+
   async function fetchPostDataCart(obj) {
+    console.log(obj);
+
     const response = await fetch(API_URL + "/cart", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(obj),
+      body: JSON.stringify(createCartObj(obj)),
     });
     const jsonResp = await response.json();
+
   }
 
   useEffect(() => fetchData(), [id]);
