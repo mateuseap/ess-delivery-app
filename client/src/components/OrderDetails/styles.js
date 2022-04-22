@@ -10,6 +10,7 @@ export const OrderTitles = styled.div`
   font-weight: bold;
   color: #91091e;
   text-align: center;
+  margin-top: 20px; 
 `;
 
 export const OrderStatus = styled.div`
@@ -26,10 +27,11 @@ export const OrderStatusItem = styled.div`
   flex-direction: row;
   background-color: #91091e;
   border-radius: 100px;
-  padding: 0.01%;
-  margin: 0.3%;
-  width: 300px;
+  width: 20vw;
   font-weight: bold;
+  margin: 3px;
+  padding: 5px;
+
 `;
 
 export const Restaurant = styled.div`

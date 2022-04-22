@@ -7,7 +7,7 @@ import History from "./History";
 import Cart from "./Cart";
 import Menu from "./Menu";
 import NotFound from "./NotFound";
-import Details from "./Details";
+import OrderDetails from "./OrderDetails";
 
 class RouteOptions extends Component {
   render() {
@@ -21,7 +21,7 @@ class RouteOptions extends Component {
           <Route path="/menu/:id" element={<Menu />} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/details/:id" element={<Details />} />
+          <Route path="/details/:id" element={<OrderDetails />} />
         </Routes>
       </>
     );

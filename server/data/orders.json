@@ -3,9 +3,10 @@
     {
       "id": 0,
       "restaurant_id": 0,
+      "restaurant_name": "Almir quentinhas",
       "user_id": 1,
       "orderImage": "https://www.divenetoalimentos.com.br/images/produtos/picadinho-de-cubos-de-carne-com-molho-congelado.png",
-      "total_price": 16.5,
+      "total_price": 18.5,
       "date": "2022-03-04",
       "description": [
         {
@@ -23,12 +24,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "forma_pagamento": {},
+      "payment": {},
       "status": {
-        "preparado": false,
-        "finalizado": false,
-        "saiu_para_entrega": false,
-        "entregue": false
+        "confirmed": true,
+        "preparing": false,
+        "delivering": false,
+        "finished": false
       },
       "rate": {
         "did": false,
@@ -39,6 +40,7 @@
     {
       "id": 1,
       "restaurant_id": 1,
+      "restaurant_name": "Mongas",
       "user_id": 1,
       "orderImage": "https://t2.rg.ltmcdn.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600.jpg",
       "total_price": 30,
@@ -53,12 +55,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "forma_pagamento": {},
+      "payment": {},
       "status": {
-        "preparado": true,
-        "finalizado": true,
-        "saiu_para_entrega": true,
-        "entregue": true
+        "confirmed": true,
+        "preparing": true,
+        "delivering": true,
+        "finished": true
       },
       "rate": {
         "did": false,
@@ -69,6 +71,7 @@
     {
       "id": 2,
       "restaurant_id": 2,
+      "restaurant_name": "Elias",
       "user_id": 1,
       "orderImage": "https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg",
       "total_price": 31,
@@ -89,12 +92,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "forma_pagamento": {},
+      "payment": {},
       "status": {
-        "preparado": true,
-        "finalizado": true,
-        "saiu_para_entrega": true,
-        "entregue": true
+        "confirmed": true,
+        "preparing": true,
+        "delivering": true,
+        "finished": true
       },
       "rate": {
         "did": false,
@@ -105,6 +108,7 @@
     {
       "id": 3,
       "restaurant_id": 0,
+      "restaurant_name": "Almir quentinhas",
       "user_id": 1,
       "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
       "total_price": 11,
@@ -121,10 +125,10 @@
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
       "forma_pagamento": {},
       "status": {
-        "preparado": true,
-        "finalizado": true,
-        "saiu_para_entrega": true,
-        "entregue": true
+        "confirmed": true,
+        "preparing": true,
+        "delivering": true,
+        "finished": true
       },
       "rate": {
         "did": true,
@@ -135,6 +139,7 @@
     {
       "id": 4,
       "restaurant_id": 0,
+      "restaurant_name": "Almir quentinhas",
       "user_id": 1,
       "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
       "total_price": 11,
@@ -149,12 +154,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "forma_pagamento": {},
+      "payment": {},
       "status": {
-        "preparado": true,
-        "finalizado": true,
-        "saiu_para_entrega": true,
-        "entregue": true
+        "confirmed": true,
+        "preparing": true,
+        "delivering": true,
+        "finished": true
       },
       "rate": {
         "did": true,
