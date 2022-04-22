@@ -176,7 +176,7 @@ class History extends Component {
                                 </p>
                                 <p>{element.description[0].name}</p>
                                 <p style={{ fontWeight: "bold" }}>
-                                  R{"$ " + formatMoney(element.total_price)}
+                                  {formatMoney(element.total_price)}
                                 </p>
                               </TableBodyStyle>
                             </td>
@@ -270,7 +270,7 @@ class History extends Component {
                               (element) => (
                                 <>
                                   <h5>{element.name}</h5>
-                                  <p>{"R$ " + formatMoney(element.price)}</p>
+                                  <p>{formatMoney(element.price)}</p>
                                 </>
                               )
                             )}
@@ -278,8 +278,7 @@ class History extends Component {
                         </Popup>
                       </RateLabel>
                       <h3 className="mt-4">
-                        {"R$ " +
-                          formatMoney(history.data[orderToRate].total_price)}
+                        {formatMoney(history.data[orderToRate].total_price)}
                       </h3>
                       <ReactStars
                         count={5}

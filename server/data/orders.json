@@ -12,13 +12,13 @@
         {
           "name": "Cubos de carne ao molho madeira",
           "quantity": 1,
-          "item_id":3,
+          "item_id": 3,
           "price": 13
         },
         {
           "name": "Coca-cola lata",
           "quantity": 1,
-          "item_id":7,
+          "item_id": 7,
           "price": 5.5
         }
       ],
@@ -49,7 +49,7 @@
         {
           "name": "Pizza de Calabresa",
           "quantity": 1,
-          "item_id":1,
+          "item_id": 1,
           "price": 30
         }
       ],
@@ -80,13 +80,13 @@
         {
           "name": "Ogro Burguer com Batata Média",
           "quantity": 1,
-          "item_id":1,
+          "item_id": 1,
           "price": 25.5
         },
         {
           "name": "Coca-cola lata",
           "quantity": 1,
-          "item_id":2,
+          "item_id": 2,
           "price": 5.5
         }
       ],
@@ -117,7 +117,7 @@
         {
           "name": "Panqueca de queijo e presunto",
           "quantity": 1,
-          "item_id":5,
+          "item_id": 5,
           "price": 11
         }
       ],
@@ -148,7 +148,7 @@
         {
           "name": "Panqueca de carne",
           "quantity": 1,
-          "item_id":4,
+          "item_id": 4,
           "price": 11
         }
       ],
