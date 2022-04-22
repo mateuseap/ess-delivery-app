@@ -233,7 +233,7 @@ class History extends Component {
                               </td>
                               <td>
                                 {!element.status.finished ? (
-                                  <Link to={`/detalhes/${element.id}`}>
+                                  <Link to={`/details/${element.id}`}>
                                     <Button variant="success" className="mx-3">
                                       Acompanhar pedido
                                     </Button>
