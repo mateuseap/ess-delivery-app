@@ -157,6 +157,7 @@ class History extends Component {
                       daysFilter: elem.target.value,
                       orderToRate: -1,
                       elementToRateId: -1,
+                      currentPage: 0,
                       changeSelectedTdBg: [
                         ...this.state.changeSelectedTdBg,
                       ].map((element, idx) => false),
@@ -469,32 +470,39 @@ class History extends Component {
                 </Form>
               ) : null}
             </MainDiv>
-            <RectangleFilter className="mt-3">
-              {cicles.map((element, index) => (
-                <button
-                  key={index}
-                  onClick={(e) =>
-                    this.setState({
-                      currentPage: e.target.childNodes[0].data - 1,
-                      orderToRate: -1,
-                      elementToRateId: -1,
-                      changeSelectedTdBg: [
-                        ...this.state.changeSelectedTdBg,
-                      ].map((element, idx) => false),
-                    })
-                  }
-                  style={{
-                    all: "unset",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleStyle>{element + 1}</CircleStyle>
-                </button>
-              ))}
-            </RectangleFilter>
-            <h5 className="mt-1">
-              Atualmente na página {this.state.currentPage + 1}
-            </h5>
+            {history.data &&
+            history.data.length &&
+            restaurants.data &&
+            restaurants.data.length ? (
+              <>
+                <RectangleFilter className="mt-3">
+                  {cicles.map((element, index) => (
+                    <button
+                      key={index}
+                      onClick={(e) =>
+                        this.setState({
+                          currentPage: e.target.childNodes[0].data - 1,
+                          orderToRate: -1,
+                          elementToRateId: -1,
+                          changeSelectedTdBg: [
+                            ...this.state.changeSelectedTdBg,
+                          ].map((element, idx) => false),
+                        })
+                      }
+                      style={{
+                        all: "unset",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <CircleStyle>{element + 1}</CircleStyle>
+                    </button>
+                  ))}
+                </RectangleFilter>
+                <h5 className="mt-1">
+                  Atualmente na página {this.state.currentPage + 1}
+                </h5>
+              </>
+            ) : null}
           </>
         )}
       </PageStyle>

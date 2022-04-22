@@ -18,12 +18,11 @@ import ReactLoading from "react-loading";
 
 import ReactStars from "react-rating-stars-component";
 
-import { Button, Table, Alert } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 
 import { formatMoney, withRouter } from "../../utils/misc";
 
 class Menu extends Component {
-
   componentDidMount() {
     this.props.getMenu(this.props.router.params.id);
   }
@@ -102,7 +101,9 @@ class Menu extends Component {
                               }}
                               variant="outline-danger"
                               type="button"
-                              onClick={(e) => {this.handleClick(element)}}
+                              onClick={(e) => {
+                                this.handleClick(element);
+                              }}
                             >
                               <strong>
                                 Adicionar item ao carrinho
