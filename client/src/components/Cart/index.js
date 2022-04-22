@@ -27,6 +27,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Creators as CartCreator } from "../../store/ducks/cart";
 
+import { formatMoney } from "../../utils/misc";
+
 class Cart extends Component {
   componentDidMount() {
     this.props.getCart();
@@ -106,16 +108,20 @@ class Cart extends Component {
                     <ItemImg src={item.photo}></ItemImg>
                     <ItemName>{item.name}</ItemName>
                     <ItemQuantity>{item.quantity}</ItemQuantity>
-                    <ItemPrice>R${item.price}</ItemPrice>
+                    <ItemPrice>{formatMoney(item.price)}</ItemPrice>
                     <AddButton onClick={() => this.addItem(index)}>+</AddButton>
                     <RemoveButton onClick={() => this.removeItem(index)}>
                       -
                     </RemoveButton>
-                    <ItemTotal>R${item.quantity * item.price}</ItemTotal>
+                    <ItemTotal>
+                      {formatMoney(item.quantity * item.price)}
+                    </ItemTotal>
                   </ItemRow>
                 ))}
 
-                <OrderTotalStyle>Total: R${cart.data.total}</OrderTotalStyle>
+                <OrderTotalStyle>
+                  Total: {formatMoney(cart.data.total)}
+                </OrderTotalStyle>
                 <OrderButton>Fazer Pedido</OrderButton>
               </>
             ) : (

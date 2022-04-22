@@ -107,7 +107,7 @@ class Menu extends Component {
                             >
                               <strong>
                                 Adicionar item ao carrinho
-                                <h4>{" +R$" + formatMoney(element.price)}</h4>
+                                <h4>{"+ " + formatMoney(element.price)}</h4>
                               </strong>
                             </Button>
                           </ItemData>
