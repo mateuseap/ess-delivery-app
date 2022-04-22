@@ -34,19 +34,16 @@ import ReactStars from "react-rating-stars-component";
 import { formatMoney } from "../../utils/misc";
 
 class History extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      orderToRate: -1,
-      elementToRateId: -1,
-      currentStarsValue: 0,
-      currentFeedbackText: "",
-      changeSelectedBg: [],
-      canSendRate: false, // A avaliação com estrelas é obrigatória
-      daysFilter: 30,
-      currentPage: 0,
-    };
-  }
+  state = {
+    orderToRate: -1,
+    elementToRateId: -1,
+    currentStarsValue: 0,
+    currentFeedbackText: "",
+    changeSelectedBg: [],
+    canSendRate: false, // A avaliação com estrelas é obrigatória
+    daysFilter: 30,
+    currentPage: 0,
+  };
 
   componentDidMount() {
     this.props.getHistory({ query: this.state.daysFilter });
@@ -89,13 +86,25 @@ class History extends Component {
   }
 
   render() {
-    const { orderToRate } = this.state;
-    const { history } = this.props;
-    if (history.data.post)
+    const {
+      orderToRate,
+      elementToRateId,
+      currentStarsValue,
+      currentFeedbackText,
+      changeSelectedBg,
+      canSendRate,
+      daysFilter,
+      currentPage,
+    } = this.state;
+    const { history, getHistory, postHistory } = this.props;
+    const { data, loading } = history;
+
+    if (data.post)
       // depois de a avaliação ser enviada
-      this.props.getHistory({ query: this.state.daysFilter });
+      getHistory({ query: daysFilter });
+
     this.elemPerPages = 2;
-    this.numberOfCircles = Math.ceil(history.data.length / this.elemPerPages);
+    this.numberOfCircles = Math.ceil(data.length / this.elemPerPages);
 
     const cicles = this.getCicles();
 
@@ -105,7 +114,7 @@ class History extends Component {
           <BorderText>
             <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
           </BorderText>
-          {history.data && history.data.length ? (
+          {data && data.length ? (
             <RectangleFilter>
               Filtro de Dias
               <RectangleDaysFilter>
@@ -117,12 +126,11 @@ class History extends Component {
                         orderToRate: -1,
                         elementToRateId: -1,
                         currentPage: 0,
-                        changeSelectedBg: [...this.state.changeSelectedBg].map(
+                        changeSelectedBg: [...changeSelectedBg].map(
                           (element, idx) => false
                         ),
                       },
-                      () =>
-                        this.props.getHistory({ query: this.state.daysFilter })
+                      () => getHistory({ query: daysFilter })
                     )
                   }
                 >
@@ -136,7 +144,7 @@ class History extends Component {
             <></>
           )}
         </TopDiv>
-        {history.loading ? (
+        {loading ? (
           <ReactLoading
             type={"spin"}
             style={{
@@ -153,90 +161,96 @@ class History extends Component {
             <MainDiv>
               <Table borderless>
                 <tbody>
-                  {history.data && history.data.length ? (
-                    history.data.map((element, index) => {
-                      if (
-                        index >= this.state.currentPage * this.elemPerPages &&
-                        index < (this.state.currentPage + 1) * this.elemPerPages
-                      )
-                        return (
-                          <tr
-                            key={element.id}
-                            style={
-                              this.state.changeSelectedBg[index]
-                                ? { backgroundColor: "rgba(0, 0, 0, 0.2)" }
-                                : null
-                            }
-                          >
-                            <ImageStyle photoUrl={element.orderImage} />
-                            <td className="p-2">
-                              <TableBodyStyle>
-                                <p style={{ fontSize: 26 }}>
-                                  {element.restaurant_name}
-                                </p>
-                                <p>{element.description[0].name}</p>
-                                <p style={{ fontWeight: "bold" }}>
-                                  {formatMoney(element.total_price)}
-                                </p>
-                              </TableBodyStyle>
-                            </td>
-                            <td>
-                              {!element.status.finished ? (
-                                <Link to={`/details/${element.id}`}>
-                                  <Button variant="success" className="mx-3">
-                                    Acompanhar pedido
+                  {data && data.length ? (
+                    changeSelectedBg && changeSelectedBg.length ? (
+                      data.map((element, index) => {
+                        if (
+                          index >= currentPage * this.elemPerPages &&
+                          index < (currentPage + 1) * this.elemPerPages
+                        )
+                          return (
+                            <tr
+                              key={element.id}
+                              style={
+                                changeSelectedBg[index]
+                                  ? { backgroundColor: "rgba(0, 0, 0, 0.2)" }
+                                  : null
+                              }
+                            >
+                              <ImageStyle photoUrl={element.orderImage} />
+                              <td className="p-2">
+                                <TableBodyStyle>
+                                  <p style={{ fontSize: 26 }}>
+                                    {element.restaurant_name}
+                                  </p>
+                                  <p>{element.description[0].name}</p>
+                                  <p style={{ fontWeight: "bold" }}>
+                                    {formatMoney(element.total_price)}
+                                  </p>
+                                </TableBodyStyle>
+                              </td>
+                              <td>
+                                {!element.status.finished ? (
+                                  <Link to={`/details/${element.id}`}>
+                                    <Button variant="success" className="mx-3">
+                                      Acompanhar pedido
+                                    </Button>
+                                  </Link>
+                                ) : !element.rate.did ? (
+                                  <Button
+                                    variant="primary"
+                                    disabled={orderToRate >= 0 ? true : false}
+                                    onClick={() =>
+                                      this.setState({
+                                        orderToRate: index,
+                                        elementToRateId: element.id,
+                                        changeSelectedBg: [
+                                          ...changeSelectedBg,
+                                        ].map((element, idx) => {
+                                          if (idx === index) return true;
+                                          else return false;
+                                        }),
+                                        canSendRate:
+                                          data[index].rate.stars !== 0
+                                            ? true
+                                            : false,
+                                      })
+                                    }
+                                    className="mx-3"
+                                  >
+                                    Avaliar Pedido
                                   </Button>
-                                </Link>
-                              ) : !element.rate.did ? (
-                                <Button
-                                  variant="primary"
-                                  disabled={orderToRate >= 0 ? true : false}
-                                  onClick={() =>
-                                    this.setState({
-                                      orderToRate: index,
-                                      elementToRateId: element.id,
-                                      changeSelectedBg: [
-                                        ...this.state.changeSelectedBg,
-                                      ].map((element, idx) => {
-                                        if (idx === index) return true;
-                                        else return false;
-                                      }),
-                                      canSendRate:
-                                        history.data[index].rate.stars !== 0
-                                          ? true
-                                          : false,
-                                    })
-                                  }
-                                  className="mx-3"
-                                >
-                                  Avaliar Pedido
-                                </Button>
-                              ) : (
-                                <Button
-                                  variant="danger"
-                                  disabled={orderToRate >= 0 ? true : false}
-                                  onClick={() =>
-                                    this.setState({
-                                      orderToRate: index,
-                                      elementToRateId: element.id,
-                                      changeSelectedBg: [
-                                        ...this.state.changeSelectedBg,
-                                      ].map((element, idx) => {
-                                        if (idx === index) return true;
-                                        else return false;
-                                      }),
-                                    })
-                                  }
-                                  className="mx-3"
-                                >
-                                  Revisar avaliação
-                                </Button>
-                              )}
-                            </td>
-                          </tr>
-                        );
-                      else return null; // O elemento não deve ser mostrado nesta página
-                    })
+                                ) : (
+                                  <Button
+                                    variant="danger"
+                                    disabled={orderToRate >= 0 ? true : false}
+                                    onClick={() =>
+                                      this.setState({
+                                        orderToRate: index,
+                                        elementToRateId: element.id,
+                                        changeSelectedBg: [
+                                          ...changeSelectedBg,
+                                        ].map((element, idx) => {
+                                          if (idx === index) return true;
+                                          else return false;
+                                        }),
+                                      })
+                                    }
+                                    className="mx-3"
+                                  >
+                                    Revisar avaliação
+                                  </Button>
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        else return null; // O elemento não deve ser mostrado nesta página
+                      })
+                    ) : (
+                      this.setState({
+                        changeSelectedBg: new Array(data.length),
+                      })
+                    )
                   ) : (
                     // Sem pedidos no banco
                     <NoDataStyle>
@@ -249,7 +263,7 @@ class History extends Component {
                   )}
                 </tbody>
               </Table>
-              {history.data && history.data.length && orderToRate > -1 ? (
+              {data && data.length && orderToRate > -1 ? (
                 <Form style={{ maxWidth: 650 }}>
                   <Form.Group controlId="userFeedback">
                     <Form.Label
@@ -260,25 +274,23 @@ class History extends Component {
                       }}
                     >
                       <RateLabel>
-                        <h2>{history.data[orderToRate].description[0].name}</h2>
+                        <h2>{data[orderToRate].description[0].name}</h2>
                         <Popup
                           trigger={<Button variant="warning">Detalhes</Button>}
                           position="left center"
                         >
                           <DescriptionStyle className="p-2">
-                            {history.data[orderToRate].description.map(
-                              (element) => (
-                                <>
-                                  <h5>{element.name}</h5>
-                                  <p>{formatMoney(element.price)}</p>
-                                </>
-                              )
-                            )}
+                            {data[orderToRate].description.map((element) => (
+                              <>
+                                <h5>{element.name}</h5>
+                                <p>{formatMoney(element.price)}</p>
+                              </>
+                            ))}
                           </DescriptionStyle>
                         </Popup>
                       </RateLabel>
                       <h3 className="mt-4">
-                        {formatMoney(history.data[orderToRate].total_price)}
+                        {formatMoney(data[orderToRate].total_price)}
                       </h3>
                       <ReactStars
                         count={5}
@@ -289,27 +301,25 @@ class History extends Component {
                           })
                         }
                         isHalf={true}
-                        value={history.data[orderToRate].rate.stars}
-                        edit={!history.data[orderToRate].rate.did}
+                        value={data[orderToRate].rate.stars}
+                        edit={!data[orderToRate].rate.did}
                         size={50}
                         activeColor="#ffd700"
                       />
                     </Form.Label>
                     <Form.Control
-                      disabled={history.data[orderToRate].rate.did}
+                      disabled={data[orderToRate].rate.did}
                       as="textarea"
                       type="text"
                       className="mr-2"
                       defaultValue={
-                        history.data[orderToRate].rate.feedback_text
-                          ? history.data[orderToRate].rate.feedback_text
+                        data[orderToRate].rate.feedback_text
+                          ? data[orderToRate].rate.feedback_text
                           : ""
                       }
                       rows={12}
                       placeholder={
-                        !history.data[orderToRate].rate.did
-                          ? "Deixe seu feeback!"
-                          : ""
+                        !data[orderToRate].rate.did ? "Deixe seu feeback!" : ""
                       }
                       onChange={(text) =>
                         this.setState({
@@ -323,7 +333,7 @@ class History extends Component {
                       {")"}
                     </Form.Text>
                   </Form.Group>
-                  {!history.data[orderToRate].rate.did ? (
+                  {!data[orderToRate].rate.did ? (
                     <>
                       <ActionButtonsStyle className="mt-2">
                         <Button
@@ -334,28 +344,27 @@ class History extends Component {
                         </Button>
                         <Button
                           variant="danger"
-                          disabled={!this.state.canSendRate}
+                          disabled={!canSendRate}
                           onClick={() => {
-                            const historyData = [...history.data];
+                            const historyData = [...data];
                             historyData[orderToRate] = {
                               ...historyData[orderToRate],
                               rate: {
                                 did: true,
-                                stars: this.state.currentStarsValue,
-                                feedback_text: this.state.currentFeedbackText,
+                                stars: currentStarsValue,
+                                feedback_text: currentFeedbackText,
                               },
                             };
 
                             try {
-                              this.props.postHistory({
+                              postHistory({
                                 data: historyData[orderToRate],
                                 changes: {
                                   rate: {
-                                    stars: this.state.currentStarsValue,
-                                    feedback_text:
-                                      this.state.currentFeedbackText,
+                                    stars: currentStarsValue,
+                                    feedback_text: currentFeedbackText,
                                   },
-                                  index: this.state.elementToRateId,
+                                  index: elementToRateId,
                                 },
                               });
                             } catch (err) {
@@ -366,7 +375,7 @@ class History extends Component {
                           Enviar
                         </Button>
                       </ActionButtonsStyle>
-                      {!this.state.canSendRate ? (
+                      {!canSendRate ? (
                         <DisabledSendButton>
                           <label>
                             Avaliação com estrelas é obrigatória para continuar!
@@ -383,9 +392,9 @@ class History extends Component {
                           elementToRateId: -1,
                           currentFeedbackText: "",
                           currentStarsValue: 0,
-                          changeSelectedBg: [
-                            ...this.state.changeSelectedBg,
-                          ].map((element, idx) => false),
+                          changeSelectedBg: [...changeSelectedBg].map(
+                            (element, idx) => false
+                          ),
                         })
                       }
                       className="mt-2"
@@ -396,7 +405,7 @@ class History extends Component {
                 </Form>
               ) : null}
             </MainDiv>
-            {history.data && history.data.length ? (
+            {data && data.length ? (
               <>
                 <RectangleFilter className="mt-3">
                   {cicles.map((element, index) => (
@@ -407,13 +416,13 @@ class History extends Component {
                           currentPage: e.target.childNodes[0].data - 1,
                           orderToRate: -1,
                           elementToRateId: -1,
-                          changeSelectedBg: [
-                            ...this.state.changeSelectedBg,
-                          ].map((element, idx) => false),
+                          changeSelectedBg: [...changeSelectedBg].map(
+                            (element, idx) => false
+                          ),
                         })
                       }
                     >
-                      {this.state.currentPage === element ? (
+                      {currentPage === element ? (
                         <div
                           style={{
                             borderRadius: "63px",
