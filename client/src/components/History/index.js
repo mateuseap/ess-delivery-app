@@ -147,32 +147,36 @@ class History extends Component {
           <BorderText>
             <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
           </BorderText>
-          <RectangleFilter>
-            Filtro de Dias
-            <RectangleDaysFilter>
-              <SelectStyle
-                onChange={(elem) =>
-                  this.setState(
-                    {
-                      daysFilter: elem.target.value,
-                      orderToRate: -1,
-                      elementToRateId: -1,
-                      currentPage: 0,
-                      changeSelectedTdBg: [
-                        ...this.state.changeSelectedTdBg,
-                      ].map((element, idx) => false),
-                    },
-                    () =>
-                      this.props.getHistory({ query: this.state.daysFilter })
-                  )
-                }
-              >
-                <OptionStyle value="30">30 dias</OptionStyle>
-                <OptionStyle value="15">15 dias</OptionStyle>
-                <OptionStyle value="7">7 dias</OptionStyle>
-              </SelectStyle>
-            </RectangleDaysFilter>
-          </RectangleFilter>
+          {history.data.length > 0 ? (
+              <RectangleFilter>
+                Filtro de Dias
+                <RectangleDaysFilter>
+                  <SelectStyle
+                    onChange={(elem) =>
+                      this.setState(
+                        {
+                          daysFilter: elem.target.value,
+                          orderToRate: -1,
+                          elementToRateId: -1,
+                          currentPage: 0,
+                          changeSelectedTdBg: [
+                            ...this.state.changeSelectedTdBg,
+                          ].map((element, idx) => false),
+                        },
+                        () =>
+                          this.props.getHistory({ query: this.state.daysFilter })
+                      )
+                    }
+                  >
+                    <OptionStyle value="30">30 dias</OptionStyle>
+                    <OptionStyle value="15">15 dias</OptionStyle>
+                    <OptionStyle value="7">7 dias</OptionStyle>
+                  </SelectStyle>
+                </RectangleDaysFilter>
+              </RectangleFilter>
+            ) : (
+              <></>
+            )}
         </TopDiv>
         {history.loading || restaurants.loading ? (
           <ReactLoading
