@@ -115,7 +115,9 @@ export const TopDiv = styled.div`
   grid-column-gap: 10vw;
 `;
 
-export const CircleStyle = styled.div`
+export const ButtonStyle = styled.button`
+  all: unset;
+  cursor: pointer;
   width: 40px;
   height: 40px;
   text-align: center;
@@ -123,9 +125,23 @@ export const CircleStyle = styled.div`
   border-radius: 63px;
   box-sizing: border-box;
   &:hover {
-    border: 1px solid #ffffff;
-  }
-  &:active {
+    border: 1px solid yellow;
     background-color: rgba(250, 16, 52, 0.2);
   }
+`;
+
+export const NoDataStyle = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 45%;
+  left: 0;
+  right: 0;
+  margin: auto;
+`;
+
+export const OptionStyle = styled.option`
+  color: black;
 `;

@@ -2,11 +2,10 @@ import { createReducer, createActions } from "reduxsauce";
 import Immutable from "seamless-immutable";
 
 export const { Types, Creators } = createActions({
-  cartRequest: [],
-  getCart: [],
-  updateCart: ["rest_id", "rest_name", "item", "amountToChange"],
-  cartSuccess: ["data"],
-  cartError: ["err"],
+  orderDetailsRequest: [],
+  getOrderDetails: ["id"],
+  orderDetailsSuccess: ["data"],
+  orderDetailsError: ["err"],
 });
 
 export const INITIAL_STATE = Immutable({
@@ -23,7 +22,7 @@ const success = (state, { data }) =>
   state.merge({ data, loading: false, error: false });
 
 export default createReducer(INITIAL_STATE, {
-  [Types.CART_ERROR]: error,
-  [Types.CART_REQUEST]: request,
-  [Types.CART_SUCCESS]: success,
+  [Types.ORDER_DETAILS_ERROR]: error,
+  [Types.ORDER_DETAILS_REQUEST]: request,
+  [Types.ORDER_DETAILS_SUCCESS]: success,
 });
