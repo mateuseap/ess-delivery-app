@@ -15,9 +15,9 @@ import {
   RectangleDaysFilter,
   SelectStyle,
   TopDiv,
-  CircleStyle,
   NoDataStyle,
   OptionStyle,
+  ButtonStyle,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -481,7 +481,7 @@ class History extends Component {
               <>
                 <RectangleFilter className="mt-3">
                   {cicles.map((element, index) => (
-                    <button
+                    <ButtonStyle
                       key={index}
                       onClick={(e) =>
                         this.setState({
@@ -493,18 +493,15 @@ class History extends Component {
                           ].map((element, idx) => false),
                         })
                       }
-                      style={{
-                        all: "unset",
-                        cursor: "pointer",
-                      }}
                     >
-                      <CircleStyle>{element + 1}</CircleStyle>
-                    </button>
+                      {this.state.currentPage === element ? (
+                          <div style={{ borderRadius: "63px", border: "1px solid #ffffff" }}>{element+1}</div>
+                        ) : (
+                          element + 1
+                        )}
+                    </ButtonStyle>
                   ))}
                 </RectangleFilter>
-                <h5 className="mt-1">
-                  Atualmente na página {this.state.currentPage + 1}
-                </h5>
               </>
             ) : null}
           </>
