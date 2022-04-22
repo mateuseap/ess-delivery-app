@@ -15,14 +15,20 @@ export function* getCart() {
   }
 }
 
-export function* updateCart({ cart }) {
+export function* updateCart({ rest_id, rest_name, item, amountToChange }) {
   try {
     yield put(Creators.cartRequest());
 
-    let response = yield call(api.post, "/cart", { cart });
+    let response = yield call(api.post, "/cart", {
+      rest_id,
+      rest_name,
+      item,
+      amountToChange,
+    });
     if (response.data) {
       // como so iremos trabalhar com um usuario:
-      yield put(Creators.cartSuccess(response.data));
+      yield put(Creators.cartSuccess(response.data)); 
+      toastr.success("Item adicionado ao carrinho.");
     }
   } catch (err) {
     yield put(Creators.cartError({ err }));

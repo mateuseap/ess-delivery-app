@@ -1,88 +1,131 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { ItemPhoto, PageStyle } from "./styles";
+import { Creators as MenuCreators } from "../../store/ducks/menu";
+import { Creators as CartCreators } from "../../store/ducks/cart";
+
+import {
+  ItemPhoto,
+  PageStyle,
+  TableStyle,
+  TableBodyStyle,
+  ItemData,
+  ItemDescriptionStyle,
+  RatingTextStyles,
+} from "./styles";
 
 import ReactLoading from "react-loading";
 
 import ReactStars from "react-rating-stars-component";
 
-import { Button } from "react-bootstrap";
+import { Button, Table, Alert } from "react-bootstrap";
 
-import { API_URL } from "../../constants/constants";
+import { formatMoney, withRouter } from "../../utils/misc";
 
-function getAverage(arr) {
-  let count = 0;
-  arr.forEach((element) => (count += element.stars));
+class Menu extends Component {
 
-  return count / arr.length;
-}
-
-export default function Menu() {
-  const { id } = useParams();
-  const [restaurant, setRestaurant] = useState(null);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  async function fetchData() {
-    const response = await fetch(API_URL + `/restaurants?id=${id}`);
-    const jsonResp = await response.json();
-    setRestaurant(jsonResp);
+  componentDidMount() {
+    this.props.getMenu(this.props.router.params.id);
   }
 
-  async function fetchPostDataCart(obj) {
-    const response = await fetch(API_URL + "/cart", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(obj),
-    });
-    const jsonResp = await response.json();
+  handleClick(item) {
+    const { menu } = this.props;
+    this.props.updateCart(
+      menu.data.id,
+      menu.data.name,
+      { ...item, quantity: 0 },
+      1
+    );
   }
 
-  useEffect(() => fetchData(), [id]);
+  getAverage(arr) {
+    const count = arr?.reduce((acc, element) => acc + element.stars, 0);
 
-  return (
-    <>
-      {!restaurant ? (
-        <ReactLoading
-          type={"spin"}
-          style={{
-            position: "absolute",
-            width: "10vw",
-            top: "40%",
-            left: "0",
-            right: "0",
-            margin: "auto",
-          }}
-        />
-      ) : (
-        <PageStyle className="m-3">
-          <h1>{restaurant.name}</h1>
-          <ReactStars
-            count={5}
-            isHalf={true}
-            value={getAverage(restaurant.rates)}
-            edit={false}
-            size={50}
-            activeColor="#ffd700"
+    return count / arr?.length;
+  }
+
+  render() {
+    const { menu } = this.props;
+    const restaurant = menu.data;
+
+    return (
+      <>
+        {menu.loading ? (
+          <ReactLoading
+            type={"spin"}
+            style={{
+              position: "absolute",
+              width: "10vw",
+              top: "40%",
+              left: "0",
+              right: "0",
+              margin: "auto",
+            }}
           />
-          {restaurant.menu.options.map((element) => (
-            <>
-              <ItemPhoto photo={element.photo} />
-              <p>{element.description}</p>
-              <Button
-                variant="danger"
-                type="button"
-                onClick={(e) => fetchPostDataCart(element)}
-              >
-                Adicionar item ao carrinho
-              </Button>
-            </>
-          ))}
-        </PageStyle>
-      )}
-    </>
-  );
+        ) : (
+          <PageStyle className="m-3">
+            <h1>{restaurant.name}</h1>
+            <div className="d-inline-flex justify-content-center align-items-center">
+              <ReactStars
+                count={5}
+                isHalf={true}
+                value={this.getAverage(restaurant.rates)}
+                edit={false}
+                size={50}
+                activeColor="#ffd700"
+              />
+              <RatingTextStyles className="p-3 mt-2">
+                ({this.getAverage(restaurant.rates)})
+              </RatingTextStyles>
+            </div>
+
+            <Table borderless>
+              <tbody>
+                <tr className="mx-5">
+                  <TableStyle>
+                    {restaurant.menu?.options.map((element) => (
+                      <td>
+                        <TableBodyStyle>
+                          <ItemPhoto className="m-2" photo={element.photo} />
+                          <ItemData className="m-2">
+                            <ItemDescriptionStyle>
+                              <h4 style={{ fontWeight: "600" }}>
+                                {element.name}
+                              </h4>
+                              {element.description}
+                            </ItemDescriptionStyle>
+                            <Button
+                              style={{
+                                width: "280px",
+                                paddingBottom: 0,
+                                borderRadius: "65px",
+                              }}
+                              variant="outline-danger"
+                              type="button"
+                              onClick={(e) => {this.handleClick(element)}}
+                            >
+                              <strong>
+                                Adicionar item ao carrinho
+                                <h4>{" +R$" + formatMoney(element.price)}</h4>
+                              </strong>
+                            </Button>
+                          </ItemData>
+                        </TableBodyStyle>
+                      </td>
+                    ))}
+                  </TableStyle>
+                </tr>
+              </tbody>
+            </Table>
+          </PageStyle>
+        )}
+      </>
+    );
+  }
 }
+
+const mapStateToProps = ({ menu }) => ({ menu });
+
+export default withRouter(
+  connect(mapStateToProps, { ...MenuCreators, ...CartCreators })(Menu)
+);
