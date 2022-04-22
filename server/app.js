@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const { getCart, postCart } = require("./resources/cart");
 const { getUser } = require("./resources/user");
 const { getRestaurants } = require("./resources/restaurant");
-const { getOrders, postOrders } = require("./resources/order");
+const { getOrders, postOrders, getOrderById } = require("./resources/order");
 
 const cors = require("cors");
 
@@ -22,6 +22,8 @@ app.get("/restaurants", getRestaurants);
 
 app.get("/orders", getOrders);
 app.post("/orders", postOrders);
+
+app.get("/order-details", getOrderById);
 
 app.listen(1337, (_) => {
   console.log("Server running on port 1337");

@@ -41,12 +41,26 @@ exports.postOrders = async (req, res) => {
     restaurants.write({ restaurants: arr });
 
     // Orders update
-    table.deleteOrReplace(
-      changes.index,
-      1,
-      req.body.data.data
-    );
+    table.deleteOrReplace(changes.index, 1, req.body.data.data);
     res.status(200).send(JSON.stringify({ post: true, err: false }));
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.getOrderById = async (req, res) => {
+  try {
+    const { id } = req.query;
+
+    const data = table.query({
+      inner: {
+        nameObjToQuery: "orders",
+        matchId: `id=${id}`,
+      },
+    });
+    if (!data) throw new Error("Pedido não existe!");
+    
+    res.status(200).send(JSON.stringify(data));
   } catch (err) {
     res.status(500).send(err);
   }
