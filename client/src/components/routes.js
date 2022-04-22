@@ -19,9 +19,9 @@ class RouteOptions extends Component {
           <Route path="/history" element={<History />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu/:id" element={<Menu />} />
+          <Route path="/details/:id" element={<OrderDetails />} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/details/:id" element={<OrderDetails />} />
         </Routes>
       </>
     );

@@ -36,6 +36,7 @@ class OrderDetails extends Component {
     const { orderDetails } = this.props;
     const order = orderDetails.data;
     if (orderDetails.error) return <NotFound />;
+    
     return (
       <>
         {orderDetails.loading || !order ? (
@@ -79,11 +80,15 @@ class OrderDetails extends Component {
                 <OrderItem key={element.item_id}>
                   {this.formatOrder(element.quantity, element.name)}
                 </OrderItem>
-                <OrderItemPrice>R${formatMoney(element.price)}</OrderItemPrice>
+                <OrderItemPrice>
+                  R{"$ " + formatMoney(element.price)}
+                </OrderItemPrice>
               </div>
             ))}
 
-            <TotalPrice>Total: R${formatMoney(order.total_price)}</TotalPrice>
+            <TotalPrice>
+              Total: R{"$ " + formatMoney(order.total_price)}
+            </TotalPrice>
             <Deliver>Tempo de Entrega: 50 minutos</Deliver>
             <ButtonRight>
               <Button variant="danger" type="button">
