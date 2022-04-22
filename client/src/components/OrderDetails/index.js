@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Creators as OrderDetailsCreators } from "../../store/ducks/orderDetails";
+import { Creators as OrderCreators } from "../../store/ducks/order";
 import ReactLoading from "react-loading";
 import { Button } from "react-bootstrap";
 
@@ -33,7 +33,7 @@ class OrderDetails extends Component {
   }
 
   render() {
-    const { orderDetails } = this.props;
+    const orderDetails = this.props.order;
     const order = orderDetails.data;
     if (orderDetails.error) return <NotFound />;
     return (
@@ -97,8 +97,8 @@ class OrderDetails extends Component {
   }
 }
 
-const mapStateToProps = ({ orderDetails }) => ({ orderDetails });
+const mapStateToProps = ({ order }) => ({ order });
 
 export default withRouter(
-  connect(mapStateToProps, { ...OrderDetailsCreators })(OrderDetails)
+  connect(mapStateToProps, { ...OrderCreators })(OrderDetails)
 );
