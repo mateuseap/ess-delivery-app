@@ -49,7 +49,7 @@
             "name": "Calabresa acebolada",
             "price": 13,
             "item_id": 6,
-            "photo": "https://s2.glbimg.com/RlMNwXYV8qKALf5ocE0XlIuhFl0=/696x390/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/u/0/z1DHT9Qc6H126dlOBBDw/calabresa-acebolada.jpg",
+            "photo": "https://img.itdg.com.br/tdg/images/recipes/000/001/109/318805/318805_original.jpg?mode=crop&width=350&height=250",
             "description": "E quem não gosta de comida acebolada, né? RSRS. Acompanha batata frita, arroz e feijão"
           }
         ]
@@ -235,14 +235,14 @@
             "price": 15,
             "item_id": 1,
             "photo": "https://t1.rg.ltmcdn.com/pt/posts/0/7/2/panqueca_de_carne_moida_270_600_square.jpg",
-            "description": "Panquecinhaaaaaa."
+            "description": "Panquequinhaaaaaa."
           },
           {
             "name": "Calabresa acebolada",
             "price": 27,
             "item_id": 2,
-            "photo": "https://s2.glbimg.com/RlMNwXYV8qKALf5ocE0XlIuhFl0=/696x390/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/u/0/z1DHT9Qc6H126dlOBBDw/calabresa-acebolada.jpg",
-            "description": "Sugestão do chefe BILAS"
+            "photo": "https://img.itdg.com.br/tdg/images/recipes/000/001/109/318805/318805_original.jpg?mode=crop&width=350&height=250",
+            "description": "Sugestão do chefe BILAS!"
           }
         ]
       },
