@@ -26,9 +26,10 @@ export function* postHistory({ data, changes }) {
 
     if (response.data) {
       yield put(Creators.historySuccess(response.data));
+      toastr.success("Avaliação enviada com sucesso.");
     }
   } catch (err) {
     yield put(Creators.historyError({ err }));
-    toastr.error("Erro ao atualizar histórico de pedidos");
+    toastr.error("Erro ao enviar avaliação.");
   }
 }
