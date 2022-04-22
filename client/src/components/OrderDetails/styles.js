@@ -6,7 +6,7 @@ export const OrderDetailsPage = styled.div`
   align-items: center;
 `;
 
-export const OrderTitles = styled.div`
+export const OrderTitles = styled.h1`
   font-weight: bold;
   color: #91091e;
   text-align: center;
@@ -34,7 +34,7 @@ export const OrderStatusItem = styled.div`
 
 `;
 
-export const Restaurant = styled.div`
+export const Restaurant = styled.h4`
   font-weight: bold;
   color: #91091e;
   display: flex;

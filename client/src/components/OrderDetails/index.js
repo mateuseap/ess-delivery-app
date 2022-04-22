@@ -4,6 +4,7 @@ import { Creators as OrderDetailsCreators } from "../../store/ducks/orderDetails
 import ReactLoading from "react-loading";
 import { Button } from "react-bootstrap";
 
+import { formatMoney } from "../../utils/misc";
 import { withRouter } from "../../utils/misc";
 
 import {
@@ -27,8 +28,11 @@ class OrderDetails extends Component {
     this.props.getOrderDetails(id);
   }
 
+  formatOrder(quantity, name) {
+    return quantity < 10 ? `0${quantity} - ${name}` : `${quantity} - ${name}`;
+  }
+
   render() {
-    console.log(this.props);
     const { orderDetails } = this.props;
     const order = orderDetails.data;
     if (orderDetails.error) return <NotFound />;
@@ -38,9 +42,7 @@ class OrderDetails extends Component {
           <ReactLoading type={"spin"} />
         ) : (
           <OrderDetailsPage>
-            <h1>
-              <OrderTitles>Status do Pedido</OrderTitles>
-            </h1>
+            <OrderTitles>Status do Pedido</OrderTitles>
 
             <OrderStatus>
               {order.status?.confirmed ? (
@@ -68,21 +70,20 @@ class OrderDetails extends Component {
               )}
             </OrderStatus>
 
-            <h1>
-              <OrderTitles>Resumo do Pedido</OrderTitles>
-            </h1>
+            <OrderTitles>Resumo do Pedido</OrderTitles>
 
-            <h4>
-              <Restaurant>Restaurante: {order.restaurant_name}</Restaurant>
-            </h4>
+            <Restaurant>Restaurante: {order.restaurant_name}</Restaurant>
+
             {order.description?.map((element) => (
               <div key={element.item_id}>
-                <OrderItem>{element.name}</OrderItem>
-                <OrderItemPrice>R${element.price}</OrderItemPrice>
+                <OrderItem key={element.item_id}>
+                  {this.formatOrder(element.quantity, element.name)}
+                </OrderItem>
+                <OrderItemPrice>R${formatMoney(element.price)}</OrderItemPrice>
               </div>
             ))}
 
-            <TotalPrice>Total: R${order.total_price}</TotalPrice>
+            <TotalPrice>Total: R${formatMoney(order.total_price)}</TotalPrice>
             <Deliver>Tempo de Entrega: 50 minutos</Deliver>
             <ButtonRight>
               <Button variant="danger" type="button">
