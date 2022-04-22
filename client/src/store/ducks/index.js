@@ -6,7 +6,8 @@ import user from "./user";
 import restaurants from "./restaurants";
 import history from "./history";
 import cart from "./cart";
-import menu from "./menu"
+import menu from "./menu";
+import orderDetails from "./orderDetails";
 
 export default combineReducers({
   user,
@@ -14,5 +15,6 @@ export default combineReducers({
   history,
   cart,
   menu,
-  toastr
-}); 
+  orderDetails,
+  toastr,
+});
