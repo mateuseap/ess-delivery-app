@@ -228,7 +228,7 @@ class History extends Component {
                                 </TableBodyStyle>
                               </td>
                               <td>
-                                {!element.status.entregue ? (
+                                {!element.status.finished ? (
                                   <Link to={`/detalhes/${element.id}`}>
                                     <Button variant="success" className="mx-3">
                                       Acompanhar pedido
