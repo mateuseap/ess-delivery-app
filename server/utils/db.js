@@ -63,7 +63,9 @@ exports.ManipulateDatabase = class {
   replaceOrAppend(compareFunction, newItem) {
     const index = this.#document[this.#tableName].findIndex(compareFunction);
     if (index != -1) {
-      this.#document[this.#tableName].splice(index, 1, newItem);
+      if (newItem) this.#document[this.#tableName].splice(index, 1, newItem);
+      else this.#document[this.#tableName].splice(index, 1);
+
       this.saveChanges();
       return true;
     } else {

@@ -58,6 +58,14 @@ exports.postCart = async (req, res) => {
 
         if (cart_data.items[index].quantity <= 0)
           cart_data.items.splice(index, 1);
+
+        if (cart_data.items.length == 0) cart_data = undefined;
+        else {
+          cart_data.total = cart_data?.items.reduce(
+            (acc, item) => acc + item.price * item.quantity,
+            0
+          );
+        }
       } else {
         //previne que se retire um item q nao esta no carrinho
         if (body.amountToChange < 1)
@@ -73,11 +81,6 @@ exports.postCart = async (req, res) => {
         body.amountToChange
       );
     }
-
-    cart_data.total = cart_data.items.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
 
     const compareFunction = (item) => item.user_id == decoded_auth.userId;
     table.replaceOrAppend(compareFunction, cart_data);
