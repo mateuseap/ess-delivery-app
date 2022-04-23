@@ -99,10 +99,6 @@ class History extends Component {
     const { history, getHistory, postHistory } = this.props;
     const { data, loading } = history;
 
-    if (data.post)
-      // depois de a avaliação ser enviada
-      getHistory({ query: daysFilter });
-
     this.elemPerPages = 2;
     this.numberOfCircles = Math.ceil(data.length / this.elemPerPages);
 
@@ -130,7 +126,7 @@ class History extends Component {
                           (element, idx) => false
                         ),
                       },
-                      () => getHistory({ query: daysFilter })
+                      () => getHistory({ query: elem.target.value })
                     )
                   }
                 >
@@ -366,6 +362,7 @@ class History extends Component {
                                   },
                                   index: elementToRateId,
                                 },
+                                daysFilter: daysFilter,
                               });
                             } catch (err) {
                               console.log(err);

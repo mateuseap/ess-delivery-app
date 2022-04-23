@@ -3,24 +3,30 @@ const { dateToString, dateStrToInt } = require("../utils/misc");
 
 const table = new ManipulateDatabase("orders");
 
+function queryByDate(days) {
+  const startDate = new Date();
+
+  startDate.setDate(startDate.getDate() - days);
+  const resp = table.read({
+    deep: {
+      deepSearch: true,
+      booleans: [
+        {
+          findOne: false,
+          expr: `date>=${dateToString(startDate)}`,
+        },
+      ],
+    },
+  });
+
+  resp.sort((a, b) => dateStrToInt(b.date) - dateStrToInt(a.date));
+  return resp;
+}
+
 exports.getOrders = async (req, res) => {
   try {
     const days = JSON.parse(req.query.query).query;
-    const startDate = new Date();
-    startDate.setDate(startDate.getDate() - days);
-    const resp = table.read({
-      deep: {
-        deepSearch: true,
-        booleans: [
-          {
-            findOne: false,
-            expr: `date>=${dateToString(startDate)}`,
-          },
-        ],
-      },
-    });
-    resp.sort((a, b) => dateStrToInt(b.date) - dateStrToInt(a.date));
-    res.status(200).send(JSON.stringify(resp));
+    res.status(200).send(JSON.stringify(queryByDate(days)));
   } catch (err) {
     res.status(500).send(err);
   }
@@ -41,8 +47,10 @@ exports.postOrders = async (req, res) => {
     restaurants.write({ restaurants: arr });
 
     // Orders update
+    const daysFilter = req.body.data.daysFilter;
     table.deleteOrReplace(changes.index, 1, req.body.data.data);
-    res.status(200).send(JSON.stringify({ post: true, err: false }));
+
+    res.status(200).send(JSON.stringify(queryByDate(daysFilter)));
   } catch (err) {
     res.status(500).send(err);
   }
@@ -59,7 +67,7 @@ exports.getOrderById = async (req, res) => {
       },
     });
     if (!data) throw new Error("Pedido não existe!");
-    
+
     res.status(200).send(JSON.stringify(data));
   } catch (err) {
     res.status(500).send(err);
