@@ -59,6 +59,7 @@ exports.postOrders = async (req, res) => {
 
     res.status(200).send(JSON.stringify(queryByDate(daysFilter)));
   } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 };
@@ -78,6 +79,7 @@ exports.getOrderById = async (req, res) => {
 
     res.status(200).send(JSON.stringify(data));
   } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 };

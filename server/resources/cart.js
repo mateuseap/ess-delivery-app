@@ -16,6 +16,7 @@ exports.getCart = async (req, res) => {
 
     res.status(200).send(JSON.stringify(cart_data));
   } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 };

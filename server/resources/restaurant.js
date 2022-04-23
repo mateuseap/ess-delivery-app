@@ -28,6 +28,7 @@ exports.getRestaurants = async (req, res) => {
       res.status(200).send(JSON.stringify(arr));
     else res.status(200).send(JSON.stringify(getRandomSlice(arr, 3)));
   } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 };
