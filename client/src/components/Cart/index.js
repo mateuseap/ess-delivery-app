@@ -26,7 +26,6 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { Creators as CartCreator } from "../../store/ducks/cart";
-import { Creators as OrderCreator } from "../../store/ducks/order";
 
 import { formatMoney } from "../../utils/misc";
 
@@ -141,6 +140,4 @@ class Cart extends Component {
 
 const mapStateToProps = ({ cart }) => ({ cart });
 
-export default withRouter(
-  connect(mapStateToProps, { ...CartCreator, ...OrderCreator })(Cart)
-);
+export default withRouter(connect(mapStateToProps, { ...CartCreator })(Cart));

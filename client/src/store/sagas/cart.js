@@ -33,3 +33,19 @@ export function* updateCart({ rest_id, rest_name, item, amountToChange }) {
     toastr.error("Erro ao atualizar carrinho");
   }
 }
+
+export function* makeOrder({ callback }) {
+  try {
+    yield put(Creators.cartRequest());
+
+    let response = yield call(api.post, "/make-order", {});
+    if (response.data) {
+      yield put(Creators.cartSuccess({}));
+      toastr.success("Pedido feito com sucesso");
+      if (callback) callback(response.data.id);
+    }
+  } catch (err) {
+    yield put(Creators.cartError({ err }));
+    toastr.error("Erro ao fazer pedido");
+  }
+}
