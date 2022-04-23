@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { Creators as CartCreator } from "../../store/ducks/cart";
+import { Creators as OrderCreator } from "../../store/ducks/order";
 
 import { formatMoney } from "../../utils/misc";
 
@@ -36,13 +37,6 @@ class Cart extends Component {
 
   addItem(index) {
     const { cart } = this.props;
-
-    let reqBody = {
-      rest_id: cart.data.rest_id,
-      rest_name: cart.data.rest_name,
-      item: cart.data.items[index],
-      amountToChange: 1,
-    };
 
     this.props.updateCart(
       cart.data.rest_id,
@@ -55,19 +49,19 @@ class Cart extends Component {
   removeItem(index) {
     const { cart } = this.props;
 
-    let reqBody = {
-      rest_id: cart.data.rest_id,
-      rest_name: cart.data.rest_name,
-      item: cart.data.items[index],
-      amountToChange: -1,
-    };
-
     this.props.updateCart(
       cart.data.rest_id,
       cart.data.rest_name,
       cart.data.items[index],
       -1
     );
+  }
+
+  handleMakeOrder() {
+    const callback = (id) => {
+      this.props.router.navigate(`/details/${id}`);
+    };
+    this.props.makeOrder(callback);
   }
 
   render() {
@@ -122,7 +116,9 @@ class Cart extends Component {
                 <OrderTotalStyle>
                   Total: {formatMoney(cart.data.total)}
                 </OrderTotalStyle>
-                <OrderButton>Fazer Pedido</OrderButton>
+                <OrderButton onClick={() => this.handleMakeOrder()}>
+                  Fazer Pedido
+                </OrderButton>
               </>
             ) : (
               <>
@@ -145,4 +141,6 @@ class Cart extends Component {
 
 const mapStateToProps = ({ cart }) => ({ cart });
 
-export default withRouter(connect(mapStateToProps, { ...CartCreator })(Cart));
+export default withRouter(
+  connect(mapStateToProps, { ...CartCreator, ...OrderCreator })(Cart)
+);

@@ -25,13 +25,11 @@ export function* updateCart({ rest_id, rest_name, item, amountToChange }) {
       item,
       amountToChange,
     });
-    
-    if (response.data) {
-      yield put(Creators.cartSuccess(response.data)); 
-      toastr.success("Item adicionado ao carrinho.");
-    }
+
+    yield put(Creators.cartSuccess(response.data));
+    toastr.success("Carrinho atualizado.");
   } catch (err) {
     yield put(Creators.cartError({ err }));
-    toastr.error("Erro ao fazer pedido");
+    toastr.error("Erro ao atualizar carrinho");
   }
 }
