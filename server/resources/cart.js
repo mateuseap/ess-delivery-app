@@ -83,7 +83,7 @@ exports.postCart = async (req, res) => {
     }
 
     const compareFunction = (item) => item.user_id == decoded_auth.userId;
-    table.replaceOrAppend(compareFunction, cart_data);
+    table.findAndReplace(compareFunction, cart_data);
 
     res.status(200).send(cart_data);
   } catch (err) {

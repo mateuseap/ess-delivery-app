@@ -60,17 +60,17 @@ exports.ManipulateDatabase = class {
 
   //procura por um objeto no array, caso o encontre o substitui por um novo
   //caso nao ache o adiciona ao final
-  replaceOrAppend(compareFunction, newItem) {
+  findAndReplace(compareFunction, newItem, append = true) {
     const index = this.#document[this.#tableName].findIndex(compareFunction);
     if (index != -1) {
       if (newItem) this.#document[this.#tableName].splice(index, 1, newItem);
       else this.#document[this.#tableName].splice(index, 1);
-
-      this.saveChanges();
-      return true;
-    } else {
+    } else if (append) {
       this.append(newItem);
+    } else {
+      throw new Error("Item não encontrado no banco de dados");
     }
+    this.saveChanges();
   }
 
   saveChanges() {
