@@ -3,7 +3,7 @@ import { Creators } from "../ducks/order";
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 
-export default function* getOrderDetails({ id }) {
+export function* getOrderDetails({ id }) {
   try {
     yield put(Creators.orderRequest());
 
@@ -12,5 +12,21 @@ export default function* getOrderDetails({ id }) {
   } catch (err) {
     yield put(Creators.orderError({ err }));
     toastr.error("Erro ao buscar pedido");
+  }
+}
+
+export function* makeOrder({ callback }) {
+  try {
+    yield put(Creators.orderRequest());
+
+    let response = yield call(api.post, "/make-order", {});
+    if (response.data) {
+      yield put(Creators.orderSuccess({}));
+      toastr.success("Pedido feito com sucesso");
+      if (callback) callback(response.data.id);
+    }
+  } catch (err) {
+    yield put(Creators.orderError({ err }));
+    toastr.error("Erro ao fazer pedido");
   }
 }

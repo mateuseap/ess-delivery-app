@@ -4,6 +4,7 @@ import Immutable from "seamless-immutable";
 export const { Types, Creators } = createActions({
   orderRequest: [],
   getOrderDetails: ["id"],
+  makeOrder: ["callback"],
   orderSuccess: ["data"],
   orderError: ["err"],
 });
