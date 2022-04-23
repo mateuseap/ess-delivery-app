@@ -28,7 +28,7 @@ import ReactLoading from "react-loading";
 
 import { connect } from "react-redux";
 import { Creators as HistoryCreator } from "../../store/ducks/history";
-import { Table, Button, Form, Alert } from "react-bootstrap";
+import { Table, Button, Form } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 
 import { formatMoney } from "../../utils/misc";
@@ -49,31 +49,119 @@ class History extends Component {
     this.props.getHistory({ query: this.state.daysFilter });
   }
 
+  clearRate() {
+    this.setState({
+      orderToRate: -1,
+      elementToRateId: -1,
+      currentFeedbackText: "",
+      currentStarsValue: 0,
+      changeSelectedBg: [...this.state.changeSelectedBg].map(
+        (element, idx) => false
+      ),
+    });
+  }
+
   cancelRate() {
     if (this.state.currentFeedbackText || this.state.currentStarsValue) {
       const resp = window.confirm(
         "Se você cancelar, todo progresso dessa avaliação será perdido"
       );
-      if (resp)
-        this.setState({
-          orderToRate: -1,
-          elementToRateId: -1,
-          currentFeedbackText: "",
-          currentStarsValue: 0,
-          changeSelectedBg: [...this.state.changeSelectedBg].map(
-            (element, idx) => false
-          ),
-        });
-    } else
-      this.setState({
+      if (resp) this.clearRate();
+    } else this.clearRate();
+  }
+
+  handleSelectFilter(elem) {
+    this.setState(
+      {
+        daysFilter: elem.target.value,
         orderToRate: -1,
         elementToRateId: -1,
+        currentPage: 0,
         currentFeedbackText: "",
         currentStarsValue: 0,
         changeSelectedBg: [...this.state.changeSelectedBg].map(
           (element, idx) => false
         ),
+      },
+      () => this.props.getHistory({ query: elem.target.value })
+    );
+  }
+
+  handlePageChange(elem) {
+    this.setState({
+      currentPage: elem.target.childNodes[0].data - 1,
+      orderToRate: -1,
+      elementToRateId: -1,
+      currentFeedbackText: "",
+      currentStarsValue: 0,
+      changeSelectedBg: [...this.state.changeSelectedBg].map(
+        (element, idx) => false
+      ),
+    });
+  }
+
+  handleRating(index, element, review = false) {
+    if (review)
+      this.setState({
+        orderToRate: index,
+        elementToRateId: element.id,
+        changeSelectedBg: [...this.state.changeSelectedBg].map(
+          (element, idx) => {
+            if (idx === index) return true;
+            else return false;
+          }
+        ),
       });
+    else
+      this.setState({
+        orderToRate: index,
+        elementToRateId: element.id,
+        changeSelectedBg: [...this.state.changeSelectedBg].map(
+          (element, idx) => {
+            if (idx === index) return true;
+            else return false;
+          }
+        ),
+        canSendRate:
+          this.props.history.data[index].rate.stars !== 0 ? true : false,
+      });
+  }
+
+  sendRate() {
+    const {
+      orderToRate,
+      elementToRateId,
+      currentStarsValue,
+      currentFeedbackText,
+      daysFilter,
+    } = this.state;
+    const { history, postHistory } = this.props;
+
+    const historyData = [...history.data];
+    historyData[orderToRate] = {
+      ...historyData[orderToRate],
+      rate: {
+        did: true,
+        stars: currentStarsValue,
+        feedback_text: currentFeedbackText,
+      },
+    };
+
+    try {
+      postHistory({
+        data: historyData[orderToRate],
+        changes: {
+          rate: {
+            stars: currentStarsValue,
+            feedback_text: currentFeedbackText,
+          },
+          index: elementToRateId,
+        },
+        daysFilter: daysFilter,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   getCicles() {
@@ -86,17 +174,9 @@ class History extends Component {
   }
 
   render() {
-    const {
-      orderToRate,
-      elementToRateId,
-      currentStarsValue,
-      currentFeedbackText,
-      changeSelectedBg,
-      canSendRate,
-      daysFilter,
-      currentPage,
-    } = this.state;
-    const { history, getHistory, postHistory } = this.props;
+    const { orderToRate, changeSelectedBg, canSendRate, currentPage } =
+      this.state;
+    const { history } = this.props;
     const { data, loading } = history;
 
     this.elemPerPages = 2;
@@ -115,20 +195,9 @@ class History extends Component {
               Filtro de Dias
               <RectangleDaysFilter>
                 <SelectStyle
-                  onChange={(elem) =>
-                    this.setState(
-                      {
-                        daysFilter: elem.target.value,
-                        orderToRate: -1,
-                        elementToRateId: -1,
-                        currentPage: 0,
-                        changeSelectedBg: [...changeSelectedBg].map(
-                          (element, idx) => false
-                        ),
-                      },
-                      () => getHistory({ query: elem.target.value })
-                    )
-                  }
+                  onChange={(elem) => {
+                    this.handleSelectFilter(elem);
+                  }}
                 >
                   <OptionStyle value="30">30 dias</OptionStyle>
                   <OptionStyle value="15">15 dias</OptionStyle>
@@ -197,20 +266,7 @@ class History extends Component {
                                     variant="primary"
                                     disabled={orderToRate >= 0 ? true : false}
                                     onClick={() =>
-                                      this.setState({
-                                        orderToRate: index,
-                                        elementToRateId: element.id,
-                                        changeSelectedBg: [
-                                          ...changeSelectedBg,
-                                        ].map((element, idx) => {
-                                          if (idx === index) return true;
-                                          else return false;
-                                        }),
-                                        canSendRate:
-                                          data[index].rate.stars !== 0
-                                            ? true
-                                            : false,
-                                      })
+                                      this.handleRating(index, element)
                                     }
                                     className="mx-3"
                                   >
@@ -221,16 +277,7 @@ class History extends Component {
                                     variant="danger"
                                     disabled={orderToRate >= 0 ? true : false}
                                     onClick={() =>
-                                      this.setState({
-                                        orderToRate: index,
-                                        elementToRateId: element.id,
-                                        changeSelectedBg: [
-                                          ...changeSelectedBg,
-                                        ].map((element, idx) => {
-                                          if (idx === index) return true;
-                                          else return false;
-                                        }),
-                                      })
+                                      this.handleRating(index, element, true)
                                     }
                                     className="mx-3"
                                   >
@@ -276,7 +323,7 @@ class History extends Component {
                           position="left center"
                         >
                           <DescriptionStyle className="p-2">
-                            {data[orderToRate].description.map((element) => (
+                            {data[orderToRate].description?.map((element) => (
                               <>
                                 <h5>{element.name}</h5>
                                 <p>{formatMoney(element.price)}</p>
@@ -341,33 +388,7 @@ class History extends Component {
                         <Button
                           variant="danger"
                           disabled={!canSendRate}
-                          onClick={() => {
-                            const historyData = [...data];
-                            historyData[orderToRate] = {
-                              ...historyData[orderToRate],
-                              rate: {
-                                did: true,
-                                stars: currentStarsValue,
-                                feedback_text: currentFeedbackText,
-                              },
-                            };
-
-                            try {
-                              postHistory({
-                                data: historyData[orderToRate],
-                                changes: {
-                                  rate: {
-                                    stars: currentStarsValue,
-                                    feedback_text: currentFeedbackText,
-                                  },
-                                  index: elementToRateId,
-                                },
-                                daysFilter: daysFilter,
-                              });
-                            } catch (err) {
-                              console.log(err);
-                            }
-                          }}
+                          onClick={() => this.sendRate()}
                         >
                           Enviar
                         </Button>
@@ -383,17 +404,7 @@ class History extends Component {
                   ) : (
                     <Button
                       variant="outline-primary"
-                      onClick={() =>
-                        this.setState({
-                          orderToRate: -1,
-                          elementToRateId: -1,
-                          currentFeedbackText: "",
-                          currentStarsValue: 0,
-                          changeSelectedBg: [...changeSelectedBg].map(
-                            (element, idx) => false
-                          ),
-                        })
-                      }
+                      onClick={() => this.clearRate()}
                       className="mt-2"
                     >
                       Voltar
@@ -408,16 +419,7 @@ class History extends Component {
                   {cicles.map((element, index) => (
                     <ButtonStyle
                       key={index}
-                      onClick={(e) =>
-                        this.setState({
-                          currentPage: e.target.childNodes[0].data - 1,
-                          orderToRate: -1,
-                          elementToRateId: -1,
-                          changeSelectedBg: [...changeSelectedBg].map(
-                            (element, idx) => false
-                          ),
-                        })
-                      }
+                      onClick={(elem) => this.handlePageChange(elem)}
                     >
                       {currentPage === element ? (
                         <div
