@@ -41,7 +41,7 @@ export const MainDiv = styled.div`
   grid-column-gap: 10vw;
 `;
 
-export const TableBodyStyle = styled.div`
+export const TableDataStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
