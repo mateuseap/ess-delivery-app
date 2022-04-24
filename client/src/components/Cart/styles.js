@@ -4,7 +4,8 @@ import { StyledButton } from "../../utils/styles";
 import { DEFAULT_RED } from "../App/App.style";
 
 export const CartStyle = styled.div`
-  width: 100%;
+  width: 90%;
+  margin: auto;
 `;
 
 export const TextStyle = styled.h1`

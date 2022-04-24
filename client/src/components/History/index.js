@@ -119,12 +119,8 @@ class History extends Component {
     const numberOfCircles = Math.ceil(
       this.props.history.data.length / ITEMS_PER_PAGE
     );
-    const arr = [];
-    for (let i = 0; i < numberOfCircles; i++) {
-      arr.push(i);
-    }
 
-    return arr;
+    return Array(numberOfCircles).keys();
   }
 
   handleStars(newRating) {
@@ -134,7 +130,7 @@ class History extends Component {
     });
   }
 
-  getDaysFilter() {
+  renderDaysFilter() {
     return (
       <RectangleFilter>
         Filtro de Dias
@@ -153,9 +149,8 @@ class History extends Component {
     );
   }
 
-  getOrderTableRow(element, index) {
-    const { orderToRate, changeSelectedBg, canSendRate, currentPage } =
-      this.state;
+  renderOrderTableRow(element, index) {
+    const { orderToRate, changeSelectedBg } = this.state;
     return (
       <tr
         key={element.id}
@@ -196,7 +191,7 @@ class History extends Component {
     );
   }
 
-  getPagination() {
+  renderPagination() {
     return (
       <RectangleFilter className="mt-3">
         {this.getCircles().map((element, index) => (
@@ -241,7 +236,7 @@ class History extends Component {
               <>
                 <TopDiv className="m-3">
                   <BorderText>Histórico de Pedidos</BorderText>
-                  {this.getDaysFilter()}
+                  {this.renderDaysFilter()}
                 </TopDiv>
                 <MainDiv>
                   <Table borderless>
@@ -252,7 +247,7 @@ class History extends Component {
                           (currentPage + 1) * ITEMS_PER_PAGE
                         )
                         .map((element, index) => {
-                          return this.getOrderTableRow(element, index);
+                          return this.renderOrderTableRow(element, index);
                         })}
                     </tbody>
                   </Table>
@@ -361,7 +356,7 @@ class History extends Component {
                     </Form>
                   ) : null}
                 </MainDiv>
-                {this.getPagination()}
+                {this.renderPagination()}
               </>
             ) : (
               <NoDataStyle>

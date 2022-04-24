@@ -1,12 +1,7 @@
 import styled from "styled-components";
 
 import { StyledButton } from "../../utils/styles";
-import {
-  DEFAULT_RED,
-  LIGHT_RED,
-  DARK_RED,
-  DEFAULT_GREEN,
-} from "../App/App.style";
+import { DEFAULT_RED, LIGHT_RED, DARK_RED } from "../App/App.style";
 
 export const MainButton = styled(StyledButton)`
   width: 200px;
@@ -111,6 +106,7 @@ export const RectangleDaysFilter = styled(RectangleFilter)`
 `;
 
 export const SelectStyle = styled.select`
+  padding: 0 1px;
   background: transparent;
   cursor: pointer;
   line-height: 1;
