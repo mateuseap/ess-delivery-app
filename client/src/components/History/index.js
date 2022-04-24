@@ -17,7 +17,8 @@ import {
   TopDiv,
   NoDataStyle,
   OptionStyle,
-  ButtonStyle,
+  CirclesStyle,
+  MainButton,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -129,7 +130,7 @@ class History extends Component {
   handleStars(newRating) {
     this.setState({
       currentStarsValue: newRating,
-      canSendRate: newRating === 0 ? false : true,
+      canSendRate: newRating !== 0,
     });
   }
 
@@ -179,19 +180,16 @@ class History extends Component {
         <td>
           {!element.status.finished ? (
             <Link to={`/details/${element.id}`}>
-              <Button variant="success" className="mx-3">
-                Acompanhar pedido
-              </Button>
+              <MainButton variant="green">Acompanhar pedido</MainButton>
             </Link>
           ) : (
-            <Button
-              variant={element.rate.did ? "danger" : "primary"}
-              disabled={orderToRate >= 0 ? true : false}
+            <MainButton
+              variant={element.rate.did ? "" : "blue"}
+              disabled={orderToRate >= 0}
               onClick={() => this.handleRating(index, element)}
-              className="mx-3"
             >
               {element.rate.did ? "Revisar avaliação" : "Avaliar Pedido"}
-            </Button>
+            </MainButton>
           )}
         </td>
       </tr>
@@ -202,23 +200,17 @@ class History extends Component {
     return (
       <RectangleFilter className="mt-3">
         {this.getCircles().map((element, index) => (
-          <ButtonStyle
+          <CirclesStyle
             key={index}
+            style={
+              this.state.currentPage === element
+                ? { border: "1px solid #ffffff" }
+                : {}
+            }
             onClick={(elem) => this.handlePageChange(elem)}
           >
-            {this.state.currentPage === element ? (
-              <div
-                style={{
-                  borderRadius: "63px",
-                  border: "1px solid #ffffff",
-                }}
-              >
-                {element + 1}
-              </div>
-            ) : (
-              element + 1
-            )}
-          </ButtonStyle>
+            {element + 1}
+          </CirclesStyle>
         ))}
       </RectangleFilter>
     );
@@ -248,13 +240,7 @@ class History extends Component {
             {data?.length ? (
               <>
                 <TopDiv className="m-3">
-                  <BorderText>
-                    <h2
-                      style={{ margin: "0 auto", padding: "0px 10px 0px 10px" }}
-                    >
-                      Histórico de Pedidos
-                    </h2>
-                  </BorderText>
+                  <BorderText>Histórico de Pedidos</BorderText>
                   {this.getDaysFilter()}
                 </TopDiv>
                 <MainDiv>
