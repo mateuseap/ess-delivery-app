@@ -1,7 +1,9 @@
-import { call, put } from "@redux-saga/core/effects";
-import { Creators } from "../ducks/order";
+import { call, put, race, take, select, delay } from "@redux-saga/core/effects";
+import { Creators, Types as OrderTypes } from "../ducks/order";
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
+
+const POLLING_DELAY = 2500;
 
 export function* getOrderDetails({ id }) {
   try {
@@ -13,4 +15,34 @@ export function* getOrderDetails({ id }) {
     yield put(Creators.orderError({ err }));
     toastr.error("Erro ao buscar pedido");
   }
+}
+
+export function* orderStatusWorker({ id }) {
+  try {
+    while (true) {
+      yield delay(POLLING_DELAY);
+
+      let response = yield call(api.get, `/order-details?id=${id}`);
+
+      let currentOrderDetails = yield select((state) => state.order.data);
+      if (JSON.stringify(currentOrderDetails) !== JSON.stringify(response.data))
+        toastr.success("Status do pedido atualizado");
+
+      yield put(Creators.orderSuccess(response.data));
+
+      if (response.data.status.finished) {
+        yield put(Creators.cancelOrderWatch());
+      }
+    }
+  } catch (err) {
+    yield put(Creators.orderError({ err }));
+    toastr.error("Erro ao atualizar pedido");
+  }
+}
+
+export function* orderStatusWatchWorker({ id }) {
+  yield race({
+    get: call(orderStatusWorker, { id }),
+    cancel: take(OrderTypes.CANCEL_ORDER_WATCH),
+  });
 }

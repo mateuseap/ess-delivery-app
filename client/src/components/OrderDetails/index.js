@@ -26,10 +26,16 @@ class OrderDetails extends Component {
   componentDidMount() {
     const { id } = this.props.router.params;
     this.props.getOrderDetails(id);
+    this.props.orderStatusWatchWorker(id);
   }
 
   formatOrder(quantity, name) {
     return quantity < 10 ? `0${quantity} - ${name}` : `${quantity} - ${name}`;
+  }
+
+  handleCancelOrder() {
+    const { id } = this.props.router.params;
+    this.props.cancelOrder(id);
   }
 
   render() {
@@ -87,7 +93,11 @@ class OrderDetails extends Component {
             <TotalPrice>Total: {formatMoney(order.total_price)}</TotalPrice>
             <Deliver>Tempo de Entrega: 50 minutos</Deliver>
             <ButtonRight>
-              <Button variant="danger" type="button">
+              <Button
+                variant="danger"
+                type="button"
+                onClick={this.handleCancelOrder.bind(this)}
+              >
                 Cancelar Pedido
               </Button>
             </ButtonRight>
