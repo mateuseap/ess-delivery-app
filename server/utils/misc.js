@@ -7,13 +7,7 @@ exports.getRandomSlice = (arr, size) => {
 };
 
 exports.dateToString = (date) => {
-  const data = date,
-    dia = data.getDate().toString(),
-    diaF = dia.length == 1 ? "0" + dia : dia,
-    mes = (data.getMonth() + 1).toString(),
-    mesF = mes.length == 1 ? "0" + mes : mes,
-    anoF = data.getFullYear();
-  return anoF + "-" + mesF + "-" + diaF;
+  return date.toISOString().substring(0, 10);
 };
 
 exports.dateStrToInt = (dateStr) => new Date(dateStr).getTime();
@@ -63,28 +57,17 @@ function orderStatusWorker(field, orderId) {
 
   order_data.status[field] = true;
   ordersTable.findAndReplace(orderCompareFunction, order_data, false);
-  console.log(
-    ordersTable.query({
-      inner: {
-        nameObjToQuery: "orders",
-        matchId: `id=${orderId}`,
-      },
-    }).status
-  );
 }
 
 //simula atualização de status do pedido pelo restaurante
 exports.dispatchOrderStatusWorker = (orderId) => {
   setTimeout(() => {
-    console.log("dale");
     orderStatusWorker("preparing", orderId);
   }, 10000);
   setTimeout(() => {
-    console.log("dale");
     orderStatusWorker("delivering", orderId);
   }, 20000);
   setTimeout(() => {
-    console.log("dale");
     orderStatusWorker("finished", orderId);
   }, 30000);
 };

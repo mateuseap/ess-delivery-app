@@ -7,12 +7,12 @@ const {
 } = require("../utils/misc");
 const jwt_decode = require("jwt-decode");
 
-function queryByDate(days) {
+function queryByDate(days, user_id) {
   const startDate = new Date();
   const table = new ManipulateDatabase("orders");
 
   startDate.setDate(startDate.getDate() - days);
-  const resp = table.read({
+  const resp = table.query({
     deep: {
       deepSearch: true,
       booleans: [
@@ -20,18 +20,23 @@ function queryByDate(days) {
           findOne: false,
           expr: `date>=${dateToString(startDate)}`,
         },
+        {
+          findOne: false,
+          expr: `user_id>=${user_id}`,
+        },
       ],
     },
   });
-
   resp.sort((a, b) => dateStrToInt(b.date) - dateStrToInt(a.date));
   return resp;
 }
 
 exports.getOrders = async (req, res) => {
   try {
-    const days = JSON.parse(req.query.query).query;
-    res.status(200).send(JSON.stringify(queryByDate(days)));
+    decoded_auth = jwt_decode(req.headers.authorization);
+    const days = req.query.dateFilter;
+    const data = queryByDate(days, decoded_auth.userId);
+    res.status(200).send(JSON.stringify(data));
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
@@ -123,7 +128,7 @@ exports.makeOrder = async (req, res) => {
 
     ordersTable.append(order);
     const cartCompareFunction = (item) => item.user_id == decoded_auth.userId;
-    //cartTable.findAndReplace(cartCompareFunction, null);
+    cartTable.findAndReplace(cartCompareFunction, null);
 
     const orderId = order.id;
 
