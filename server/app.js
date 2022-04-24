@@ -8,6 +8,7 @@ const {
   postOrders,
   getOrderById,
   makeOrder,
+  cancelOrder,
 } = require("./resources/order");
 
 const cors = require("cors");
@@ -31,6 +32,8 @@ app.post("/orders", postOrders);
 app.get("/order-details", getOrderById);
 
 app.post("/make-order", makeOrder);
+
+app.post("/cancel-order", cancelOrder);
 
 app.listen(1337, (_) => {
   console.log("Server running on port 1337");

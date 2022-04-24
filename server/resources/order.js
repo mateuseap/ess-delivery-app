@@ -69,6 +69,25 @@ exports.postOrders = async (req, res) => {
   }
 };
 
+exports.cancelOrder = async (req, res) => {
+  try {
+    const decoded_auth = jwt_decode(req.headers.authorization);
+    // Restaurants update
+    const ordersTable = new ManipulateDatabase("orders");
+
+    const orderCompareFunction = (item) =>
+      item.id == req.body.id &&
+      item.user_id == decoded_auth.userId &&
+      !item.status.delivering;
+    ordersTable.findAndReplace(orderCompareFunction, null, false);
+
+    res.status(200).send(JSON.stringify({ msg: "Success" }));
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+};
+
 exports.getOrderById = async (req, res) => {
   try {
     const { id } = req.query;
