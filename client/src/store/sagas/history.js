@@ -3,11 +3,11 @@ import { Creators } from "../ducks/history";
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 
-export function* getHistory(query) {
+export function* getHistory({ dateFilter }) {
   try {
     yield put(Creators.historyRequest());
 
-    const response = yield call(api.get, "/orders", { params: query });
+    const response = yield call(api.get, "/orders", { params: { dateFilter } });
 
     if (response.data) {
       yield put(Creators.historySuccess(response.data));
