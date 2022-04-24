@@ -12,7 +12,7 @@ import getRestaurants from "./restaurants";
 import { getHistory, postHistory } from "./history";
 import { getCart, updateCart, makeOrder } from "./cart";
 import getMenu from "./menu";
-import { getOrderDetails, orderStatusWatchWorker } from "./order";
+import { getOrderDetails, orderStatusWatchWorker, cancelOrder } from "./order";
 
 export default function* rootSaga() {
   return yield all([
@@ -26,5 +26,6 @@ export default function* rootSaga() {
     takeLatest(MenuTypes.GET_MENU, getMenu),
     takeLatest(OrderTypes.GET_ORDER_DETAILS, getOrderDetails),
     takeLatest(OrderTypes.ORDER_STATUS_WATCH_WORKER, orderStatusWatchWorker),
+    takeLatest(OrderTypes.CANCEL_ORDER, cancelOrder),
   ]);
 }

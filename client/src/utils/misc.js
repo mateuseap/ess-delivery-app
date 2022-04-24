@@ -1,14 +1,10 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export function formatMoney(amount, format = "pt-BR", currency = "BRL") {
-  try {
-    return new Intl.NumberFormat(format, {
-      style: "currency",
-      currency: currency,
-    }).format(amount);
-  } catch (e) {
-    console.log(e);
-  }
+  return new Intl.NumberFormat(format, {
+    style: "currency",
+    currency: currency,
+  }).format(amount);
 }
 
 export function withRouter(Component) {

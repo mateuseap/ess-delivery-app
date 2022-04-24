@@ -34,6 +34,7 @@ class OrderDetails extends Component {
   }
 
   handleCancelOrder() {
+    console.log("dale");
     const { id } = this.props.router.params;
     this.props.cancelOrder(id);
   }

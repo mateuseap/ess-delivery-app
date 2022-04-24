@@ -13,7 +13,24 @@ export function* getOrderDetails({ id }) {
     yield put(Creators.orderSuccess(response.data));
   } catch (err) {
     yield put(Creators.orderError({ err }));
+    yield put(Creators.cancelOrderWatch());
     toastr.error("Erro ao buscar pedido");
+  }
+}
+
+export function* cancelOrder({ id }) {
+  try {
+    yield put(Creators.orderRequest());
+
+    yield call(api.post, `/cancel-order`, { id });
+
+    const previousData = yield select((state) => state.order.data);
+    yield put(Creators.orderSuccess(previousData));
+    yield put(Creators.cancelOrderWatch());
+    toastr.success("Pedido cancelado com sucesso");
+  } catch (err) {
+    yield put(Creators.orderError({ err }));
+    toastr.error("Erro ao cancelar pedido");
   }
 }
 
