@@ -120,7 +120,7 @@ class History extends Component {
       this.props.history.data.length / ITEMS_PER_PAGE
     );
 
-    return Array(Array(numberOfCircles).keys());
+    return Array.from(Array(numberOfCircles).keys());
   }
 
   handleStars(newRating) {
