@@ -98,8 +98,9 @@ export const RectangleFilter = styled.div`
 `;
 
 export const RectangleDaysFilter = styled(RectangleFilter)`
-  width: fit-content;
+  width: 80px;
   height: 40px;
+  padding: 0;
 
   background: ${LIGHT_RED};
   border-radius: 63px;
