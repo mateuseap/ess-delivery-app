@@ -39,11 +39,28 @@ class OrderDetails extends Component {
     this.props.cancelOrder(id);
   }
 
+  deliveryTime() {
+    const order = this.props.order.data;
+    const orderTimestamp = order.timestamp;
+    const deliveryTime = 60 * 60 * 1000; //1 hour
+    return new Date(orderTimestamp + deliveryTime).toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   render() {
     const orderDetails = this.props.order;
     const order = orderDetails.data;
-    if (orderDetails.error) return <NotFound />;
-
+    this.deliveryTime();
+    if (
+      orderDetails.error &&
+      orderDetails.error.err.message !==
+        "O pedido só pode ser cancelado se seu preparo não tiver sido iniciado ou se houver um atraso de 30 minutos ou mais"
+    ) {
+      console.log(orderDetails.error.err);
+      return <NotFound />;
+    }
     return (
       <>
         {orderDetails.loading || !order ? (
@@ -92,16 +109,23 @@ class OrderDetails extends Component {
             ))}
 
             <TotalPrice>Total: {formatMoney(order.total_price)}</TotalPrice>
-            <Deliver>Tempo de Entrega: 50 minutos</Deliver>
-            <ButtonRight>
-              <Button
-                variant="danger"
-                type="button"
-                onClick={this.handleCancelOrder.bind(this)}
-              >
-                Cancelar Pedido
-              </Button>
-            </ButtonRight>
+
+            {!order.status?.finished ? (
+              <>
+                <Deliver>Entrega prevista às {this.deliveryTime()}.</Deliver>
+                <ButtonRight>
+                  <Button
+                    variant="danger"
+                    type="button"
+                    onClick={this.handleCancelOrder.bind(this)}
+                  >
+                    Cancelar Pedido
+                  </Button>
+                </ButtonRight>
+              </>
+            ) : (
+              <Deliver>Pedido Finalizado</Deliver>
+            )}
           </OrderDetailsPage>
         )}
       </>

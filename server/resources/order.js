@@ -99,19 +99,32 @@ exports.postOrders = async (req, res) => {
 exports.cancelOrder = async (req, res) => {
   try {
     const decoded_auth = jwt_decode(req.headers.authorization);
-    // Restaurants update
-    const ordersTable = new ManipulateDatabase("orders");
 
-    const orderCompareFunction = (item) =>
-      item.id == req.body.id &&
-      item.user_id == decoded_auth.userId &&
-      !item.status.delivering;
+    const ordersTable = new ManipulateDatabase("orders");
+    const item = ordersTable.query({
+      inner: {
+        nameObjToQuery: "orders",
+        matchId: `id=${req.body.id}`,
+      },
+    });
+
+    if (item.user_id != decoded_auth.userId) throw new Error("Sem autorização");
+
+    const DELIVERING_TIME = 90 * 60 * 1000;
+    if (item.status.preparing && item.timestamp + DELIVERING_TIME > new Date()) {
+      //preparing and not delayed
+      throw new Error(
+        "O pedido só pode ser cancelado se seu preparo não tiver sido iniciado ou se houver um atraso de 30 minutos ou mais"
+      );
+    }
+
+    const orderCompareFunction = (item) => item.id == req.body.id;
     ordersTable.findAndReplace(orderCompareFunction, null, false);
 
     res.status(200).send(JSON.stringify({ msg: "Success" }));
   } catch (err) {
     console.error(err);
-    res.status(500).send(err);
+    res.status(500).send(JSON.stringify({ msg: err.message }));
   }
 };
 
