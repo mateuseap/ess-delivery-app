@@ -67,7 +67,7 @@ exports.postOrders = async (req, res) => {
 
     const restaurantCompareFunction = (item) =>
       item.id == req.body.restaurantId;
-    restaurantsTable.findAndReplace(restaurantCompareFunction, null);
+    restaurantsTable.findAndReplace(restaurantCompareFunction, restaurantData);
 
     // Orders update
     const ordersTable = new ManipulateDatabase("orders");
