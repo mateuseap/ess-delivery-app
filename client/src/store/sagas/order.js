@@ -18,19 +18,32 @@ export function* getOrderDetails({ id }) {
   }
 }
 
-export function* cancelOrder({ id }) {
+export function* cancelOrder({ id, callback }) {
   try {
     yield put(Creators.orderRequest());
 
-    yield call(api.post, `/cancel-order`, { id });
+    let response = yield call(
+      api.post,
+      `/cancel-order`,
+      { id },
+      {
+        validateStatus: function (status) {
+          return status === 200 || status === 500;
+        },
+      }
+    );
+    if (response.status != 200) throw new Error(response.data.msg);
 
     const previousData = yield select((state) => state.order.data);
     yield put(Creators.orderSuccess(previousData));
     yield put(Creators.cancelOrderWatch());
     toastr.success("Pedido cancelado com sucesso");
+    if (callback) callback();
   } catch (err) {
     yield put(Creators.orderError({ err }));
-    toastr.error("Erro ao cancelar pedido");
+    toastr.error("Erro ao cancelar pedido", err.message, {
+      timeOut: 0,
+    });
   }
 }
 

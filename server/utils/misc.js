@@ -54,9 +54,10 @@ function orderStatusWorker(field, orderId) {
       matchId: `id=${orderId}`,
     },
   });
-
-  order_data.status[field] = true;
-  ordersTable.findAndReplace(orderCompareFunction, order_data, false);
+  if (order_data) {
+    order_data.status[field] = true;
+    ordersTable.findAndReplace(orderCompareFunction, order_data, false);
+  }
 }
 
 //simula atualização de status do pedido pelo restaurante
