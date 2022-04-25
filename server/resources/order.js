@@ -53,7 +53,7 @@ exports.postOrders = async (req, res) => {
     const restaurantData = restaurantsTable.query({
       inner: {
         nameObjToQuery: "restaurants",
-        matchId: `id=${req.body.restaurant_id}`,
+        matchId: `id=${req.body.restaurantId}`,
       },
     });
 
@@ -66,7 +66,7 @@ exports.postOrders = async (req, res) => {
     restaurantData.rates.push(newRate);
 
     const restaurantCompareFunction = (item) =>
-      item.id == req.body.restaurant_id;
+      item.id == req.body.restaurantId;
     restaurantsTable.findAndReplace(restaurantCompareFunction, null);
 
     // Orders update
@@ -89,7 +89,8 @@ exports.postOrders = async (req, res) => {
     ordersTable.findAndReplace(orderCompareFunction, orderData);
 
     const daysFilter = req.body.daysFilter;
-    res.status(200).send(JSON.stringify(queryOrdersByDate(daysFilter)));
+    const resData = queryOrdersByDate(daysFilter, decoded_auth.userId);
+    res.status(200).send(JSON.stringify(resData));
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
