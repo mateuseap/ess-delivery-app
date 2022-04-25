@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
+import { StyledButton } from "../../utils/styles";
+import { DEFAULT_RED } from "../App/App.style";
+
 export const CartStyle = styled.div`
-  width: 100%;
+  width: 90%;
+  margin: auto;
 `;
 
 export const TextStyle = styled.h1`
   text-align: center;
-  font-family: Helvetica;
   font-weight: bold;
   padding-top: 1.2rem;
   color: black;
@@ -15,15 +18,13 @@ export const TextStyle = styled.h1`
 export const RestaurantText = styled.div`
   font-size: 2rem;
   padding-left: 10%;
-  font-family: Helvetica;
   line-height: 94px;
   padding-top: 0.5rem;
-  color: #91091e;
+  color: ${DEFAULT_RED};
 `;
 
 export const HeaderRow = styled.div`
   font-size: 2rem;
-  font-family: Helvetica;
   text-align: center;
   font-weight: bold;
   color: black;
@@ -36,7 +37,6 @@ export const ItemRow = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 1.5rem;
-  font-family: Helvetica;
   text-align: center;
   font-weight: bold;
   color: black;
@@ -65,29 +65,24 @@ export const ItemTotal = styled.div`
   width: 15%;
 `;
 
-export const AddButton = styled.div`
+export const AddButton = styled(StyledButton)`
+  padding: 0;
   margin-left: 2%;
   margin-right: 2.5%;
-  border-radius: 50%;
-  background-color: #91091e;
-  color: white;
   font-size: 2.5rem;
   width: 3.5rem;
-  cursor: pointer;
-`;
-export const RemoveButton = styled.div`
   border-radius: 50%;
-  background-color: #91091e;
-  color: white;
+`;
+export const RemoveButton = styled(StyledButton)`
   font-size: 3.4rem;
   padding: 0 7px 6px 5px;
   line-height: 1;
   width: 3.5rem;
-  cursor: pointer;
+  border-radius: 50%;
 `;
 
 export const OrderTotalStyle = styled.div`
-  color: #91091e;
+  color: ${DEFAULT_RED};
   font-size: 1.5rem;
   margin-left: auto;
   width: fit-content;
@@ -95,33 +90,18 @@ export const OrderTotalStyle = styled.div`
   font-weight: bold;
 `;
 
-export const OrderButton = styled.div`
-  background-color: #91091e;
-  cursor: pointer;
-  border-radius: 50px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 12px 5% 12px 5%;
-  color: white;
+export const OrderButton = styled(StyledButton)`
   margin-left: auto;
-  width: fit-content;
+  display: flex;
 `;
 
 export const ItemImg = styled.div`
   content: url(${(props) => props.src});
   border-radius: 50px;
-  width: 7vw;
-  height: 8vh;
+  width: 7.5vw;
+  height: 8.8vh;
 `;
 
-export const RedirectHomeButton = styled.div`
+export const RedirectHomeButton = styled(StyledButton)`
   margin: 2% auto 0 auto;
-  background-color: #91091e;
-  cursor: pointer;
-  border-radius: 50px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 12px 5% 12px 5%;
-  color: white;
-  width: fit-content;
 `;
