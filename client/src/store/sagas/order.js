@@ -18,7 +18,7 @@ export function* getOrderDetails({ id }) {
   }
 }
 
-export function* cancelOrder({ id }) {
+export function* cancelOrder({ id, callback }) {
   try {
     yield put(Creators.orderRequest());
 
@@ -38,6 +38,7 @@ export function* cancelOrder({ id }) {
     yield put(Creators.orderSuccess(previousData));
     yield put(Creators.cancelOrderWatch());
     toastr.success("Pedido cancelado com sucesso");
+    if (callback) callback();
   } catch (err) {
     yield put(Creators.orderError({ err }));
     toastr.error("Erro ao cancelar pedido", err.message, {

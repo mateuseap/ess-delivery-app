@@ -36,7 +36,10 @@ class OrderDetails extends Component {
   handleCancelOrder() {
     console.log("dale");
     const { id } = this.props.router.params;
-    this.props.cancelOrder(id);
+    const callback = () => {
+      this.props.router.navigate(`/home`);
+    };
+    this.props.cancelOrder(id, callback);
   }
 
   deliveryTime() {

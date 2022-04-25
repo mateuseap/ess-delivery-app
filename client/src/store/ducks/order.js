@@ -6,7 +6,7 @@ export const { Types, Creators } = createActions({
   getOrderDetails: ["id"],
   orderSuccess: ["data"],
   orderError: ["err"],
-  cancelOrder: ["id"],
+  cancelOrder: ["id", "callback"],
   cancelOrderWatch: [],
   orderStatusWatchWorker: ["id"],
 });
