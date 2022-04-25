@@ -6,7 +6,7 @@ import {
   BorderText,
   PageStyle,
   MainDiv,
-  TableBodyStyle,
+  TableDataStyle,
   ActionButtonsStyle,
   ImageStyle,
   DescriptionStyle,
@@ -17,7 +17,8 @@ import {
   TopDiv,
   NoDataStyle,
   OptionStyle,
-  ButtonStyle,
+  CirclesStyle,
+  MainButton,
 } from "./styles";
 
 // Pop-up -> detalhes
@@ -33,13 +34,15 @@ import ReactStars from "react-rating-stars-component";
 
 import { formatMoney } from "../../utils/misc";
 
+const ITEMS_PER_PAGE = 2;
+
 class History extends Component {
   state = {
     orderToRate: -1,
     elementToRateId: -1,
     currentStarsValue: 0,
     currentFeedbackText: "",
-    changeSelectedBg: [],
+    changeSelectedBg: -1,
     canSendRate: false, // A avaliação com estrelas é obrigatória
     daysFilter: 30,
     currentPage: 0,
@@ -55,9 +58,7 @@ class History extends Component {
       elementToRateId: -1,
       currentFeedbackText: "",
       currentStarsValue: 0,
-      changeSelectedBg: [...this.state.changeSelectedBg].map(
-        (element, idx) => false
-      ),
+      changeSelectedBg: -1,
       ...aditionalStates,
     });
   }
@@ -72,7 +73,7 @@ class History extends Component {
   }
 
   handleSelectFilter(elem) {
-    this.props.getHistory(this.state.daysFilter);
+    this.props.getHistory(elem.target.value);
     this.clearRate({
       daysFilter: elem.target.value,
       currentPage: 0,
@@ -85,30 +86,13 @@ class History extends Component {
     });
   }
 
-  handleRating(index, element, review = false) {
-    if (review)
-      this.setState({
-        orderToRate: index,
-        elementToRateId: element.id,
-        changeSelectedBg: [...this.state.changeSelectedBg].map(
-          (element, idx) => {
-            if (idx === index) return true;
-            else return false;
-          }
-        ),
-      });
-    else
-      this.setState({
-        orderToRate: index,
-        elementToRateId: element.id,
-        changeSelectedBg: [...this.state.changeSelectedBg].map(
-          (element, idx) => {
-            if (idx === index) return true;
-            else return false;
-          }
-        ),
-        canSendRate: this.props.history.data[index].rate.stars !== 0,
-      });
+  handleRating(index, element) {
+    this.setState({
+      orderToRate: index,
+      elementToRateId: element.id,
+      changeSelectedBg: index,
+      canSendRate: this.props.history.data[index].rate.stars !== 0,
+    });
   }
 
   sendRate() {
@@ -119,50 +103,118 @@ class History extends Component {
       currentFeedbackText,
       daysFilter,
     } = this.state;
-    const { history, postHistory } = this.props;
 
-    const historyData = [...history.data];
-    historyData[orderToRate] = {
-      ...historyData[orderToRate],
+    this.props.postHistory({
+      restaurantId: this.props.history.data[orderToRate].restaurant_id,
       rate: {
-        did: true,
         stars: currentStarsValue,
         feedback_text: currentFeedbackText,
       },
-    };
-
-    postHistory({
-      data: historyData[orderToRate],
-      changes: {
-        rate: {
-          stars: currentStarsValue,
-          feedback_text: currentFeedbackText,
-        },
-        index: elementToRateId,
-      },
+      orderId: elementToRateId,
       daysFilter: daysFilter,
     });
   }
 
-  getCicles() {
-    const arr = [];
-    for (let i = 0; i < this.numberOfCircles; i++) {
-      arr.push(i);
-    }
+  getCircles() {
+    const numberOfCircles = Math.ceil(
+      this.props.history.data.length / ITEMS_PER_PAGE
+    );
 
-    return arr;
+    return Array(numberOfCircles).keys();
+  }
+
+  handleStars(newRating) {
+    this.setState({
+      currentStarsValue: newRating,
+      canSendRate: newRating !== 0,
+    });
+  }
+
+  renderDaysFilter() {
+    return (
+      <RectangleFilter>
+        Filtro de Dias
+        <RectangleDaysFilter>
+          <SelectStyle
+            onChange={(elem) => {
+              this.handleSelectFilter(elem);
+            }}
+          >
+            <OptionStyle value="30">30 dias</OptionStyle>
+            <OptionStyle value="15">15 dias</OptionStyle>
+            <OptionStyle value="7">7 dias</OptionStyle>
+          </SelectStyle>
+        </RectangleDaysFilter>
+      </RectangleFilter>
+    );
+  }
+
+  renderOrderTableRow(element, index) {
+    const { orderToRate, changeSelectedBg } = this.state;
+    return (
+      <tr
+        key={element.id}
+        style={
+          changeSelectedBg === index
+            ? {
+                backgroundColor: "rgba(0, 0, 0, 0.2)",
+              }
+            : {}
+        }
+      >
+        <ImageStyle photoUrl={element.orderImage} />
+        <td className="p-2">
+          <TableDataStyle>
+            <p style={{ fontSize: 26 }}>{element.restaurant_name}</p>
+            <p>{element.description[0].name}</p>
+            <p style={{ fontWeight: "bold" }}>
+              {formatMoney(element.total_price)}
+            </p>
+          </TableDataStyle>
+        </td>
+        <td>
+          {!element.status.finished ? (
+            <Link to={`/details/${element.id}`}>
+              <MainButton variant="green">Acompanhar pedido</MainButton>
+            </Link>
+          ) : (
+            <MainButton
+              variant={element.rate.did ? "" : "blue"}
+              disabled={orderToRate >= 0}
+              onClick={() => this.handleRating(index, element)}
+            >
+              {element.rate.did ? "Revisar avaliação" : "Avaliar Pedido"}
+            </MainButton>
+          )}
+        </td>
+      </tr>
+    );
+  }
+
+  renderPagination() {
+    return (
+      <RectangleFilter className="mt-3">
+        {this.getCircles().map((element, index) => (
+          <CirclesStyle
+            key={index}
+            style={
+              this.state.currentPage === element
+                ? { border: "1px solid #ffffff" }
+                : {}
+            }
+            onClick={(elem) => this.handlePageChange(elem)}
+          >
+            {element + 1}
+          </CirclesStyle>
+        ))}
+      </RectangleFilter>
+    );
   }
 
   render() {
-    const { orderToRate, changeSelectedBg, canSendRate, currentPage } =
-      this.state;
+    const { orderToRate, canSendRate, currentPage } = this.state;
     const { history } = this.props;
     const { data, loading } = history;
-
-    this.elemPerPages = 2;
-    this.numberOfCircles = Math.ceil(data.length / this.elemPerPages);
-
-    const cicles = this.getCicles();
 
     return (
       <PageStyle>
@@ -183,105 +235,20 @@ class History extends Component {
             {data?.length ? (
               <>
                 <TopDiv className="m-3">
-                  <BorderText>
-                    <h2 style={{ margin: "0 auto" }}>Histórico de Pedidos</h2>
-                  </BorderText>
-                  <RectangleFilter>
-                    Filtro de Dias
-                    <RectangleDaysFilter>
-                      <SelectStyle
-                        onChange={(elem) => {
-                          this.handleSelectFilter(elem);
-                        }}
-                      >
-                        <OptionStyle value="30">30 dias</OptionStyle>
-                        <OptionStyle value="15">15 dias</OptionStyle>
-                        <OptionStyle value="7">7 dias</OptionStyle>
-                      </SelectStyle>
-                    </RectangleDaysFilter>
-                  </RectangleFilter>
+                  <BorderText>Histórico de Pedidos</BorderText>
+                  {this.renderDaysFilter()}
                 </TopDiv>
                 <MainDiv>
                   <Table borderless>
                     <tbody>
-                      {changeSelectedBg?.length
-                        ? data.map((element, index) => {
-                            if (
-                              index >= currentPage * this.elemPerPages &&
-                              index < (currentPage + 1) * this.elemPerPages
-                            )
-                              return (
-                                <tr
-                                  key={element.id}
-                                  style={
-                                    changeSelectedBg[index]
-                                      ? {
-                                          backgroundColor: "rgba(0, 0, 0, 0.2)",
-                                        }
-                                      : null
-                                  }
-                                >
-                                  <ImageStyle photoUrl={element.orderImage} />
-                                  <td className="p-2">
-                                    <TableBodyStyle>
-                                      <p style={{ fontSize: 26 }}>
-                                        {element.restaurant_name}
-                                      </p>
-                                      <p>{element.description[0].name}</p>
-                                      <p style={{ fontWeight: "bold" }}>
-                                        {formatMoney(element.total_price)}
-                                      </p>
-                                    </TableBodyStyle>
-                                  </td>
-                                  <td>
-                                    {!element.status.finished ? (
-                                      <Link to={`/details/${element.id}`}>
-                                        <Button
-                                          variant="success"
-                                          className="mx-3"
-                                        >
-                                          Acompanhar pedido
-                                        </Button>
-                                      </Link>
-                                    ) : !element.rate.did ? (
-                                      <Button
-                                        variant="primary"
-                                        disabled={
-                                          orderToRate >= 0 ? true : false
-                                        }
-                                        onClick={() =>
-                                          this.handleRating(index, element)
-                                        }
-                                        className="mx-3"
-                                      >
-                                        Avaliar Pedido
-                                      </Button>
-                                    ) : (
-                                      <Button
-                                        variant="danger"
-                                        disabled={
-                                          orderToRate >= 0 ? true : false
-                                        }
-                                        onClick={() =>
-                                          this.handleRating(
-                                            index,
-                                            element,
-                                            true
-                                          )
-                                        }
-                                        className="mx-3"
-                                      >
-                                        Revisar avaliação
-                                      </Button>
-                                    )}
-                                  </td>
-                                </tr>
-                              );
-                            else return null; // O elemento não deve ser mostrado nesta página
-                          })
-                        : this.setState({
-                            changeSelectedBg: new Array(data.length),
-                          })}
+                      {data
+                        .slice(
+                          currentPage * ITEMS_PER_PAGE,
+                          (currentPage + 1) * ITEMS_PER_PAGE
+                        )
+                        .map((element, index) => {
+                          return this.renderOrderTableRow(element, index);
+                        })}
                     </tbody>
                   </Table>
                   {orderToRate > -1 ? (
@@ -305,10 +272,10 @@ class History extends Component {
                               <DescriptionStyle className="p-2">
                                 {data[orderToRate].description?.map(
                                   (element) => (
-                                    <>
+                                    <div key={element.name}>
                                       <h5>{element.name}</h5>
                                       <p>{formatMoney(element.price)}</p>
-                                    </>
+                                    </div>
                                   )
                                 )}
                               </DescriptionStyle>
@@ -319,12 +286,7 @@ class History extends Component {
                           </h3>
                           <ReactStars
                             count={5}
-                            onChange={(newRating) =>
-                              this.setState({
-                                currentStarsValue: newRating,
-                                canSendRate: newRating === 0 ? false : true,
-                              })
-                            }
+                            onChange={this.handleStars.bind(this)}
                             isHalf={true}
                             value={data[orderToRate].rate.stars}
                             edit={!data[orderToRate].rate.did}
@@ -337,11 +299,7 @@ class History extends Component {
                           as="textarea"
                           type="text"
                           className="mr-2"
-                          defaultValue={
-                            data[orderToRate].rate.feedback_text
-                              ? data[orderToRate].rate.feedback_text
-                              : ""
-                          }
+                          defaultValue={data[orderToRate].rate.feedback_text}
                           rows={12}
                           placeholder={
                             !data[orderToRate].rate.did
@@ -357,7 +315,7 @@ class History extends Component {
                         />
                         <Form.Text className="text-muted">
                           Sua avaliação nos ajuda a melhorar a experiência do
-                          app :{")"}
+                          app :)
                         </Form.Text>
                       </Form.Group>
                       {!data[orderToRate].rate.did ? (
@@ -398,27 +356,7 @@ class History extends Component {
                     </Form>
                   ) : null}
                 </MainDiv>
-                <RectangleFilter className="mt-3">
-                  {cicles.map((element, index) => (
-                    <ButtonStyle
-                      key={index}
-                      onClick={(elem) => this.handlePageChange(elem)}
-                    >
-                      {currentPage === element ? (
-                        <div
-                          style={{
-                            borderRadius: "63px",
-                            border: "1px solid #ffffff",
-                          }}
-                        >
-                          {element + 1}
-                        </div>
-                      ) : (
-                        element + 1
-                      )}
-                    </ButtonStyle>
-                  ))}
-                </RectangleFilter>
+                {this.renderPagination()}
               </>
             ) : (
               <NoDataStyle>

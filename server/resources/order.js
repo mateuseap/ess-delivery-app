@@ -7,7 +7,7 @@ const {
 } = require("../utils/misc");
 const jwt_decode = require("jwt-decode");
 
-function queryByDate(days, user_id) {
+function queryOrdersByDate(days, user_id) {
   const startDate = new Date();
   const table = new ManipulateDatabase("orders");
 
@@ -35,7 +35,7 @@ exports.getOrders = async (req, res) => {
   try {
     decoded_auth = jwt_decode(req.headers.authorization);
     const days = req.query.dateFilter;
-    const data = queryByDate(days, decoded_auth.userId);
+    const data = queryOrdersByDate(days, decoded_auth.userId);
     res.status(200).send(JSON.stringify(data));
   } catch (err) {
     console.error(err);
@@ -46,23 +46,50 @@ exports.getOrders = async (req, res) => {
 exports.postOrders = async (req, res) => {
   try {
     decoded_auth = jwt_decode(req.headers.authorization);
+    console.log(req.body);
     // Restaurants update
-    const restaurants = new ManipulateDatabase("restaurants");
-    const changes = req.body.data.changes;
-    const arr = restaurants.getArray();
-    arr[changes.index].rates.push({
-      user_id: decoded_auth.userId,
-      stars: changes.rate.stars,
-      feedback_text: changes.rate.feedback_text,
+    const restaurantsTable = new ManipulateDatabase("restaurants");
+
+    const restaurantData = restaurantsTable.query({
+      inner: {
+        nameObjToQuery: "restaurants",
+        matchId: `id=${req.body.restaurant_id}`,
+      },
     });
 
-    restaurants.write({ restaurants: arr });
+    const newRate = {
+      user_id: decoded_auth.userId,
+      stars: req.body.rate.stars,
+      feedback_text: req.body.rate.feedback_text,
+    };
+
+    restaurantData.rates.push(newRate);
+
+    const restaurantCompareFunction = (item) =>
+      item.id == req.body.restaurant_id;
+    restaurantsTable.findAndReplace(restaurantCompareFunction, null);
 
     // Orders update
-    const daysFilter = req.body.data.daysFilter;
-    table.deleteOrReplace(changes.index, 1, req.body.data.data);
+    const ordersTable = new ManipulateDatabase("orders");
 
-    res.status(200).send(JSON.stringify(queryByDate(daysFilter)));
+    const orderData = ordersTable.query({
+      inner: {
+        nameObjToQuery: "orders",
+        matchId: `id=${req.body.orderId}`,
+      },
+    });
+
+    orderData.rate = {
+      did: true,
+      stars: req.body.rate.stars,
+      feedback_text: req.body.rate.feedback_text,
+    };
+
+    const orderCompareFunction = (item) => item.id == req.body.orderId;
+    ordersTable.findAndReplace(orderCompareFunction, orderData);
+
+    const daysFilter = req.body.daysFilter;
+    res.status(200).send(JSON.stringify(queryOrdersByDate(daysFilter)));
   } catch (err) {
     console.error(err);
     res.status(500).send(err);

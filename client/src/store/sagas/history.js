@@ -18,11 +18,11 @@ export function* getHistory({ dateFilter }) {
   }
 }
 
-export function* postHistory({ data, changes }) {
+export function* postHistory({ data }) {
   try {
     yield put(Creators.historyRequest());
 
-    const response = yield call(api.post, "/orders", { data, changes });
+    const response = yield call(api.post, "/orders", { ...data });
 
     if (response.data) {
       yield put(Creators.historySuccess(response.data));
