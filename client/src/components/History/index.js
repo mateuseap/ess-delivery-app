@@ -136,6 +136,7 @@ class History extends Component {
         Filtro de Dias
         <RectangleDaysFilter>
           <SelectStyle
+            value={this.state.daysFilter}
             onChange={(elem) => {
               this.handleSelectFilter(elem);
             }}
