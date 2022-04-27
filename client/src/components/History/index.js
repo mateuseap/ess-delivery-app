@@ -282,11 +282,9 @@ class History extends Component {
                                 )}
                                 <strong>Taxa de entrega</strong>
                                 <p>{formatMoney(deliveryFee)}</p>
-                                <div style={{ color: "#630606"}}>
+                                <div style={{ color: "#630606" }}>
                                   <strong>Forma de pagamento</strong>
-                                  <footer>
-                                    {data[orderToRate].payment.type}
-                                  </footer>
+                                  <p>{data[orderToRate].payment.type}</p>
                                 </div>
                               </DescriptionStyle>
                             </Popup>
