@@ -33,6 +33,7 @@ import { Table, Button, Form } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 
 import { formatMoney } from "../../utils/misc";
+import { deliveryFee } from "../../constants/constants";
 
 const ITEMS_PER_PAGE = 2;
 
@@ -169,7 +170,7 @@ class History extends Component {
             <p style={{ fontSize: 26 }}>{element.restaurant_name}</p>
             <p>{element.description[0].name}</p>
             <p style={{ fontWeight: "bold" }}>
-              {formatMoney(element.total_price)}
+              {formatMoney(element.total_price + deliveryFee)}
             </p>
           </TableDataStyle>
         </td>
@@ -279,11 +280,21 @@ class History extends Component {
                                     </div>
                                   )
                                 )}
+                                <strong>Taxa de entrega</strong>
+                                <p>{formatMoney(deliveryFee)}</p>
+                                <div style={{ color: "#630606"}}>
+                                  <strong>Forma de pagamento</strong>
+                                  <footer>
+                                    {data[orderToRate].payment.type}
+                                  </footer>
+                                </div>
                               </DescriptionStyle>
                             </Popup>
                           </RateLabel>
                           <h3 className="mt-4">
-                            {formatMoney(data[orderToRate].total_price)}
+                            {formatMoney(
+                              data[orderToRate].total_price + deliveryFee
+                            )}
                           </h3>
                           <ReactStars
                             count={5}

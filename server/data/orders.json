@@ -24,7 +24,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "payment": {},
+      "payment": {
+        "name": "Meu cartão NuBank",
+        "type": "Cartão de Débito",
+        "code": "XXXX-XXXX-XXXX-XXXX",
+        "security_code": "XXX"
+      },
       "status": {
         "confirmed": true,
         "preparing": false,
@@ -55,7 +60,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "payment": {},
+      "payment": {
+        "name": "Meu cartão NuBank",
+        "type": "Cartão de Débito",
+        "code": "XXXX-XXXX-XXXX-XXXX",
+        "security_code": "XXX"
+      },
       "status": {
         "confirmed": true,
         "preparing": true,
@@ -92,7 +102,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "payment": {},
+      "payment": {
+        "name": "Meu cartão NuBank",
+        "type": "Cartão de Débito",
+        "code": "XXXX-XXXX-XXXX-XXXX",
+        "security_code": "XXX"
+      },
       "status": {
         "confirmed": true,
         "preparing": true,
@@ -123,7 +138,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "forma_pagamento": {},
+      "forma_pagamento": {
+        "name": null,
+        "type": "Dinheiro",
+        "code": null,
+        "security_code": null
+      },
       "status": {
         "confirmed": true,
         "preparing": true,
@@ -154,7 +174,12 @@
       ],
       "from": "Avenida Conselheiro Rosa e Silva, 1086",
       "to": "Avenida Jornalista Aníbal Fernandes, 500",
-      "payment": {},
+      "payment": {
+        "name": null,
+        "type": "Dinheiro",
+        "code": null,
+        "security_code": null
+      },
       "status": {
         "confirmed": true,
         "preparing": true,

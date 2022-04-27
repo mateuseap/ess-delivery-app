@@ -8,11 +8,19 @@
                 "Avenida Jornalista Aníbal Fernandes, 500",
                 "Avenida Conselheiro Rosa e Silva, 1086"
             ],
-            "contacts": [
-                {}
-            ],
-            "formas_pagamentos": [
-                {}
+            "payment": [
+                {
+                    "name": "Meu cartão NuBank",
+                    "type": "Cartão de Débito",
+                    "code": "XXXX-XXXX-XXXX-XXXX",
+                    "security_code": "XXX"
+                },
+                {
+                    "name": null,
+                    "type": "Dinheiro",
+                    "code": null,
+                    "security_code": null
+                }
             ]
         }
     ]
