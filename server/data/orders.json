@@ -32,9 +32,9 @@
       },
       "status": {
         "confirmed": true,
-        "preparing": false,
-        "delivering": false,
-        "finished": false
+        "preparing": true,
+        "delivering": true,
+        "finished": true
       },
       "rate": {
         "did": false,
