@@ -54,12 +54,9 @@
           }
         ]
       },
-      "contacts": [
-        {}
-      ],
       "rates": [
         {
-          "user_id": 1,
+          "user_id": "1",
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -91,12 +88,9 @@
           }
         ]
       },
-      "contacts": [
-        {}
-      ],
       "rates": [
         {
-          "user_id": 1,
+          "user_id": "1",
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -128,12 +122,9 @@
           }
         ]
       },
-      "contacts": [
-        {}
-      ],
       "rates": [
         {
-          "user_id": 1,
+          "user_id": "1",
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -172,12 +163,9 @@
           }
         ]
       },
-      "contacts": [
-        {}
-      ],
       "rates": [
         {
-          "user_id": 1,
+          "user_id": "1",
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -209,12 +197,9 @@
           }
         ]
       },
-      "contacts": [
-        {}
-      ],
       "rates": [
         {
-          "user_id": 1,
+          "user_id": "1",
           "stars": 4.5,
           "feedback_text": ""
         }
@@ -246,12 +231,9 @@
           }
         ]
       },
-      "contacts": [
-        {}
-      ],
       "rates": [
         {
-          "user_id": 1,
+          "user_id": "1",
           "stars": 4.5,
           "feedback_text": ""
         }

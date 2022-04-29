@@ -4,7 +4,7 @@ import { StyledButton } from "../../utils/styles";
 import { DEFAULT_RED, LIGHT_RED, DARK_RED } from "../App/App.style";
 
 export const MainButton = styled(StyledButton)`
-  width: 200px;
+  width: 235px;
   font-size: 20px;
   white-space: nowrap;
   padding: 12px 6% 12px 6%;
