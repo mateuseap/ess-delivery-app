@@ -86,7 +86,16 @@ export const OrderTotalStyle = styled.div`
   font-size: 1.5rem;
   margin-left: auto;
   width: fit-content;
-  padding: 12px 5% 20px 5%;
+  padding: 12px 5% 0 50px;
+  font-weight: bold;
+`;
+
+export const DeliveryFeeNotice = styled.div`
+  color: ${DEFAULT_RED};
+  font-size: 0.75rem;
+  margin-left: auto;
+  width: fit-content;
+  padding: 5px 5% 20px 50px;
   font-weight: bold;
 `;
 

@@ -16,6 +16,7 @@ import {
   AddButton,
   ItemImg,
   RedirectHomeButton,
+  DeliveryFeeNotice,
 } from "./styles";
 
 import ReactLoading from "react-loading";
@@ -114,8 +115,12 @@ class Cart extends Component {
                 ))}
 
                 <OrderTotalStyle>
-                  Total: {formatMoney(cart.data.total + deliveryFee)}
+                  Total: {formatMoney(cart.data.total)}
                 </OrderTotalStyle>
+                <DeliveryFeeNotice>
+                  OBS: É cobrada uma taxa de entrega de{" "}
+                  {formatMoney(deliveryFee)}
+                </DeliveryFeeNotice>
                 <OrderButton onClick={() => this.handleMakeOrder()}>
                   Fazer Pedido
                 </OrderButton>
