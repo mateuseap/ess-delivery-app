@@ -1,6 +1,8 @@
 const { ManipulateDatabase } = require("../utils/db");
 const jwt_decode = require("jwt-decode");
 
+const DELIVERY_FEE = 5;
+
 exports.getCart = async (req, res) => {
   try {
     decoded_auth = jwt_decode(req.headers.authorization);
@@ -62,10 +64,12 @@ exports.postCart = async (req, res) => {
 
         if (cart_data.items.length == 0) cart_data = undefined;
         else {
-          cart_data.total = cart_data?.items.reduce(
-            (acc, item) => acc + item.price * item.quantity,
-            0
-          );
+          cart_data.total =
+            DELIVERY_FEE +
+            cart_data?.items.reduce(
+              (acc, item) => acc + item.price * item.quantity,
+              0
+            );
         }
       } else {
         //previne que se retire um item q nao esta no carrinho
