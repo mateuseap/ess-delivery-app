@@ -16,9 +16,9 @@ exports.getCart = async (req, res) => {
       },
     });
 
-    res.status(200).send(JSON.stringify(cart_data));
+    res.status(200).send(cart_data);
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).send(err);
   }
 };
@@ -92,7 +92,7 @@ exports.postCart = async (req, res) => {
 
     res.status(200).send(cart_data);
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).send(err);
   }
 };

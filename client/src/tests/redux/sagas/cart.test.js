@@ -93,7 +93,7 @@ describe("Cart Saga Test", () => {
         .isDone();
     });
 
-    it("unit test success", () => {
+    it("unit test error", () => {
       testSaga(updateCart, mockParams)
         .next()
         .put(Creators.cartRequest())
@@ -152,7 +152,7 @@ describe("Cart Saga Test", () => {
       expect(callback).lastCalledWith(mockData.data.id);
     });
 
-    it("unit test success", () => {
+    it("unit test error", () => {
       testSaga(makeOrder, { callback })
         .next()
         .put(Creators.cartRequest())
