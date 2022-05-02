@@ -19,6 +19,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.setHeader("Content-Type", "application/json");
+  next();
+});
+
 app.get("/cart", getCart);
 app.post("/cart", postCart);
 
@@ -35,6 +40,4 @@ app.post("/make-order", makeOrder);
 
 app.post("/cancel-order", cancelOrder);
 
-app.listen(1337, (_) => {
-  console.log("Server running on port 1337");
-});
+module.exports = app;
