@@ -16,6 +16,7 @@ import {
   AddButton,
   ItemImg,
   RedirectHomeButton,
+  DeliveryFeeNotice,
 } from "./styles";
 
 import ReactLoading from "react-loading";
@@ -28,6 +29,7 @@ import { connect } from "react-redux";
 import { Creators as CartCreator } from "../../store/ducks/cart";
 
 import { formatMoney } from "../../utils/misc";
+import { deliveryFee } from "../../constants/constants";
 
 class Cart extends Component {
   componentDidMount() {
@@ -115,6 +117,10 @@ class Cart extends Component {
                 <OrderTotalStyle>
                   Total: {formatMoney(cart.data.total)}
                 </OrderTotalStyle>
+                <DeliveryFeeNotice>
+                  OBS: É cobrada uma taxa de entrega de{" "}
+                  {formatMoney(deliveryFee)}
+                </DeliveryFeeNotice>
                 <OrderButton onClick={() => this.handleMakeOrder()}>
                   Fazer Pedido
                 </OrderButton>

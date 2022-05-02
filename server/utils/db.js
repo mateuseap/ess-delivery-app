@@ -2,7 +2,7 @@ const fs = require("fs");
 const jsonQuery = require("json-query");
 // atenção ao nodemon => se rodar o nodemon fora da pasta SERVER
 // esse path abaixo está errado (a raíz é da onde o nodemon foi inicializado)
-const path = "./data/";
+const path = process.env.NODE_ENV === "test" ? "./test_data/" : "./data/";
 
 exports.ManipulateDatabase = class {
   // private
@@ -43,19 +43,6 @@ exports.ManipulateDatabase = class {
     // tem que puxar pra dentro do array, e não pro objeto
     this.#document[this.#tableName].push(content);
     this.saveChanges();
-  }
-
-  // se deleteCount == 0 => ele só vai ter replace (que na verdade eh um insert)
-  // se replaceItems for vazio => só vai ter delete
-  deleteOrReplace(startIndex, deleteCount = 0, ...replaceItems) {
-    if (deleteCount || replaceItems.length) {
-      this.#document[this.#tableName].splice(
-        startIndex,
-        deleteCount,
-        ...replaceItems
-      );
-      this.saveChanges();
-    }
   }
 
   //procura por um objeto no array, caso o encontre o substitui por um novo
