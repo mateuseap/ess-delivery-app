@@ -1,0 +1,576 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Component Integration Testing Renders data correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Home)>
+        <Home
+          getRestaurants={[Function]}
+          restaurants={
+            Object {
+              "data": Array [
+                Object {
+                  "addresses": Array [
+                    "Avenida Caxangá, 634",
+                  ],
+                  "id": 2,
+                  "menu": Object {
+                    "destaqueIndex": 0,
+                    "options": Array [
+                      Object {
+                        "description": "Hamburguer monstro de dar água na boca. ELIASLOL, O MELHOR COZINHEIRO DE LIMOEIRO!",
+                        "item_id": 1,
+                        "name": "Ogro Burguer com Batata Média",
+                        "photo": "https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg",
+                        "price": 25.5,
+                      },
+                      Object {
+                        "description": "Coquinha geladinha HMMMMM!",
+                        "item_id": 2,
+                        "name": "Coca-cola lata",
+                        "photo": "https://images-americanas.b2w.io/produtos/4575311740/imagens/coquinha-coca-cola-lata-220ml-desde-1886-sabor/4575311740_1_large.jpg",
+                        "price": 5.5,
+                      },
+                    ],
+                  },
+                  "name": "Elias",
+                  "photo": "https://media-cdn.tripadvisor.com/media/photo-s/05/85/e1/f5/sala-ristorante.jpg",
+                  "rates": Array [
+                    Object {
+                      "feedback_text": "",
+                      "stars": 4.5,
+                      "user_id": "1",
+                    },
+                  ],
+                },
+                Object {
+                  "addresses": Array [
+                    "Avenida Bernardo Vieira de Melo, 980",
+                  ],
+                  "id": 3,
+                  "menu": Object {
+                    "destaqueIndex": 1,
+                    "options": Array [
+                      Object {
+                        "description": "Melhor parme de piedade e arredores!",
+                        "item_id": 1,
+                        "name": "Frango a parmegiana",
+                        "photo": "https://photos.bigoven.com/recipe/hero/fil-de-frango-parmegiana-bcd93f.jpg",
+                        "price": 20,
+                      },
+                      Object {
+                        "description": "Frango empanado a moda da casa!",
+                        "item_id": 2,
+                        "name": "Frango a milanesa",
+                        "photo": "https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400",
+                        "price": 22,
+                      },
+                      Object {
+                        "description": "Guaraná 1L",
+                        "item_id": 3,
+                        "name": "Guaraná 1L",
+                        "photo": "https://a-static.mlcdn.com.br/1500x1500/refrigerante-guarana-original-antarctica-1-litro/lojasemix/1803p/b4b32c23dd9c6e4d77fa9c37daf6732e.jpg",
+                        "price": 10,
+                      },
+                    ],
+                  },
+                  "name": "Daylol",
+                  "photo": "https://media-cdn.tripadvisor.com/media/photo-s/16/3d/cb/2f/quintal-da-praia.jpg",
+                  "rates": Array [
+                    Object {
+                      "feedback_text": "",
+                      "stars": 4.5,
+                      "user_id": "1",
+                    },
+                  ],
+                },
+                Object {
+                  "addresses": Array [
+                    "Avenida Abdias de Carvalho, 142",
+                  ],
+                  "id": 4,
+                  "menu": Object {
+                    "destaqueIndex": 0,
+                    "options": Array [
+                      Object {
+                        "description": "Idol Chicken para você que é fã dos coreanos :D",
+                        "item_id": 1,
+                        "name": "Frango KPOPPER",
+                        "photo": "https://s2.glbimg.com/0X_hlC9TWAJUt6CsKQoSKcQ7hvM=/620x345/e.glbimg.com/og/ed/f/original/2019/06/10/kpop_chickin_4.jpg",
+                        "price": 50,
+                      },
+                      Object {
+                        "description": "Garrafa 500ml",
+                        "item_id": 2,
+                        "name": "Água",
+                        "photo": "https://farmaciaindiana.vteximg.com.br/arquivos/ids/206727/7896371000045_0.jpg?v=636748773745400000",
+                        "price": 4,
+                      },
+                    ],
+                  },
+                  "name": "Alicelol",
+                  "photo": "https://vejasp.abril.com.br/wp-content/uploads/2016/12/k-pop-chiken2.jpeg",
+                  "rates": Array [
+                    Object {
+                      "feedback_text": "",
+                      "stars": 4.5,
+                      "user_id": "1",
+                    },
+                  ],
+                },
+              ],
+              "error": false,
+              "loading": false,
+            }
+          }
+          restaurantsError={[Function]}
+          restaurantsRequest={[Function]}
+          restaurantsSuccess={[Function]}
+        >
+          <styled.div>
+            <div
+              className="sc-bczRLJ UWzdy"
+            >
+              <div>
+                <FadeIn
+                  transitionDuration={800}
+                >
+                  <div>
+                    <div
+                      key=".0"
+                      style={
+                        Object {
+                          "opacity": 0,
+                          "transform": "translateY(20px)",
+                          "transition": "opacity 800ms, transform 800ms",
+                        }
+                      }
+                    >
+                      <styled.h1>
+                        <h1
+                          className="sc-gsnTZi gouaEI"
+                        >
+                          Saboreie as deliciosas comidas dos nossos restaurantes parceiros!
+                        </h1>
+                      </styled.h1>
+                    </div>
+                  </div>
+                </FadeIn>
+                <FadeIn
+                  transitionDuration={1000}
+                >
+                  <div>
+                    <div
+                      key=".0"
+                      style={
+                        Object {
+                          "opacity": 0,
+                          "transform": "translateY(20px)",
+                          "transition": "opacity 1000ms, transform 1000ms",
+                        }
+                      }
+                    >
+                      <styled.div>
+                        <div
+                          className="sc-dkzDqf hAmERx"
+                        >
+                          <styled.div
+                            key="2"
+                          >
+                            <div
+                              className="sc-hKMtZM jEdtfJ"
+                            >
+                              <styled.div
+                                src="https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg"
+                              >
+                                <div
+                                  className="sc-ftvSup bXYdD"
+                                  src="https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg"
+                                />
+                              </styled.div>
+                              <styled.div
+                                className="mb-5"
+                              >
+                                <div
+                                  className="sc-iBkjds UQhGq mb-5"
+                                >
+                                  <styled.div>
+                                    <div
+                                      className="sc-eCYdqJ itztyL"
+                                    >
+                                      Elias
+                                    </div>
+                                  </styled.div>
+                                  <styled.div>
+                                    <div
+                                      className="sc-jSMfEi jEMxCd"
+                                    >
+                                      Ogro Burguer com Batata Média
+                                    </div>
+                                  </styled.div>
+                                  <styled.div>
+                                    <div
+                                      className="sc-gKXOVf gZPvUT"
+                                    >
+                                      Hamburguer monstro de dar água na boca. ELIASLOL, O MELHOR COZINHEIRO DE LIMOEIRO!
+                                    </div>
+                                  </styled.div>
+                                  <Link
+                                    to="/menu/2"
+                                  >
+                                    <a
+                                      href="/menu/2"
+                                      onClick={[Function]}
+                                    >
+                                      <styled.div>
+                                        <div
+                                          className="sc-papXJ iESUCh"
+                                        >
+                                          <Button
+                                            active={false}
+                                            className="m-2"
+                                            disabled={false}
+                                            variant="success"
+                                          >
+                                            <button
+                                              className="m-2 btn btn-success"
+                                              disabled={false}
+                                              type="button"
+                                            >
+                                              PEÇA JÁ!
+                                            </button>
+                                          </Button>
+                                        </div>
+                                      </styled.div>
+                                    </a>
+                                  </Link>
+                                </div>
+                              </styled.div>
+                            </div>
+                          </styled.div>
+                          <styled.div
+                            key="3"
+                          >
+                            <div
+                              className="sc-hKMtZM jEdtfJ"
+                            >
+                              <styled.div
+                                src="https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400"
+                              >
+                                <div
+                                  className="sc-ftvSup bEpkvJ"
+                                  src="https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400"
+                                />
+                              </styled.div>
+                              <styled.div
+                                className="mb-5"
+                              >
+                                <div
+                                  className="sc-iBkjds UQhGq mb-5"
+                                >
+                                  <styled.div>
+                                    <div
+                                      className="sc-eCYdqJ itztyL"
+                                    >
+                                      Daylol
+                                    </div>
+                                  </styled.div>
+                                  <styled.div>
+                                    <div
+                                      className="sc-jSMfEi jEMxCd"
+                                    >
+                                      Frango a milanesa
+                                    </div>
+                                  </styled.div>
+                                  <styled.div>
+                                    <div
+                                      className="sc-gKXOVf gZPvUT"
+                                    >
+                                      Frango empanado a moda da casa!
+                                    </div>
+                                  </styled.div>
+                                  <Link
+                                    to="/menu/3"
+                                  >
+                                    <a
+                                      href="/menu/3"
+                                      onClick={[Function]}
+                                    >
+                                      <styled.div>
+                                        <div
+                                          className="sc-papXJ iESUCh"
+                                        >
+                                          <Button
+                                            active={false}
+                                            className="m-2"
+                                            disabled={false}
+                                            variant="success"
+                                          >
+                                            <button
+                                              className="m-2 btn btn-success"
+                                              disabled={false}
+                                              type="button"
+                                            >
+                                              PEÇA JÁ!
+                                            </button>
+                                          </Button>
+                                        </div>
+                                      </styled.div>
+                                    </a>
+                                  </Link>
+                                </div>
+                              </styled.div>
+                            </div>
+                          </styled.div>
+                          <styled.div
+                            key="4"
+                          >
+                            <div
+                              className="sc-hKMtZM jEdtfJ"
+                            >
+                              <styled.div
+                                src="https://s2.glbimg.com/0X_hlC9TWAJUt6CsKQoSKcQ7hvM=/620x345/e.glbimg.com/og/ed/f/original/2019/06/10/kpop_chickin_4.jpg"
+                              >
+                                <div
+                                  className="sc-ftvSup uZhNT"
+                                  src="https://s2.glbimg.com/0X_hlC9TWAJUt6CsKQoSKcQ7hvM=/620x345/e.glbimg.com/og/ed/f/original/2019/06/10/kpop_chickin_4.jpg"
+                                />
+                              </styled.div>
+                              <styled.div
+                                className="mb-5"
+                              >
+                                <div
+                                  className="sc-iBkjds UQhGq mb-5"
+                                >
+                                  <styled.div>
+                                    <div
+                                      className="sc-eCYdqJ itztyL"
+                                    >
+                                      Alicelol
+                                    </div>
+                                  </styled.div>
+                                  <styled.div>
+                                    <div
+                                      className="sc-jSMfEi jEMxCd"
+                                    >
+                                      Frango KPOPPER
+                                    </div>
+                                  </styled.div>
+                                  <styled.div>
+                                    <div
+                                      className="sc-gKXOVf gZPvUT"
+                                    >
+                                      Idol Chicken para você que é fã dos coreanos :D
+                                    </div>
+                                  </styled.div>
+                                  <Link
+                                    to="/menu/4"
+                                  >
+                                    <a
+                                      href="/menu/4"
+                                      onClick={[Function]}
+                                    >
+                                      <styled.div>
+                                        <div
+                                          className="sc-papXJ iESUCh"
+                                        >
+                                          <Button
+                                            active={false}
+                                            className="m-2"
+                                            disabled={false}
+                                            variant="success"
+                                          >
+                                            <button
+                                              className="m-2 btn btn-success"
+                                              disabled={false}
+                                              type="button"
+                                            >
+                                              PEÇA JÁ!
+                                            </button>
+                                          </Button>
+                                        </div>
+                                      </styled.div>
+                                    </a>
+                                  </Link>
+                                </div>
+                              </styled.div>
+                            </div>
+                          </styled.div>
+                        </div>
+                      </styled.div>
+                    </div>
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          </styled.div>
+        </Home>
+      </Connect(Home)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
+
+exports[`Home Component Integration Testing Renders loading correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Home)>
+        <Home
+          getRestaurants={[Function]}
+          restaurants={
+            Object {
+              "data": Array [],
+              "error": false,
+              "loading": false,
+            }
+          }
+          restaurantsError={[Function]}
+          restaurantsRequest={[Function]}
+          restaurantsSuccess={[Function]}
+        >
+          <styled.div>
+            <div
+              className="sc-bczRLJ UWzdy"
+            >
+              <div>
+                <FadeIn
+                  transitionDuration={800}
+                >
+                  <div>
+                    <div
+                      key=".0"
+                      style={
+                        Object {
+                          "opacity": 0,
+                          "transform": "translateY(20px)",
+                          "transition": "opacity 800ms, transform 800ms",
+                        }
+                      }
+                    >
+                      <styled.h1>
+                        <h1
+                          className="sc-gsnTZi gouaEI"
+                        >
+                          Saboreie as deliciosas comidas dos nossos restaurantes parceiros!
+                        </h1>
+                      </styled.h1>
+                    </div>
+                  </div>
+                </FadeIn>
+                <FadeIn
+                  transitionDuration={1000}
+                >
+                  <div>
+                    <div
+                      key=".0"
+                      style={
+                        Object {
+                          "opacity": 0,
+                          "transform": "translateY(20px)",
+                          "transition": "opacity 1000ms, transform 1000ms",
+                        }
+                      }
+                    >
+                      <styled.div>
+                        <div
+                          className="sc-dkzDqf hAmERx"
+                        />
+                      </styled.div>
+                    </div>
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          </styled.div>
+        </Home>
+      </Connect(Home)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

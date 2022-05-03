@@ -22,11 +22,11 @@ describe("Restaurants Saga Test", () => {
   describe("getRestaurants", () => {
     const query = undefined;
     it("unit test success", () => {
-      testSaga(getRestaurants, { query })
+      testSaga(getRestaurants)
         .next()
         .put(Creators.restaurantsRequest())
         .next()
-        .call(api.get, "/restaurants", { params: { query } })
+        .call(api.get, "/restaurants", {})
         .next(mockData)
         .put(Creators.restaurantsSuccess(mockData.data))
         .next()
@@ -34,11 +34,11 @@ describe("Restaurants Saga Test", () => {
     });
 
     it("unit test error", () => {
-      testSaga(getRestaurants, { query })
+      testSaga(getRestaurants)
         .next()
         .put(Creators.restaurantsRequest())
         .next()
-        .call(api.get, "/restaurants", { params: { query } })
+        .call(api.get, "/restaurants", {})
         .throw(mockError)
         .put(Creators.restaurantsError({ err: mockError }))
         .next()
@@ -46,7 +46,7 @@ describe("Restaurants Saga Test", () => {
     });
 
     it("integration test success", () => {
-      return expectSaga(getRestaurants, { query })
+      return expectSaga(getRestaurants)
         .provide([[matchers.call.fn(api.get), mockData]])
         .withReducer(Reducer, INITIAL_STATE)
         .hasFinalState(
@@ -60,7 +60,7 @@ describe("Restaurants Saga Test", () => {
     });
 
     it("integration test error", () => {
-      return expectSaga(getRestaurants, { query })
+      return expectSaga(getRestaurants)
         .provide([[matchers.call.fn(api.get), throwError(mockError)]])
         .withReducer(Reducer, INITIAL_STATE)
         .hasFinalState(
