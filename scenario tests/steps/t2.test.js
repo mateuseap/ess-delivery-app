@@ -6,7 +6,7 @@ const feature = loadFeature("features/cart.feature");
 let browser;
 let page;
 defineFeature(feature, (test) => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
     await page.setViewport({
@@ -14,6 +14,8 @@ defineFeature(feature, (test) => {
       height: 973,
       deviceScaleFactor: 1,
     });
+  });
+  beforeEach(async () => {
     await axios.get("http://localhost:1337/resetTest");
   });
 
@@ -33,7 +35,7 @@ defineFeature(feature, (test) => {
       expect(1).toBe(1);
     });
 
-    and("eu estou logado como cliente “Felipe Gonçalves”", () => {
+    and("eu estou logado como cliente “enriqson”", () => {
       expect(1).toBe(1);
     });
 
