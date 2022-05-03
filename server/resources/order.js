@@ -46,7 +46,7 @@ exports.getOrders = async (req, res) => {
 exports.postOrders = async (req, res) => {
   try {
     decoded_auth = jwt_decode(req.headers.authorization);
-    console.log(req.body);
+
     // Restaurants update
     const restaurantsTable = new ManipulateDatabase("restaurants");
 
