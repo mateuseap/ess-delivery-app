@@ -1,27 +1,21 @@
 const fs = require("fs");
 const jsonQuery = require("json-query");
-// atenção ao nodemon => se rodar o nodemon fora da pasta SERVER
-// esse path abaixo está errado (a raíz é da onde o nodemon foi inicializado)
+
 const path = process.env.NODE_ENV === "test" ? "./test_data/" : "./data/";
 
 exports.ManipulateDatabase = class {
-  // private
-  #tableName;
-  #document;
-  #filePath;
+  tableName;
+  document;
+  filePath;
 
   constructor(tableName) {
-    this.#tableName = tableName;
-    this.#filePath = path + this.#tableName + ".json";
+    this.tableName = tableName;
+    this.filePath = path + this.tableName + ".json";
     this.read();
   }
 
   read(match = null) {
-    this.#document = JSON.parse(
-      fs.readFileSync(this.#filePath, "utf8", (err) => {
-        if (err) throw err;
-      })
-    );
+    this.document = JSON.parse(fs.readFileSync(this.filePath, "utf8"));
 
     if (match) {
       return this.query(match);
@@ -31,27 +25,23 @@ exports.ManipulateDatabase = class {
   write(data) {
     // sobrescreve tudo
     // aqui seria pra remover conteúdo ou atualizar
-    // IMPORTANTE => "data" é do tipo "this.#document" (não é só o array)
-    fs.writeFileSync(this.#filePath, JSON.stringify(data), (err) => {
-      if (err) throw err;
-    });
+    // IMPORTANTE => "data" é do tipo "this.document" (não é só o array)
+    fs.writeFileSync(this.filePath, JSON.stringify(data));
     this.read();
   }
 
-  // como é arquivo JSON, temos que fazer o append dessa forma
   append(content) {
-    // tem que puxar pra dentro do array, e não pro objeto
-    this.#document[this.#tableName].push(content);
+    this.document[this.tableName].push(content);
     this.saveChanges();
   }
 
   //procura por um objeto no array, caso o encontre o substitui por um novo
   //caso nao ache o adiciona ao final
   findAndReplace(compareFunction, newItem, append = true) {
-    const index = this.#document[this.#tableName].findIndex(compareFunction);
+    const index = this.document[this.tableName].findIndex(compareFunction);
     if (index != -1) {
-      if (newItem) this.#document[this.#tableName].splice(index, 1, newItem);
-      else this.#document[this.#tableName].splice(index, 1);
+      if (newItem) this.document[this.tableName].splice(index, 1, newItem);
+      else this.document[this.tableName].splice(index, 1);
     } else if (append) {
       this.append(newItem);
     } else {
@@ -61,11 +51,11 @@ exports.ManipulateDatabase = class {
   }
 
   saveChanges() {
-    this.write(this.#document);
+    this.write(this.document);
   }
 
   getArray() {
-    return this.#document[this.#tableName];
+    return this.document[this.tableName];
   }
 
   query(match) {
@@ -76,7 +66,7 @@ exports.ManipulateDatabase = class {
       qStr = `[${match.inner.matchId}]`;
 
       return jsonQuery(name + qStr, {
-        data: this.#document,
+        data: this.document,
       }).value;
     } else if (match.deep != undefined) {
       if (match.deep.deepSearch) qStr = "[**]";
@@ -88,23 +78,9 @@ exports.ManipulateDatabase = class {
         }
       });
 
-      return jsonQuery(this.#tableName + qStr, {
-        data: this.#document,
+      return jsonQuery(this.tableName + qStr, {
+        data: this.document,
       }).value;
     }
-  }
-
-  // dev tools
-  printArrayCollection() {
-    this.#document[this.#tableName].forEach((element) => {
-      if (Array.isArray(element) && element.length) {
-        element.forEach((e) => {
-          // para não ter quebra de linha
-          process.stdout.write(e);
-        });
-      } else {
-        console.log(element);
-      }
-    });
   }
 };

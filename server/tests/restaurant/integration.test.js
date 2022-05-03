@@ -9,6 +9,10 @@ describe("Test the cart path", () => {
     resetTestDb();
   });
 
+  afterAll(() => {
+    resetTestDb();
+  });
+
   describe("GET method", () => {
     test("It should return the restaurant if pass an id", async () => {
       const expectedBody = getRestaurantDefaultResponse;

@@ -13,6 +13,10 @@ describe("Test the cart path", () => {
     resetTestDb();
   });
 
+  afterAll(() => {
+    resetTestDb();
+  });
+
   describe("GET method", () => {
     test("It should respond with the user's cart if he has one", async () => {
       const expectedBody = getCartDefaultResponse;
