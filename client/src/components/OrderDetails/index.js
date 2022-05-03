@@ -51,6 +51,13 @@ class OrderDetails extends Component {
     });
   }
 
+  lateCheck() {
+    const order = this.props.order.data;
+    const orderTimestamp = order.timestamp;
+    const deliveryTime = 90 * 60 * 1000; //1.5 hour
+    return new Date() > new Date(orderTimestamp + deliveryTime);
+  }
+
   render() {
     const orderDetails = this.props.order;
     const order = orderDetails.data;
@@ -114,7 +121,11 @@ class OrderDetails extends Component {
 
             {!order.status?.finished ? (
               <>
-                <Deliver>Entrega prevista às {this.deliveryTime()}.</Deliver>
+                {!this.lateCheck() ? (
+                  <Deliver>Entrega prevista para {this.deliveryTime()}.</Deliver>
+                ) : (
+                  <Deliver>A entrega do pedido está atrasada!</Deliver>
+                )}
                 <ButtonRight>
                   <Button
                     variant="danger"
