@@ -31,7 +31,6 @@ defineFeature(feature, (test) => {
         waitUntil: "networkidle2",
       });
 
-      await page.screenshot({ path: "example.png" });
       expect(1).toBe(1);
     });
 
@@ -85,7 +84,6 @@ defineFeature(feature, (test) => {
         waitUntil: "networkidle2",
       });
 
-      await page.screenshot({ path: "example.png" });
       expect(1).toBe(1);
     });
 
@@ -95,31 +93,96 @@ defineFeature(feature, (test) => {
       expect(value).toBe(name);
     });
 
-    and(/^existem itens “(.*)” e “(.*)”$/, async (item1Name, item2Name) => {
-      const rows = await page.$$('[name="cartItemRow"]');
+    and(
+      /^existem itens “(.*)” e “(.*)” no carrinho$/,
+      async (item1Name, item2Name) => {
+        const rows = await page.$$('[name="cartItemRow"]');
 
-      const row1name = await page.evaluate(
-        (el) => el.children[1].textContent,
-        rows[0]
-      );
-      expect(row1name).toBe(item1Name);
+        const row1name = await page.evaluate(
+          (el) => el.children[1].textContent,
+          rows[0]
+        );
+        expect(row1name).toBe(item1Name);
 
-      const row2name = await page.evaluate(
-        (el) => el.children[1].textContent,
-        rows[1]
-      );
-      expect(row2name).toBe(item2Name);
-    });
+        const row2name = await page.evaluate(
+          (el) => el.children[1].textContent,
+          rows[1]
+        );
+        expect(row2name).toBe(item2Name);
+      }
+    );
 
-    when(/^eu clico no botão “(.*)”$/, async (text) => {
-      expect(1).toEqual(1);
+    when(/^eu clico no botão de fazer pedido$/, async () => {
+      const element = await page.$('[name="cartMakeOrderButton"]');
+      await element.click();
     });
 
     then(/^sou redirecionado para a página “(.*)”$/, async (pagePath) => {
+      await page.screenshot({ path: "example.png" });
       const splitUrl = page.url().split("/");
-      const pathName = splitUrl[splitUrl.length - 1];
-      //expect(pathName).toEqual(pagePath);
-      expect(1).toEqual(1);
+      const pathName = splitUrl[splitUrl.length - 2];
+      expect(pathName).toEqual(pagePath);
+    });
+  });
+
+  test("retirar itens do carrinho", async ({ given, when, then, and }) => {
+    given(/^Estou na página “(.*)”$/, async (pagePath) => {
+      await page.goto("http://localhost:3000/" + pagePath, {
+        waitUntil: "networkidle2",
+      });
+
+      expect(1).toBe(1);
+    });
+
+    and(/^eu estou logado como cliente “(.*)”$/, async (name) => {
+      const element = await page.$('[name="headerUserName"]');
+      let value = await page.evaluate((el) => el.textContent, element);
+      expect(value).toBe(name);
+    });
+
+    and(
+      /^existem itens “(.*)” e “(.*)” no carrinho$/,
+      async (item1Name, item2Name) => {
+        const rows = await page.$$('[name="cartItemRow"]');
+
+        const names = [];
+        for (row of rows) {
+          names.push(
+            await page.evaluate((el) => el.children[1].textContent, row)
+          );
+        }
+        expect(names.includes(item1Name)).toBeTruthy();
+        expect(names.includes(item2Name)).toBeTruthy();
+      }
+    );
+
+    when(/^eu clico no botão remover item em “(.*)”$/, async (itemName) => {
+      const rows = await page.$$('[name="cartItemRow"]');
+      for (row of rows) {
+        if (
+          itemName ===
+          (await page.evaluate((el) => el.children[1].textContent, row))
+        ) {
+          const removeButton = await page.evaluateHandle(
+            (el) => el.children[5],
+            row
+          );
+          await removeButton.click();
+          return;
+        }
+      }
+    });
+
+    then(/^“(.*)” é removido do carrinho$/, async (itemName) => {
+      const rows = await page.$$('[name="cartItemRow"]');
+      const names = [];
+      for (row of rows) {
+        names.push(
+          await page.evaluate((el) => el.children[1].textContent, row)
+        );
+      }
+
+      expect(!names.includes(itemName)).toBeTruthy();
     });
   });
 });

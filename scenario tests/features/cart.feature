@@ -11,6 +11,14 @@ Scenario: carrinho sem itens
 Scenario: Finalizar carrinho e ir para o pedido
     Given Estou na página “cart”
     And eu estou logado como cliente “Felipe Gonçalves”
-    And existem itens “Frango a milanesa” e “Cubos de carne ao molho madeira”
-    When eu clico no botão “Fazer Pedido” 
-    Then sou redirecionado para a página “order-details”
+    And existem itens “Frango a milanesa” e “Cubos de carne ao molho madeira” no carrinho
+    When eu clico no botão de fazer pedido
+    Then sou redirecionado para a página “details”
+
+
+Scenario: retirar itens do carrinho
+    Given Estou na página “cart”
+    And eu estou logado como cliente “Felipe Gonçalves”
+    And existem itens “Frango a milanesa” e “Cubos de carne ao molho madeira” no carrinho
+    When eu clico no botão remover item em “Frango a milanesa”
+    Then “Frango a milanesa” é removido do carrinho

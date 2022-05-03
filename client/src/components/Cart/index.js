@@ -104,8 +104,16 @@ class Cart extends Component {
                     <ItemName>{item.name}</ItemName>
                     <ItemQuantity>{item.quantity}</ItemQuantity>
                     <ItemPrice>{formatMoney(item.price)}</ItemPrice>
-                    <AddButton onClick={() => this.addItem(index)}>+</AddButton>
-                    <RemoveButton onClick={() => this.removeItem(index)}>
+                    <AddButton
+                      name="cartAddItemButton"
+                      onClick={() => this.addItem(index)}
+                    >
+                      +
+                    </AddButton>
+                    <RemoveButton
+                      name="cartRemoveItemButton"
+                      onClick={() => this.removeItem(index)}
+                    >
                       -
                     </RemoveButton>
                     <ItemTotal>
