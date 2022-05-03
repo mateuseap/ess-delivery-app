@@ -1,0 +1,18 @@
+{
+  "name": "scenario-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cucumber": "^6.0.7",
+    "jest": "^28.0.3",
+    "jest-cucumber": "^3.0.1",
+    "puppeteer": "^13.7.0"
+  }
+}
