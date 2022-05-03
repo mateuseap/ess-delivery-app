@@ -1,0 +1,399 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component Integration Testing Renders data correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Header)>
+        <Header
+          cart={
+            Object {
+              "data": Object {
+                "items": Array [
+                  Object {
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit mi, elementum non interdum ut, mattis si",
+                    "item_id": 2,
+                    "name": "Frango a milanesa",
+                    "photo": "https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400",
+                    "price": 11,
+                    "quantity": 1,
+                  },
+                  Object {
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit mi, elementum non interdum ut, mattis si",
+                    "item_id": 3,
+                    "name": "Cubos de carne ao molho madeira",
+                    "photo": "https://www.divenetoalimentos.com.br/images/produtos/picadinho-de-cubos-de-carne-com-molho-congelado.png",
+                    "price": 13,
+                    "quantity": 1,
+                  },
+                ],
+                "rest_id": 0,
+                "rest_name": "Almir quentinhas",
+                "total": 29,
+                "user_id": "1",
+              },
+              "error": false,
+              "loading": false,
+            }
+          }
+          cartError={[Function]}
+          cartRequest={[Function]}
+          cartSuccess={[Function]}
+          getCart={[Function]}
+          getUser={[Function]}
+          makeOrder={[Function]}
+          updateCart={[Function]}
+          user={
+            Object {
+              "data": Object {
+                "addresses": Array [
+                  "Avenida Jornalista Aníbal Fernandes, 500",
+                  "Avenida Conselheiro Rosa e Silva, 1086",
+                ],
+                "id": "1",
+                "name": "Felipe Gonçalves",
+                "payment": Array [
+                  Object {
+                    "code": "XXXX-XXXX-XXXX-XXXX",
+                    "name": "Meu cartão NuBank",
+                    "security_code": "XXX",
+                    "type": "Cartão de Débito",
+                  },
+                  Object {
+                    "code": null,
+                    "name": null,
+                    "security_code": null,
+                    "type": "Dinheiro",
+                  },
+                ],
+                "photo": "https://conteudo.imguol.com.br/c/entretenimento/b3/2021/04/20/brtt-1618944423167_v2_750x750.jpg",
+              },
+              "error": false,
+              "loading": false,
+            }
+          }
+          userError={[Function]}
+          userRequest={[Function]}
+          userSuccess={[Function]}
+        >
+          <styled.div>
+            <div
+              className="sc-bczRLJ ewrbyp"
+            >
+              <styled.div>
+                <div
+                  className="sc-gsnTZi gmtgZP"
+                >
+                  Felipe Gonçalves
+                </div>
+              </styled.div>
+              <styled.div>
+                <div
+                  className="sc-dkzDqf gbSwWm"
+                >
+                  <Link
+                    to="/history"
+                  >
+                    <a
+                      href="/history"
+                      onClick={[Function]}
+                    >
+                      <svg
+                        fill="none"
+                        height="50"
+                        viewBox="0 0 65 57"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M36.7347 0C29.4277 0 22.42 2.95223 17.2532 8.20722C12.0864 13.4622 9.18367 20.5895 9.18367 28.0212H0L11.9082 40.1326L12.1224 40.5685L24.4898 28.0212H15.3061C15.3061 15.9721 24.8878 6.22694 36.7347 6.22694C48.5816 6.22694 58.1633 15.9721 58.1633 28.0212C58.1633 40.0703 48.5816 49.8155 36.7347 49.8155C30.8265 49.8155 25.4694 47.3559 21.6122 43.4018L17.2653 47.8229C19.8166 50.432 22.8505 52.5016 26.192 53.9123C29.5336 55.3231 33.1167 56.047 36.7347 56.0424C44.0417 56.0424 51.0494 53.0902 56.2162 47.8352C61.383 42.5802 64.2857 35.4529 64.2857 28.0212C64.2857 20.5895 61.383 13.4622 56.2162 8.20722C51.0494 2.95223 44.0417 1.10741e-07 36.7347 0ZM33.6735 15.5673V31.1347L46.6837 38.9806L49.0408 34.9643L38.2653 28.4571V15.5673H33.6735Z"
+                          fill="#DA723C"
+                        />
+                      </svg>
+                    </a>
+                  </Link>
+                  <Link
+                    style={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    to="/cart"
+                  >
+                    <a
+                      href="/cart"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
+                    >
+                      <svg
+                        fill="none"
+                        height="50"
+                        viewBox="0 0 69 60"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M62.6317 35.4082L68.206 11.5137C68.6085 9.78851 67.2625 8.14565 65.4464 8.14565H24.3901C21.325 8.14565 18.6792 5.99773 18.0494 2.99801C17.7801 1.71495 16.6212 0.793518 15.2768 0.793518H3.18673C1.62372 0.793518 0.356689 2.02787 0.356689 3.55057V5.3886C0.356689 6.9113 1.62372 8.14565 3.18673 8.14565C7.98876 8.14565 12.1337 11.5107 13.1205 16.2103L18.3122 40.9374C19.1444 44.9009 16.3936 49.1275 16.3936 53.1775C16.3936 56.7304 19.35 59.6106 22.997 59.6106C26.644 59.6106 29.6004 56.7304 29.6004 53.1775C29.6004 51.3179 30.9021 48.5824 32.7616 48.5824H47.1928C49.0523 48.5824 50.354 51.3179 50.354 53.1775C50.354 56.7304 53.3105 59.6106 56.9575 59.6106C60.6044 59.6106 63.5609 56.7304 63.5609 53.1775C63.5609 51.6411 63.008 50.2307 62.0855 49.1245C61.0154 47.8413 60.1081 46.2255 60.4877 44.5983C60.8902 42.8731 59.5441 41.2302 57.7281 41.2302H27.5689C26.6993 41.2302 25.9487 40.6209 25.7701 39.7699C25.5303 38.6277 26.4018 37.5542 27.5689 37.5542H59.8721C61.1934 37.5542 62.3389 36.6634 62.6317 35.4082Z"
+                          fill="#DA723C"
+                        />
+                      </svg>
+                      <styled.div>
+                        <div
+                          className="sc-jSMfEi czhYGO"
+                        >
+                          2
+                        </div>
+                      </styled.div>
+                    </a>
+                  </Link>
+                  <Link
+                    to="/home"
+                  >
+                    <a
+                      href="/home"
+                      onClick={[Function]}
+                    >
+                      <styled.div>
+                        <div
+                          className="sc-hKMtZM SReBg"
+                        >
+                          <styled.div
+                            src="https://conteudo.imguol.com.br/c/entretenimento/b3/2021/04/20/brtt-1618944423167_v2_750x750.jpg"
+                          >
+                            <div
+                              className="sc-eCYdqJ bfACru"
+                              src="https://conteudo.imguol.com.br/c/entretenimento/b3/2021/04/20/brtt-1618944423167_v2_750x750.jpg"
+                            />
+                          </styled.div>
+                        </div>
+                      </styled.div>
+                    </a>
+                  </Link>
+                </div>
+              </styled.div>
+            </div>
+          </styled.div>
+        </Header>
+      </Connect(Header)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
+
+exports[`Header Component Integration Testing Renders loading correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Header)>
+        <Header
+          cart={
+            Object {
+              "data": Array [],
+              "error": false,
+              "loading": false,
+            }
+          }
+          cartError={[Function]}
+          cartRequest={[Function]}
+          cartSuccess={[Function]}
+          getCart={[Function]}
+          getUser={[Function]}
+          makeOrder={[Function]}
+          updateCart={[Function]}
+          user={
+            Object {
+              "data": Array [],
+              "error": false,
+              "loading": false,
+            }
+          }
+          userError={[Function]}
+          userRequest={[Function]}
+          userSuccess={[Function]}
+        >
+          <styled.div>
+            <div
+              className="sc-bczRLJ ewrbyp"
+            >
+              <styled.div>
+                <div
+                  className="sc-gsnTZi gmtgZP"
+                />
+              </styled.div>
+              <styled.div>
+                <div
+                  className="sc-dkzDqf gbSwWm"
+                >
+                  <Link
+                    to="/history"
+                  >
+                    <a
+                      href="/history"
+                      onClick={[Function]}
+                    >
+                      <svg
+                        fill="none"
+                        height="50"
+                        viewBox="0 0 65 57"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M36.7347 0C29.4277 0 22.42 2.95223 17.2532 8.20722C12.0864 13.4622 9.18367 20.5895 9.18367 28.0212H0L11.9082 40.1326L12.1224 40.5685L24.4898 28.0212H15.3061C15.3061 15.9721 24.8878 6.22694 36.7347 6.22694C48.5816 6.22694 58.1633 15.9721 58.1633 28.0212C58.1633 40.0703 48.5816 49.8155 36.7347 49.8155C30.8265 49.8155 25.4694 47.3559 21.6122 43.4018L17.2653 47.8229C19.8166 50.432 22.8505 52.5016 26.192 53.9123C29.5336 55.3231 33.1167 56.047 36.7347 56.0424C44.0417 56.0424 51.0494 53.0902 56.2162 47.8352C61.383 42.5802 64.2857 35.4529 64.2857 28.0212C64.2857 20.5895 61.383 13.4622 56.2162 8.20722C51.0494 2.95223 44.0417 1.10741e-07 36.7347 0ZM33.6735 15.5673V31.1347L46.6837 38.9806L49.0408 34.9643L38.2653 28.4571V15.5673H33.6735Z"
+                          fill="#DA723C"
+                        />
+                      </svg>
+                    </a>
+                  </Link>
+                  <Link
+                    style={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    to="/cart"
+                  >
+                    <a
+                      href="/cart"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
+                    >
+                      <svg
+                        fill="none"
+                        height="50"
+                        viewBox="0 0 69 60"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M62.6317 35.4082L68.206 11.5137C68.6085 9.78851 67.2625 8.14565 65.4464 8.14565H24.3901C21.325 8.14565 18.6792 5.99773 18.0494 2.99801C17.7801 1.71495 16.6212 0.793518 15.2768 0.793518H3.18673C1.62372 0.793518 0.356689 2.02787 0.356689 3.55057V5.3886C0.356689 6.9113 1.62372 8.14565 3.18673 8.14565C7.98876 8.14565 12.1337 11.5107 13.1205 16.2103L18.3122 40.9374C19.1444 44.9009 16.3936 49.1275 16.3936 53.1775C16.3936 56.7304 19.35 59.6106 22.997 59.6106C26.644 59.6106 29.6004 56.7304 29.6004 53.1775C29.6004 51.3179 30.9021 48.5824 32.7616 48.5824H47.1928C49.0523 48.5824 50.354 51.3179 50.354 53.1775C50.354 56.7304 53.3105 59.6106 56.9575 59.6106C60.6044 59.6106 63.5609 56.7304 63.5609 53.1775C63.5609 51.6411 63.008 50.2307 62.0855 49.1245C61.0154 47.8413 60.1081 46.2255 60.4877 44.5983C60.8902 42.8731 59.5441 41.2302 57.7281 41.2302H27.5689C26.6993 41.2302 25.9487 40.6209 25.7701 39.7699C25.5303 38.6277 26.4018 37.5542 27.5689 37.5542H59.8721C61.1934 37.5542 62.3389 36.6634 62.6317 35.4082Z"
+                          fill="#DA723C"
+                        />
+                      </svg>
+                      <styled.div>
+                        <div
+                          className="sc-jSMfEi czhYGO"
+                        >
+                          0
+                        </div>
+                      </styled.div>
+                    </a>
+                  </Link>
+                  <Link
+                    to="/home"
+                  >
+                    <a
+                      href="/home"
+                      onClick={[Function]}
+                    >
+                      <styled.div>
+                        <div
+                          className="sc-hKMtZM SReBg"
+                        >
+                          <styled.div>
+                            <div
+                              className="sc-eCYdqJ gwjthl"
+                            />
+                          </styled.div>
+                        </div>
+                      </styled.div>
+                    </a>
+                  </Link>
+                </div>
+              </styled.div>
+            </div>
+          </styled.div>
+        </Header>
+      </Connect(Header)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

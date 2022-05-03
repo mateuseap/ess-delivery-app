@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll --verbose",
+    "test": "react-scripts test --watchAll --verbose --coverage",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:1337",
@@ -55,6 +55,10 @@
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
+    "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.4"
   }
 }
