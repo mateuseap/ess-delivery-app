@@ -33,7 +33,7 @@ Scenario: Cancelando uma avaliação
         And clico em cancelar avaliação
         And vejo uma notificação na tela, perguntando se quero mesmo prosseguir
         And clico em "Ok"
-    Then Eu não vejo mais a avaliação
+    Then Eu volto ao estado inicial da tela
 
 Scenario: Revisando uma avaliação
     Given Estou logado com o usuário "Felipe Gonçalves"
@@ -42,4 +42,4 @@ Scenario: Revisando uma avaliação
     When eu clico em revisar avaliação do pedido
         And eu vejo minha avaliação feita na tela
         And eu clico para voltar
-    Then Eu não vejo mais a avaliação
+    Then Eu volto ao estado inicial da tela
