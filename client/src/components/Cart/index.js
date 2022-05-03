@@ -99,7 +99,7 @@ class Cart extends Component {
                 </HeaderRow>
 
                 {cart.data.items?.map((item, index) => (
-                  <ItemRow key={item.item_id}>
+                  <ItemRow key={item.item_id} name="cartItemRow">
                     <ItemImg src={item.photo}></ItemImg>
                     <ItemName>{item.name}</ItemName>
                     <ItemQuantity>{item.quantity}</ItemQuantity>
@@ -118,22 +118,29 @@ class Cart extends Component {
                   Total: {formatMoney(cart.data.total)}
                 </OrderTotalStyle>
                 <DeliveryFeeNotice>
-                  OBS: É cobrada uma taxa de entrega de{" "}
+                  OBS: É cobrada uma taxa de entrega de
                   {formatMoney(deliveryFee)}
                 </DeliveryFeeNotice>
-                <OrderButton onClick={() => this.handleMakeOrder()}>
+                <OrderButton
+                  name="cartMakeOrderButton"
+                  onClick={() => this.handleMakeOrder()}
+                >
                   Fazer Pedido
                 </OrderButton>
               </>
             ) : (
               <>
-                <TextStyle>
+                <TextStyle name="cartEmptyCartText">
                   Seu carrinho está vazio :(
                   <br />
                   Adicione itens em um de nossos restaurantes!
                 </TextStyle>
-                <Link to="/home" style={{ textDecoration: "none" }}>
-                  <RedirectHomeButton> Ver restaurantes </RedirectHomeButton>
+                <Link
+                  name="cartGoHomeButton"
+                  to="/home"
+                  style={{ textDecoration: "none" }}
+                >
+                  <RedirectHomeButton>Ver restaurantes</RedirectHomeButton>
                 </Link>
               </>
             )}

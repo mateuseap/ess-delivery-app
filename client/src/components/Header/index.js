@@ -30,12 +30,12 @@ class Header extends Component {
           <ReactLoading type={"spin"} />
         ) : (
           <>
-            <Styles.Title>{user.data.name}</Styles.Title>
+            <Styles.Title name="headerUserName">{user.data.name}</Styles.Title>
             <Styles.Buttons>
               <Link to="/history">{getHistorySvg()}</Link>
               <Link to="/cart" style={{ position: "relative" }}>
                 {getCartSvg()}
-                <Styles.CartItemCount>
+                <Styles.CartItemCount name="headerCartItemCount">
                   {this.getCartItemCount()}
                 </Styles.CartItemCount>
               </Link>
