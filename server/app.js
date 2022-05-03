@@ -11,6 +11,8 @@ const {
   cancelOrder,
 } = require("./resources/order");
 
+const { resetTest, configTest } = require("./tests/testResources");
+
 const cors = require("cors");
 
 require("dotenv").config();
@@ -39,5 +41,10 @@ app.get("/order-details", getOrderById);
 app.post("/make-order", makeOrder);
 
 app.post("/cancel-order", cancelOrder);
+
+if (process.env.NODE_ENV == "test") {
+  app.get("/resetTest", resetTest);
+  app.post("/configTest", configTest);
+}
 
 module.exports = app;
