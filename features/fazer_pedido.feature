@@ -1,5 +1,7 @@
 Feature: Fazer pedido
-
+	As a client que possui uma conta no aplicativo
+	I want to fazer um pedido
+	
 Scenario: O cliente vai escolher os produtos que deseja
 	Given Selecionei um restaurante e estou na página “home”
 	When Clico em um produto para adiciona-lo ao carrinho
