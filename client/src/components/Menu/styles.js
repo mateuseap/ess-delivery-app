@@ -17,27 +17,24 @@ export const TableStyle = styled.div`
 
 export const TableBodyStyle = styled.div`
   background-color: #ffffff;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 15px 0;
   border-radius: 65px;
   display: grid;
   grid-auto-flow: column;
-  height: 25%;
+  height: 285px;
   place-items: center;
 `;
 
 export const ItemPhoto = styled.img`
   content: url(${(props) => props.photo});
-  height: 200px;
-  width: 200px;
+  height: 215px;
+  width: 215px;
   border-radius: 65px;
 `;
 
 export const ItemData = styled.div`
   display: flex;
   flex-direction: column;
-  margin: auto;
-  padding: 1em;
 `;
 
 export const ItemDescriptionStyle = styled.p`
@@ -46,12 +43,8 @@ export const ItemDescriptionStyle = styled.p`
   max-width: 350px;
 `;
 
-export const RestaurantRating = styled.div`
-  display: flex;
-`;
-
 export const RatingTextStyles = styled.h4`
-  color: #ffd700;
+  color: #383838;
   font-weight: 600;
   font-size: 2rem;
 `;

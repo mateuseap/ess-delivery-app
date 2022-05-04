@@ -14,8 +14,9 @@ exports.getUser = async (req, res) => {
       },
     });
 
-    res.status(200).send(JSON.stringify(user_data));
+    res.status(200).send(user_data);
   } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 };

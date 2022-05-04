@@ -5,6 +5,7 @@ export const { Types, Creators } = createActions({
   cartRequest: [],
   getCart: [],
   updateCart: ["rest_id", "rest_name", "item", "amountToChange"],
+  makeOrder: ["callback"],
   cartSuccess: ["data"],
   cartError: ["err"],
 });

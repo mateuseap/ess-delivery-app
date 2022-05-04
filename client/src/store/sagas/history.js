@@ -3,11 +3,11 @@ import { Creators } from "../ducks/history";
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 
-export function* getHistory(query) {
+export function* getHistory({ dateFilter }) {
   try {
     yield put(Creators.historyRequest());
 
-    const response = yield call(api.get, "/orders", { params: query });
+    const response = yield call(api.get, "/orders", { params: { dateFilter } });
 
     if (response.data) {
       yield put(Creators.historySuccess(response.data));
@@ -18,17 +18,18 @@ export function* getHistory(query) {
   }
 }
 
-export function* postHistory({ data, changes }) {
+export function* postHistory({ data }) {
   try {
     yield put(Creators.historyRequest());
 
-    const response = yield call(api.post, "/orders", { data, changes });
+    const response = yield call(api.post, "/orders", { ...data });
 
     if (response.data) {
       yield put(Creators.historySuccess(response.data));
+      toastr.success("Avaliação enviada com sucesso.");
     }
   } catch (err) {
     yield put(Creators.historyError({ err }));
-    toastr.error("Erro ao atualizar histórico de pedidos");
+    toastr.error("Erro ao enviar avaliação.");
   }
 }

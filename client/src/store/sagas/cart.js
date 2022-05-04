@@ -25,10 +25,24 @@ export function* updateCart({ rest_id, rest_name, item, amountToChange }) {
       item,
       amountToChange,
     });
+
+    yield put(Creators.cartSuccess(response.data));
+    toastr.success("Carrinho atualizado.");
+  } catch (err) {
+    yield put(Creators.cartError({ err }));
+    toastr.error("Erro ao atualizar carrinho");
+  }
+}
+
+export function* makeOrder({ callback }) {
+  try {
+    yield put(Creators.cartRequest());
+
+    let response = yield call(api.post, "/make-order", {});
     if (response.data) {
-      // como so iremos trabalhar com um usuario:
-      yield put(Creators.cartSuccess(response.data)); 
-      toastr.success("Item adicionado ao carrinho.");
+      yield put(Creators.cartSuccess({}));
+      toastr.success("Pedido feito com sucesso");
+      if (callback) callback(response.data.id);
     }
   } catch (err) {
     yield put(Creators.cartError({ err }));

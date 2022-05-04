@@ -84,9 +84,9 @@ class Menu extends Component {
                   <TableStyle>
                     {restaurant.menu?.options.map((element) => (
                       <td>
-                        <TableBodyStyle>
+                        <TableBodyStyle className="p-2">
                           <ItemPhoto className="m-2" photo={element.photo} />
-                          <ItemData className="m-2">
+                          <ItemData className="m-4">
                             <ItemDescriptionStyle>
                               <h4 style={{ fontWeight: "600" }}>
                                 {element.name}
@@ -94,6 +94,7 @@ class Menu extends Component {
                               {element.description}
                             </ItemDescriptionStyle>
                             <Button
+                              nome="ADICIONAR"
                               style={{
                                 width: "280px",
                                 paddingBottom: 0,
@@ -107,7 +108,7 @@ class Menu extends Component {
                             >
                               <strong>
                                 Adicionar item ao carrinho
-                                <h4>{" +R$" + formatMoney(element.price)}</h4>
+                                <h4>{"+ " + formatMoney(element.price)}</h4>
                               </strong>
                             </Button>
                           </ItemData>

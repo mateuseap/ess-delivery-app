@@ -16,6 +16,7 @@ import {
   AddButton,
   ItemImg,
   RedirectHomeButton,
+  DeliveryFeeNotice,
 } from "./styles";
 
 import ReactLoading from "react-loading";
@@ -27,6 +28,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Creators as CartCreator } from "../../store/ducks/cart";
 
+import { formatMoney } from "../../utils/misc";
+import { deliveryFee } from "../../constants/constants";
+
 class Cart extends Component {
   componentDidMount() {
     this.props.getCart();
@@ -34,13 +38,6 @@ class Cart extends Component {
 
   addItem(index) {
     const { cart } = this.props;
-
-    let reqBody = {
-      rest_id: cart.data.rest_id,
-      rest_name: cart.data.rest_name,
-      item: cart.data.items[index],
-      amountToChange: 1,
-    };
 
     this.props.updateCart(
       cart.data.rest_id,
@@ -53,19 +50,19 @@ class Cart extends Component {
   removeItem(index) {
     const { cart } = this.props;
 
-    let reqBody = {
-      rest_id: cart.data.rest_id,
-      rest_name: cart.data.rest_name,
-      item: cart.data.items[index],
-      amountToChange: -1,
-    };
-
     this.props.updateCart(
       cart.data.rest_id,
       cart.data.rest_name,
       cart.data.items[index],
       -1
     );
+  }
+
+  handleMakeOrder() {
+    const callback = (id) => {
+      this.props.router.navigate(`/details/${id}`);
+    };
+    this.props.makeOrder(callback);
   }
 
   render() {
@@ -102,31 +99,56 @@ class Cart extends Component {
                 </HeaderRow>
 
                 {cart.data.items?.map((item, index) => (
-                  <ItemRow key={item.item_id}>
+                  <ItemRow key={item.item_id} name="cartItemRow">
                     <ItemImg src={item.photo}></ItemImg>
                     <ItemName>{item.name}</ItemName>
                     <ItemQuantity>{item.quantity}</ItemQuantity>
-                    <ItemPrice>R${item.price}</ItemPrice>
-                    <AddButton onClick={() => this.addItem(index)}>+</AddButton>
-                    <RemoveButton onClick={() => this.removeItem(index)}>
+                    <ItemPrice>{formatMoney(item.price)}</ItemPrice>
+                    <AddButton
+                      name="cartAddItemButton"
+                      onClick={() => this.addItem(index)}
+                    >
+                      +
+                    </AddButton>
+                    <RemoveButton
+                      name="cartRemoveItemButton"
+                      onClick={() => this.removeItem(index)}
+                    >
                       -
                     </RemoveButton>
-                    <ItemTotal>R${item.quantity * item.price}</ItemTotal>
+                    <ItemTotal>
+                      {formatMoney(item.quantity * item.price)}
+                    </ItemTotal>
                   </ItemRow>
                 ))}
 
-                <OrderTotalStyle>Total: R${cart.data.total}</OrderTotalStyle>
-                <OrderButton>Fazer Pedido</OrderButton>
+                <OrderTotalStyle name="cartTotalPrice">
+                  Total: {formatMoney(cart.data.total)}
+                </OrderTotalStyle>
+                <DeliveryFeeNotice>
+                  OBS: É cobrada uma taxa de entrega de
+                  {formatMoney(deliveryFee)}
+                </DeliveryFeeNotice>
+                <OrderButton
+                  name="cartMakeOrderButton"
+                  onClick={() => this.handleMakeOrder()}
+                >
+                  Fazer Pedido
+                </OrderButton>
               </>
             ) : (
               <>
-                <TextStyle>
+                <TextStyle name="cartEmptyCartText">
                   Seu carrinho está vazio :(
                   <br />
                   Adicione itens em um de nossos restaurantes!
                 </TextStyle>
-                <Link to="/home" style={{ textDecoration: "none" }}>
-                  <RedirectHomeButton> Ver restaurantes </RedirectHomeButton>
+                <Link
+                  name="cartGoHomeButton"
+                  to="/home"
+                  style={{ textDecoration: "none" }}
+                >
+                  <RedirectHomeButton>Ver restaurantes</RedirectHomeButton>
                 </Link>
               </>
             )}

@@ -2,10 +2,13 @@ import { createReducer, createActions } from "reduxsauce";
 import Immutable from "seamless-immutable";
 
 export const { Types, Creators } = createActions({
-  orderDetailsRequest: [],
+  orderRequest: [],
   getOrderDetails: ["id"],
-  orderDetailsSuccess: ["data"],
-  orderDetailsError: ["err"],
+  orderSuccess: ["data"],
+  orderError: ["err"],
+  cancelOrder: ["id", "callback"],
+  cancelOrderWatch: [],
+  orderStatusWatchWorker: ["id"],
 });
 
 export const INITIAL_STATE = Immutable({
@@ -21,8 +24,11 @@ const error = (state, { err }) => state.merge({ loading: false, error: err });
 const success = (state, { data }) =>
   state.merge({ data, loading: false, error: false });
 
+const cancelOrderWatch = (state) => state.merge({});
+
 export default createReducer(INITIAL_STATE, {
-  [Types.ORDER_DETAILS_ERROR]: error,
-  [Types.ORDER_DETAILS_REQUEST]: request,
-  [Types.ORDER_DETAILS_SUCCESS]: success,
+  [Types.ORDER_ERROR]: error,
+  [Types.ORDER_REQUEST]: request,
+  [Types.ORDER_SUCCESS]: success,
+  [Types.CANCEL_ORDER_WATCH]: cancelOrderWatch,
 });
