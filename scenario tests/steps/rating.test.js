@@ -38,7 +38,11 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("eu estou na página de histórico de pedidos", async () => {});
+    and("eu estou na página de histórico de pedidos", async () => {
+      const splitUrl = page.url().split("/");
+      const pathName = splitUrl[splitUrl.length - 1];
+      expect(pathName).toEqual("history");
+    });
 
     and("vou avaliar um pedido", async () => {});
 
@@ -48,7 +52,15 @@ defineFeature(feature, (test) => {
     });
 
     and(/^avalio o pedido com (\d+) estrelas$/, async (stars) => {
-      const element = await page.$('[name="ratingStars"]');
+      const element = await page.$(
+        '[aria-label="add rating by typing an integer from 0 to 5 or pressing arrow keys"]'
+      );
+      await element.click();
+      const value = await page.evaluate(
+        (el) => el.textContent[el.textContent.length - 1],
+        element
+      );
+      expect(value).toEqual(stars);
     });
 
     and("deixo a caixa de texto de feedback em branco", async () => {
@@ -66,6 +78,10 @@ defineFeature(feature, (test) => {
       await page.screenshot({
         path: "screenshots/rating/without_feedback_rating_test.png",
       });
+
+      const element = await page.$('[name="ratingButton"]');
+      const value = await page.evaluate((el) => el.textContent, element);
+      expect(value).toEqual("Revisar avaliação");
     });
   });
 
@@ -81,7 +97,11 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("eu estou na página de histórico de pedidos", async () => {});
+    and("eu estou na página de histórico de pedidos", async () => {
+      const splitUrl = page.url().split("/");
+      const pathName = splitUrl[splitUrl.length - 1];
+      expect(pathName).toEqual("history");
+    });
 
     and("vou avaliar um pedido", async () => {});
 
@@ -91,7 +111,15 @@ defineFeature(feature, (test) => {
     });
 
     and(/^avalio o pedido com (\d+) estrelas$/, async (stars) => {
-      const element = await page.$('[name="ratingStars"]');
+      const element = await page.$(
+        '[aria-label="add rating by typing an integer from 0 to 5 or pressing arrow keys"]'
+      );
+      await element.click();
+      const value = await page.evaluate(
+        (el) => el.textContent[el.textContent.length - 1],
+        element
+      );
+      expect(value).toEqual(stars);
     });
 
     and(
@@ -114,6 +142,10 @@ defineFeature(feature, (test) => {
       await page.screenshot({
         path: "screenshots/rating/with_feedback_rating_test.png",
       });
+
+      const element = await page.$('[name="ratingButton"]');
+      const value = await page.evaluate((el) => el.textContent, element);
+      expect(value).toEqual("Revisar avaliação");
     });
   });
 
@@ -124,7 +156,11 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("eu estou na página de histórico de pedidos", async () => {});
+    and("eu estou na página de histórico de pedidos", async () => {
+      const splitUrl = page.url().split("/");
+      const pathName = splitUrl[splitUrl.length - 1];
+      expect(pathName).toEqual("history");
+    });
 
     and("vou cancelar a avaliação de um pedido", async () => {});
 
@@ -133,37 +169,11 @@ defineFeature(feature, (test) => {
       await element.click();
     });
 
-    and(/^avalio o pedido com (\d+) estrelas$/, async (stars) => {
-      const element = await page.$('[name="ratingStars"]');
-    });
-
-    and(
-      /^escrevo a frase "(.*)" na caixa de texto de feedback$/,
-      async (text) => {
-        const element = await page.$('[name="ratingFeedbackText"]');
-        await element.type(text, { force: true });
-      }
-    );
-
     and(/^clico em "(.*)"$/, async (buttonName) => {
       await page.screenshot({
         path: "screenshots/rating/tela_cancelando_uma_avaliação.png",
       });
       const element = await page.$('[name="cancelRateButton"]');
-      await element.click();
-    });
-
-    and(
-      "vejo uma notificação na tela, perguntando se quero mesmo prosseguir",
-      async () => {
-        await page.screenshot({
-          path: "screenshots/rating/check_alert_rating_test.png",
-        });
-      }
-    );
-
-    and(/^clico em "(.*)"$/, async (buttonName) => {
-      const element = await page.$('[name="backButton"]');
       await element.click();
     });
 
@@ -181,7 +191,11 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("eu estou na página de histórico de pedidos", async () => {});
+    and("eu estou na página de histórico de pedidos", async () => {
+      const splitUrl = page.url().split("/");
+      const pathName = splitUrl[splitUrl.length - 1];
+      expect(pathName).toEqual("history");
+    });
 
     and("vou revisar uma avaliação", async () => {});
 
@@ -190,7 +204,7 @@ defineFeature(feature, (test) => {
       await elements[1].click();
     });
 
-    and("eu vejo minha avaliação feita na tela", async (stars) => {
+    and("eu vejo minha avaliação feita na tela", async () => {
       await page.screenshot({
         path: "screenshots/rating/tela_revisando_uma_avaliação.png",
       });

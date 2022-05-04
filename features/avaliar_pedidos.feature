@@ -8,9 +8,9 @@ Scenario: Avaliando um pedido qualquer sem texto de feedback
         And eu estou na página de histórico de pedidos
         And vou avaliar um pedido
     When eu clico em avaliar um pedido
-        And avalio o pedido com 4 estrelas
+        And avalio o pedido com 3 estrelas
         And deixo a caixa de texto de feedback em branco
-        And clico em enviar avaliação
+        And clico em "Enviar"
     Then Eu vejo uma mensagem de sucesso na tela
 
 Scenario: Avaliando um pedido qualquer com texto de feedback
@@ -18,9 +18,9 @@ Scenario: Avaliando um pedido qualquer com texto de feedback
         And eu estou na página de histórico de pedidos
         And vou avaliar um pedido
     When eu clico em avaliar um pedido
-        And avalio o pedido com 5 estrelas
+        And avalio o pedido com 3 estrelas
         And escrevo a frase "gostei bastante do pedido" na caixa de texto de feedback
-        And clico em enviar avaliação
+        And clico em "Enviar"
     Then Eu vejo uma mensagem de sucesso na tela
 
 Scenario: Cancelando uma avaliação
@@ -28,12 +28,8 @@ Scenario: Cancelando uma avaliação
         And eu estou na página de histórico de pedidos
         And vou cancelar a avaliação de um pedido
     When eu clico em avaliar um pedido
-        And avalio o pedido com 5 estrelas
-        And escrevo a frase "gostei bastante do pedido" na caixa de texto de feedback
-        And clico em cancelar avaliação
-        And vejo uma notificação na tela, perguntando se quero mesmo prosseguir
-        And clico em "Ok"
-    Then Eu não vejo mais a avaliação
+        And clico em "Cancelar"
+    Then Eu volto ao estado inicial da tela
 
 Scenario: Revisando uma avaliação
     Given Estou logado com o usuário "Felipe Gonçalves"
@@ -41,5 +37,5 @@ Scenario: Revisando uma avaliação
         And vou revisar uma avaliação
     When eu clico em revisar avaliação do pedido
         And eu vejo minha avaliação feita na tela
-        And eu clico para voltar
-    Then Eu não vejo mais a avaliação
+        And clico em "Voltar"
+    Then Eu volto ao estado inicial da tela

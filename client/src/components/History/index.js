@@ -307,7 +307,6 @@ class History extends Component {
                             edit={!data[orderToRate].rate.did}
                             size={50}
                             activeColor="#ffd700"
-                            name="ratingStars"
                           />
                         </Form.Label>
                         <Form.Control
