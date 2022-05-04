@@ -32,7 +32,7 @@ export function* cancelOrder({ id, callback }) {
         },
       }
     );
-    if (response.status != 200) throw new Error(response.data.msg);
+    if (response.status !== 200) throw new Error(response.data.msg);
 
     const previousData = yield select((state) => state.order.data);
     yield put(Creators.orderSuccess(previousData));

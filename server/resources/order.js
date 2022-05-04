@@ -112,7 +112,10 @@ exports.cancelOrder = async (req, res) => {
     if (item.user_id != decoded_auth.userId) throw new Error("Sem autorização");
 
     const DELIVERING_TIME = 90 * 60 * 1000;
-    if (item.status.preparing && item.timestamp + DELIVERING_TIME > new Date()) {
+    if (
+      item.status.preparing &&
+      item.timestamp + DELIVERING_TIME > new Date()
+    ) {
       //preparing and not delayed
       throw new Error(
         "O pedido só pode ser cancelado se seu preparo não tiver sido iniciado ou se houver um atraso de 30 minutos ou mais"
@@ -131,6 +134,7 @@ exports.cancelOrder = async (req, res) => {
 
 exports.getOrderById = async (req, res) => {
   try {
+    decoded_auth = jwt_decode(req.headers.authorization);
     const { id } = req.query;
 
     const table = new ManipulateDatabase("orders");
