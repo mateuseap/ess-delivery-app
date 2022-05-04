@@ -136,7 +136,8 @@ class History extends Component {
       <RectangleFilter>
         Filtro de Dias
         <RectangleDaysFilter>
-          <SelectStyle
+          <SelectStyle 
+            name="daysFilter" 
             value={this.state.daysFilter}
             onChange={(elem) => {
               this.handleSelectFilter(elem);
@@ -199,6 +200,7 @@ class History extends Component {
       <RectangleFilter className="mt-3">
         {this.getCircles().map((element, index) => (
           <CirclesStyle
+            name="pagination"
             key={index}
             style={
               this.state.currentPage === element
@@ -379,7 +381,7 @@ class History extends Component {
               </>
             ) : (
               <NoDataStyle>
-                <h1>Não há pedidos registrados em sua conta</h1>
+                <h1 name="emptyOrdersHistory">Não há pedidos registrados em sua conta</h1>
                 <h2>Volte a página inicial</h2>
                 <Link to="/home" className="m-2">
                   <Button>Voltar</Button>
