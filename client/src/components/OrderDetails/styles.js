@@ -10,7 +10,7 @@ export const OrderTitles = styled.h1`
   font-weight: bold;
   color: #91091e;
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 20px;
 `;
 
 export const OrderStatus = styled.div`
@@ -31,7 +31,6 @@ export const OrderStatusItem = styled.div`
   font-weight: bold;
   margin: 3px;
   padding: 5px;
-
 `;
 
 export const Restaurant = styled.h4`
@@ -39,6 +38,14 @@ export const Restaurant = styled.h4`
   color: #91091e;
   display: flex;
   align-items: left;
+`;
+
+export const RestaurantName = styled.span`
+  font-weight: bold;
+  color: #91091e;
+  display: flex;
+  align-items: left;
+  margin-left: 10px;
 `;
 
 export const OrderItem = styled.div`
@@ -56,7 +63,7 @@ export const OrderItemPrice = styled.div`
   font-weight: bold;
 `;
 
-export const TotalPrice = styled.div`
+export const Total = styled.div`
   height: 30px;
   font-size: 25px;
   color: #91091e;
@@ -65,7 +72,27 @@ export const TotalPrice = styled.div`
   font-weight: bold;
 `;
 
+export const TotalPrice = styled.span`
+  height: 30px;
+  font-size: 25px;
+  color: #91091e;
+  position: relative;
+  text-align: right;
+  font-weight: bold;
+  margin-left: 1%;
+`;
+
 export const Deliver = styled.div`
+  margin-top: 3%;
+  height: 30px;
+  color: #91091e;
+  font-size: 20px;
+  position: absolute;
+  font-weight: bold;
+  margin-bottom: 2%;
+`;
+
+export const LateDeliver = styled.div`
   margin-top: 3%;
   height: 30px;
   color: #91091e;
