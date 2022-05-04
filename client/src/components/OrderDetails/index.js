@@ -65,9 +65,6 @@ class OrderDetails extends Component {
     const orderDetails = this.props.order;
     const order = orderDetails.data;
     this.deliveryTime();
-    if(orderDetails.error) {
-      return <>{orderDetails.error.err.message}</>
-    }
     if (
       orderDetails.error &&
       orderDetails.error.err.message !==
@@ -129,7 +126,9 @@ class OrderDetails extends Component {
 
             <Total>
               Total:
-              <TotalPrice name="price">{formatMoney(order.total_price)}</TotalPrice>
+              <TotalPrice name="price">
+                {formatMoney(order.total_price)}
+              </TotalPrice>
             </Total>
 
             {!order.status?.finished ? (
@@ -139,7 +138,9 @@ class OrderDetails extends Component {
                     Entrega prevista para {this.deliveryTime()}.
                   </Deliver>
                 ) : (
-                  <LateDeliver name="late">A entrega do pedido está atrasada!</LateDeliver>
+                  <LateDeliver name="late">
+                    A entrega do pedido está atrasada!
+                  </LateDeliver>
                 )}
                 <ButtonRight>
                   <Button
