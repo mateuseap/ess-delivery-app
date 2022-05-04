@@ -1,0 +1,492 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart Component Integration Testing Renders data correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <ComponentWithRouterProp>
+        <Connect(Cart)
+          router={
+            Object {
+              "location": Object {
+                "hash": "",
+                "key": "default",
+                "pathname": "/",
+                "search": "",
+                "state": null,
+              },
+              "navigate": [Function],
+              "params": Object {},
+            }
+          }
+        >
+          <Cart
+            cart={
+              Object {
+                "data": Object {
+                  "items": Array [
+                    Object {
+                      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit mi, elementum non interdum ut, mattis si",
+                      "item_id": 2,
+                      "name": "Frango a milanesa",
+                      "photo": "https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400",
+                      "price": 11,
+                      "quantity": 1,
+                    },
+                    Object {
+                      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit mi, elementum non interdum ut, mattis si",
+                      "item_id": 3,
+                      "name": "Cubos de carne ao molho madeira",
+                      "photo": "https://www.divenetoalimentos.com.br/images/produtos/picadinho-de-cubos-de-carne-com-molho-congelado.png",
+                      "price": 13,
+                      "quantity": 1,
+                    },
+                  ],
+                  "rest_id": 0,
+                  "rest_name": "Almir quentinhas",
+                  "total": 29,
+                  "user_id": "1",
+                },
+                "error": false,
+                "loading": false,
+              }
+            }
+            cartError={[Function]}
+            cartRequest={[Function]}
+            cartSuccess={[Function]}
+            getCart={[Function]}
+            makeOrder={[Function]}
+            router={
+              Object {
+                "location": Object {
+                  "hash": "",
+                  "key": "default",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                },
+                "navigate": [Function],
+                "params": Object {},
+              }
+            }
+            updateCart={[Function]}
+          >
+            <styled.div>
+              <div
+                className="sc-dkzDqf emSNjO"
+              >
+                <styled.h1>
+                  <h1
+                    className="sc-hKMtZM kDIOHx"
+                  >
+                    Seu carrinho de compras
+                  </h1>
+                </styled.h1>
+                <styled.div>
+                  <div
+                    className="sc-eCYdqJ gGLNLP"
+                  >
+                    Restaurante: 
+                    Almir quentinhas
+                  </div>
+                </styled.div>
+                <styled.div>
+                  <div
+                    className="sc-jSMfEi jMaENY"
+                  >
+                    <styled.div>
+                      <div
+                        className="sc-iBkjds cecdRg"
+                      >
+                        Item
+                      </div>
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-jqUVSM dazhGl"
+                      >
+                        Qtd
+                      </div>
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-papXJ gxnGEq"
+                      >
+                        Preço unitário
+                      </div>
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-kDDrLX buxNlz"
+                      >
+                        Total do item
+                      </div>
+                    </styled.div>
+                  </div>
+                </styled.div>
+                <styled.div
+                  key="2"
+                  name="cartItemRow"
+                >
+                  <div
+                    className="sc-gKXOVf jNUJEn"
+                    name="cartItemRow"
+                  >
+                    <styled.div
+                      src="https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400"
+                    >
+                      <div
+                        className="sc-hAZoDl jBoOEY"
+                        src="https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400"
+                      />
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-ftvSup lnPzcq"
+                      >
+                        Frango a milanesa
+                      </div>
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-jqUVSM dazhGl"
+                      >
+                        1
+                      </div>
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-papXJ gxnGEq"
+                      >
+                        R$ 11,00
+                      </div>
+                    </styled.div>
+                    <Styled(styled.button)
+                      name="cartAddItemButton"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="sc-gsnTZi sc-iqcoie kRQeln fPfBXj"
+                        name="cartAddItemButton"
+                        onClick={[Function]}
+                      >
+                        +
+                      </button>
+                    </Styled(styled.button)>
+                    <Styled(styled.button)
+                      name="cartRemoveItemButton"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="sc-gsnTZi sc-crXcEl kRQeln fitzdG"
+                        name="cartRemoveItemButton"
+                        onClick={[Function]}
+                      >
+                        -
+                      </button>
+                    </Styled(styled.button)>
+                    <styled.div>
+                      <div
+                        className="sc-kDDrLX buxNlz"
+                      >
+                        R$ 11,00
+                      </div>
+                    </styled.div>
+                  </div>
+                </styled.div>
+                <styled.div
+                  key="3"
+                  name="cartItemRow"
+                >
+                  <div
+                    className="sc-gKXOVf jNUJEn"
+                    name="cartItemRow"
+                  >
+                    <styled.div
+                      src="https://www.divenetoalimentos.com.br/images/produtos/picadinho-de-cubos-de-carne-com-molho-congelado.png"
+                    >
+                      <div
+                        className="sc-hAZoDl hqGKoN"
+                        src="https://www.divenetoalimentos.com.br/images/produtos/picadinho-de-cubos-de-carne-com-molho-congelado.png"
+                      />
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-ftvSup lnPzcq"
+                      >
+                        Cubos de carne ao molho madeira
+                      </div>
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-jqUVSM dazhGl"
+                      >
+                        1
+                      </div>
+                    </styled.div>
+                    <styled.div>
+                      <div
+                        className="sc-papXJ gxnGEq"
+                      >
+                        R$ 13,00
+                      </div>
+                    </styled.div>
+                    <Styled(styled.button)
+                      name="cartAddItemButton"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="sc-gsnTZi sc-iqcoie kRQeln fPfBXj"
+                        name="cartAddItemButton"
+                        onClick={[Function]}
+                      >
+                        +
+                      </button>
+                    </Styled(styled.button)>
+                    <Styled(styled.button)
+                      name="cartRemoveItemButton"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="sc-gsnTZi sc-crXcEl kRQeln fitzdG"
+                        name="cartRemoveItemButton"
+                        onClick={[Function]}
+                      >
+                        -
+                      </button>
+                    </Styled(styled.button)>
+                    <styled.div>
+                      <div
+                        className="sc-kDDrLX buxNlz"
+                      >
+                        R$ 13,00
+                      </div>
+                    </styled.div>
+                  </div>
+                </styled.div>
+                <styled.div
+                  name="cartTotalPrice"
+                >
+                  <div
+                    className="sc-evZas blRVCB"
+                    name="cartTotalPrice"
+                  >
+                    Total: 
+                    R$ 29,00
+                  </div>
+                </styled.div>
+                <styled.div>
+                  <div
+                    className="sc-breuTD lgVUTg"
+                  >
+                    OBS: É cobrada uma taxa de entrega de
+                    R$ 5,00
+                  </div>
+                </styled.div>
+                <Styled(styled.button)
+                  name="cartMakeOrderButton"
+                  onClick={[Function]}
+                >
+                  <button
+                    className="sc-gsnTZi sc-ksZaOG kRQeln kUOkTm"
+                    name="cartMakeOrderButton"
+                    onClick={[Function]}
+                  >
+                    Fazer Pedido
+                  </button>
+                </Styled(styled.button)>
+              </div>
+            </styled.div>
+          </Cart>
+        </Connect(Cart)>
+      </ComponentWithRouterProp>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
+
+exports[`Cart Component Integration Testing Renders loading correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <ComponentWithRouterProp>
+        <Connect(Cart)
+          router={
+            Object {
+              "location": Object {
+                "hash": "",
+                "key": "default",
+                "pathname": "/",
+                "search": "",
+                "state": null,
+              },
+              "navigate": [Function],
+              "params": Object {},
+            }
+          }
+        >
+          <Cart
+            cart={
+              Object {
+                "data": Array [],
+                "error": false,
+                "loading": false,
+              }
+            }
+            cartError={[Function]}
+            cartRequest={[Function]}
+            cartSuccess={[Function]}
+            getCart={[Function]}
+            makeOrder={[Function]}
+            router={
+              Object {
+                "location": Object {
+                  "hash": "",
+                  "key": "default",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                },
+                "navigate": [Function],
+                "params": Object {},
+              }
+            }
+            updateCart={[Function]}
+          >
+            <styled.div>
+              <div
+                className="sc-dkzDqf emSNjO"
+              >
+                <styled.h1
+                  name="cartEmptyCartText"
+                >
+                  <h1
+                    className="sc-hKMtZM kDIOHx"
+                    name="cartEmptyCartText"
+                  >
+                    Seu carrinho está vazio :(
+                    <br />
+                    Adicione itens em um de nossos restaurantes!
+                  </h1>
+                </styled.h1>
+                <Link
+                  name="cartGoHomeButton"
+                  style={
+                    Object {
+                      "textDecoration": "none",
+                    }
+                  }
+                  to="/home"
+                >
+                  <a
+                    href="/home"
+                    name="cartGoHomeButton"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "textDecoration": "none",
+                      }
+                    }
+                  >
+                    <Styled(styled.button)>
+                      <button
+                        className="sc-gsnTZi sc-fnykZs kRQeln hikNvC"
+                      >
+                        Ver restaurantes
+                      </button>
+                    </Styled(styled.button)>
+                  </a>
+                </Link>
+              </div>
+            </styled.div>
+          </Cart>
+        </Connect(Cart)>
+      </ComponentWithRouterProp>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

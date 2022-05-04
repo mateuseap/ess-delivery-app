@@ -1,0 +1,513 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu Component Integration Testing Renders data correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <ComponentWithRouterProp>
+        <Connect(Menu)
+          router={
+            Object {
+              "location": Object {
+                "hash": "",
+                "key": "default",
+                "pathname": "/",
+                "search": "",
+                "state": null,
+              },
+              "navigate": [Function],
+              "params": Object {},
+            }
+          }
+        >
+          <Menu
+            cartError={[Function]}
+            cartRequest={[Function]}
+            cartSuccess={[Function]}
+            getCart={[Function]}
+            getMenu={[Function]}
+            makeOrder={[Function]}
+            menu={
+              Object {
+                "data": Object {
+                  "addresses": Array [
+                    "Avenida Caxangá, 634",
+                  ],
+                  "id": 2,
+                  "menu": Object {
+                    "destaqueIndex": 0,
+                    "options": Array [
+                      Object {
+                        "description": "Hamburguer monstro de dar água na boca. ELIASLOL, O MELHOR COZINHEIRO DE LIMOEIRO!",
+                        "item_id": 1,
+                        "name": "Ogro Burguer com Batata Média",
+                        "photo": "https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg",
+                        "price": 25.5,
+                      },
+                      Object {
+                        "description": "Coquinha geladinha HMMMMM!",
+                        "item_id": 2,
+                        "name": "Coca-cola lata",
+                        "photo": "https://images-americanas.b2w.io/produtos/4575311740/imagens/coquinha-coca-cola-lata-220ml-desde-1886-sabor/4575311740_1_large.jpg",
+                        "price": 5.5,
+                      },
+                    ],
+                  },
+                  "name": "Elias",
+                  "photo": "https://media-cdn.tripadvisor.com/media/photo-s/05/85/e1/f5/sala-ristorante.jpg",
+                  "rates": Array [
+                    Object {
+                      "feedback_text": "",
+                      "stars": 4.5,
+                      "user_id": "1",
+                    },
+                  ],
+                },
+                "error": false,
+                "loading": false,
+              }
+            }
+            menuError={[Function]}
+            menuRequest={[Function]}
+            menuSuccess={[Function]}
+            router={
+              Object {
+                "location": Object {
+                  "hash": "",
+                  "key": "default",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                },
+                "navigate": [Function],
+                "params": Object {},
+              }
+            }
+            updateCart={[Function]}
+          >
+            <styled.div
+              className="m-3"
+            >
+              <div
+                className="sc-bczRLJ drhxhA m-3"
+              >
+                <h1>
+                  Elias
+                </h1>
+                <div
+                  className="d-inline-flex justify-content-center align-items-center"
+                >
+                  <Component
+                    activeColor="#ffd700"
+                    count={5}
+                    edit={false}
+                    isHalf={true}
+                    size={50}
+                    value={4.5}
+                  >
+                    <div>
+                      Hello World
+                    </div>
+                  </Component>
+                  <styled.h4
+                    className="p-3 mt-2"
+                  >
+                    <h4
+                      className="sc-gKXOVf kRfiiF p-3 mt-2"
+                    >
+                      (
+                      4.5
+                      )
+                    </h4>
+                  </styled.h4>
+                </div>
+                <ForwardRef
+                  borderless={true}
+                >
+                  <table
+                    className="table table-borderless"
+                  >
+                    <tbody>
+                      <tr
+                        className="mx-5"
+                      >
+                        <styled.div>
+                          <div
+                            className="sc-gsnTZi fLZfYw"
+                          >
+                            <td
+                              key="1"
+                            >
+                              <styled.div
+                                className="p-2"
+                              >
+                                <div
+                                  className="sc-dkzDqf kZwptN p-2"
+                                >
+                                  <styled.img
+                                    className="m-2"
+                                    photo="https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg"
+                                  >
+                                    <img
+                                      className="sc-hKMtZM kqihvI m-2"
+                                    />
+                                  </styled.img>
+                                  <styled.div
+                                    className="m-4"
+                                  >
+                                    <div
+                                      className="sc-eCYdqJ bcsQqv m-4"
+                                    >
+                                      <styled.p>
+                                        <p
+                                          className="sc-jSMfEi bKJAuf"
+                                        >
+                                          <h4
+                                            style={
+                                              Object {
+                                                "fontWeight": "600",
+                                              }
+                                            }
+                                          >
+                                            Ogro Burguer com Batata Média
+                                          </h4>
+                                          Hamburguer monstro de dar água na boca. ELIASLOL, O MELHOR COZINHEIRO DE LIMOEIRO!
+                                        </p>
+                                      </styled.p>
+                                      <Button
+                                        active={false}
+                                        disabled={false}
+                                        nome="ADICIONAR"
+                                        onClick={[Function]}
+                                        style={
+                                          Object {
+                                            "borderRadius": "65px",
+                                            "paddingBottom": 0,
+                                            "width": "280px",
+                                          }
+                                        }
+                                        type="button"
+                                        variant="outline-danger"
+                                      >
+                                        <button
+                                          className="btn btn-outline-danger"
+                                          disabled={false}
+                                          nome="ADICIONAR"
+                                          onClick={[Function]}
+                                          style={
+                                            Object {
+                                              "borderRadius": "65px",
+                                              "paddingBottom": 0,
+                                              "width": "280px",
+                                            }
+                                          }
+                                          type="button"
+                                        >
+                                          <strong>
+                                            Adicionar item ao carrinho
+                                            <h4>
+                                              + R$ 25,50
+                                            </h4>
+                                          </strong>
+                                        </button>
+                                      </Button>
+                                    </div>
+                                  </styled.div>
+                                </div>
+                              </styled.div>
+                            </td>
+                            <td
+                              key="2"
+                            >
+                              <styled.div
+                                className="p-2"
+                              >
+                                <div
+                                  className="sc-dkzDqf kZwptN p-2"
+                                >
+                                  <styled.img
+                                    className="m-2"
+                                    photo="https://images-americanas.b2w.io/produtos/4575311740/imagens/coquinha-coca-cola-lata-220ml-desde-1886-sabor/4575311740_1_large.jpg"
+                                  >
+                                    <img
+                                      className="sc-hKMtZM hHaEKO m-2"
+                                    />
+                                  </styled.img>
+                                  <styled.div
+                                    className="m-4"
+                                  >
+                                    <div
+                                      className="sc-eCYdqJ bcsQqv m-4"
+                                    >
+                                      <styled.p>
+                                        <p
+                                          className="sc-jSMfEi bKJAuf"
+                                        >
+                                          <h4
+                                            style={
+                                              Object {
+                                                "fontWeight": "600",
+                                              }
+                                            }
+                                          >
+                                            Coca-cola lata
+                                          </h4>
+                                          Coquinha geladinha HMMMMM!
+                                        </p>
+                                      </styled.p>
+                                      <Button
+                                        active={false}
+                                        disabled={false}
+                                        nome="ADICIONAR"
+                                        onClick={[Function]}
+                                        style={
+                                          Object {
+                                            "borderRadius": "65px",
+                                            "paddingBottom": 0,
+                                            "width": "280px",
+                                          }
+                                        }
+                                        type="button"
+                                        variant="outline-danger"
+                                      >
+                                        <button
+                                          className="btn btn-outline-danger"
+                                          disabled={false}
+                                          nome="ADICIONAR"
+                                          onClick={[Function]}
+                                          style={
+                                            Object {
+                                              "borderRadius": "65px",
+                                              "paddingBottom": 0,
+                                              "width": "280px",
+                                            }
+                                          }
+                                          type="button"
+                                        >
+                                          <strong>
+                                            Adicionar item ao carrinho
+                                            <h4>
+                                              + R$ 5,50
+                                            </h4>
+                                          </strong>
+                                        </button>
+                                      </Button>
+                                    </div>
+                                  </styled.div>
+                                </div>
+                              </styled.div>
+                            </td>
+                          </div>
+                        </styled.div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ForwardRef>
+              </div>
+            </styled.div>
+          </Menu>
+        </Connect(Menu)>
+      </ComponentWithRouterProp>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
+
+exports[`Menu Component Integration Testing Renders loading correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <ComponentWithRouterProp>
+        <Connect(Menu)
+          router={
+            Object {
+              "location": Object {
+                "hash": "",
+                "key": "default",
+                "pathname": "/",
+                "search": "",
+                "state": null,
+              },
+              "navigate": [Function],
+              "params": Object {},
+            }
+          }
+        >
+          <Menu
+            cartError={[Function]}
+            cartRequest={[Function]}
+            cartSuccess={[Function]}
+            getCart={[Function]}
+            getMenu={[Function]}
+            makeOrder={[Function]}
+            menu={
+              Object {
+                "data": Array [],
+                "error": false,
+                "loading": false,
+              }
+            }
+            menuError={[Function]}
+            menuRequest={[Function]}
+            menuSuccess={[Function]}
+            router={
+              Object {
+                "location": Object {
+                  "hash": "",
+                  "key": "default",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                },
+                "navigate": [Function],
+                "params": Object {},
+              }
+            }
+            updateCart={[Function]}
+          >
+            <styled.div
+              className="m-3"
+            >
+              <div
+                className="sc-bczRLJ drhxhA m-3"
+              >
+                <h1 />
+                <div
+                  className="d-inline-flex justify-content-center align-items-center"
+                >
+                  <Component
+                    activeColor="#ffd700"
+                    count={5}
+                    edit={false}
+                    isHalf={true}
+                    size={50}
+                    value={NaN}
+                  >
+                    <div>
+                      Hello World
+                    </div>
+                  </Component>
+                  <styled.h4
+                    className="p-3 mt-2"
+                  >
+                    <h4
+                      className="sc-gKXOVf kRfiiF p-3 mt-2"
+                    >
+                      (
+                      NaN
+                      )
+                    </h4>
+                  </styled.h4>
+                </div>
+                <ForwardRef
+                  borderless={true}
+                >
+                  <table
+                    className="table table-borderless"
+                  >
+                    <tbody>
+                      <tr
+                        className="mx-5"
+                      >
+                        <styled.div>
+                          <div
+                            className="sc-gsnTZi fLZfYw"
+                          />
+                        </styled.div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ForwardRef>
+              </div>
+            </styled.div>
+          </Menu>
+        </Connect(Menu)>
+      </ComponentWithRouterProp>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

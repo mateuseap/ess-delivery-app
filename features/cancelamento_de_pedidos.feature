@@ -2,34 +2,29 @@ Feature: Cancelamento de Pedido
 	As a Cliente logado no aplicativo
 	I want to tentar cancelar um pedido  
 
-Scenario: Cancelamento pelo cliente antes do início de preparo
-	Given que estou logado como "Cliente" com login "johndoe" e senha "1234"
-	And fiz um pedido no Restaurante "Casa Regional" de valor "R$30,00"
-	And o preparo de tal pedido ainda não foi iniciado
+Scenario: Cancelamento de pedido com status "Em preparo" e "sem atraso" na entrega
+	Given Estou na página de "Detalhes do pedido"
+	And Estou logado como cliente "Felipe Gonçalves"
+	And fiz um pedido no Restaurante "Elias" de valor "R$ 25,50"
+	And o status do pedido indica "Em preparo"
+	And o pedido está "sem atraso" na entrega
 	When eu tento cancelar o pedido
-	Then o pedido é cancelado e "R$30,00" são estornados para minha conta
-
-
-Scenario: Cancelamento pelo cliente depois do início de preparo e dentro do limite do tempo de entrega
-	Given que estou logado como "Cliente" com login "johndoe" e senha "1234"
-	And fiz um pedido no Restaurante "Casa Regional" de valor "R$30,00"
-	And o preparo de tal pedido foi iniciado
-	And já se passaram "29 minutos" além do tempo estimado de entrega
+	Then eu recebo uma mensagem "Erro ao cancelar pedido"
+	
+Scenario: Cancelamento de pedido com status "Confirmado", e não "Em preparo"
+	Given Estou na página de "Detalhes do pedido"
+	And Estou logado como cliente "Felipe Gonçalves"
+	And fiz um pedido no Restaurante "Elias" de valor "R$ 25,50"
+	And o status do pedido indica "Confirmado", mas não "Em preparo"
 	When eu tento cancelar o pedido
-	Then recebo uma mensagem de que não posso realizar tal operação
+	Then eu recebo uma mensagem "Pedido cancelado com sucesso"
 
 
-Scenario: Cancelamento pelo cliente depois do início de preparo e além do limite do  tempo de entrega
-	Given que estou logado como "Cliente" com login "johndoe" e senha "1234"
-	And fiz um pedido no Restaurante "Casa Regional" de valor "R$30,00"
-	And o preparo de tal pedido foi iniciado
-	And já passaram "30 minutos" além do tempo estimado de entrega
+Scenario: Cancelamento de pedido com status "Em preparo" e "com atraso" na entrega
+	Given Estou na página de "Detalhes do pedido"
+	And Estou logado como cliente "Felipe Gonçalves"
+	And fiz um pedido no Restaurante "Elias" de valor "R$ 25,50"
+	And o status do pedido indica "Em preparo"
+	And o pedido está "com atraso" na entrega
 	When eu tento cancelar o pedido
-	Then o pedido é cancelado e "R$30,00" são estornados para minha conta
-
-Scenario: Cancelamento pelo restaurante antes do pedido ser passado ao entregador
-	Given que estou logado como "Restaurante" com login "casaregional" e senha "1234"
-	And recebi um pedido do Cliente "John Doe" de valor "R$30,00"
-	And o pedido foi confirmado, mas ainda não foi passado ao entregador
-	When eu tento cancelar o pedido
-	Then o pedido é cancelado e "R$30,00" são estornados para a conta do cliente "John Doe"
+	Then eu recebo uma mensagem "Pedido cancelado com sucesso"

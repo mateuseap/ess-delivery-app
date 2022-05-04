@@ -1,0 +1,547 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Component Integration Testing Renders data correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(History)>
+        <History
+          getHistory={[Function]}
+          history={
+            Object {
+              "data": Array [
+                Object {
+                  "date": "2022-04-20",
+                  "description": Array [
+                    Object {
+                      "item_id": 1,
+                      "name": "Ogro Burguer com Batata Média",
+                      "price": 25.5,
+                      "quantity": 1,
+                    },
+                    Object {
+                      "item_id": 2,
+                      "name": "Coca-cola lata",
+                      "price": 5.5,
+                      "quantity": 1,
+                    },
+                  ],
+                  "from": "Avenida Conselheiro Rosa e Silva, 1086",
+                  "id": "10bbd312-47d8-4513-894f-a6556620e763",
+                  "orderImage": "https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg",
+                  "payment": Object {
+                    "code": "XXXX-XXXX-XXXX-XXXX",
+                    "name": "Meu cartão NuBank",
+                    "security_code": "XXX",
+                    "type": "Cartão de Débito",
+                  },
+                  "rate": Object {
+                    "did": false,
+                    "feedback_text": "",
+                    "stars": 0,
+                  },
+                  "restaurant_id": 2,
+                  "restaurant_name": "Elias",
+                  "status": Object {
+                    "confirmed": true,
+                    "delivering": true,
+                    "finished": true,
+                    "preparing": true,
+                  },
+                  "to": "Avenida Jornalista Aníbal Fernandes, 500",
+                  "total_price": 31,
+                  "user_id": "1",
+                },
+                Object {
+                  "date": "2022-04-15",
+                  "description": Array [
+                    Object {
+                      "item_id": 4,
+                      "name": "Panqueca de carne",
+                      "price": 11,
+                      "quantity": 1,
+                    },
+                  ],
+                  "from": "Avenida Conselheiro Rosa e Silva, 1086",
+                  "id": "749c347c-4038-418d-b4a9-9e6d22329d19",
+                  "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
+                  "payment": Object {
+                    "code": null,
+                    "name": null,
+                    "security_code": null,
+                    "type": "Dinheiro",
+                  },
+                  "rate": Object {
+                    "did": true,
+                    "feedback_text": "Descrição",
+                    "stars": 3.5,
+                  },
+                  "restaurant_id": 0,
+                  "restaurant_name": "Almir quentinhas",
+                  "status": Object {
+                    "confirmed": true,
+                    "delivering": true,
+                    "finished": true,
+                    "preparing": true,
+                  },
+                  "to": "Avenida Jornalista Aníbal Fernandes, 500",
+                  "total_price": 11,
+                  "user_id": "1",
+                },
+                Object {
+                  "date": "2022-04-13",
+                  "description": Array [
+                    Object {
+                      "item_id": 5,
+                      "name": "Panqueca de queijo e presunto",
+                      "price": 11,
+                      "quantity": 1,
+                    },
+                  ],
+                  "forma_pagamento": Object {
+                    "code": null,
+                    "name": null,
+                    "security_code": null,
+                    "type": "Dinheiro",
+                  },
+                  "from": "Avenida Conselheiro Rosa e Silva, 1086",
+                  "id": "296f2c5b-385f-4db9-aca0-1aeb0194d862",
+                  "orderImage": "http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg",
+                  "rate": Object {
+                    "did": true,
+                    "feedback_text": "Descrição",
+                    "stars": 3.5,
+                  },
+                  "restaurant_id": 0,
+                  "restaurant_name": "Almir quentinhas",
+                  "status": Object {
+                    "confirmed": true,
+                    "delivering": true,
+                    "finished": true,
+                    "preparing": true,
+                  },
+                  "to": "Avenida Jornalista Aníbal Fernandes, 500",
+                  "total_price": 11,
+                  "user_id": "1",
+                },
+              ],
+              "error": false,
+              "loading": false,
+            }
+          }
+          historyError={[Function]}
+          historyRequest={[Function]}
+          historySuccess={[Function]}
+          postHistory={[Function]}
+        >
+          <styled.div>
+            <div
+              className="sc-jqUVSM bxrjtt"
+            >
+              <styled.div
+                className="m-3"
+              >
+                <div
+                  className="sc-breuTD hzEVed m-3"
+                >
+                  <styled.div>
+                    <div
+                      className="sc-kDDrLX eKfswp"
+                    >
+                      Histórico de Pedidos
+                    </div>
+                  </styled.div>
+                  <styled.div>
+                    <div
+                      className="sc-iqcoie iuzcTE"
+                    >
+                      Filtro de Dias
+                      <Styled(styled.div)>
+                        <div
+                          className="sc-iqcoie sc-crXcEl iuzcTE iKHWLV"
+                        >
+                          <styled.select
+                            onChange={[Function]}
+                            value={30}
+                          >
+                            <select
+                              className="sc-evZas iydPvU"
+                              onChange={[Function]}
+                              value={30}
+                            >
+                              <styled.option
+                                value="30"
+                              >
+                                <option
+                                  className="sc-fnykZs bFkJxx"
+                                  value="30"
+                                >
+                                  30 dias
+                                </option>
+                              </styled.option>
+                              <styled.option
+                                value="15"
+                              >
+                                <option
+                                  className="sc-fnykZs bFkJxx"
+                                  value="15"
+                                >
+                                  15 dias
+                                </option>
+                              </styled.option>
+                              <styled.option
+                                value="7"
+                              >
+                                <option
+                                  className="sc-fnykZs bFkJxx"
+                                  value="7"
+                                >
+                                  7 dias
+                                </option>
+                              </styled.option>
+                            </select>
+                          </styled.select>
+                        </div>
+                      </Styled(styled.div)>
+                    </div>
+                  </styled.div>
+                </div>
+              </styled.div>
+              <styled.div>
+                <div
+                  className="sc-ftvSup fTbmAz"
+                >
+                  <ForwardRef
+                    borderless={true}
+                  >
+                    <table
+                      className="table table-borderless"
+                    >
+                      <tbody>
+                        <tr
+                          key="10bbd312-47d8-4513-894f-a6556620e763"
+                          style={Object {}}
+                        >
+                          <styled.img
+                            photoUrl="https://img.itdg.com.br/tdg/images/recipes/000/312/870/355695/355695_original.jpg"
+                          >
+                            <img
+                              className="sc-hKMtZM dDaXUn"
+                            />
+                          </styled.img>
+                          <td
+                            className="p-2"
+                          >
+                            <styled.div>
+                              <div
+                                className="sc-papXJ fcJFXi"
+                              >
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": 26,
+                                    }
+                                  }
+                                >
+                                  Elias
+                                </p>
+                                <p>
+                                  Ogro Burguer com Batata Média
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                    }
+                                  }
+                                >
+                                  R$ 36,00
+                                </p>
+                              </div>
+                            </styled.div>
+                          </td>
+                          <td>
+                            <Styled(styled.button)
+                              disabled={false}
+                              name="ratingButton"
+                              onClick={[Function]}
+                              variant="blue"
+                            >
+                              <button
+                                className="sc-gsnTZi sc-dkzDqf hFDFfg jjWLoK"
+                                disabled={false}
+                                name="ratingButton"
+                                onClick={[Function]}
+                              >
+                                Avaliar Pedido
+                              </button>
+                            </Styled(styled.button)>
+                          </td>
+                        </tr>
+                        <tr
+                          key="749c347c-4038-418d-b4a9-9e6d22329d19"
+                          style={Object {}}
+                        >
+                          <styled.img
+                            photoUrl="http://receitasmais.com.br/wp-content/uploads/2013/04/Panqueca-de-mussarela-e-presunto-1200x675.jpg"
+                          >
+                            <img
+                              className="sc-hKMtZM eNIYtn"
+                            />
+                          </styled.img>
+                          <td
+                            className="p-2"
+                          >
+                            <styled.div>
+                              <div
+                                className="sc-papXJ fcJFXi"
+                              >
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": 26,
+                                    }
+                                  }
+                                >
+                                  Almir quentinhas
+                                </p>
+                                <p>
+                                  Panqueca de carne
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                    }
+                                  }
+                                >
+                                  R$ 16,00
+                                </p>
+                              </div>
+                            </styled.div>
+                          </td>
+                          <td>
+                            <Styled(styled.button)
+                              disabled={false}
+                              name="ratingButton"
+                              onClick={[Function]}
+                              variant=""
+                            >
+                              <button
+                                className="sc-gsnTZi sc-dkzDqf kRQeln jjWLoK"
+                                disabled={false}
+                                name="ratingButton"
+                                onClick={[Function]}
+                              >
+                                Revisar avaliação
+                              </button>
+                            </Styled(styled.button)>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ForwardRef>
+                </div>
+              </styled.div>
+              <styled.div
+                className="mt-3"
+              >
+                <div
+                  className="sc-iqcoie iuzcTE mt-3"
+                >
+                  <Styled(styled.button)
+                    key="0"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "border": "1px solid #ffffff",
+                      }
+                    }
+                  >
+                    <button
+                      className="sc-gsnTZi sc-ksZaOG kRQeln ituThH"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "border": "1px solid #ffffff",
+                        }
+                      }
+                    >
+                      1
+                    </button>
+                  </Styled(styled.button)>
+                  <Styled(styled.button)
+                    key="1"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <button
+                      className="sc-gsnTZi sc-ksZaOG kRQeln ituThH"
+                      onClick={[Function]}
+                      style={Object {}}
+                    >
+                      2
+                    </button>
+                  </Styled(styled.button)>
+                </div>
+              </styled.div>
+            </div>
+          </styled.div>
+        </History>
+      </Connect(History)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
+
+exports[`Home Component Integration Testing Renders loading correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      location={
+        Object {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        Object {
+          "action": "POP",
+          "back": [Function],
+          "block": [Function],
+          "createHref": [Function],
+          "forward": [Function],
+          "go": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(History)>
+        <History
+          getHistory={[Function]}
+          history={
+            Object {
+              "data": Array [],
+              "error": false,
+              "loading": false,
+            }
+          }
+          historyError={[Function]}
+          historyRequest={[Function]}
+          historySuccess={[Function]}
+          postHistory={[Function]}
+        >
+          <styled.div>
+            <div
+              className="sc-jqUVSM bxrjtt"
+            >
+              <styled.div>
+                <div
+                  className="sc-hAZoDl iccrFX"
+                >
+                  <h1>
+                    Não há pedidos registrados em sua conta
+                  </h1>
+                  <h2>
+                    Volte a página inicial
+                  </h2>
+                  <Link
+                    className="m-2"
+                    to="/home"
+                  >
+                    <a
+                      className="m-2"
+                      href="/home"
+                      onClick={[Function]}
+                    >
+                      <Button
+                        active={false}
+                        disabled={false}
+                        variant="primary"
+                      >
+                        <button
+                          className="btn btn-primary"
+                          disabled={false}
+                          type="button"
+                        >
+                          Voltar
+                        </button>
+                      </Button>
+                    </a>
+                  </Link>
+                </div>
+              </styled.div>
+            </div>
+          </styled.div>
+        </History>
+      </Connect(History)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
