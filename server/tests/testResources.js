@@ -15,7 +15,7 @@ exports.configTest = async (req, res) => {
       const obj = {};
       obj[key] = req.body[key];
       table.write(obj);
-      res.status(200).send("success");
     }
   }
+  res.status(200).send("success");
 };

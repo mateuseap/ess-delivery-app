@@ -28,7 +28,7 @@ Iniciar o servidor
 
 ```
 cd server
-nodemon
+node server.js
 ```
 
 Iniciando o frontend
@@ -36,6 +36,44 @@ Iniciando o frontend
 ```
 cd client
 npm start
+```
+
+#### Testes:
+
+```
+cd client
+npm test
+```
+
+```
+cd server
+npm test
+```
+
+Testes de cenários:
+
+```
+cd client
+npm start
+```
+
+Caso use no windows:
+
+```
+cd server
+set NODE_ENV=test&node server.js
+```
+
+Caso use no linux:
+
+```
+cd server
+export NODE_ENV=test&node server.js
+```
+
+```
+cd "scenario tests"
+npm test
 ```
 
 ## Front (client)
@@ -100,3 +138,17 @@ npm start
 ### Documentação:
 
 #### Json Query: https://www.npmjs.com/package/json-query
+
+## Testes
+
+### Documentação:
+
+#### Jest: https://jestjs.io/pt-BR/docs/configuration
+
+#### Redux Saga Test Plan: https://github.com/jfairbank/redux-saga-test-plan
+
+#### Supertest: https://github.com/visionmedia/supertest
+
+#### Enzyme: https://enzymejs.github.io/enzyme/
+
+#### Puppeteer: https://github.com/puppeteer/puppeteer

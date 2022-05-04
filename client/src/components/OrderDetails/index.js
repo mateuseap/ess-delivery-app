@@ -86,7 +86,7 @@ class OrderDetails extends Component {
 
             <OrderStatus>
               {order.status?.confirmed ? (
-                <OrderStatusItem name="confirmed">Confirmado</OrderStatusItem>
+                <OrderStatusItem name="CONFIRMADO">Confirmado</OrderStatusItem>
               ) : (
                 ""
               )}
