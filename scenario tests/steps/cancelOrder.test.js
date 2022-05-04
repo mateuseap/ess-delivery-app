@@ -73,8 +73,6 @@ defineFeature(feature, (test) => {
       await page.goto("http://localhost:3000/details/" + id, {
         waitUntil: "networkidle2",
       });
-
-      expect(1).toBe(1);
     });
 
     and(/^Estou logado como cliente "(.*)"$/, async (name) => {
@@ -114,16 +112,13 @@ defineFeature(feature, (test) => {
     );
 
     when(`eu tento cancelar o pedido`, async () => {
-      await page.screenshot({ path: "raultestantesclicar.png" });
       await page.click('[name="cancelOrderButton"]');
-      expect(1).toBe(1);
     });
 
     then(/^eu recebo uma mensagem "(.*)"$/, async (msg) => {
       const msgEl = await page.$('[class="rrt-title"]');
       let msgValue = await page.evaluate((el) => el.textContent, msgEl);
       expect(msgValue).toBe(msg);
-      await page.screenshot({ path: "raultestaposclicar.png" });
     });
   });
 
@@ -176,8 +171,6 @@ defineFeature(feature, (test) => {
       await page.goto("http://localhost:3000/details/" + id, {
         waitUntil: "networkidle2",
       });
-
-      expect(1).toBe(1);
     });
 
     and(/^Estou logado como cliente "(.*)"$/, async (name) => {
@@ -217,13 +210,10 @@ defineFeature(feature, (test) => {
     });
 
     when(`eu tento cancelar o pedido`, async () => {
-      await page.screenshot({ path: "raultest2antesclicar.png" });
       await page.click('[name="cancelOrderButton"]');
-      expect(1).toBe(1);
     });
 
     then(/^eu recebo uma mensagem "(.*)"$/, async (msg) => {
-      await page.screenshot({ path: "raultesta2posclicar.png" });
       const msgEl = await page.$('[class="rrt-title"]');
       let msgValue = await page.evaluate((el) => el.textContent, msgEl);
       expect(msgValue).toBe(msg);
@@ -279,8 +269,6 @@ defineFeature(feature, (test) => {
       await page.goto("http://localhost:3000/details/" + id, {
         waitUntil: "networkidle2",
       });
-
-      expect(1).toBe(1);
     });
 
     and(/^Estou logado como cliente "(.*)"$/, async (name) => {
@@ -312,13 +300,10 @@ defineFeature(feature, (test) => {
     });
 
     when(`eu tento cancelar o pedido`, async () => {
-      await page.screenshot({ path: "raultest3antesclicar.png" });
       await page.click('[name="cancelOrderButton"]');
-      expect(1).toBe(1);
     });
     
     then(/^eu recebo uma mensagem "(.*)"$/, async (msg) => {
-      await page.screenshot({ path: "raultesta3posclicar.png" });
       const msgEl = await page.$('[class="rrt-title"]');
       let msgValue = await page.evaluate((el) => el.textContent, msgEl);
       expect(msgValue).toBe(msg);
