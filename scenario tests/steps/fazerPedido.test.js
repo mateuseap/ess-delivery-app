@@ -1,9 +1,8 @@
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
-jest.setTimeout(10000);
 
-const { getRestaurants } = require("../test_data/restaurants/restaurants");
+const { getRestaurants } = require("../test_data/restaurants");
 
 const feature = loadFeature("features/fazer_pedido.feature");
 let browser;
@@ -88,7 +87,7 @@ defineFeature(feature, (test) => {
     );
   });
 
-  test("O cliente tenta adicionar um item do restaurante errado", async ({
+  test("visualizing orders history page with days filter", async ({
     given,
     when,
     then,
