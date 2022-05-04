@@ -181,6 +181,7 @@ class History extends Component {
             </Link>
           ) : (
             <MainButton
+              name="ratingButton"
               variant={element.rate.did ? "" : "blue"}
               disabled={orderToRate >= 0}
               onClick={() => this.handleRating(index, element)}
@@ -276,7 +277,11 @@ class History extends Component {
                                   (element) => (
                                     <div key={element.name}>
                                       <h5>{element.name}</h5>
-                                      <p>{formatMoney(element.price)}</p>
+                                      <p>
+                                        {formatMoney(
+                                          element.price * element.quantity
+                                        )}
+                                      </p>
                                     </div>
                                   )
                                 )}
@@ -306,6 +311,7 @@ class History extends Component {
                         </Form.Label>
                         <Form.Control
                           disabled={data[orderToRate].rate.did}
+                          name="ratingFeedbackText"
                           as="textarea"
                           type="text"
                           className="mr-2"
@@ -333,6 +339,7 @@ class History extends Component {
                           <ActionButtonsStyle className="mt-2">
                             <Button
                               variant="secondary"
+                              name="cancelRateButton"
                               onClick={() => this.cancelRate()}
                             >
                               Cancelar
@@ -340,6 +347,7 @@ class History extends Component {
                             <Button
                               variant="danger"
                               disabled={!canSendRate}
+                              name="sendRateButton"
                               onClick={() => this.sendRate()}
                             >
                               Enviar
@@ -357,6 +365,7 @@ class History extends Component {
                       ) : (
                         <Button
                           variant="outline-primary"
+                          name="backButton"
                           onClick={() => this.clearRate()}
                           className="mt-2"
                         >

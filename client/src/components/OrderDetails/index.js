@@ -13,10 +13,13 @@ import {
   OrderStatus,
   OrderStatusItem,
   Restaurant,
+  RestaurantName,
   OrderItem,
   OrderItemPrice,
+  Total,
   TotalPrice,
   Deliver,
+  LateDeliver,
   ButtonRight,
 } from "./styles";
 
@@ -62,6 +65,9 @@ class OrderDetails extends Component {
     const orderDetails = this.props.order;
     const order = orderDetails.data;
     this.deliveryTime();
+    if(orderDetails.error) {
+      return <>{orderDetails.error.err.message}</>
+    }
     if (
       orderDetails.error &&
       orderDetails.error.err.message !==
@@ -86,7 +92,7 @@ class OrderDetails extends Component {
               )}
 
               {order.status?.preparing ? (
-                <OrderStatusItem>Em preparo</OrderStatusItem>
+                <OrderStatusItem name="preparing">Em preparo</OrderStatusItem>
               ) : (
                 ""
               )}
@@ -106,8 +112,12 @@ class OrderDetails extends Component {
 
             <OrderTitles>Resumo do Pedido</OrderTitles>
 
-            <Restaurant>Restaurante: {order.restaurant_name}</Restaurant>
-
+            <Restaurant>
+              Restaurante:
+              <RestaurantName name="restaurant">
+                {order.restaurant_name}
+              </RestaurantName>
+            </Restaurant>
             {order.description?.map((element) => (
               <div key={element.item_id}>
                 <OrderItem key={element.item_id}>
@@ -117,17 +127,23 @@ class OrderDetails extends Component {
               </div>
             ))}
 
-            <TotalPrice>Total: {formatMoney(order.total_price)}</TotalPrice>
+            <Total>
+              Total:
+              <TotalPrice name="price">{formatMoney(order.total_price)}</TotalPrice>
+            </Total>
 
             {!order.status?.finished ? (
               <>
                 {!this.lateCheck() ? (
-                  <Deliver>Entrega prevista para {this.deliveryTime()}.</Deliver>
+                  <Deliver>
+                    Entrega prevista para {this.deliveryTime()}.
+                  </Deliver>
                 ) : (
-                  <Deliver>A entrega do pedido está atrasada!</Deliver>
+                  <LateDeliver name="late">A entrega do pedido está atrasada!</LateDeliver>
                 )}
                 <ButtonRight>
                   <Button
+                    name="cancelOrderButton"
                     variant="danger"
                     type="button"
                     onClick={this.handleCancelOrder.bind(this)}

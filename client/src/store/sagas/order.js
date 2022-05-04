@@ -37,7 +37,9 @@ export function* cancelOrder({ id, callback }) {
     const previousData = yield select((state) => state.order.data);
     yield put(Creators.orderSuccess(previousData));
     yield put(Creators.cancelOrderWatch());
-    toastr.success("Pedido cancelado com sucesso");
+    toastr.success("Pedido cancelado com sucesso", {
+      timeOut: 0,
+    });
     if (callback) callback();
   } catch (err) {
     yield put(Creators.orderError({ err }));
