@@ -102,7 +102,7 @@ defineFeature(feature, (test) => {
     and(
       `o status do pedido indica "Confirmado", mas não "Em preparo"`,
       async () => {
-        const confirmedEl = await page.$('[name="confirmed"]');
+        const confirmedEl = await page.$('[name="CONFIRMADO"]');
         const preparingEl = await page.$('[name="preparing"]');
         let valueConfirmed = await page.evaluate(
           (el) => el.textContent,

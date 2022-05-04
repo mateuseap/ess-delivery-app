@@ -62,13 +62,13 @@ function orderStatusWorker(field, orderId) {
 
 //simula atualização de status do pedido pelo restaurante
 exports.dispatchOrderStatusWorker = (orderId) => {
-  setTimeout(() => {
-    orderStatusWorker("preparing", orderId);
-  }, 10000);
-  setTimeout(() => {
-    orderStatusWorker("delivering", orderId);
-  }, 20000);
-  setTimeout(() => {
-    orderStatusWorker("finished", orderId);
-  }, 30000);
+  // setTimeout(() => {
+  //   orderStatusWorker("preparing", orderId);
+  // }, 10000);
+  // setTimeout(() => {
+  //   orderStatusWorker("delivering", orderId);
+  // }, 20000);
+  // setTimeout(() => {
+  //   orderStatusWorker("finished", orderId);
+  // }, 30000);
 };
