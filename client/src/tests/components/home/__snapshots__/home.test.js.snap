@@ -273,11 +273,13 @@ exports[`Home Component Integration Testing Renders data correctly 1`] = `
                                             active={false}
                                             className="m-2"
                                             disabled={false}
+                                            name="BOTAO"
                                             variant="success"
                                           >
                                             <button
                                               className="m-2 btn btn-success"
                                               disabled={false}
+                                              name="BOTAO"
                                               type="button"
                                             >
                                               PEÇA JÁ!
@@ -347,11 +349,13 @@ exports[`Home Component Integration Testing Renders data correctly 1`] = `
                                             active={false}
                                             className="m-2"
                                             disabled={false}
+                                            name="BOTAO"
                                             variant="success"
                                           >
                                             <button
                                               className="m-2 btn btn-success"
                                               disabled={false}
+                                              name="BOTAO"
                                               type="button"
                                             >
                                               PEÇA JÁ!
@@ -421,11 +425,13 @@ exports[`Home Component Integration Testing Renders data correctly 1`] = `
                                             active={false}
                                             className="m-2"
                                             disabled={false}
+                                            name="BOTAO"
                                             variant="success"
                                           >
                                             <button
                                               className="m-2 btn btn-success"
                                               disabled={false}
+                                              name="BOTAO"
                                               type="button"
                                             >
                                               PEÇA JÁ!
