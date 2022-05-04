@@ -44,7 +44,7 @@ defineFeature(feature, (test) => {
         await page.screenshot({ path: "example3.png" });
         await page.click(`[name="BOTAO"]`);
 
-        //await page.screenshot({ path: "example4.png" });
+        await page.screenshot({ path: "example4.png" });
         const splitUrl = page.url().split("/");
         const pathName = splitUrl[splitUrl.length - 2];
         expect(pathName).toEqual("menu");
@@ -54,7 +54,7 @@ defineFeature(feature, (test) => {
     when("Clico em um produto para adiciona-lo ao carrinho", async () => {
       await axios.post("http://localhost:1337/configTest", { carts: [] });
       await page.click(`[nome="ADICIONAR"]`);
-      //await page.screenshot({ path: "example5.png" });
+      await page.screenshot({ path: "example5.png" });
       //expect(page.$('[name="headerCartItemCount"]')).toEqual("menu");
       const itemCountElement = await page.$('[name="headerCartItemCount"]');
       let value = await page.evaluate((el) => el.textContent, itemCountElement);
@@ -65,24 +65,56 @@ defineFeature(feature, (test) => {
       await page.goto("http://localhost:3000/cart", {
         waitUntil: "networkidle2",
       });
-      //await page.screenshot({ path: "example6.png" });
-      const itemCountElement = await page.$('[name="TOTAL"]');
+      await page.screenshot({ path: "example6.png" });
+      const itemCountElement = await page.$('[name="cartTotalPrice"]');
       let value = await page.evaluate((el) => el.textContent, itemCountElement);
-      value = (Number(value.replace(/[^0-9.-]+/g, "")) / 100)
+      value = Number(value.replace(/[^0-9.-]+/g, "")) / 100;
       expect(value > 0).toEqual(true);
     });
 
     and("Clico em confirmar", async () => {
       await page.click(`[name="cartMakeOrderButton"]`);
-      //await page.screenshot({ path: "example7.png" });
+      await page.screenshot({ path: "example7.png" });
     });
 
-    then("Sou redirecionado para a próxima etapa e recebo uma confirmação", async () => {
-      const nome = await page.$('[name="CONFIRMADO"]');
-      let value = await page.evaluate((el) => el.textContent, nome);
-      expect(value).toEqual("Confirmado");
+    then(
+      "Sou redirecionado para a próxima etapa e recebo uma confirmação",
+      async () => {
+        const nome = await page.$('[name="CONFIRMADO"]');
+        let value = await page.evaluate((el) => el.textContent, nome);
+        expect(value).toEqual("Confirmado");
+      }
+    );
+  });
+
+  test("O cliente tenta adicionar um item do restaurante errado", async ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given(/^Estou na pagina do restaurante de id "(.*)"$/, async (id) => {
+      await page.goto("http://localhost:3000/menu/" + id);
+      await page.screenshot({ path: "example8.png" });
+
+      const splitUrl = page.url().split("/");
+      let page_id = splitUrl[splitUrl.length - 1];
+      expect(page_id).toEqual("1");
+    });
+    and("O carrinho já possui um item de outro restaurante", async () => {
+      const itemCountElement = await page.$('[name="headerCartItemCount"]');
+      let value = await page.evaluate((el) => el.textContent, itemCountElement);
+      expect(value).toEqual("2");
+    });
+    when("Tento adicionar um item", async () => {
+      await page.click(`[nome="ADICIONAR"]`);
+      await page.screenshot({ path: "example9.png" });
+    });
+    then("O item não é adicionado ao carrinho", async () => {
+      const itemCountElement = await page.$('[name="headerCartItemCount"]');
+      let value = await page.evaluate((el) => el.textContent, itemCountElement);
+      expect(value).toEqual("2");
     });
 
   });
-
 });
