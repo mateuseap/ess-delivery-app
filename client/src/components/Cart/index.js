@@ -122,7 +122,7 @@ class Cart extends Component {
                   </ItemRow>
                 ))}
 
-                <OrderTotalStyle>
+                <OrderTotalStyle name="cartTotalPrice">
                   Total: {formatMoney(cart.data.total)}
                 </OrderTotalStyle>
                 <DeliveryFeeNotice>
