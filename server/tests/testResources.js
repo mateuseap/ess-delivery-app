@@ -16,10 +16,10 @@ exports.configTest = async (req, res) => {
         const obj = {};
         obj[key] = req.body[key];
         table.write(obj);
-        res.status(200).send("success");
       } catch {
         res.status(500).send("failed");
       }
     }
   }
+  res.status(200).send("success");
 };

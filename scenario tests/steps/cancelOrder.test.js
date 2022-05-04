@@ -1,6 +1,7 @@
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
+jest.setTimeout(10000);
 
 const feature = loadFeature("features/cancelOrder.feature");
 let browser;
@@ -71,12 +72,12 @@ defineFeature(feature, (test) => {
         ],
       });
       await page.goto("http://localhost:3000/details/" + id, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
     });
 
     and(/^Estou logado como cliente "(.*)"$/, async (name) => {
-      const element = await page.$('[name="headerUserName"]');
+      const element = await page.waitForSelector('[name="headerUserName"]');
       let value = await page.evaluate((el) => el.textContent, element);
       expect(value).toBe(name);
     });
@@ -84,7 +85,7 @@ defineFeature(feature, (test) => {
     and(
       /^fiz um pedido no Restaurante "(.*)" de valor "(.*)"$/,
       async (rest, price) => {
-        const restaurantEl = await page.$('[name="restaurant"]');
+        const restaurantEl = await page.waitForSelector('[name="restaurant"]');
         const priceEl = await page.$('[name="price"]');
         let valueRest = await page.evaluate(
           (el) => el.textContent,
@@ -100,7 +101,7 @@ defineFeature(feature, (test) => {
     and(
       `o status do pedido indica "Confirmado", mas não "Em preparo"`,
       async () => {
-        const confirmedEl = await page.$('[name="CONFIRMADO"]');
+        const confirmedEl = await page.waitForSelector('[name="CONFIRMADO"]');
         const preparingEl = await page.$('[name="preparing"]');
         let valueConfirmed = await page.evaluate(
           (el) => el.textContent,
@@ -116,7 +117,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^eu recebo uma mensagem "(.*)"$/, async (msg) => {
-      const msgEl = await page.$('[class="rrt-title"]');
+      const msgEl = await page.waitForSelector('[class="rrt-title"]');
       let msgValue = await page.evaluate((el) => el.textContent, msgEl);
       expect(msgValue).toBe(msg);
     });
@@ -169,12 +170,12 @@ defineFeature(feature, (test) => {
         ],
       });
       await page.goto("http://localhost:3000/details/" + id, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
     });
 
     and(/^Estou logado como cliente "(.*)"$/, async (name) => {
-      const element = await page.$('[name="headerUserName"]');
+      const element = await page.waitForSelector('[name="headerUserName"]');
       let value = await page.evaluate((el) => el.textContent, element);
       expect(value).toBe(name);
     });
@@ -182,7 +183,7 @@ defineFeature(feature, (test) => {
     and(
       /^fiz um pedido no Restaurante "(.*)" de valor "(.*)"$/,
       async (rest, price) => {
-        const restaurantEl = await page.$('[name="restaurant"]');
+        const restaurantEl = await page.waitForSelector('[name="restaurant"]');
         const priceEl = await page.$('[name="price"]');
         let valueRest = await page.evaluate(
           (el) => el.textContent,
@@ -196,7 +197,7 @@ defineFeature(feature, (test) => {
     );
 
     and(`o status do pedido indica "Em preparo"`, async () => {
-      const preparingEl = await page.$('[name="preparing"]');
+      const preparingEl = await page.waitForSelector('[name="preparing"]');
       let valuePreparing = await page.evaluate(
         (el) => el.textContent,
         preparingEl
@@ -214,7 +215,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^eu recebo uma mensagem "(.*)"$/, async (msg) => {
-      const msgEl = await page.$('[class="rrt-title"]');
+      const msgEl = await page.waitForSelector('[class="rrt-title"]');
       let msgValue = await page.evaluate((el) => el.textContent, msgEl);
       expect(msgValue).toBe(msg);
     });
@@ -267,34 +268,43 @@ defineFeature(feature, (test) => {
         ],
       });
       await page.goto("http://localhost:3000/details/" + id, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
     });
 
     and(/^Estou logado como cliente "(.*)"$/, async (name) => {
-      const element = await page.$('[name="headerUserName"]');
+      const element = await page.waitForSelector('[name="headerUserName"]');
       let value = await page.evaluate((el) => el.textContent, element);
       expect(value).toBe(name);
     });
 
-    and(/^fiz um pedido no Restaurante "(.*)" de valor "(.*)"$/, async (rest, price) => {
-      const restaurantEl = await page.$('[name="restaurant"]');
-      const priceEl = await page.$('[name="price"]');
-      let valueRest = await page.evaluate((el) => el.textContent, restaurantEl);
-      let valuePrice = await page.evaluate((el) => el.textContent, priceEl);
+    and(
+      /^fiz um pedido no Restaurante "(.*)" de valor "(.*)"$/,
+      async (rest, price) => {
+        const restaurantEl = await page.waitForSelector('[name="restaurant"]');
+        const priceEl = await page.$('[name="price"]');
+        let valueRest = await page.evaluate(
+          (el) => el.textContent,
+          restaurantEl
+        );
+        let valuePrice = await page.evaluate((el) => el.textContent, priceEl);
 
-      expect(valueRest).toBe(rest);
-      expect(valuePrice).toBe(price);
-    });
+        expect(valueRest).toBe(rest);
+        expect(valuePrice).toBe(price);
+      }
+    );
 
     and(`o status do pedido indica "Em preparo"`, async () => {
-      const preparingEl = await page.$('[name="preparing"]');
-      let valuePreparing = await page.evaluate((el) => el.textContent, preparingEl);
+      const preparingEl = await page.waitForSelector('[name="preparing"]');
+      let valuePreparing = await page.evaluate(
+        (el) => el.textContent,
+        preparingEl
+      );
       expect(valuePreparing).toBe("Em preparo");
     });
 
     and(`o pedido está "com atraso" na entrega`, async () => {
-      const lateEl = await page.$('[name="late"]');
+      const lateEl = await page.waitForSelector('[name="late"]');
       let valueLate = await page.evaluate((el) => el.textContent, lateEl);
       expect(valueLate).toBe("A entrega do pedido está atrasada!");
     });
@@ -302,9 +312,9 @@ defineFeature(feature, (test) => {
     when(`eu tento cancelar o pedido`, async () => {
       await page.click('[name="cancelOrderButton"]');
     });
-    
+
     then(/^eu recebo uma mensagem "(.*)"$/, async (msg) => {
-      const msgEl = await page.$('[class="rrt-title"]');
+      const msgEl = await page.waitForSelector('[class="rrt-title"]');
       let msgValue = await page.evaluate((el) => el.textContent, msgEl);
       expect(msgValue).toBe(msg);
     });
