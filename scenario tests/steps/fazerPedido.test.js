@@ -1,7 +1,6 @@
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
-jest.setTimeout(10000);
 
 const { getRestaurants } = require("../test_data/restaurants/restaurants");
 
