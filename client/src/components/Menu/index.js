@@ -94,6 +94,7 @@ class Menu extends Component {
                               {element.description}
                             </ItemDescriptionStyle>
                             <Button
+                              nome="ADICIONAR"
                               style={{
                                 width: "280px",
                                 paddingBottom: 0,
