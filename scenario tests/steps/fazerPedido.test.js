@@ -44,7 +44,7 @@ defineFeature(feature, (test) => {
         await page.screenshot({ path: "example3.png" });
         await page.click(`[name="BOTAO"]`);
 
-        //await page.screenshot({ path: "example4.png" });
+        await page.screenshot({ path: "example4.png" });
         const splitUrl = page.url().split("/");
         const pathName = splitUrl[splitUrl.length - 2];
         expect(pathName).toEqual("menu");
@@ -54,7 +54,7 @@ defineFeature(feature, (test) => {
     when("Clico em um produto para adiciona-lo ao carrinho", async () => {
       await axios.post("http://localhost:1337/configTest", { carts: [] });
       await page.click(`[nome="ADICIONAR"]`);
-      //await page.screenshot({ path: "example5.png" });
+      await page.screenshot({ path: "example5.png" });
       //expect(page.$('[name="headerCartItemCount"]')).toEqual("menu");
       const itemCountElement = await page.$('[name="headerCartItemCount"]');
       let value = await page.evaluate((el) => el.textContent, itemCountElement);
@@ -65,8 +65,8 @@ defineFeature(feature, (test) => {
       await page.goto("http://localhost:3000/cart", {
         waitUntil: "networkidle2",
       });
-      //await page.screenshot({ path: "example6.png" });
-      const itemCountElement = await page.$('[name="TOTAL"]');
+      await page.screenshot({ path: "example6.png" });
+      const itemCountElement = await page.$('[name="cartTotalPrice"]');
       let value = await page.evaluate((el) => el.textContent, itemCountElement);
       value = (Number(value.replace(/[^0-9.-]+/g, "")) / 100)
       expect(value > 0).toEqual(true);
@@ -74,7 +74,7 @@ defineFeature(feature, (test) => {
 
     and("Clico em confirmar", async () => {
       await page.click(`[name="cartMakeOrderButton"]`);
-      //await page.screenshot({ path: "example7.png" });
+      await page.screenshot({ path: "example7.png" });
     });
 
     then("Sou redirecionado para a próxima etapa e recebo uma confirmação", async () => {
