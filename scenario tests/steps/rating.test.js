@@ -2,7 +2,7 @@ const { defineFeature, loadFeature } = require("jest-cucumber");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
 
-const feature = loadFeature("/features/rating.feature");
+const feature = loadFeature("features/rating.feature");
 let browser;
 let page;
 
@@ -32,40 +32,179 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given(`Estou logado com o usuário "Felipe Gonçalves"`, async () => {
-      await axios.post("http://localhost:1337/configTest", { carts: [] });
-      await page.goto("http://localhost:3000/cart", {
+    given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
+      await page.goto("http://localhost:3000/history", {
         waitUntil: "networkidle2",
       });
-
-      await page.screenshot({ path: "example30.png" });
-      expect(1).toBe(1);
     });
 
-    and(`eu estou na página de histórico de pedidos`, () => {
-      expect(1).toBe(1);
+    and("eu estou na página de histórico de pedidos", async () => {});
+
+    and("vou avaliar um pedido", async () => {});
+
+    when("eu clico em avaliar um pedido", async () => {
+      const element = await page.$('[name="ratingButton"]');
+      await element.click();
     });
 
-    and(`vou avaliar um pedido`, () => {
-      expect(1).toBe(1);
+    and(/^avalio o pedido com (\d+) estrelas$/, async (stars) => {
+      const element = await page.$('[name="ratingStars"]');
     });
 
-    when(`eu clico em avaliar um pedido`, () => {
-      expect(1).toBe(1);
+    and("deixo a caixa de texto de feedback em branco", async () => {
+      await page.screenshot({
+        path: "screenshots/rating/tela_sem_texto_de_feedback.png",
+      });
     });
 
-    and(`avalio o pedido com 4 estrelas`, () => {
-      expect(1).toBe(1);
-    });
-    and(`deixo a caixa de texto de feedback em branco`, () => {
-      expect(1).toBe(1);
-    });
-    and(`clico em enviar avaliação`, () => {
-      expect(1).toBe(1);
+    and(/^clico em "(.*)"$/, async (buttonName) => {
+      const element = await page.$('[name="sendRateButton"]');
+      await element.click();
     });
 
-    then("Eu vejo uma mensagem de sucesso na tela", () => {
-      expect(1).toBe(1);
+    then("Eu vejo uma mensagem de sucesso na tela", async () => {
+      await page.screenshot({
+        path: "screenshots/rating/without_feedback_rating_test.png",
+      });
+    });
+  });
+
+  test("Avaliando um pedido qualquer com texto de feedback", async ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
+      await page.goto("http://localhost:3000/history", {
+        waitUntil: "networkidle2",
+      });
+    });
+
+    and("eu estou na página de histórico de pedidos", async () => {});
+
+    and("vou avaliar um pedido", async () => {});
+
+    when("eu clico em avaliar um pedido", async () => {
+      const element = await page.$('[name="ratingButton"]');
+      await element.click();
+    });
+
+    and(/^avalio o pedido com (\d+) estrelas$/, async (stars) => {
+      const element = await page.$('[name="ratingStars"]');
+    });
+
+    and(
+      /^escrevo a frase "(.*)" na caixa de texto de feedback$/,
+      async (text) => {
+        const element = await page.$('[name="ratingFeedbackText"]');
+        await element.type(text, { force: true });
+      }
+    );
+
+    and(/^clico em "(.*)"$/, async (buttonName) => {
+      await page.screenshot({
+        path: "screenshots/rating/tela_com_texto_de_feedback.png",
+      });
+      const element = await page.$('[name="sendRateButton"]');
+      await element.click();
+    });
+
+    then("Eu vejo uma mensagem de sucesso na tela", async () => {
+      await page.screenshot({
+        path: "screenshots/rating/with_feedback_rating_test.png",
+      });
+    });
+  });
+
+  test("Cancelando uma avaliação", async ({ given, when, then, and }) => {
+    given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
+      await page.goto("http://localhost:3000/history", {
+        waitUntil: "networkidle2",
+      });
+    });
+
+    and("eu estou na página de histórico de pedidos", async () => {});
+
+    and("vou cancelar a avaliação de um pedido", async () => {});
+
+    when("eu clico em avaliar um pedido", async () => {
+      const element = await page.$('[name="ratingButton"]');
+      await element.click();
+    });
+
+    and(/^avalio o pedido com (\d+) estrelas$/, async (stars) => {
+      const element = await page.$('[name="ratingStars"]');
+    });
+
+    and(
+      /^escrevo a frase "(.*)" na caixa de texto de feedback$/,
+      async (text) => {
+        const element = await page.$('[name="ratingFeedbackText"]');
+        await element.type(text, { force: true });
+      }
+    );
+
+    and(/^clico em "(.*)"$/, async (buttonName) => {
+      await page.screenshot({
+        path: "screenshots/rating/tela_cancelando_uma_avaliação.png",
+      });
+      const element = await page.$('[name="cancelRateButton"]');
+      await element.click();
+    });
+
+    and(
+      "vejo uma notificação na tela, perguntando se quero mesmo prosseguir",
+      async () => {
+        await page.screenshot({
+          path: "screenshots/rating/check_alert_rating_test.png",
+        });
+      }
+    );
+
+    and(/^clico em "(.*)"$/, async (buttonName) => {
+      const element = await page.$('[name="backButton"]');
+      await element.click();
+    });
+
+    then("Eu volto ao estado inicial da tela", async () => {
+      await page.screenshot({
+        path: "screenshots/rating/cancel_rating_test.png",
+      });
+    });
+  });
+
+  test("Revisando uma avaliação", async ({ given, when, then, and }) => {
+    given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
+      await page.goto("http://localhost:3000/history", {
+        waitUntil: "networkidle2",
+      });
+    });
+
+    and("eu estou na página de histórico de pedidos", async () => {});
+
+    and("vou revisar uma avaliação", async () => {});
+
+    when("eu clico em revisar avaliação do pedido", async () => {
+      const elements = await page.$$('[name="ratingButton"]');
+      await elements[1].click();
+    });
+
+    and("eu vejo minha avaliação feita na tela", async (stars) => {
+      await page.screenshot({
+        path: "screenshots/rating/tela_revisando_uma_avaliação.png",
+      });
+    });
+
+    and(/^clico em "(.*)"$/, async (buttonName) => {
+      const element = await page.$('[name="backButton"]');
+      await element.click();
+    });
+
+    then("Eu volto ao estado inicial da tela", async () => {
+      await page.screenshot({
+        path: "screenshots/rating/review_rating_test.png",
+      });
     });
   });
 });
