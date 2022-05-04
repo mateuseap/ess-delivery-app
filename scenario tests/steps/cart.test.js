@@ -1,7 +1,7 @@
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
-
+jest.setTimeout(10000);
 const feature = loadFeature("features/cart.feature");
 let browser;
 let page;
@@ -45,6 +45,7 @@ defineFeature(feature, (test) => {
         '[name="headerCartItemCount"]'
       );
       let value = await page.evaluate((el) => el.textContent, itemCount);
+      await page.screenshot({ path: "example.png" });
       expect(value).toBe("0");
     });
 

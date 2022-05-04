@@ -9,16 +9,13 @@ exports.resetTest = async (req, res) => {
 exports.configTest = async (req, res) => {
   const acceptedKeys = ["carts", "orders", "restaurants", "users"];
 
-  //table = new ManipulateDatabase("carts");
-  //table.write(req.body.carts);
   for (key of Object.keys(req.body)) {
     if (acceptedKeys.includes(key)) {
       table = new ManipulateDatabase(key);
       const obj = {};
       obj[key] = req.body[key];
       table.write(obj);
-      console.log(table)
-      res.status(200).send("success");
     }
   }
+  res.status(200).send("success");
 };
