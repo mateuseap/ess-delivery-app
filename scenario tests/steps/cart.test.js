@@ -1,7 +1,7 @@
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
-jest.setTimeout(10000);
+
 const feature = loadFeature("features/cart.feature");
 let browser;
 let page;
