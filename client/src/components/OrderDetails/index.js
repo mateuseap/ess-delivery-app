@@ -95,13 +95,13 @@ class OrderDetails extends Component {
               )}
 
               {order.status?.delivering ? (
-                <OrderStatusItem>Saiu para a entrega</OrderStatusItem>
+                <OrderStatusItem name="delivering">Saiu para a entrega</OrderStatusItem>
               ) : (
                 ""
               )}
 
               {order.status?.finished ? (
-                <OrderStatusItem>Finalizado</OrderStatusItem>
+                <OrderStatusItem name="finished">Finalizado</OrderStatusItem>
               ) : (
                 ""
               )}
