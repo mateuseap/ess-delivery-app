@@ -305,12 +305,14 @@ exports[`Home Component Integration Testing Renders data correctly 1`] = `
                           <td>
                             <Styled(styled.button)
                               disabled={false}
+                              name="ratingButton"
                               onClick={[Function]}
                               variant="blue"
                             >
                               <button
                                 className="sc-gsnTZi sc-dkzDqf hFDFfg jjWLoK"
                                 disabled={false}
+                                name="ratingButton"
                                 onClick={[Function]}
                               >
                                 Avaliar Pedido
@@ -363,12 +365,14 @@ exports[`Home Component Integration Testing Renders data correctly 1`] = `
                           <td>
                             <Styled(styled.button)
                               disabled={false}
+                              name="ratingButton"
                               onClick={[Function]}
                               variant=""
                             >
                               <button
                                 className="sc-gsnTZi sc-dkzDqf kRQeln jjWLoK"
                                 disabled={false}
+                                name="ratingButton"
                                 onClick={[Function]}
                               >
                                 Revisar avaliação

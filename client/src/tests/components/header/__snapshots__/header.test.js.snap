@@ -122,9 +122,12 @@ exports[`Header Component Integration Testing Renders data correctly 1`] = `
             <div
               className="sc-bczRLJ ewrbyp"
             >
-              <styled.div>
+              <styled.div
+                name="headerUserName"
+              >
                 <div
                   className="sc-gsnTZi gmtgZP"
+                  name="headerUserName"
                 >
                   Felipe Gonçalves
                 </div>
@@ -181,9 +184,12 @@ exports[`Header Component Integration Testing Renders data correctly 1`] = `
                           fill="#DA723C"
                         />
                       </svg>
-                      <styled.div>
+                      <styled.div
+                        name="headerCartItemCount"
+                      >
                         <div
                           className="sc-jSMfEi czhYGO"
+                          name="headerCartItemCount"
                         >
                           2
                         </div>
@@ -301,9 +307,12 @@ exports[`Header Component Integration Testing Renders loading correctly 1`] = `
             <div
               className="sc-bczRLJ ewrbyp"
             >
-              <styled.div>
+              <styled.div
+                name="headerUserName"
+              >
                 <div
                   className="sc-gsnTZi gmtgZP"
+                  name="headerUserName"
                 />
               </styled.div>
               <styled.div>
@@ -358,9 +367,12 @@ exports[`Header Component Integration Testing Renders loading correctly 1`] = `
                           fill="#DA723C"
                         />
                       </svg>
-                      <styled.div>
+                      <styled.div
+                        name="headerCartItemCount"
+                      >
                         <div
                           className="sc-jSMfEi czhYGO"
+                          name="headerCartItemCount"
                         >
                           0
                         </div>

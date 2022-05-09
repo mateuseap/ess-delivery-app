@@ -34,7 +34,7 @@ defineFeature(feature, (test) => {
   }) => {
     given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
       await page.goto("http://localhost:3000/history", {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
     });
 
@@ -93,7 +93,7 @@ defineFeature(feature, (test) => {
   }) => {
     given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
       await page.goto("http://localhost:3000/history", {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
     });
 
@@ -152,7 +152,7 @@ defineFeature(feature, (test) => {
   test("Cancelando uma avaliação", async ({ given, when, then, and }) => {
     given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
       await page.goto("http://localhost:3000/history", {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
     });
 
@@ -187,7 +187,7 @@ defineFeature(feature, (test) => {
   test("Revisando uma avaliação", async ({ given, when, then, and }) => {
     given(/^Estou logado com o usuário "(.*)"$/, async (user) => {
       await page.goto("http://localhost:3000/history", {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
     });
 

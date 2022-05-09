@@ -168,9 +168,11 @@ exports[`Cart Component Integration Testing Renders data correctly 1`] = `
                 </styled.div>
                 <styled.div
                   key="2"
+                  name="cartItemRow"
                 >
                   <div
                     className="sc-gKXOVf jNUJEn"
+                    name="cartItemRow"
                   >
                     <styled.div
                       src="https://img.itdg.com.br/tdg/images/recipes/000/021/372/357312/357312_original.jpg?mode=crop&width=710&height=400"
@@ -202,20 +204,24 @@ exports[`Cart Component Integration Testing Renders data correctly 1`] = `
                       </div>
                     </styled.div>
                     <Styled(styled.button)
+                      name="cartAddItemButton"
                       onClick={[Function]}
                     >
                       <button
                         className="sc-gsnTZi sc-iqcoie kRQeln fPfBXj"
+                        name="cartAddItemButton"
                         onClick={[Function]}
                       >
                         +
                       </button>
                     </Styled(styled.button)>
                     <Styled(styled.button)
+                      name="cartRemoveItemButton"
                       onClick={[Function]}
                     >
                       <button
                         className="sc-gsnTZi sc-crXcEl kRQeln fitzdG"
+                        name="cartRemoveItemButton"
                         onClick={[Function]}
                       >
                         -
@@ -232,9 +238,11 @@ exports[`Cart Component Integration Testing Renders data correctly 1`] = `
                 </styled.div>
                 <styled.div
                   key="3"
+                  name="cartItemRow"
                 >
                   <div
                     className="sc-gKXOVf jNUJEn"
+                    name="cartItemRow"
                   >
                     <styled.div
                       src="https://www.divenetoalimentos.com.br/images/produtos/picadinho-de-cubos-de-carne-com-molho-congelado.png"
@@ -266,20 +274,24 @@ exports[`Cart Component Integration Testing Renders data correctly 1`] = `
                       </div>
                     </styled.div>
                     <Styled(styled.button)
+                      name="cartAddItemButton"
                       onClick={[Function]}
                     >
                       <button
                         className="sc-gsnTZi sc-iqcoie kRQeln fPfBXj"
+                        name="cartAddItemButton"
                         onClick={[Function]}
                       >
                         +
                       </button>
                     </Styled(styled.button)>
                     <Styled(styled.button)
+                      name="cartRemoveItemButton"
                       onClick={[Function]}
                     >
                       <button
                         className="sc-gsnTZi sc-crXcEl kRQeln fitzdG"
+                        name="cartRemoveItemButton"
                         onClick={[Function]}
                       >
                         -
@@ -294,9 +306,12 @@ exports[`Cart Component Integration Testing Renders data correctly 1`] = `
                     </styled.div>
                   </div>
                 </styled.div>
-                <styled.div>
+                <styled.div
+                  name="cartTotalPrice"
+                >
                   <div
                     className="sc-evZas blRVCB"
+                    name="cartTotalPrice"
                   >
                     Total: 
                     R$ 29,00
@@ -307,15 +322,16 @@ exports[`Cart Component Integration Testing Renders data correctly 1`] = `
                     className="sc-breuTD lgVUTg"
                   >
                     OBS: É cobrada uma taxa de entrega de
-                     
                     R$ 5,00
                   </div>
                 </styled.div>
                 <Styled(styled.button)
+                  name="cartMakeOrderButton"
                   onClick={[Function]}
                 >
                   <button
                     className="sc-gsnTZi sc-ksZaOG kRQeln kUOkTm"
+                    name="cartMakeOrderButton"
                     onClick={[Function]}
                   >
                     Fazer Pedido
@@ -425,9 +441,12 @@ exports[`Cart Component Integration Testing Renders loading correctly 1`] = `
               <div
                 className="sc-dkzDqf emSNjO"
               >
-                <styled.h1>
+                <styled.h1
+                  name="cartEmptyCartText"
+                >
                   <h1
                     className="sc-hKMtZM kDIOHx"
+                    name="cartEmptyCartText"
                   >
                     Seu carrinho está vazio :(
                     <br />
@@ -435,6 +454,7 @@ exports[`Cart Component Integration Testing Renders loading correctly 1`] = `
                   </h1>
                 </styled.h1>
                 <Link
+                  name="cartGoHomeButton"
                   style={
                     Object {
                       "textDecoration": "none",
@@ -444,6 +464,7 @@ exports[`Cart Component Integration Testing Renders loading correctly 1`] = `
                 >
                   <a
                     href="/home"
+                    name="cartGoHomeButton"
                     onClick={[Function]}
                     style={
                       Object {
@@ -455,7 +476,7 @@ exports[`Cart Component Integration Testing Renders loading correctly 1`] = `
                       <button
                         className="sc-gsnTZi sc-fnykZs kRQeln hikNvC"
                       >
-                         Ver restaurantes 
+                        Ver restaurantes
                       </button>
                     </Styled(styled.button)>
                   </a>

@@ -39,7 +39,7 @@ defineFeature(feature, (test) => {
           restaurants: getRestaurants.restaurants,
         });
         await page.goto("http://localhost:3000/" + pagePath, {
-          waitUntil: "networkidle2",
+          waitUntil: "networkidle0",
         });
         await page.screenshot({ path: "example3.png" });
         await page.click(`[name="BOTAO"]`);
@@ -55,7 +55,7 @@ defineFeature(feature, (test) => {
       await axios.post("http://localhost:1337/configTest", { carts: [] });
       await page.click(`[nome="ADICIONAR"]`);
       await page.screenshot({ path: "example5.png" });
-      //expect(page.$('[name="headerCartItemCount"]')).toEqual("menu");
+
       const itemCountElement = await page.$('[name="headerCartItemCount"]');
       let value = await page.evaluate((el) => el.textContent, itemCountElement);
       expect(value).toEqual("1");
@@ -63,7 +63,7 @@ defineFeature(feature, (test) => {
 
     then("O carrinho é atualizado e o valor total aumenta", async () => {
       await page.goto("http://localhost:3000/cart", {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
       await page.screenshot({ path: "example6.png" });
       const itemCountElement = await page.$('[name="cartTotalPrice"]');
@@ -115,6 +115,5 @@ defineFeature(feature, (test) => {
       let value = await page.evaluate((el) => el.textContent, itemCountElement);
       expect(value).toEqual("2");
     });
-
   });
 });

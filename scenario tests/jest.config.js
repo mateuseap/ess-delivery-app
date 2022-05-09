@@ -3,6 +3,7 @@
 const config = {
   verbose: true,
   testMatch: ["**/*.steps.js", "**/*.test.js"],
+  testTimeout: 12000,
 };
 
 module.exports = config;

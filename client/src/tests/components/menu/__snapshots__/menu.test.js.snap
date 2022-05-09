@@ -139,320 +139,18 @@ exports[`Menu Component Integration Testing Renders data correctly 1`] = `
                 <div
                   className="d-inline-flex justify-content-center align-items-center"
                 >
-                  <ReactStars
-                    a11y={true}
+                  <Component
                     activeColor="#ffd700"
-                    char="★"
-                    color="gray"
                     count={5}
                     edit={false}
-                    half={false}
                     isHalf={true}
-                    onChange={[Function]}
                     size={50}
                     value={4.5}
                   >
-                    <div
-                      className="react-stars-wrapper-02873926373346054"
-                      style={
-                        Object {
-                          "display": "flex",
-                        }
-                      }
-                    >
-                      <div
-                        aria-label="add rating by typing an integer from 0 to 5 or pressing arrow keys"
-                        className="undefined react-stars"
-                        onKeyDown={[Function]}
-                        style={
-                          Object {
-                            "overflow": "hidden",
-                            "position": "relative",
-                          }
-                        }
-                        tabIndex={null}
-                      >
-                        <style
-                          dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "
-    .react-stars-02873926373346054:before {
-      position: absolute;
-      overflow: hidden;
-      display: block;
-      z-index: 1;
-      top: 0; left: 0;
-      width: 50%;
-      content: attr(data-forhalf);
-      color: #ffd700;
-  }",
-                            }
-                          }
-                        />
-                        <Star
-                          active={true}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={4}
-                          halfStarHidden={false}
-                          index={0}
-                          key="0"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="02873926373346054"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={0}
-                            key="0"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "#ffd700",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={true}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={4}
-                          halfStarHidden={false}
-                          index={1}
-                          key="1"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="02873926373346054"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={1}
-                            key="1"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "#ffd700",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={true}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={4}
-                          halfStarHidden={false}
-                          index={2}
-                          key="2"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="02873926373346054"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={2}
-                            key="2"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "#ffd700",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={true}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={4}
-                          halfStarHidden={false}
-                          index={3}
-                          key="3"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="02873926373346054"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={3}
-                            key="3"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "#ffd700",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={false}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={4}
-                          halfStarHidden={false}
-                          index={4}
-                          key="4"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="02873926373346054"
-                        >
-                          <span
-                            className="react-stars-02873926373346054"
-                            data-forhalf="★"
-                            data-index={4}
-                            key="4"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "gray",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <p
-                          role="status"
-                          style={
-                            Object {
-                              "left": "-200rem",
-                              "position": "absolute",
-                            }
-                          }
-                        >
-                          4.5
-                        </p>
-                      </div>
+                    <div>
+                      Hello World
                     </div>
-                  </ReactStars>
+                  </Component>
                   <styled.h4
                     className="p-3 mt-2"
                   >
@@ -479,7 +177,9 @@ exports[`Menu Component Integration Testing Renders data correctly 1`] = `
                           <div
                             className="sc-gsnTZi fLZfYw"
                           >
-                            <td>
+                            <td
+                              key="1"
+                            >
                               <styled.div
                                 className="p-2"
                               >
@@ -519,6 +219,7 @@ exports[`Menu Component Integration Testing Renders data correctly 1`] = `
                                       <Button
                                         active={false}
                                         disabled={false}
+                                        nome="ADICIONAR"
                                         onClick={[Function]}
                                         style={
                                           Object {
@@ -533,6 +234,7 @@ exports[`Menu Component Integration Testing Renders data correctly 1`] = `
                                         <button
                                           className="btn btn-outline-danger"
                                           disabled={false}
+                                          nome="ADICIONAR"
                                           onClick={[Function]}
                                           style={
                                             Object {
@@ -556,7 +258,9 @@ exports[`Menu Component Integration Testing Renders data correctly 1`] = `
                                 </div>
                               </styled.div>
                             </td>
-                            <td>
+                            <td
+                              key="2"
+                            >
                               <styled.div
                                 className="p-2"
                               >
@@ -596,6 +300,7 @@ exports[`Menu Component Integration Testing Renders data correctly 1`] = `
                                       <Button
                                         active={false}
                                         disabled={false}
+                                        nome="ADICIONAR"
                                         onClick={[Function]}
                                         style={
                                           Object {
@@ -610,6 +315,7 @@ exports[`Menu Component Integration Testing Renders data correctly 1`] = `
                                         <button
                                           className="btn btn-outline-danger"
                                           disabled={false}
+                                          nome="ADICIONAR"
                                           onClick={[Function]}
                                           style={
                                             Object {
@@ -753,320 +459,18 @@ exports[`Menu Component Integration Testing Renders loading correctly 1`] = `
                 <div
                   className="d-inline-flex justify-content-center align-items-center"
                 >
-                  <ReactStars
-                    a11y={true}
+                  <Component
                     activeColor="#ffd700"
-                    char="★"
-                    color="gray"
                     count={5}
                     edit={false}
-                    half={false}
                     isHalf={true}
-                    onChange={[Function]}
                     size={50}
                     value={NaN}
                   >
-                    <div
-                      className="react-stars-wrapper-0019134480616962435"
-                      style={
-                        Object {
-                          "display": "flex",
-                        }
-                      }
-                    >
-                      <div
-                        aria-label="add rating by typing an integer from 0 to 5 or pressing arrow keys"
-                        className="undefined react-stars"
-                        onKeyDown={[Function]}
-                        style={
-                          Object {
-                            "overflow": "hidden",
-                            "position": "relative",
-                          }
-                        }
-                        tabIndex={null}
-                      >
-                        <style
-                          dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "
-    .react-stars-0019134480616962435:before {
-      position: absolute;
-      overflow: hidden;
-      display: block;
-      z-index: 1;
-      top: 0; left: 0;
-      width: 50%;
-      content: attr(data-forhalf);
-      color: #ffd700;
-  }",
-                            }
-                          }
-                        />
-                        <Star
-                          active={false}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={NaN}
-                          halfStarHidden={false}
-                          index={0}
-                          key="0"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="0019134480616962435"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={0}
-                            key="0"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "gray",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={false}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={NaN}
-                          halfStarHidden={false}
-                          index={1}
-                          key="1"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="0019134480616962435"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={1}
-                            key="1"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "gray",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={false}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={NaN}
-                          halfStarHidden={false}
-                          index={2}
-                          key="2"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="0019134480616962435"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={2}
-                            key="2"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "gray",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={false}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={NaN}
-                          halfStarHidden={false}
-                          index={3}
-                          key="3"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="0019134480616962435"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={3}
-                            key="3"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "gray",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <Star
-                          active={false}
-                          config={
-                            Object {
-                              "a11y": true,
-                              "activeColor": "#ffd700",
-                              "char": "★",
-                              "color": "gray",
-                              "count": 5,
-                              "edit": false,
-                              "emptyIcon": undefined,
-                              "filledIcon": undefined,
-                              "halfIcon": undefined,
-                              "isHalf": true,
-                              "size": 50,
-                            }
-                          }
-                          halfStarAt={NaN}
-                          halfStarHidden={false}
-                          index={4}
-                          key="4"
-                          onClick={[Function]}
-                          onMouseLeave={[Function]}
-                          onMouseOver={[Function]}
-                          uniqueness="0019134480616962435"
-                        >
-                          <span
-                            className=""
-                            data-forhalf="★"
-                            data-index={4}
-                            key="4"
-                            onClick={[Function]}
-                            onMouseLeave={[Function]}
-                            onMouseMove={[Function]}
-                            onMouseOver={[Function]}
-                            style={
-                              Object {
-                                "color": "gray",
-                                "cursor": "default",
-                                "display": "block",
-                                "float": "left",
-                                "fontSize": "50px",
-                                "overflow": "hidden",
-                                "position": "relative",
-                              }
-                            }
-                          >
-                            ★
-                          </span>
-                        </Star>
-                        <p
-                          role="status"
-                          style={
-                            Object {
-                              "left": "-200rem",
-                              "position": "absolute",
-                            }
-                          }
-                        >
-                          NaN
-                        </p>
-                      </div>
+                    <div>
+                      Hello World
                     </div>
-                  </ReactStars>
+                  </Component>
                   <styled.h4
                     className="p-3 mt-2"
                   >

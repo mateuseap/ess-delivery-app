@@ -7,9 +7,15 @@ import { INITIAL_STATE, Types } from "../../../store/ducks/menu";
 import createSagaMiddleware from "redux-saga";
 import { menuLoadedState } from "../dataUtils";
 
+import React from "react";
+import ReactStars from "react-rating-stars-component";
+//React stars are being mocked due to a problem with Uniqueness in the snapshot render
+jest.mock("react-rating-stars-component", () => () => <div>Hello World</div>);
+
 import Enzyme from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import toJson from "enzyme-to-json";
+import { ItemData } from "../../../components/Menu/styles";
 
 const sagaMiddleware = createSagaMiddleware();
 

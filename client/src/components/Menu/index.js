@@ -83,7 +83,7 @@ class Menu extends Component {
                 <tr className="mx-5">
                   <TableStyle>
                     {restaurant.menu?.options.map((element) => (
-                      <td>
+                      <td key={element.item_id}>
                         <TableBodyStyle className="p-2">
                           <ItemPhoto className="m-2" photo={element.photo} />
                           <ItemData className="m-4">

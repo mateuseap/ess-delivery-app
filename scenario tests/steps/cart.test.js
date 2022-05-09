@@ -1,7 +1,7 @@
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
-jest.setTimeout(10000);
+
 const feature = loadFeature("features/cart.feature");
 let browser;
 let page;
@@ -28,10 +28,9 @@ defineFeature(feature, (test) => {
     given(/^Estou na página “(.*)”$/, async (pagePath) => {
       await axios.post("http://localhost:1337/configTest", { carts: [] });
       await page.goto("http://localhost:3000/" + pagePath, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
-
-      expect(1).toBe(1);
+      await page.screenshot({ path: "screenshots/cart/pageLoaded.png" });
     });
 
     and(/^eu estou logado como cliente “(.*)”$/, async (name) => {
@@ -45,7 +44,7 @@ defineFeature(feature, (test) => {
         '[name="headerCartItemCount"]'
       );
       let value = await page.evaluate((el) => el.textContent, itemCount);
-      await page.screenshot({ path: "example.png" });
+      await page.screenshot({ path: "screenshots/cart/noItems.png" });
       expect(value).toBe("0");
     });
 
@@ -86,7 +85,7 @@ defineFeature(feature, (test) => {
   }) => {
     given(/^Estou na página “(.*)”$/, async (pagePath) => {
       await page.goto("http://localhost:3000/" + pagePath, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
 
       expect(1).toBe(1);
@@ -126,7 +125,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^sou redirecionado para a página “(.*)”$/, async (pagePath) => {
-      await page.screenshot({ path: "example.png" });
+      await page.screenshot({ path: "screenshots/cart/orderPage.png" });
       const splitUrl = page.url().split("/");
       const pathName = splitUrl[splitUrl.length - 2];
       expect(pathName).toEqual(pagePath);
@@ -136,7 +135,7 @@ defineFeature(feature, (test) => {
   test("retirar itens do carrinho", async ({ given, when, then, and }) => {
     given(/^Estou na página “(.*)”$/, async (pagePath) => {
       await page.goto("http://localhost:3000/" + pagePath, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
 
       expect(1).toBe(1);
@@ -232,7 +231,7 @@ defineFeature(feature, (test) => {
     let originalItemQuantity;
     given(/^Estou na página “(.*)”$/, async (pagePath) => {
       await page.goto("http://localhost:3000/" + pagePath, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
 
       expect(1).toBe(1);
